@@ -1,15 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 
-import { List, Icon } from 'antd';
+import { List, Icon } from "antd";
 
-import useStoreon from 'storeon/react';
+import useStoreon from "storeon/react";
 
-import VkIcon from '../../asset/vk.svg';
+import VkIcon from "../../asset/vk.svg";
+import { GET_LIST } from "../store/community";
 
 const Community = () => {
-  const { community, dispatch } = useStoreon('community');
+  const { community, dispatch } = useStoreon("community");
   useEffect(() => {
-    dispatch('community/get-list');
+    dispatch(GET_LIST);
   }, [dispatch]);
   return (
     <div className="content">
@@ -24,7 +25,7 @@ const Community = () => {
             key={item.id}
             actions={item.social.map(social => (
               <a key={social.icon} href={social.link} target="_blank">
-                {social.icon === 'vk' ? (
+                {social.icon === "vk" ? (
                   <Icon style={{ fontSize: 24 }} component={VkIcon} />
                 ) : (
                   <Icon style={{ fontSize: 24 }} type={social.icon} />

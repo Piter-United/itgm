@@ -1,51 +1,47 @@
-import React from 'react';
+import React, { useEffect } from "react";
 
-import { List, Icon, Row, Col, Button, notification } from 'antd';
-import useStoreon from 'storeon/react';
-
-const subjects = [
-  {
-    id: 1,
-    name: 'Test',
-    about: 'Test description\nsuper duper theme',
-    community: {
-      id: 'id1',
-      name: 'PiterJS'
-    },
-    tags: ['a', 'b', 'c'],
-    author: {
-      id: 'github-584816',
-      name: 'Mikhail Poluboyarinov'
-    },
-    likes: 100
-  },
-  {
-    id: 2,
-    name: 'Test 2',
-    about: 'Test 2 description\nsuper duper theme',
-    community: {
-      id: 'id1',
-      name: 'PiterJS'
-    },
-    tags: ['a', 'd'],
-    author: {
-      id: 'github-584816',
-      name: 'Mikhail Poluboyarinov'
-    },
-    likes: 10
-  }
-];
+import { List, Icon, Row, Col, Button, notification } from "antd";
+import useStoreon from "storeon/react";
+import { GET_LIST } from "../store/activity";
 
 const likeHandler = id => {
   if (id === 1) {
-    notification.success({ message: 'Ваш голос учтен' });
+    notification.success({ message: "Ваш голос учтен" });
   } else {
-    notification.warn({ message: 'Вы уже голосовали' });
+    notification.warn({ message: "Вы уже голосовали" });
   }
 };
 
+const ShowItem = item => (
+  <List.Item
+    key={item.id}
+    actions={[
+      <span
+        onClick={() => likeHandler(item.id)}
+        key={`list-item-like-${item.id}`}
+      >
+        <Icon type="like-o" />
+        {item.likes}
+      </span>
+    ]}
+  >
+    <List.Item.Meta
+      title={item.name}
+      description={
+        <div>
+          {item.community.name} ({item.tags.join(",")})
+        </div>
+      }
+    />
+    {item.description}
+  </List.Item>
+);
+
 const Home = () => {
-  const { user } = useStoreon('user');
+  const { user, activity, dispatch } = useStoreon("user", "activity");
+  useEffect(() => {
+    dispatch(GET_LIST);
+  }, [dispatch]);
   return (
     <div className="content">
       <Row>
@@ -54,31 +50,9 @@ const Home = () => {
             itemLayout="vertical"
             size="large"
             pagination={false}
-            dataSource={subjects}
-            renderItem={item => (
-              <List.Item
-                key={item.id}
-                actions={[
-                  <span
-                    onClick={() => likeHandler(item.id)}
-                    key={`list-item-like-${item.id}`}
-                  >
-                    <Icon type="like-o" />
-                    {item.likes}
-                  </span>
-                ]}
-              >
-                <List.Item.Meta
-                  title={item.name}
-                  description={
-                    <div>
-                      {item.community.name} ({item.tags.join(',')})
-                    </div>
-                  }
-                />
-                {item.about}
-              </List.Item>
-            )}
+            loading={activity.loading}
+            dataSource={activity.list}
+            renderItem={ShowItem}
           />
         </Col>
         <Col span={6}>

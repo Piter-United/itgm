@@ -1,7 +1,8 @@
-import React from 'react';
-import { withRouter, Link, matchPath } from 'react-router-dom';
-import useStoreon from 'storeon/react';
-import { Layout, Menu } from 'antd';
+import React from "react";
+import { withRouter, Link, matchPath } from "react-router-dom";
+import useStoreon from "storeon/react";
+import { Button, Layout, Menu } from "antd";
+import { LOGOUT } from "../store/user";
 
 const { Header } = Layout;
 
@@ -11,28 +12,28 @@ const hasMatchRoute = (path, url) => {
     exact: true,
     strict: false
   });
-  return m && 'path' in m;
+  return m && "path" in m;
 };
 
 export default withRouter(({ history: { location: { pathname: path } } }) => {
-  const { user } = useStoreon('user');
+  const { user, dispatch } = useStoreon("user");
   return (
     <Header>
       <Menu
         theme="dark"
         mode="horizontal"
         selectable={false}
-        style={{ lineHeight: '64px', display: 'flex' }}
+        style={{ lineHeight: "64px", display: "flex" }}
       >
         <Menu.Item
-          className={hasMatchRoute(path, '/') ? 'ant-menu-item-selected' : ''}
+          className={hasMatchRoute(path, "/") ? "ant-menu-item-selected" : ""}
           key="1"
         >
           <Link to="/">Главная</Link>
         </Menu.Item>
         <Menu.Item
           className={
-            hasMatchRoute(path, '/community') ? 'ant-menu-item-selected' : ''
+            hasMatchRoute(path, "/community") ? "ant-menu-item-selected" : ""
           }
           key="2"
         >
@@ -42,9 +43,9 @@ export default withRouter(({ history: { location: { pathname: path } } }) => {
           <Menu.Item
             key="97"
             className={
-              hasMatchRoute(path, '/login') ? 'ant-menu-item-selected' : ''
+              hasMatchRoute(path, "/login") ? "ant-menu-item-selected" : ""
             }
-            style={{ marginLeft: 'auto' }}
+            style={{ marginLeft: "auto" }}
           >
             <Link to="/login">Login</Link>
           </Menu.Item>
@@ -53,9 +54,9 @@ export default withRouter(({ history: { location: { pathname: path } } }) => {
           <Menu.Item
             key="98"
             className={
-              hasMatchRoute(path, '/user') ? 'ant-menu-item-selected' : ''
+              hasMatchRoute(path, "/user") ? "ant-menu-item-selected" : ""
             }
-            style={{ marginLeft: 'auto' }}
+            style={{ marginLeft: "auto" }}
           >
             <Link to="/user">
               {user.name ? user.name.formatted : user.email}
@@ -64,10 +65,12 @@ export default withRouter(({ history: { location: { pathname: path } } }) => {
           <Menu.Item
             key="99"
             className={
-              hasMatchRoute(path, '/logout') ? 'ant-menu-item-selected' : ''
+              hasMatchRoute(path, "/logout") ? "ant-menu-item-selected" : ""
             }
           >
-            <Link to="/logout">Logout</Link>
+            <a type="link" onClick={() => dispatch(LOGOUT)}>
+              Logout
+            </a>
           </Menu.Item>
         ]}
       </Menu>

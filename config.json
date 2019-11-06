@@ -16,22 +16,18 @@
       "allow-community-read": {
         "engine": "json-schema",
         "schema": {
-          "required": [
-            "request-method"
-          ],
+          "required": ["request-method"],
           "properties": {
             "request-method": {
               "const": "get"
             }
           },
           "params": {
-            "required": [
-              "resource/type"
-            ],
+            "required": ["resource/type"],
             "properties": {
               "resource/type": {
                 "type": "string",
-                "const": "Community"
+                "enum": ["Community", "Activity"]
               }
             }
           }
@@ -39,10 +35,12 @@
       },
       "allow-app-client": {
         "engine": "allow",
-        "link": [{
+        "link": [
+          {
             "id": "app-client",
             "resourceType": "Client"
-          }]
+          }
+        ]
       }
     }
   },

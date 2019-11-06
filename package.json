@@ -31,8 +31,10 @@
     "aidbox": "^2.0.0-beta.0",
     "autoprefixer": "^9.7.1",
     "dotenv": "^8.2.0",
+    "husky": "^3.0.9",
     "parcel-bundler": "^1.12.4",
     "postcss-modules": "^1.4.1",
+    "pretty-quick": "^2.0.1",
     "size-limit": "^2.1.6"
   },
   "babel": {
@@ -60,5 +62,10 @@
       "webpack": false,
       "path": "dist/*.js"
     }
-  ]
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  }
 }

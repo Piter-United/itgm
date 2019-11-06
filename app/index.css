@@ -1,0 +1,53 @@
+@import '../node_modules/antd/dist/antd.css';
+
+.hidden {
+  display: none;
+}
+
+.content {
+  margin: 1rem;
+}
+
+.title {
+  font-size: 24px;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  color: #444;
+}
+
+.text {
+  font-size: 18px;
+  color: #666;
+  flex: 0 0 auto;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.pane {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #CCC;
+  border-radius: 10px;
+}
+
+.pane#user {
+  width: 60%;
+  min-height: 80px;
+}
+
+.pane#test {
+  width: 80%;
+  min-height: 100px;
+  margin-top: 1rem;
+}
+
+.nextTab {
+  margin-top: 1rem;
+}
+
+.nextTab#top {
+  float: right;
+  margin-top: 1.5rem;
+  margin-right: 1rem;
+  margin-bottom: 0;
+}

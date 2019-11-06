@@ -1,0 +1,114 @@
+{
+  "bundle": [],
+  "resources": {
+    "Client": {
+      "app-client": {
+        "first_party": true,
+        "auth": {
+          "authorization_code": {
+            "redirect_uri": "https://itgm.m1p.me/login"
+          }
+        },
+        "grant_types": ["authorization_code"]
+      }
+    },
+    "AccessPolicy": {
+      "allow-community-read": {
+        "engine": "json-schema",
+        "schema": {
+          "required": [
+            "request-method"
+          ],
+          "properties": {
+            "request-method": {
+              "const": "get"
+            }
+          },
+          "params": {
+            "required": [
+              "resource/type"
+            ],
+            "properties": {
+              "resource/type": {
+                "type": "string",
+                "const": "Community"
+              }
+            }
+          }
+        }
+      },
+      "allow-app-client": {
+        "engine": "allow",
+        "link": [{
+            "id": "app-client",
+            "resourceType": "Client"
+          }]
+      }
+    }
+  },
+  "entities": {
+    "Community": {
+      "attrs": {
+        "name": {
+          "type": "string",
+          "isRequired": true
+        },
+        "owner": {
+          "type": "Reference",
+          "isRequired": true
+        },
+        "social": {
+          "isCollection": true,
+          "attrs": {
+            "icon": {
+              "type": "string",
+              "isRequired": true
+            },
+            "link": {
+              "type": "string",
+              "isRequired": true
+            }
+          }
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "Activity": {
+      "attrs": {
+        "name": {
+          "type": "string",
+          "isRequired": true
+        },
+        "description": {
+          "type": "string"
+        },
+        "tags": {
+          "isCollection": true,
+          "type": "string"
+        },
+        "community": {
+          "type": "Reference",
+          "isRequired": true
+        },
+        "user": {
+          "type": "Reference",
+          "isRequired": true
+        }
+      }
+    },
+    "ActivityLike": {
+      "attrs": {
+        "activity": {
+          "type": "Reference",
+          "isRequired": true
+        },
+        "user": {
+          "type": "Reference",
+          "isRequired": true
+        }
+      }
+    }
+  }
+}

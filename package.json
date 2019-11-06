@@ -1,0 +1,64 @@
+{
+  "name": "itgm",
+  "version": "0.0.1",
+  "description": "ITGM app",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "rm -Rf dist && NODE_ENV=production parcel build index.html",
+    "size": "size-limit",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Mikhail Poluboyarinov <mikle.sol@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@svgr/parcel-plugin-svgr": "^4.3.3",
+    "antd": "^3.25.0",
+    "history": "^4.10.1",
+    "prettier": "^1.18.2",
+    "qs": "^6.9.0",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-router-dom": "^5.1.2",
+    "storeon": "^0.9.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.0",
+    "@babel/polyfill": "^7.7.0",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-react": "^7.7.0",
+    "aidbox": "^2.0.0-beta.0",
+    "autoprefixer": "^9.7.1",
+    "dotenv": "^8.2.0",
+    "parcel-bundler": "^1.12.4",
+    "postcss-modules": "^1.4.1",
+    "size-limit": "^2.1.6"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ]
+  },
+  "postcss": {
+    "modules": false,
+    "plugins": {
+      "autoprefixer": {
+        "flexbox": "no-2009"
+      }
+    }
+  },
+  "browserslist": [
+    "last 1 version",
+    "> 1%",
+    "maintained node versions",
+    "not dead"
+  ],
+  "size-limit": [
+    {
+      "webpack": false,
+      "path": "dist/*.js"
+    }
+  ]
+}

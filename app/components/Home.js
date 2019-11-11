@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react'
 
-import { List, Icon, Row, Col, Button, notification } from "antd";
-import useStoreon from "storeon/react";
-import { GET_LIST } from "../store/activity";
+import { List, Icon, Row, Col, Button, notification } from 'antd'
+import useStoreon from 'storeon/react'
+import { GET_LIST } from '../store/activity'
 
 const likeHandler = id => {
   if (id === 1) {
-    notification.success({ message: "Ваш голос учтен" });
+    notification.success({ message: 'Ваш голос учтен' })
   } else {
-    notification.warn({ message: "Вы уже голосовали" });
+    notification.warn({ message: 'Вы уже голосовали' })
   }
-};
+}
 
 const ShowItem = item => (
   <List.Item
@@ -29,19 +29,19 @@ const ShowItem = item => (
       title={item.name}
       description={
         <div>
-          {item.community.name} ({item.tags.join(",")})
+          {item.community.name} ({item.tags.join(',')})
         </div>
       }
     />
     {item.description}
   </List.Item>
-);
+)
 
 const Home = () => {
-  const { user, activity, dispatch } = useStoreon("user", "activity");
+  const { user, activity, dispatch } = useStoreon('user', 'activity')
   useEffect(() => {
-    dispatch(GET_LIST);
-  }, [dispatch]);
+    dispatch(GET_LIST)
+  }, [dispatch])
   return (
     <div className="content">
       <Row>
@@ -60,7 +60,7 @@ const Home = () => {
         </Col>
       </Row>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

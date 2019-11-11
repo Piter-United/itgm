@@ -13,6 +13,8 @@ jobs:
       - name: Build and Deploy
         uses: JamesIves/github-pages-deploy-action@master
         env:
+          APP_URL: https://itgm.aidbox.app
+          APP_CLIENT_ID: app-client
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BASE_BRANCH: master
           CNAME: app.piter-united.ru

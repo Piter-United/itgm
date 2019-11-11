@@ -47,7 +47,7 @@ export default withRouter(({ history: { location: { pathname: path } } }) => {
             }
             style={{ marginLeft: "auto" }}
           >
-            <Link to="/login">Login</Link>
+            <Link to="/login">Вход</Link>
           </Menu.Item>
         )}
         {user && [
@@ -69,7 +69,7 @@ export default withRouter(({ history: { location: { pathname: path } } }) => {
             }
           >
             <a type="link" onClick={() => dispatch(LOGOUT)}>
-              Logout
+              Выход
             </a>
           </Menu.Item>
         ]}

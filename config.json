@@ -53,6 +53,7 @@
         },
         "owner": {
           "type": "Reference",
+          "refers": ["User"],
           "isRequired": true
         },
         "social": {
@@ -88,10 +89,12 @@
         },
         "community": {
           "type": "Reference",
+          "refers": ["Community"],
           "isRequired": true
         },
         "user": {
           "type": "Reference",
+          "refers": ["User"],
           "isRequired": true
         }
       }
@@ -100,10 +103,12 @@
       "attrs": {
         "activity": {
           "type": "Reference",
+          "refers": ["Community"],
           "isRequired": true
         },
         "user": {
           "type": "Reference",
+          "refers": ["User"],
           "isRequired": true
         }
       }

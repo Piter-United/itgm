@@ -126,11 +126,17 @@ export const Login = ({ location: { search } }) => {
   const { code } = parse(search.slice(1));
   if (!code) {
     return (
-      <div>
+      <div style={{ textAlign: "center", fontSize: "24px" }}>
         <a
-          href={`${site_url}/auth/redirect/aidbox?client_id=${client_id}&response_type=code`}
+          href={`${site_url}/auth/redirect/google?client_id=${client_id}&response_type=code`}
         >
-          Login by Aidbox
+          Login by Google
+        </a>
+        <br />
+        <a
+          href={`${site_url}/auth/redirect/github?client_id=${client_id}&response_type=code`}
+        >
+          Login by GitHub
         </a>
       </div>
     );

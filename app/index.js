@@ -24,10 +24,10 @@ class LocationListener extends React.Component {
   handleLocationChange = location => {
     if (this.props.user) {
       if (
-        location.pathname !== '/user' &&
+        location.pathname !== '/user/edit' &&
         (!this.props.user.data || !this.props.user.data.community)
       ) {
-        this.props.history.push('/user')
+        this.props.history.push('/user/edit')
       }
     }
   }

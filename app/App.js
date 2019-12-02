@@ -7,7 +7,9 @@ const { Content, Footer } = Layout
 import Header from './components/Header'
 
 import PrivateRoute from './components/PrivateRoute'
-import { User, Login } from './components/User'
+import User from './components/User'
+import Login from './components/Login'
+import UserEdit from './components/UserEdit'
 import Home from './components/Home'
 import NotFound from './components/NotFound'
 import Community from './components/Community'
@@ -27,7 +29,8 @@ const App = () => (
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/community" component={Community} />
-          <PrivateRoute path="/user" component={User} />
+          <PrivateRoute path="/user" exact component={User} />
+          <PrivateRoute path="/user/edit" component={UserEdit} />
           <Route path="/login" component={Login} />
           <Route component={NotFound} />
         </Switch>

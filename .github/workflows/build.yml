@@ -28,7 +28,7 @@ jobs:
       - name: build
         env:
           APP_URL: https://itgm.aidbox.app
-          APP_CLIENT_ID: ui
+          APP_CLIENT_ID: app-client
         run: |
           npm run build
           cp ./CNAME ./dist/CNAME

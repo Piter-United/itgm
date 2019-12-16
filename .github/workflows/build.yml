@@ -32,6 +32,7 @@ jobs:
         run: |
           npm run build
           cp ./CNAME ./dist/CNAME
+          cp ./.nojekyll ./dist/.nojekyll
           cp ./dist/index.html ./dist/404.html
 
       - name: Deploy

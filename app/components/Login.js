@@ -6,6 +6,8 @@ import { Button, Icon, Typography } from 'antd'
 import { client_id, site_url } from '../config'
 import history from '../history'
 
+import { GET_CURRENT_USER, SET_TOKEN, SET_USER_ID } from '../store/user'
+
 import './Heading/Heading.css'
 import './Form/_view/Form_view_auth.css'
 import './List/_type/List_type_unstyled.css'
@@ -33,13 +35,13 @@ const Login = ({ location: { search } }) => {
       })
       const data = await res.json()
       if (res.status !== 200) {
-        console.log(data)
         setError(data.error_description)
       } else {
-        dispatch('user/set-user-token', {
-          token: data.access_token,
-          user: data.userinfo
-        })
+        dispatch(SET_TOKEN, data.access_token)
+        dispatch(SET_USER_ID, data.userinfo.id)
+        setTimeout(() => {
+          dispatch(GET_CURRENT_USER)
+        }, 500)
         if (!data.userinfo.data || !data.userinfo.data.community) {
           history.push('/user/edit')
         } else {

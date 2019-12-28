@@ -1,13 +1,13 @@
 import { notification } from 'antd'
 import history from '../history'
 
-const u = window.localStorage.getItem('user')
-
 const defaultState = {
   token: window.localStorage.getItem('token') || null,
-  user: u ? JSON.parse(u) : null
+  userId: window.localStorage.getItem('userId') || null,
+  user: null
 }
 export const SET_USER_TOKEN = 'user/set-user-token'
+export const SET_USER_ID = 'user/set-user-id'
 export const SET_USER = 'user/set-user'
 export const SET_TOKEN = 'user/set-token'
 export const GET_CURRENT_USER = 'user/get-current-user'
@@ -57,6 +57,14 @@ const user = store => {
     }
     return { token }
   })
+  store.on(SET_USER_ID, (store, userId) => {
+    if (userId) {
+      window.localStorage.setItem('userId', userId)
+    } else {
+      window.localStorage.removeItem('userId')
+    }
+    return { userId }
+  })
   store.on(SET_USER, (store, user) => {
     if (user) {
       window.localStorage.setItem(
@@ -66,15 +74,17 @@ const user = store => {
     } else {
       window.localStorage.removeItem('user')
     }
-    return { user }
+    return {
+      user: user && user.data && user.data.length > 0 ? user.data[0] : null
+    }
   })
   store.on(GET_CURRENT_USER, async s => {
-    if (s.user && s.user.id) {
+    if (s.userId) {
       store.dispatch('request', {
         resourceType: '$query',
         id: 'userinfo',
         params: {
-          user: s.user.id
+          user: s.userId
         },
         success: SET_USER,
         error: {
@@ -86,10 +96,10 @@ const user = store => {
   })
   store.on(UPDATE_USER, (s, user) => {
     store.dispatch('request', {
-      resourceType: 'User',
+      resourceType: 'UserProfile',
       id: user.id,
       body: user,
-      method: 'PATCH',
+      method: 'PUT',
       success: UPDATE_USER_SUCCESS,
       error: UPDATE_USER_ERROR
     })

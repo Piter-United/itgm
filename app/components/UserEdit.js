@@ -41,7 +41,7 @@ const UserEditForm = ({ form, user, community, onUpdateUser }) => {
     >
       <div className="form__header">
         <div className="form__avatar">
-          {user.photo ? (
+          {user && user.photo ? (
             <Avatar size={80} src={user.photo} />
           ) : (
             <Avatar size={80} icon="user" />
@@ -50,7 +50,7 @@ const UserEditForm = ({ form, user, community, onUpdateUser }) => {
         <div className="form__user">
           <Form.Item className="form__username">
             {getFieldDecorator('name', {
-              initialValue: user.name.formatted,
+              initialValue: user && user.name,
               rules: [
                 {
                   pattern: /[a-zа-я]+\s[a-zа-я]+/i,
@@ -70,14 +70,14 @@ const UserEditForm = ({ form, user, community, onUpdateUser }) => {
               />
             )}
           </Form.Item>
-          <div className="form__link">{user.profileUrl}</div>
+          {/* <div className="form__link">{user && user.profileUrl}</div> */}
         </div>
       </div>
       <Row gutter={16}>
         <Col span={12}>
           <Form.Item label="E-mail">
             {getFieldDecorator('email', {
-              initialValue: user.email,
+              initialValue: user && user.email,
               rules: [
                 {
                   type: 'email',
@@ -94,7 +94,7 @@ const UserEditForm = ({ form, user, community, onUpdateUser }) => {
         <Col span={12}>
           <Form.Item label="Номер телефона">
             {getFieldDecorator('phone', {
-              initialValue: user.data.phone || ''
+              initialValue: (user && user.phone) || ''
             })(<Input placeholder="+7 9×× ×××-××-××" />)}
           </Form.Item>
         </Col>
@@ -116,7 +116,7 @@ const UserEditForm = ({ form, user, community, onUpdateUser }) => {
             }
           >
             {getFieldDecorator('company', {
-              initialValue: user.data.company.replace(/^@/, '') || '',
+              initialValue: (user && user.company) || '',
               rules: [
                 {
                   required: true,
@@ -129,7 +129,7 @@ const UserEditForm = ({ form, user, community, onUpdateUser }) => {
         <Col span={12}>
           <Form.Item label="Специализация">
             {getFieldDecorator('specialization', {
-              initialValue: user.data.specialization || '',
+              initialValue: (user && user.specialization) || '',
               rules: [
                 {
                   required: true,
@@ -142,7 +142,7 @@ const UserEditForm = ({ form, user, community, onUpdateUser }) => {
       </Row>
       <Form.Item label="Опыт в IT">
         {getFieldDecorator('experience', {
-          initialValue: user.data.experience || 0
+          initialValue: (user && user.experience) || 0
         })(
           <Slider
             marks={{
@@ -161,8 +161,8 @@ const UserEditForm = ({ form, user, community, onUpdateUser }) => {
       <Form.Item label="Основное сообщество">
         {getFieldDecorator('community', {
           initialValue:
-            user.data.community && user.data.community.id
-              ? user.data.community.id
+            user && user.community && user.community.id
+              ? user.community.id
               : '33e0bed1-9ac2-420a-9e4e-eeb05a96d464'
         })(
           <Select
@@ -190,7 +190,7 @@ const UserEditForm = ({ form, user, community, onUpdateUser }) => {
       </Form.Item>
       <Form.Item label="Дополнительные сообщества">
         {getFieldDecorator('communities', {
-          initialValue: user.data.communities || []
+          initialValue: (user && user.communities) || []
         })(
           <Select
             mode="multiple"
@@ -218,7 +218,7 @@ const UserEditForm = ({ form, user, community, onUpdateUser }) => {
       </Form.Item>
       <Form.Item label="Несколько слов о себе">
         {getFieldDecorator('about', {
-          initialValue: user.data.about || ''
+          initialValue: (user && user.about) || ''
         })(
           <Input.TextArea
             rows={6}
@@ -240,30 +240,31 @@ const WrappedUserEditForm = Form.create({ name: 'user_edit' })(UserEditForm)
 const UserEdit = () => {
   const { user, community, dispatch } = useStoreon('user', 'community')
 
+  console.log(`user`, user)
+
   useEffect(() => {
     dispatch(GET_LIST)
   }, [dispatch])
 
+  const formatCommunity = key => {
+    const _community = community.list.find(_ => _.id === key)
+
+    return {
+      id: _community.id,
+      resourceType: 'Community'
+    }
+  }
+
   const onUpdateUser = _user => {
     const newData = {
-      ...user,
-      email: _user.email,
-      name: {
-        formatted: _user.name
-      },
-      data: {
-        ...user.data,
-        about: _user.about,
-        communities: _user.communities,
-        community: _user.community,
-        company: _user.company,
-        experience: _user.experience,
-        phone: _user.phone,
-        specialization: _user.specialization
-      }
+      ..._user,
+      communities: _user.communities.map(formatCommunity),
+      community: formatCommunity(_user.community)
     }
 
-    dispatch(UPDATE_USER, newData)
+    console.log(`newData`, newData)
+
+    // dispatch(UPDATE_USER, newData)
   }
 
   return (

@@ -1,0 +1,26 @@
+.form_view_auth {
+  text-align: center;
+  width: 450px;
+  margin: auto;
+  padding-top: 2.5em;
+  padding-right: 2.5em;
+  padding-bottom: 2.5em;
+  padding-left: 2.5em;
+  box-sizing: border-box;
+}
+
+.form_view_auth .form__header + .form__content {
+  margin-top: 3rem;
+}
+
+.form_view_auth .form__content + .form__footer {
+  margin-top: 4rem;
+}
+
+.form_view_auth .form__subheading,
+.form_view_auth .form__footer {
+  color: #868686;
+  padding-left: 2.5em;
+  padding-right: 2.5em;
+  box-sizing: border-box;
+}

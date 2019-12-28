@@ -60,6 +60,7 @@ const UserEditForm = ({ form, user, community, onUpdateUser }) => {
                 size="large"
                 width="100%"
                 autoFocus
+                style={{ fontSize: '36px' }}
               />
             )}
           </Form.Item>

@@ -8,6 +8,8 @@ import { GET_CURRENT_USER } from '../store/user'
 import history from '../history'
 
 import './Form/_view/Form_view_profile.css'
+import './List/_type/List_type_unstyled.css'
+import './List/_view/List_view_communities.css'
 
 const User = () => {
   const { user, dispatch } = useStoreon('user')
@@ -27,7 +29,8 @@ const User = () => {
           style={{
             position: 'absolute',
             right: 10,
-            top: 10
+            top: 10,
+            zIndex: 1
           }}
           key="edit"
           icon="edit"
@@ -43,31 +46,33 @@ const User = () => {
             )}
           </div>
         </div>
-
+        {user.specialization} в {user.company}
         <br />
-        {user.email}
         <br />
-        {user.phone}
+        {[user.email, user.phone].join(' | ')}
         <br />
-        {user.community.name}
-        <br />
-        {(user.communities || []).map(community => community.id).join(', ')}
-        <br />
-        {user.company}
-        <br />
-        {user.specialization}
         <br />
         {user.about}
         <br />
+        <Divider />
+        <ul className="list list_type_unstyled list_view_communities">
+          <li className="list__item">
+            <Button type="primary">{user.community.name}</Button>
+          </li>
+          {console.log(`user.communities`, user.communities)}
+          {(user.communities || []).map(community => (
+            <li className="list__item" key={community.id}>
+              <Button>{community.name}</Button>
+            </li>
+          ))}
+        </ul>
+        <Divider />
+        {/* Участвует в следующих обсуждениях: */}
+        <br />
+        <br />
+        <br />
+        <br />
       </div>
-      <Card
-        style={{
-          position: 'relative',
-          width: 450,
-          margin: '20px auto',
-          textAlign: 'center'
-        }}
-      ></Card>
     </div>
   )
 }

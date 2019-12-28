@@ -1,0 +1,11 @@
+.list_view_communities {
+  padding: 0;
+}
+
+.list_view_communities .list__item {
+  display: inline-block;
+}
+
+.list_view_communities .list__item + .list__item {
+  margin-left: 0.8em;
+}

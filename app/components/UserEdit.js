@@ -1,19 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { Avatar, Button, Form, Input, Select } from 'antd/es'
 import useStoreon from 'storeon/react'
-import { Card } from 'antd'
+import { Card, Slider, Tooltip, Icon, Row, Col } from 'antd'
 
-const formItemLayout = {
-  labelCol: {
-    xs: { span: 24 },
-    sm: { span: 8 }
-  },
-  wrapperCol: {
-    xs: { span: 24 },
-    sm: { span: 16 }
-  }
-}
+import './Form/_view/Form_view_profile.css'
+
+import { GET_LIST } from '../store/community'
+import { UPDATE_USER } from '../store/user'
+
 const tailFormItemLayout = {
   wrapperCol: {
     xs: {
@@ -27,94 +22,209 @@ const tailFormItemLayout = {
   }
 }
 
-const UserEditForm = ({ form, user }) => {
-  const { getFieldDecorator, validateFieldsAndScroll } = form
+const UserEditForm = ({ form, user, community, onUpdateUser }) => {
+  const { getFieldDecorator, validateFieldsAndScroll, getFieldValue } = form
   const _handleSubmit = e => {
     e.preventDefault()
     validateFieldsAndScroll((err, values) => {
       if (!err) {
-        console.log(values)
+        onUpdateUser(values)
       }
     })
   }
-  console.log(user)
+
   return (
     <Form
-      {...formItemLayout}
-      style={{ width: 400, margin: '20px auto' }}
+      className="form form_view_profile"
+      layout="vertical"
       onSubmit={_handleSubmit}
     >
-      <div style={{ textAlign: 'center', marginBottom: 30 }}>
-        {user.photo ? (
-          <Avatar size={150} src={user.photo} />
-        ) : (
-          <Avatar size={150} icon="user" />
-        )}
+      <div className="form__header">
+        <div className="form__avatar">
+          {user.photo ? (
+            <Avatar size={80} src={user.photo} />
+          ) : (
+            <Avatar size={80} icon="user" />
+          )}
+        </div>
+        <div className="form__user">
+          <Form.Item className="form__username">
+            {getFieldDecorator('name', {
+              initialValue: user.name.formatted,
+              rules: [
+                {
+                  pattern: /[a-zа-я]+\s[a-zа-я]+/i,
+                  message: 'Не соответствует формату «Фамилия Имя»'
+                },
+                {
+                  required: true,
+                  message: 'Вы не представились'
+                }
+              ]
+            })(
+              <Input
+                placeholder="Фамилия Имя"
+                size="large"
+                width="100%"
+                autoFocus
+              />
+            )}
+          </Form.Item>
+          <div className="form__link">{user.profileUrl}</div>
+        </div>
       </div>
-      <Form.Item label="Фамилия Имя">
-        {getFieldDecorator('name', {
-          initialValue: user.name.formatted,
-          rules: [
-            {
-              pattern: /[a-zа-я]+\s[a-zа-я]+/i,
-              message: 'Не соответствует требованиям'
-            },
-            {
-              required: true,
-              message: 'Вы не ввели'
+      <Row gutter={16}>
+        <Col span={12}>
+          <Form.Item label="E-mail">
+            {getFieldDecorator('email', {
+              initialValue: user.email,
+              rules: [
+                {
+                  type: 'email',
+                  message: 'Не соответствует требованиям E-mail'
+                },
+                {
+                  required: true,
+                  message: 'Вы не ввели E-mail'
+                }
+              ]
+            })(<Input />)}
+          </Form.Item>
+        </Col>
+        <Col span={12}>
+          <Form.Item label="Номер телефона">
+            {getFieldDecorator('phone', {
+              initialValue: user.data.phone || ''
+            })(<Input placeholder="+7 9×× ×××-××-××" />)}
+          </Form.Item>
+        </Col>
+      </Row>
+      <Row gutter={16}>
+        <Col span={12}>
+          <Form.Item
+            label={
+              <span>
+                Компания&nbsp;
+                <Tooltip title="Пожалуйста, помогите нам собрать данные для ислледований. Заполните все обязательные поля.">
+                  <Icon
+                    type="info-circle"
+                    theme="filled"
+                    style={{ fontSize: '12px', color: '#9e9e9e' }}
+                  />
+                </Tooltip>
+              </span>
             }
-          ]
-        })(<Input />)}
+          >
+            {getFieldDecorator('company', {
+              initialValue: user.data.company.replace(/^@/, '') || '',
+              rules: [
+                {
+                  required: true,
+                  message: 'Это поле обязательно ¯\\_(ツ)_/¯'
+                }
+              ]
+            })(<Input />)}
+          </Form.Item>
+        </Col>
+        <Col span={12}>
+          <Form.Item label="Специализация">
+            {getFieldDecorator('specialization', {
+              initialValue: user.data.specialization || '',
+              rules: [
+                {
+                  required: true,
+                  message: 'Это поле обязательно ¯\\_(ツ)_/¯'
+                }
+              ]
+            })(<Input />)}
+          </Form.Item>
+        </Col>
+      </Row>
+      <Form.Item label="Опыт в IT">
+        {getFieldDecorator('experience', {
+          initialValue: user.data.experience || 0
+        })(
+          <Slider
+            marks={{
+              0: 'до 1 года',
+              3: '1–3 года',
+              5: '3–5 лет',
+              8: '5+ годиков'
+            }}
+            min={0}
+            max={8}
+            step={null}
+            tipFormatter={null}
+          />
+        )}
       </Form.Item>
-      <Form.Item label="E-mail">
-        {getFieldDecorator('email', {
-          initialValue: user.email,
-          rules: [
-            {
-              type: 'email',
-              message: 'Не соответствует требованиям E-mail'
-            },
-            {
-              required: true,
-              message: 'Вы не ввели E-mail'
-            }
-          ]
-        })(<Input />)}
-      </Form.Item>
-      <Form.Item label="Компания">
-        {getFieldDecorator('company', {
-          initialValue: user.data.company || ''
-        })(<Input />)}
-      </Form.Item>
-      <Form.Item label="Специализация">
-        {getFieldDecorator('specialization', {
-          initialValue: user.data.specialization || ''
-        })(<Input />)}
-      </Form.Item>
-      <Form.Item label="Сообщество">
+      <Form.Item label="Основное сообщество">
         {getFieldDecorator('community', {
           initialValue:
             user.data.community && user.data.community.id
               ? user.data.community.id
-              : null
-        })(<Input />)}
-      </Form.Item>
-      <Form.Item label="Опыт в IT">
-        {getFieldDecorator('experience', {
-          initialValue: user.data.experience || ''
+              : '33e0bed1-9ac2-420a-9e4e-eeb05a96d464'
         })(
-          <Select>
-            <Select.Option value="до 1 года">до 1 года</Select.Option>
-            <Select.Option value="1-3 года">1-3 года</Select.Option>
-            <Select.Option value="3-5 лет">3-5 лет</Select.Option>
-            <Select.Option value="5+ лет">5+ лет</Select.Option>
+          <Select
+            showSearch
+            placeholder="Выберите сообщество из списка"
+            optionFilterProp="children"
+            filterOption={(input, option) =>
+              option.props.children
+                .toLowerCase()
+                .indexOf(input.toLowerCase()) >= 0
+            }
+          >
+            {!community.loading &&
+              community.list.map(item => (
+                <Select.Option value={item.id} key={item.id}>
+                  {item.name}
+                  <span style={{ color: '#9e9e9e' }}>
+                    {' '}
+                    — {item.description}
+                  </span>
+                </Select.Option>
+              ))}
+          </Select>
+        )}
+      </Form.Item>
+      <Form.Item label="Дополнительные сообщества">
+        {getFieldDecorator('communities', {
+          initialValue: user.data.communities || []
+        })(
+          <Select
+            mode="multiple"
+            placeholder="Выберите сообщества из списка"
+            optionLabelProp="label"
+          >
+            {!community.loading &&
+              community.list
+                .filter(item => item.id !== getFieldValue('community'))
+                .map(item => (
+                  <Select.Option
+                    value={item.id}
+                    key={item.id}
+                    label={item.name}
+                  >
+                    {item.name}
+                    <span style={{ color: '#9e9e9e' }}>
+                      {' '}
+                      — {item.description}
+                    </span>
+                  </Select.Option>
+                ))}
           </Select>
         )}
       </Form.Item>
       <Form.Item label="Несколько слов о себе">
         {getFieldDecorator('about', {
           initialValue: user.data.about || ''
-        })(<Input.TextArea rows={6} />)}
+        })(
+          <Input.TextArea
+            rows={6}
+            placeholder="Расскажите немного о себе, своих интересах и сфере деятельности."
+          />
+        )}
       </Form.Item>
       <Form.Item {...tailFormItemLayout}>
         <Button type="primary" htmlType="submit">
@@ -128,11 +238,42 @@ const UserEditForm = ({ form, user }) => {
 const WrappedUserEditForm = Form.create({ name: 'user_edit' })(UserEditForm)
 
 const UserEdit = () => {
-  const { user } = useStoreon('user')
+  const { user, community, dispatch } = useStoreon('user', 'community')
+
+  useEffect(() => {
+    dispatch(GET_LIST)
+  }, [dispatch])
+
+  const onUpdateUser = _user => {
+    const newData = {
+      ...user,
+      email: _user.email,
+      name: {
+        formatted: _user.name
+      },
+      data: {
+        ...user.data,
+        about: _user.about,
+        communities: _user.communities,
+        community: _user.community,
+        company: _user.company,
+        experience: _user.experience,
+        phone: _user.phone,
+        specialization: _user.specialization
+      }
+    }
+
+    dispatch(UPDATE_USER, newData)
+  }
+
   return (
     <div>
       <h2>Редактирование профиля</h2>
-      <WrappedUserEditForm user={user} />
+      <WrappedUserEditForm
+        user={user}
+        community={community}
+        onUpdateUser={onUpdateUser}
+      />
     </div>
   )
 }

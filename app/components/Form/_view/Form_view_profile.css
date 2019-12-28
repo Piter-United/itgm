@@ -1,0 +1,25 @@
+.form_view_profile {
+  width: 560px;
+  margin: 20px auto;
+}
+
+.form_view_profile .form__header {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin-bottom: 2em;
+}
+
+.form_view_profile .form__avatar + .form__user {
+  margin-top: auto;
+  margin-right: 0px;
+  margin-bottom: auto;
+  margin-left: 2em;
+}
+
+.form_view_profile .form__username {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  flex: 1;
+  flex-wrap: wrap;
+}

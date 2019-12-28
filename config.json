@@ -1,46 +1,303 @@
 {
   "bundle": [],
+  "AidboxQuery": {
+    "activity": {
+      "id": "activity",
+      "params": {
+        "user": {
+          "isRequired": true,
+          "type": "string"
+        },
+        "__skip": {
+          "type": "integer",
+          "default": 0
+        },
+        "__count": {
+          "type": "integer",
+          "default": 100
+        }
+      },
+      "query": "#community.sql",
+      "count-query": "select count(*) from activity"
+    }
+  },
   "resources": {
     "Client": {
       "app-client": {
         "first_party": true,
         "auth": {
           "authorization_code": {
-            "redirect_uri": "https://itgm.m1p.me/login"
+            "redirect_uri": "https://app.piter-united.ru/login"
           }
         },
         "grant_types": ["authorization_code"]
       }
     },
     "AccessPolicy": {
+      "allow-community-manager-create": {
+        "engine": "complex",
+        "and": [
+          {
+            "engine": "json-schema",
+            "schema": {
+              "required": ["request-method", "params"],
+              "properties": {
+                "request-method": {
+                  "const": "post"
+                },
+                "params": {
+                  "required": ["resource/type"],
+                  "properties": {
+                    "resource/type": {
+                      "constant": "CommunityManager"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "engine": "sql",
+            "sql": {
+              "query": "select case when count(*) > 0 then false else true end from \"communitymanager\" where resource#>>'{community,id}' = {{body.community.id}} and resource#>>'{user,id}' = {{body.user.id}}"
+            }
+          },
+          {
+            "engine": "sql",
+            "sql": {
+              "query": "select true from \"community\" where id = {{body.community.id}} and resource#>>'{owner,id}' = {{user.id}}"
+            }
+          }
+        ]
+      },
+      "allow-community-update": {
+        "engine": "complex",
+        "and": [
+          {
+            "engine": "json-schema",
+            "schema": {
+              "required": ["request-method", "params"],
+              "properties": {
+                "request-method": {
+                  "const": "patch"
+                },
+                "params": {
+                  "required": ["resource/type", "resource/id"],
+                  "properties": {
+                    "resource/type": {
+                      "constant": "Community"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "engine": "sql",
+            "sql": {
+              "query": "select true from \"community\" where id = {{params.resource/id}} and resource#>>'{owner,id}' = {{body.owner.id}}"
+            }
+          },
+          {
+            "engine": "complex",
+            "or": [
+              {
+                "engine": "sql",
+                "sql": {
+                  "query": "select true from \"community\" where id = {{params.resource/id}} and resource#>>'{owner,id}' = {{user.id}}"
+                }
+              },
+              {
+                "engine": "sql",
+                "sql": {
+                  "query": "select true from \"communitymanager\" where resource#>>'{community,id}' = {{params.resource/id}} and resource#>>'{user,id}' = {{user.id}}"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "allow-community-create": {
+        "engine": "complex",
+        "and": [
+          {
+            "engine": "json-schema",
+            "schema": {
+              "required": ["request-method", "params"],
+              "properties": {
+                "request-method": {
+                  "const": "post"
+                },
+                "params": {
+                  "required": ["resource/type"],
+                  "properties": {
+                    "resource/type": {
+                      "constant": "Community"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "engine": "sql",
+            "sql": {
+              "query": "select {{body.owner.id}} = {{user.id}}"
+            }
+          },
+          {
+            "engine": "sql",
+            "sql": {
+              "query": "select true from \"verifiedusers\" where resource#>>'{user,id}' = {{user.id}}"
+            }
+          }
+        ]
+      },
+      "allow-user-read-update-self": {
+        "engine": "complex",
+        "and": [
+          {
+            "engine": "json-schema",
+            "schema": {
+              "required": ["request-method", "params"],
+              "properties": {
+                "request-method": {
+                  "type": "string",
+                  "enum": ["patch", "get"]
+                },
+                "params": {
+                  "required": ["resource/type", "resource/id"],
+                  "properties": {
+                    "resource/type": {
+                      "constant": "User"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "engine": "sql",
+            "sql": {
+              "query": "select {{params.resource/id}} = {{user.id}}"
+            }
+          }
+        ]
+      },
+      "allow-activity-like-delete": {
+        "engine": "complex",
+        "and": [
+          {
+            "engine": "json-schema",
+            "schema": {
+              "required": ["request-method", "params"],
+              "properties": {
+                "request-method": {
+                  "const": "delete"
+                },
+                "params": {
+                  "required": ["resource/type", "resource/id"],
+                  "properties": {
+                    "resource/type": {
+                      "constant": "ActivityLike"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "engine": "sql",
+            "sql": {
+              "query": "select true from activitylike where id = {{params.resource/id}} and resource#>>'{user,id}' = {{user.id}}"
+            }
+          }
+        ]
+      },
+      "allow-activity-like-create": {
+        "engine": "complex",
+        "and": [
+          {
+            "engine": "json-schema",
+            "schema": {
+              "required": ["request-method", "params"],
+              "properties": {
+                "request-method": {
+                  "const": "post"
+                },
+                "params": {
+                  "required": ["resource/type"],
+                  "properties": {
+                    "resource/type": {
+                      "constant": "ActivityLike"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "engine": "sql",
+            "sql": {
+              "query": "select {{user.id}} = {{body.user.id}} bool"
+            }
+          },
+          {
+            "engine": "sql",
+            "sql": {
+              "query": "select case when count(*) > 0 then false else true end from activitylike where resource#>>'{activity,id}' = {{body.activity.id}} and resource#>>'{user,id}' = {{user.id}}"
+            }
+          }
+        ]
+      },
+      "allow-activity-read": {
+        "engine": "complex",
+        "and": [
+          {
+            "engine": "json-schema",
+            "schema": {
+              "required": ["request-method", "params"],
+              "properties": {
+                "request-method": {
+                  "const": "get"
+                },
+                "params": {
+                  "required": ["query"],
+                  "properties": {
+                    "query": {
+                      "constant": "activity"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "engine": "sql",
+            "sql": {
+              "query": "select {{user.id}} = {{params.user}} bool"
+            }
+          }
+        ]
+      },
       "allow-community-read": {
         "engine": "json-schema",
         "schema": {
-          "required": ["request-method"],
+          "required": ["request-method", "params"],
           "properties": {
             "request-method": {
               "const": "get"
-            }
-          },
-          "params": {
-            "required": ["resource/type"],
-            "properties": {
-              "resource/type": {
-                "type": "string",
-                "enum": ["Community", "Activity"]
+            },
+            "params": {
+              "required": ["resource/type"],
+              "properties": {
+                "resource/type": {
+                  "constant": "Community"
+                }
               }
             }
           }
         }
-      },
-      "allow-app-client": {
-        "engine": "allow",
-        "link": [
-          {
-            "id": "app-client",
-            "resourceType": "Client"
-          }
-        ]
       }
     }
   },
@@ -55,6 +312,9 @@
           "type": "Reference",
           "refers": ["User"],
           "isRequired": true
+        },
+        "logo": {
+          "type": "string"
         },
         "social": {
           "isCollection": true,
@@ -102,6 +362,29 @@
     "ActivityLike": {
       "attrs": {
         "activity": {
+          "type": "Reference",
+          "refers": ["Activity"],
+          "isRequired": true
+        },
+        "user": {
+          "type": "Reference",
+          "refers": ["User"],
+          "isRequired": true
+        }
+      }
+    },
+    "VerifiedUsers": {
+      "attrs": {
+        "user": {
+          "type": "Reference",
+          "refers": ["User"],
+          "isRequired": true
+        }
+      }
+    },
+    "CommunityManager": {
+      "attrs": {
+        "community": {
           "type": "Reference",
           "refers": ["Community"],
           "isRequired": true

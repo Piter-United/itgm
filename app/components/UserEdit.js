@@ -40,13 +40,6 @@ const UserEditForm = ({ form, user, community, onUpdateUser }) => {
       onSubmit={_handleSubmit}
     >
       <div className="form__header">
-        <div className="form__avatar">
-          {user && user.photo ? (
-            <Avatar size={80} src={user.photo} />
-          ) : (
-            <Avatar size={80} icon="user" />
-          )}
-        </div>
         <div className="form__user">
           <Form.Item className="form__username">
             {getFieldDecorator('name', {
@@ -71,6 +64,13 @@ const UserEditForm = ({ form, user, community, onUpdateUser }) => {
             )}
           </Form.Item>
           {/* <div className="form__link">{user && user.profileUrl}</div> */}
+        </div>
+        <div className="form__avatar">
+          {user && user.photo ? (
+            <Avatar size={80} src={user.photo} />
+          ) : (
+            <Avatar size={80} icon="user" />
+          )}
         </div>
       </div>
       <Row gutter={16}>
@@ -142,7 +142,7 @@ const UserEditForm = ({ form, user, community, onUpdateUser }) => {
       </Row>
       <Form.Item label="Опыт в IT">
         {getFieldDecorator('experience', {
-          initialValue: (user && user.experience) || 0
+          initialValue: (user && parseInt(user.experience, 10)) || 0
         })(
           <Slider
             marks={{
@@ -190,7 +190,7 @@ const UserEditForm = ({ form, user, community, onUpdateUser }) => {
       </Form.Item>
       <Form.Item label="Дополнительные сообщества">
         {getFieldDecorator('communities', {
-          initialValue: (user && user.communities) || []
+          initialValue: (user && user.communities.map(item => item.id)) || []
         })(
           <Select
             mode="multiple"
@@ -240,8 +240,6 @@ const WrappedUserEditForm = Form.create({ name: 'user_edit' })(UserEditForm)
 const UserEdit = () => {
   const { user, community, dispatch } = useStoreon('user', 'community')
 
-  console.log(`user`, user)
-
   useEffect(() => {
     dispatch(GET_LIST)
   }, [dispatch])
@@ -258,24 +256,26 @@ const UserEdit = () => {
   const onUpdateUser = _user => {
     const newData = {
       ..._user,
+      experience: _user.experience.toString(),
       communities: _user.communities.map(formatCommunity),
       community: formatCommunity(_user.community)
     }
 
-    console.log(`newData`, newData)
+    Object.keys(newData).map(key => {
+      if (!newData[key]) {
+        delete newData[key]
+      }
+    })
 
-    // dispatch(UPDATE_USER, newData)
+    dispatch(UPDATE_USER, newData)
   }
 
   return (
-    <div>
-      <h2>Редактирование профиля</h2>
-      <WrappedUserEditForm
-        user={user}
-        community={community}
-        onUpdateUser={onUpdateUser}
-      />
-    </div>
+    <WrappedUserEditForm
+      user={user}
+      community={community}
+      onUpdateUser={onUpdateUser}
+    />
   )
 }
 

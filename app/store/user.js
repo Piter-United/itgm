@@ -19,12 +19,12 @@ export const LOGOUT_SUCCESS = 'user/logout_success'
 
 const user = store => {
   store.on('@init', () => {
-    if (defaultState.token && defaultState.user) {
+    if (defaultState.token && defaultState.userId) {
       store.dispatch('request', {
         resourceType: '$query',
         id: 'userinfo',
         params: {
-          user: defaultState.user.id
+          user: defaultState.userId
         },
         success: SET_USER,
         token: defaultState.token,
@@ -65,17 +65,12 @@ const user = store => {
     }
     return { userId }
   })
-  store.on(SET_USER, (store, user) => {
-    if (user) {
-      window.localStorage.setItem(
-        'user',
-        user && user.data && user.data.length > 0 ? JSON.stringify(user) : null
-      )
-    } else {
-      window.localStorage.removeItem('user')
-    }
+  store.on(SET_USER, (s, user) => {
+    const nu =
+      user && user.data && user.data.length > 0 ? user.data[0].user : null
+
     return {
-      user: user && user.data && user.data.length > 0 ? user.data[0] : null
+      user: nu
     }
   })
   store.on(GET_CURRENT_USER, async s => {
@@ -97,8 +92,8 @@ const user = store => {
   store.on(UPDATE_USER, (s, user) => {
     store.dispatch('request', {
       resourceType: 'UserProfile',
-      id: user.id,
-      body: user,
+      id: s.userId,
+      body: { ...user, id: s.userId },
       method: 'PUT',
       success: UPDATE_USER_SUCCESS,
       error: UPDATE_USER_ERROR

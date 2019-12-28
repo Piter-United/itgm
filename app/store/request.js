@@ -57,7 +57,7 @@ const request = store => {
         options
       )
       const data = await res.json()
-      if (res.status === 200) {
+      if (res.status >= 200 && res.status < 400) {
         if (success) {
           store.dispatch(success, data)
         }

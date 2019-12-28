@@ -10,16 +10,21 @@
   margin-bottom: 2em;
 }
 
-.form_view_profile .form__avatar + .form__user {
-  margin-top: auto;
-  margin-right: 0px;
-  margin-bottom: auto;
-  margin-left: 2em;
-}
-
 .form_view_profile .form__username {
   padding-bottom: 0;
   margin-bottom: 0;
   flex: 1;
   flex-wrap: wrap;
+}
+
+.form_view_profile .form__user {
+  flex: 1;
+  font-size: 36px;
+}
+
+.form_view_profile .form__user + .form__avatar {
+  margin-top: auto;
+  margin-right: 0px;
+  margin-bottom: auto;
+  margin-left: 2em;
 }

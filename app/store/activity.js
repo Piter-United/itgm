@@ -14,9 +14,13 @@ export const ERROR = 'activity/error'
 
 const activity = store => {
   store.on('@init', () => defaultState)
-  store.on(GET_LIST, () => {
+  store.on(GET_LIST, s => {
     store.dispatch('request', {
-      resourceType: 'Activity',
+      resourceType: '$query',
+      id: 'activity',
+      params: {
+        user: s.user.id
+      },
       success: SET_LIST,
       error: ERROR,
       spinner: LOADING
@@ -27,7 +31,7 @@ const activity = store => {
   })
   store.on(SET_LIST, (s, data) => {
     return {
-      activity: { ...s.activity, list: data.entry.map(v => v.resource) }
+      activity: { ...s.activity, list: data.data }
     }
   })
   store.on(ERROR, (s, { data, message }) => {

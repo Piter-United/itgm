@@ -20,20 +20,20 @@ const ShowItem = item => (
         onClick={() => likeHandler(item.id)}
         key={`list-item-like-${item.id}`}
       >
-        <Icon type="like-o" />
-        {item.likes}
+        {item.likes.isLike ? <Icon type="like-o" /> : <Icon type="like" />}
+        {item.likes.count}
       </span>
     ]}
   >
     <List.Item.Meta
-      title={item.name}
+      title={item.resource.name}
       description={
         <div>
-          {item.community.name} ({item.tags.join(',')})
+          {item.community.resource.name} ({item.resource.tags.join(',')})
         </div>
       }
     />
-    {item.description}
+    {item.resource.description}
   </List.Item>
 )
 

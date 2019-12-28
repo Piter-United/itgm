@@ -21,8 +21,11 @@ const user = store => {
   store.on('@init', () => {
     if (defaultState.token && defaultState.user) {
       store.dispatch('request', {
-        resourceType: 'User',
-        id: defaultState.user.id,
+        resourceType: '$query',
+        id: 'userinfo',
+        params: {
+          user: defaultState.user.id
+        },
         success: SET_USER,
         token: defaultState.token,
         error: {
@@ -56,7 +59,10 @@ const user = store => {
   })
   store.on(SET_USER, (store, user) => {
     if (user) {
-      window.localStorage.setItem('user', JSON.stringify(user))
+      window.localStorage.setItem(
+        'user',
+        user && user.data && user.data.length > 0 ? JSON.stringify(user) : null
+      )
     } else {
       window.localStorage.removeItem('user')
     }
@@ -65,8 +71,11 @@ const user = store => {
   store.on(GET_CURRENT_USER, async s => {
     if (s.user && s.user.id) {
       store.dispatch('request', {
-        resourceType: 'User',
-        id: s.user.id,
+        resourceType: '$query',
+        id: 'userinfo',
+        params: {
+          user: s.user.id
+        },
         success: SET_USER,
         error: {
           env: SET_USER_TOKEN,

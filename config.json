@@ -1,6 +1,16 @@
 {
   "bundle": [],
   "AidboxQuery": {
+    "userinfo": {
+      "id": "userinfo",
+      "params": {
+        "user": {
+          "isRequired": true,
+          "type": "string"
+        }
+      },
+      "query": "#userprofile.sql"
+    },
     "activity": {
       "id": "activity",
       "params": {
@@ -34,6 +44,66 @@
       }
     },
     "AccessPolicy": {
+      "allow-userinfo-save": {
+        "engine": "complex",
+        "and": [
+          {
+            "engine": "json-schema",
+            "schema": {
+              "required": ["request-method", "params"],
+              "properties": {
+                "request-method": {
+                  "const": "put"
+                },
+                "params": {
+                  "required": ["resource/type", "resource/id"],
+                  "properties": {
+                    "query": {
+                      "resource/type": "UserProfile"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "engine": "sql",
+            "sql": {
+              "query": "select {{user.id}} = {{params.resource/id}} bool"
+            }
+          }
+        ]
+      },
+      "allow-userinfo-read": {
+        "engine": "complex",
+        "and": [
+          {
+            "engine": "json-schema",
+            "schema": {
+              "required": ["request-method", "params"],
+              "properties": {
+                "request-method": {
+                  "const": "get"
+                },
+                "params": {
+                  "required": ["query"],
+                  "properties": {
+                    "query": {
+                      "constant": "userinfo"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "engine": "sql",
+            "sql": {
+              "query": "select {{user.id}} = {{params.user}} bool"
+            }
+          }
+        ]
+      },
       "allow-community-manager-create": {
         "engine": "complex",
         "and": [
@@ -387,6 +457,46 @@
           "type": "Reference",
           "refers": ["User"],
           "isRequired": true
+        }
+      }
+    },
+    "UserProfile": {
+      "attrs": {
+        "email": {
+          "type": "string",
+          "isRequired": true
+        },
+        "name": {
+          "type": "string",
+          "isRequired": true
+        },
+        "company": {
+          "type": "string",
+          "isRequired": true
+        },
+        "experience": {
+          "type": "string",
+          "isRequired": true
+        },
+        "specialization": {
+          "type": "string",
+          "isRequired": true
+        },
+        "phone": {
+          "type": "string"
+        },
+        "about": {
+          "type": "string"
+        },
+        "community": {
+          "type": "Reference",
+          "refers": ["Community"],
+          "isRequired": true
+        },
+        "communities": {
+          "type": "Reference",
+          "isCollection": true,
+          "refers": ["Community"]
         }
       }
     },

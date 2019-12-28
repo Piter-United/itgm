@@ -23,10 +23,7 @@ class LocationListener extends React.Component {
 
   handleLocationChange = location => {
     if (this.props.user) {
-      if (
-        location.pathname !== '/user/edit' &&
-        (!this.props.user.data || !this.props.user.data.community)
-      ) {
+      if (location.pathname !== '/user/edit' && !this.props.user.community) {
         this.props.history.push('/user/edit')
       }
     }
@@ -37,10 +34,7 @@ class LocationListener extends React.Component {
   }
 }
 
-const LocationListenerComp = connect(
-  'user',
-  LocationListener
-)
+const LocationListenerComp = connect('user', LocationListener)
 
 const initApp = () => (
   <StoreContext.Provider value={store}>

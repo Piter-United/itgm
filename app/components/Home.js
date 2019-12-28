@@ -2,25 +2,24 @@ import React, { useEffect } from 'react'
 
 import { List, Icon, Row, Col, Button, notification } from 'antd'
 import useStoreon from 'storeon/react'
-import { GET_LIST } from '../store/activity'
+import { GET_LIST, LIKE, UNLIKE } from '../store/activity'
 
-const likeHandler = id => {
-  if (id === 1) {
-    notification.success({ message: 'Ваш голос учтен' })
-  } else {
-    notification.warn({ message: 'Вы уже голосовали' })
-  }
-}
-
-const ShowItem = item => (
+const ShowItem = ({ dispatch, item }) => (
   <List.Item
     key={item.id}
     actions={[
       <span
-        onClick={() => likeHandler(item.id)}
+        onClick={() =>
+          item.likes.isLike
+            ? dispatch(UNLIKE, item.likes.id)
+            : dispatch(LIKE, item.id)
+        }
         key={`list-item-like-${item.id}`}
       >
-        {item.likes.isLike ? <Icon type="like-o" /> : <Icon type="like" />}
+        <Icon
+          type="like-o"
+          style={{ color: item.likes.isLike ? '#1890ff' : '' }}
+        />{' '}
         {item.likes.count}
       </span>
     ]}
@@ -52,7 +51,7 @@ const Home = () => {
             pagination={false}
             loading={activity.loading}
             dataSource={activity.list}
-            renderItem={ShowItem}
+            renderItem={item => <ShowItem item={item} dispatch={dispatch} />}
           />
         </Col>
         <Col span={6}>

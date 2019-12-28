@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import { List, Icon } from 'antd'
+import { List, Icon, Button } from 'antd'
 
 import useStoreon from 'storeon/react'
 
@@ -8,13 +8,16 @@ import VkIcon from '../../asset/vk.svg'
 import { GET_LIST } from '../store/community'
 
 const Community = () => {
-  const { community, dispatch } = useStoreon('community')
+  const { user, community, dispatch } = useStoreon('community', 'user')
   useEffect(() => {
     dispatch(GET_LIST)
   }, [dispatch])
   return (
     <div className="content">
       <h2>Сообщества</h2>
+      {user && user.verified && (
+        <Button icon="plus-circle">Добавить сообщество</Button>
+      )}
       <List
         itemLayout="vertical"
         size="large"

@@ -1,0 +1,9 @@
+.list_view_auth {
+  max-width: 13em;
+  margin: auto;
+  padding: 0;
+}
+
+.list_view_auth .list__item + .list__item {
+  margin-top: 0.8em;
+}

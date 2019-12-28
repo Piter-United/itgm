@@ -321,6 +321,14 @@
           "attrs": {
             "icon": {
               "type": "string",
+              "enum": [
+                "global",
+                "vk",
+                "twitter",
+                "youtube",
+                "facebook",
+                "github"
+              ],
               "isRequired": true
             },
             "link": {

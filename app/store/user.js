@@ -1,4 +1,5 @@
 import { notification } from 'antd'
+import history from '../history'
 
 const u = window.localStorage.getItem('user')
 
@@ -10,6 +11,9 @@ export const SET_USER_TOKEN = 'user/set-user-token'
 export const SET_USER = 'user/set-user'
 export const SET_TOKEN = 'user/set-token'
 export const GET_CURRENT_USER = 'user/get-current-user'
+export const UPDATE_USER = 'user/update'
+export const UPDATE_USER_ERROR = 'user/update-error'
+export const UPDATE_USER_SUCCESS = 'user/update-success'
 export const LOGOUT = 'user/logout'
 export const LOGOUT_SUCCESS = 'user/logout_success'
 
@@ -20,6 +24,7 @@ const user = store => {
         resourceType: 'User',
         id: defaultState.user.id,
         success: SET_USER,
+        token: defaultState.token,
         error: {
           env: SET_USER_TOKEN,
           params: { token: null, user: null }
@@ -69,6 +74,23 @@ const user = store => {
         }
       })
     }
+  })
+  store.on(UPDATE_USER, (s, user) => {
+    store.dispatch('request', {
+      resourceType: 'User',
+      id: user.id,
+      body: user,
+      method: 'PATCH',
+      success: UPDATE_USER_SUCCESS,
+      error: UPDATE_USER_ERROR
+    })
+  })
+  store.on(UPDATE_USER_ERROR, (s, e) => {
+    notification.error({ message: 'Ошибка обновления профиля' })
+  })
+  store.on(UPDATE_USER_SUCCESS, (s, user) => {
+    store.dispatch(SET_USER, user)
+    history.push('/user')
   })
   store.on(LOGOUT, async s => {
     store.dispatch('request', {

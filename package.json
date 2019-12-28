@@ -13,30 +13,30 @@
   "author": "Mikhail Poluboyarinov <mikle.sol@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@svgr/parcel-plugin-svgr": "^4.3.3",
-    "antd": "^3.25.0",
+    "@svgr/parcel-plugin-svgr": "^5.0.0",
+    "antd": "^3.26.4",
     "history": "^4.10.1",
-    "prettier": "^1.18.2",
-    "qs": "^6.9.0",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
+    "qs": "^6.9.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
-    "storeon": "^0.9.5"
+    "storeon": "^0.9.7"
   },
   "devDependencies": {
-    "@babel/core": "^7.7.0",
-    "@babel/plugin-proposal-class-properties": "^7.7.0",
+    "prettier": "^1.19.1",
+    "@babel/core": "^7.7.7",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
     "@babel/polyfill": "^7.7.0",
-    "@babel/preset-env": "^7.7.1",
-    "@babel/preset-react": "^7.7.0",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/preset-react": "^7.7.4",
     "aidbox": "^2.0.0-beta.0",
-    "autoprefixer": "^9.7.1",
+    "autoprefixer": "^9.7.3",
     "dotenv": "^8.2.0",
     "husky": "^3.0.9",
     "parcel-bundler": "^1.12.4",
     "postcss-modules": "^1.4.1",
     "pretty-quick": "^2.0.1",
-    "size-limit": "^2.1.6"
+    "size-limit": "^2.2.4"
   },
   "babel": {
     "presets": [

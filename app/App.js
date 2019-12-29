@@ -33,7 +33,8 @@ const App = () => (
         <Switch>
           <Route path="/" exact component={ActivityList} />
           <PrivateRoute path="/activity/new" component={NewActivity} />
-          <Route path="/activity/:id" component={Activity} />
+          <Route exact path="/activity/:id" component={Activity} />
+          <PrivateRoute path="/activity/:id/edit" component={NewActivity} />
           <Route exact path="/community" component={CommunityList} />
           <PrivateRoute path="/community/new" component={NewCommunity} />
           <Route exact path="/community/:id" component={Community} />

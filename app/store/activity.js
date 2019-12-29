@@ -26,6 +26,8 @@ export const GET_BY_ID = 'activity/get-by-id'
 export const GET_BY_ID_SUCCESS = 'activity/get-by-id-success'
 export const GET_BY_ID_LOADING = 'activity/get-by-id-loading'
 export const GET_BY_ID_RELOAD_BY_LU = 'activity/get-by-id-rblu'
+export const UPDATE = 'activity/update'
+export const UPDATE_SUCCESS = 'activity/update-success'
 
 const activity = store => {
   store.on('@init', () => defaultState)
@@ -148,7 +150,7 @@ const activity = store => {
     })
   })
   store.on(CREATE_SUCCESS, (s, newCommunity) => {
-    history.push(`/`)
+    history.push(`/activity/${newCommunity.id}`)
   })
   store.on(GET_BY_ID, (s, id) => {
     store.dispatch('request', {
@@ -164,7 +166,7 @@ const activity = store => {
     })
   })
   store.on(GET_BY_ID_LOADING, (s, loading) => {
-    return { communityInfo: { ...s.communityInfo, loading } }
+    return { activityInfo: { ...s.activityInfo, loading } }
   })
   store.on(GET_BY_ID_RELOAD_BY_LU, (s, data) => {
     notification.success({ message: 'Все гуд, с лайком разобрались!' })
@@ -184,6 +186,20 @@ const activity = store => {
         }
       }
     }
+  })
+  store.on(UPDATE, (s, body) => {
+    store.dispatch('request', {
+      resourceType: 'Activity',
+      id: body.id,
+      body,
+      method: 'PATCH',
+      success: UPDATE_SUCCESS,
+      error: ERROR,
+      spinner: GET_BY_ID_LOADING
+    })
+  })
+  store.on(UPDATE_SUCCESS, (s, updated) => {
+    history.push(`/activity/${updated.id}`)
   })
 }
 

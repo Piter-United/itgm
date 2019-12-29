@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 
-import { Button, Typography, Form, Input, Select } from 'antd'
+import { Button, Typography, Form, Input, Select, Spin } from 'antd'
+
+import { GET_BY_ID } from '../../store/activity'
 
 const { Title } = Typography
 
@@ -9,11 +11,17 @@ import '../Heading/Heading.css'
 import useStoreon from 'storeon/react'
 
 import { GET_LIST } from '../../store/community'
-import { CREATE } from '../../store/activity'
+import { CREATE, UPDATE } from '../../store/activity'
 
-const AcivityCreateForm = ({ form, user, community, onCreateActivity }) => {
+const AcivityCreateForm = ({
+  form,
+  user,
+  community,
+  onCreateActivity,
+  activity
+}) => {
+  const act = activity && activity.data && activity.data.activity
   const { getFieldDecorator, validateFieldsAndScroll, getFieldValue } = form
-
   const _handleSubmit = e => {
     e.preventDefault()
     validateFieldsAndScroll((err, values) => {
@@ -30,11 +38,13 @@ const AcivityCreateForm = ({ form, user, community, onCreateActivity }) => {
       onSubmit={_handleSubmit}
     >
       <div className="form__header">
-        <Title className="heading heading_level_1">Добавление новой темы</Title>
+        <Title className="heading heading_level_1">
+          {act && act.id ? 'Редактирование темы' : 'Добавление новой темы'}
+        </Title>
       </div>
       <Form.Item label="Название">
         {getFieldDecorator('name', {
-          initialValue: '',
+          initialValue: (act && act.name) || '',
           rules: [
             {
               required: true,
@@ -45,7 +55,7 @@ const AcivityCreateForm = ({ form, user, community, onCreateActivity }) => {
       </Form.Item>
       <Form.Item label="Описание темы">
         {getFieldDecorator('description', {
-          initialValue: '',
+          initialValue: (act && act.description) || '',
           rules: [
             {
               required: true,
@@ -62,8 +72,8 @@ const AcivityCreateForm = ({ form, user, community, onCreateActivity }) => {
       <Form.Item label="Cообщество">
         {getFieldDecorator('community', {
           initialValue:
-            user && user.community && user.community.id
-              ? user.community.id
+            act && act.community && act.community.id
+              ? act.community.id
               : '33e0bed1-9ac2-420a-9e4e-eeb05a96d464'
         })(
           <Select
@@ -91,7 +101,7 @@ const AcivityCreateForm = ({ form, user, community, onCreateActivity }) => {
       </Form.Item>
       <Form.Item label="Метки">
         {getFieldDecorator('tags', {
-          initialValue: []
+          initialValue: (act && act.tags) || []
         })(
           <Select
             mode="tags"
@@ -113,12 +123,26 @@ const WrappedAcivityCreateForm = Form.create({ name: 'user_edit' })(
   AcivityCreateForm
 )
 
-const AcivityCreate = () => {
-  const { user, community, dispatch } = useStoreon('user', 'community')
+const AcivityCreate = ({
+  match: {
+    params: { id }
+  }
+}) => {
+  const { user, community, dispatch, activityInfo } = useStoreon(
+    'user',
+    'community',
+    'activityInfo'
+  )
 
   useEffect(() => {
     dispatch(GET_LIST)
   }, [dispatch])
+
+  useEffect(() => {
+    if (id && id.length > 0) {
+      dispatch(GET_BY_ID, id)
+    }
+  }, [dispatch, id])
 
   const formatCommunity = key => {
     const _community = community.list.find(_ => _.id === key)
@@ -138,8 +162,15 @@ const AcivityCreate = () => {
         resourceType: 'User'
       }
     }
-
-    dispatch(CREATE, newData)
+    if (id && id.length > 0) {
+      newData.id = id
+      dispatch(UPDATE, newData)
+    } else {
+      dispatch(CREATE, newData)
+    }
+  }
+  if (id && id.length && activityInfo.loading) {
+    return <Spin size="large" />
   }
 
   return (
@@ -147,6 +178,7 @@ const AcivityCreate = () => {
       <WrappedAcivityCreateForm
         user={user}
         community={community}
+        activity={activityInfo}
         onCreateActivity={onCreateActivity}
       />
     </div>

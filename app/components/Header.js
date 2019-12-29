@@ -21,7 +21,7 @@ export default withRouter(
       location: { pathname: path }
     }
   }) => {
-    const { user, dispatch } = useStoreon('user')
+    const { userId, user, dispatch } = useStoreon('user', 'userId')
     return (
       <Header>
         <Menu
@@ -46,7 +46,7 @@ export default withRouter(
           >
             <Link to="/community">Сообщества</Link>
           </Menu.Item>
-          {!user && (
+          {!userId && (
             <Menu.Item
               key="97"
               className={
@@ -57,7 +57,7 @@ export default withRouter(
               <Link to="/login">Вход</Link>
             </Menu.Item>
           )}
-          {user && [
+          {userId && [
             <Menu.Item
               key="98"
               className={
@@ -65,9 +65,13 @@ export default withRouter(
               }
               style={{ marginLeft: 'auto' }}
             >
-              <Link to="/user">
-                {user.name ? user.name : 'Заполните профиль'}
-              </Link>
+              {user ? (
+                <Link to="/user">{user.name}</Link>
+              ) : (
+                <Link to="/user/edit">
+                  {user ? user.name : 'Заполните профиль'}
+                </Link>
+              )}
             </Menu.Item>,
             <Menu.Item
               key="99"

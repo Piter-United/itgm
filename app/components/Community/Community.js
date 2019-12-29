@@ -14,7 +14,10 @@ const Community = ({
     params: { id }
   }
 }) => {
-  const { dispatch, communityInfo } = useStoreon('communityInfo')
+  const { dispatch, communityInfo, userId } = useStoreon(
+    'communityInfo',
+    'userId'
+  )
   useEffect(() => {
     dispatch(GET_BY_ID, id)
   }, [id, dispatch])
@@ -56,7 +59,12 @@ const Community = ({
             loading={communityInfo.loading}
             dataSource={activity}
             renderItem={item => (
-              <ShowItem item={item} dispatch={dispatchEvent} />
+              <ShowItem
+                key={item.id}
+                userId={userId}
+                item={item}
+                dispatch={dispatchEvent}
+              />
             )}
           />
         </Col>

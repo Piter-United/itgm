@@ -9,13 +9,17 @@ import '../Heading/Heading.css'
 
 import { GET_LIST, LIKE, UNLIKE } from '../../store/activity'
 
-export const ShowItem = ({ dispatch, item }) => (
+import history from '../../history'
+
+export const ShowItem = ({ dispatch, item, userId }) => (
   <List.Item
     key={item.id}
     actions={[
       <span
         onClick={() =>
-          item.likes.isLike
+          !userId
+            ? history.push('/login')
+            : item.likes.isLike
             ? dispatch(UNLIKE, item.likes.id)
             : dispatch(LIKE, item.id)
         }
@@ -30,7 +34,11 @@ export const ShowItem = ({ dispatch, item }) => (
     ]}
   >
     <List.Item.Meta
-      title={<Link to={`/activity/${item.id}`}>{item.resource.name}</Link>}
+      title={
+        <Link style={{ color: '#1890ff' }} to={`/activity/${item.id}`}>
+          {item.resource.name}
+        </Link>
+      }
       description={
         <div>
           {item.community &&
@@ -48,8 +56,12 @@ export const ShowItem = ({ dispatch, item }) => (
   </List.Item>
 )
 
-const Home = () => {
-  const { user, activity, dispatch } = useStoreon('user', 'activity')
+const ActivityList = () => {
+  const { userId, user, activity, dispatch } = useStoreon(
+    'user',
+    'userId',
+    'activity'
+  )
 
   useEffect(() => {
     dispatch(GET_LIST)
@@ -62,8 +74,18 @@ const Home = () => {
           <Title className="heading heading_level_1">Обсуждения</Title>
         </Col>
         <Col span={6}>
-          {user && user.verified && (
-            <Button icon="plus-circle" href="/activity/new">
+          {userId ? (
+            user ? (
+              <Button icon="plus-circle" href="/activity/new">
+                Добавить обсуждение
+              </Button>
+            ) : (
+              <Button icon="plus-circle" href="/user/edit">
+                Добавить обсуждение
+              </Button>
+            )
+          ) : (
+            <Button icon="plus-circle" href="/login">
               Добавить обсуждение
             </Button>
           )}
@@ -79,7 +101,12 @@ const Home = () => {
             loading={activity.loading}
             dataSource={activity.list}
             renderItem={item => (
-              <ShowItem key={item.id} item={item} dispatch={dispatch} />
+              <ShowItem
+                key={item.id}
+                userId={userId}
+                item={item}
+                dispatch={dispatch}
+              />
             )}
           />
         </Col>
@@ -89,4 +116,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default ActivityList

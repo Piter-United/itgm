@@ -93,12 +93,6 @@
                 }
               }
             }
-          },
-          {
-            "engine": "sql",
-            "sql": {
-              "query": "select {{user.id}} = {{params.user}} bool"
-            }
           }
         ]
       },
@@ -122,12 +116,6 @@
                   }
                 }
               }
-            }
-          },
-          {
-            "engine": "sql",
-            "sql": {
-              "query": "select {{user.id}} = {{params.user}} bool"
             }
           }
         ]
@@ -458,12 +446,6 @@
                   }
                 }
               }
-            }
-          },
-          {
-            "engine": "sql",
-            "sql": {
-              "query": "select {{user.id}} = {{params.user}} bool"
             }
           }
         ]

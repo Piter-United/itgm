@@ -44,7 +44,9 @@ const Activity = ({
           <span
             style={{ cursor: 'pointer' }}
             onClick={() =>
-              activity.likes.isLike
+              !userId
+                ? history.push('/login')
+                : activity.likes.isLike
                 ? dispatchEvent(UNLIKE, activity.likes.id)
                 : dispatchEvent(LIKE, activity.id)
             }

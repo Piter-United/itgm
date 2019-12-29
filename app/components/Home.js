@@ -38,9 +38,11 @@ const ShowItem = ({ dispatch, item }) => (
 
 const Home = () => {
   const { user, activity, dispatch } = useStoreon('user', 'activity')
+
   useEffect(() => {
     dispatch(GET_LIST)
   }, [dispatch])
+
   return (
     <div className="content">
       <Row>
@@ -55,7 +57,11 @@ const Home = () => {
           />
         </Col>
         <Col span={6}>
-          {user && <Button icon="plus-circle">Добавить</Button>}
+          {user && (
+            <Button icon="plus-circle" href="/activity/new">
+              Добавить
+            </Button>
+          )}
         </Col>
       </Row>
     </div>

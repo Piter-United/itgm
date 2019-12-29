@@ -1,4 +1,5 @@
 import { notification } from 'antd'
+import history from '../history'
 
 const defaultState = {
   activity: {
@@ -17,6 +18,8 @@ export const UPDATE_LIKE_ERROR = 'activity/update-like-error'
 export const UNLIKE = 'activity/unlike'
 export const UPDATE_UNLIKE_SUCCESS = 'activity/update-unlike-success'
 export const UPDATE_UNLIKE_ERROR = 'activity/update-unlike-error'
+export const CREATE = 'activity/create'
+export const CREATE_SUCCESS = 'activity/create-success'
 
 const activity = store => {
   store.on('@init', () => defaultState)
@@ -131,6 +134,20 @@ const activity = store => {
     } else {
       notification.error({ message })
     }
+  })
+  store.on(CREATE, (s, newCommunity) => {
+    store.dispatch('request', {
+      resourceType: 'Activity',
+      body: newCommunity,
+      method: 'POST',
+      success: CREATE_SUCCESS,
+      error: ERROR,
+      spinner: LOADING
+    })
+  })
+  store.on(CREATE_SUCCESS, (s, newCommunity) => {
+    console.log(`newCommunity`, newCommunity)
+    history.push(`/`)
   })
 }
 

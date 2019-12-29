@@ -13,6 +13,7 @@ import UserEdit from './components/UserEdit'
 import Home from './components/Home'
 import NotFound from './components/NotFound'
 import Community from './components/Community'
+import ActivityCreate from './components/ActivityCreate'
 
 const App = () => (
   <Layout>
@@ -28,7 +29,8 @@ const App = () => (
       >
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/community" component={Community} />
+          <Route exact path="/community" component={Community} />
+          <PrivateRoute path="/activity/new" component={ActivityCreate} />
           <PrivateRoute path="/user" exact component={User} />
           <PrivateRoute path="/user/edit" component={UserEdit} />
           <Route path="/login" component={Login} />

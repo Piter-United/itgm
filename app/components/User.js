@@ -59,7 +59,6 @@ const User = () => {
           <li className="list__item">
             <Button type="primary">{user.community.name}</Button>
           </li>
-          {console.log(`user.communities`, user.communities)}
           {(user.communities || []).map(community => (
             <li className="list__item" key={community.id}>
               <Button>{community.name}</Button>

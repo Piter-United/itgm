@@ -9,19 +9,6 @@ import './Form/_view/Form_view_profile.css'
 import { GET_LIST } from '../store/community'
 import { UPDATE_USER } from '../store/user'
 
-const tailFormItemLayout = {
-  wrapperCol: {
-    xs: {
-      span: 24,
-      offset: 0
-    },
-    sm: {
-      span: 16,
-      offset: 8
-    }
-  }
-}
-
 const UserEditForm = ({ form, user, community, onUpdateUser }) => {
   const { getFieldDecorator, validateFieldsAndScroll, getFieldValue } = form
   const _handleSubmit = e => {
@@ -227,7 +214,7 @@ const UserEditForm = ({ form, user, community, onUpdateUser }) => {
           />
         )}
       </Form.Item>
-      <Form.Item {...tailFormItemLayout}>
+      <Form.Item>
         <Button type="primary" htmlType="submit">
           Сохранить
         </Button>

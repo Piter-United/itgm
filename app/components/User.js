@@ -25,22 +25,24 @@ const User = () => {
   return (
     <div className="content">
       <div className="form form_view_profile">
-        <Button
-          style={{
-            position: 'absolute',
-            right: 10,
-            top: 10,
-            zIndex: 1
-          }}
-          key="edit"
-          icon="edit"
-          onClick={() => history.push('/user/edit')}
-        />
         <div className="form__header">
-          <div className="form__user">{user.name}</div>
+          <div className="form__user">
+            {user.name}
+            <Button
+              type="link"
+              key="edit"
+              icon="edit"
+              onClick={() => history.push('/user/edit')}
+            />
+          </div>
           <div className="form__avatar">
             {user && user.photo ? (
               <Avatar size={80} src={user.photo} />
+            ) : user.avatar_hash ? (
+              <Avatar
+                size={80}
+                src={`https://www.gravatar.com/avatar/${user.avatar_hash}`}
+              />
             ) : (
               <Avatar size={80} icon="user" />
             )}

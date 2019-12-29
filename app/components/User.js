@@ -59,11 +59,15 @@ const User = () => {
         <Divider />
         <ul className="list list_type_unstyled list_view_communities">
           <li className="list__item">
-            <Button type="primary">{user.community.name}</Button>
+            <Button type="primary" href={`/community/${user.community.id}`}>
+              {user.community.name}
+            </Button>
           </li>
           {(user.communities || []).map(community => (
             <li className="list__item" key={community.id}>
-              <Button>{community.name}</Button>
+              <Button href={`/community/${community.id}`}>
+                {community.name}
+              </Button>
             </li>
           ))}
         </ul>

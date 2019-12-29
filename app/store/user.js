@@ -76,6 +76,7 @@ const user = store => {
       user && user.data && user.data.length > 0 ? user.data[0].user : null
 
     return {
+      userLoading: false,
       user: nu
     }
   })

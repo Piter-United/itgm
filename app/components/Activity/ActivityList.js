@@ -78,7 +78,9 @@ const Home = () => {
             pagination={false}
             loading={activity.loading}
             dataSource={activity.list}
-            renderItem={item => <ShowItem item={item} dispatch={dispatch} />}
+            renderItem={item => (
+              <ShowItem key={item.id} item={item} dispatch={dispatch} />
+            )}
           />
         </Col>
         <Col span={6}></Col>

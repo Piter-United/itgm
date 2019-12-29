@@ -1,7 +1,11 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { List, Icon, Row, Col, Button, notification } from 'antd'
+import { List, Icon, Row, Col, Button, Typography, Divider } from 'antd'
 import useStoreon from 'storeon/react'
+
+const { Title } = Typography
+
+import '../Heading/Heading.css'
 
 import { GET_LIST, LIKE, UNLIKE } from '../../store/activity'
 
@@ -32,7 +36,11 @@ export const ShowItem = ({ dispatch, item }) => (
           {item.community &&
             item.community.resource &&
             item.community.resource.name}{' '}
-          ({item.resource.tags.join(',')})
+          {item.resource.tags.map(tag => (
+            <Button size="small" style={{ marginRight: '.5em' }}>
+              #{tag}
+            </Button>
+          ))}
         </div>
       }
     />
@@ -49,6 +57,19 @@ const Home = () => {
 
   return (
     <div className="content">
+      <Row style={{ display: 'flex', alignItems: 'baseline' }}>
+        <Col span={18}>
+          <Title className="heading heading_level_1">Обсуждения</Title>
+        </Col>
+        <Col span={6}>
+          {user && user.verified && (
+            <Button icon="plus-circle" href="/activity/new">
+              Добавить обсуждение
+            </Button>
+          )}
+        </Col>
+      </Row>
+      <Divider />
       <Row>
         <Col span={18}>
           <List
@@ -60,13 +81,7 @@ const Home = () => {
             renderItem={item => <ShowItem item={item} dispatch={dispatch} />}
           />
         </Col>
-        <Col span={6}>
-          {user && (
-            <Button icon="plus-circle" href="/activity/new">
-              Добавить
-            </Button>
-          )}
-        </Col>
+        <Col span={6}></Col>
       </Row>
     </div>
   )

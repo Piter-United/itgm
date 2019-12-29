@@ -30,7 +30,7 @@ const Community = ({
       <Row>
         <Col span={16}>
           <h2>{community.name}</h2>
-          <div>
+          <div style={{ marginBottom: '1em' }}>
             {community.social.map(social => (
               <a
                 style={{ marginRight: 10 }}

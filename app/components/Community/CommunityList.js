@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
-import { List, Icon, Button } from 'antd'
+import { List, Icon, Button, Typography, Row, Col, Divider } from 'antd'
+
+const { Title } = Typography
 
 import useStoreon from 'storeon/react'
 
@@ -16,15 +18,19 @@ const CommunityList = () => {
   }, [dispatch])
   return (
     <div className="content">
-      <h2>Сообщества</h2>
-      {user && user.verified && (
-        <Button
-          icon="plus-circle"
-          onClick={() => history.push('/community/new')}
-        >
-          Добавить сообщество
-        </Button>
-      )}
+      <Row style={{ display: 'flex', alignItems: 'baseline' }}>
+        <Col span={18}>
+          <Title className="heading heading_level_1">Сообщества</Title>
+        </Col>
+        <Col span={6}>
+          {user && (
+            <Button icon="plus-circle" href="/community/new">
+              Добавить сообщество
+            </Button>
+          )}
+        </Col>
+      </Row>
+      <Divider />
       <List
         itemLayout="vertical"
         size="large"

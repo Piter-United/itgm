@@ -67,7 +67,7 @@ const community = store => {
   })
   store.on(CREATE_SUCCESS, (s, data) => {
     console.log(data)
-    notification.success({ message: 'Все гуд, сообщество создано' })
+    notification.success({ message: 'Всё гуд, сообщество создано' })
     history.push(`/community/${data.id}`)
   })
   store.on(CREATE_ERROR, (s, { data, message }) => {
@@ -94,7 +94,7 @@ const community = store => {
     return { communityInfo: { ...s.communityInfo, loading } }
   })
   store.on(GET_BY_ID_RELOAD_BY_LU, (s, data) => {
-    notification.success({ message: 'Все гуд, с лайком разобрались!' })
+    notification.success({ message: 'Всё гуд, с лайком разобрались!' })
     store.dispatch(GET_BY_ID, s.communityInfo.data.community.id)
   })
   store.on(GET_BY_ID_SUCCESS, (s, { data }) => {

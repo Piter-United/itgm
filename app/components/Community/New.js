@@ -1,22 +1,13 @@
 import React from 'react'
 import useStoreon from 'storeon/react'
 
-import { Form, Input, Select, Button, Icon } from 'antd'
+import { Form, Input, Select, Button, Icon, Typography } from 'antd'
+
+const { Title } = Typography
+
+import '../Heading/Heading.css'
 
 import { CREATE } from '../../store/community'
-
-const tailFormItemLayout = {
-  wrapperCol: {
-    xs: {
-      span: 24,
-      offset: 0
-    },
-    sm: {
-      span: 16,
-      offset: 8
-    }
-  }
-}
 
 const NewCommunityForm = ({ form, onCreateCommunity }) => {
   const {
@@ -72,14 +63,15 @@ const NewCommunityForm = ({ form, onCreateCommunity }) => {
           display: 'flex',
           flexDirection: 'row',
           marginBottom: 10,
-          alignItems: 'center'
+          alignItems: 'center',
+          position: 'relative'
         }}
       >
         {getFieldDecorator(`type[${k}]`, {
           initialValue: 'global',
           rules: [{ required: true, message: 'Вы не ввели описание' }]
         })(
-          <Select style={{ width: '100px' }}>
+          <Select style={{ width: '150px' }}>
             <Select.Option value="global">Сайт</Select.Option>
             <Select.Option value="vk">VK</Select.Option>
             <Select.Option value="twitter">Twitter</Select.Option>
@@ -92,7 +84,12 @@ const NewCommunityForm = ({ form, onCreateCommunity }) => {
           rules: [{ required: true, message: 'Вы не ввели описание' }]
         })(<Input />)}
         {getFieldValue('keys').length > 1 ? (
-          <Icon type="minus-circle-o" onClick={() => remove(k)} />
+          <Button
+            onClick={() => remove(k)}
+            style={{ position: 'absolute', right: '-50px', top: 0 }}
+          >
+            <Icon type="minus-circle-o" />
+          </Button>
         ) : null}
       </div>
     </Form.Item>
@@ -104,6 +101,9 @@ const NewCommunityForm = ({ form, onCreateCommunity }) => {
       className="form form_view_profile"
       onSubmit={_handleSubmit}
     >
+      <div className="form__header">
+        <Title className="heading heading_level_1">Добавить сообщество</Title>
+      </div>
       <Form.Item label="Название">
         {getFieldDecorator('name', {
           rules: [{ required: true, message: 'Вы не ввели название' }]
@@ -112,15 +112,15 @@ const NewCommunityForm = ({ form, onCreateCommunity }) => {
       <Form.Item label="Описание">
         {getFieldDecorator('description', {
           rules: [{ required: true, message: 'Вы не ввели описание' }]
-        })(<Input.TextArea />)}
+        })(<Input.TextArea rows={6} />)}
       </Form.Item>
-      <Form.Item label="Социальные сети">{formItems}</Form.Item>
-      <Form.Item {...tailFormItemLayout}>
+      <Form.Item label="Сайт и социальные сети">{formItems}</Form.Item>
+      <Form.Item>
         <Button type="dashed" onClick={add} style={{ width: '60%' }}>
-          <Icon type="plus" /> Добавить
+          <Icon type="plus" /> Добавить ссылку
         </Button>
       </Form.Item>
-      <Form.Item {...tailFormItemLayout}>
+      <Form.Item>
         <Button type="primary" htmlType="submit">
           Сохранить
         </Button>
@@ -139,7 +139,6 @@ const NewCommunity = () => {
   }
   return (
     <div>
-      <h2>Добавить сообщество</h2>
       <WrappedNewCommunityForm onCreateCommunity={onCreateCommunity} />
     </div>
   )

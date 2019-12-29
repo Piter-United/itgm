@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import { List, Icon, Button, Typography, Form, Input, Select } from 'antd'
+import { Button, Typography, Form, Input, Select } from 'antd'
 
 const { Title } = Typography
 

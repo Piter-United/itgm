@@ -4,12 +4,12 @@ import { List, Icon, Button, Typography, Form, Input, Select } from 'antd'
 
 const { Title } = Typography
 
-import './Heading/Heading.css'
+import '../Heading/Heading.css'
 
 import useStoreon from 'storeon/react'
 
-import { GET_LIST } from '../store/community'
-import { CREATE } from '../store/activity'
+import { GET_LIST } from '../../store/community'
+import { CREATE } from '../../store/activity'
 
 const AcivityCreateForm = ({ form, user, community, onCreateActivity }) => {
   const { getFieldDecorator, validateFieldsAndScroll, getFieldValue } = form

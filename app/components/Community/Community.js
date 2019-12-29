@@ -7,7 +7,7 @@ import { GET_BY_ID, GET_BY_ID_RELOAD_BY_LU } from '../../store/community'
 
 import VkIcon from '../../../asset/vk.svg'
 
-import { ShowItem } from '../Home'
+import { ShowItem } from '../Activity/ActivityList'
 
 const Community = ({
   match: {

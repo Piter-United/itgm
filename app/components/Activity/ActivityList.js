@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
-
+import { Link } from 'react-router-dom'
 import { List, Icon, Row, Col, Button, notification } from 'antd'
 import useStoreon from 'storeon/react'
-import { GET_LIST, LIKE, UNLIKE } from '../store/activity'
+
+import { GET_LIST, LIKE, UNLIKE } from '../../store/activity'
 
 export const ShowItem = ({ dispatch, item }) => (
   <List.Item
@@ -25,7 +26,7 @@ export const ShowItem = ({ dispatch, item }) => (
     ]}
   >
     <List.Item.Meta
-      title={item.resource.name}
+      title={<Link to={`/activity/${item.id}`}>{item.resource.name}</Link>}
       description={
         <div>
           {item.community &&

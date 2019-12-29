@@ -36,8 +36,8 @@ export const ShowItem = ({ dispatch, item }) => (
           {item.community &&
             item.community.resource &&
             item.community.resource.name}{' '}
-          {item.resource.tags.map(tag => (
-            <Button size="small" style={{ marginRight: '.5em' }}>
+          {item.resource.tags.map((tag, i) => (
+            <Button key={i} size="small" style={{ marginRight: '.5em' }}>
               #{tag}
             </Button>
           ))}

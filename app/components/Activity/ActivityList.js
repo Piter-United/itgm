@@ -36,7 +36,7 @@ export const ShowItem = ({ dispatch, item }) => (
         </div>
       }
     />
-    {item.resource.description}
+    <div style={{ whiteSpace: 'pre-line' }}>{item.resource.description}</div>
   </List.Item>
 )
 

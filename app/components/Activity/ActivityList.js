@@ -37,7 +37,7 @@ export const ShowItem = ({ dispatch, item }) => (
             item.community.resource &&
             item.community.resource.name}{' '}
           {item.resource.tags.map(tag => (
-            <Button size="small" style={{ marginRight: '.5em' }}>
+            <Button key={tag} size="small" style={{ marginRight: '.5em' }}>
               #{tag}
             </Button>
           ))}
@@ -78,7 +78,9 @@ const Home = () => {
             pagination={false}
             loading={activity.loading}
             dataSource={activity.list}
-            renderItem={item => <ShowItem item={item} dispatch={dispatch} />}
+            renderItem={item => (
+              <ShowItem key={item.id} item={item} dispatch={dispatch} />
+            )}
           />
         </Col>
         <Col span={6}></Col>

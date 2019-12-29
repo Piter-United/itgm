@@ -56,7 +56,7 @@ const UserEditForm = ({ form, user, community, onUpdateUser }) => {
         <div className="form__avatar">
           {user && user.photo ? (
             <Avatar size={80} src={user.photo} />
-          ) : user.avatar_hash ? (
+          ) : user && user.avatar_hash ? (
             <Avatar
               size={80}
               src={`https://www.gravatar.com/avatar/${user.avatar_hash}`}
@@ -262,7 +262,6 @@ const UserEdit = () => {
 
     dispatch(UPDATE_USER, newData)
   }
-
   return (
     <WrappedUserEditForm
       user={user}

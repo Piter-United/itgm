@@ -5,13 +5,17 @@ import { Spin, Row, Col, Icon, Divider, List } from 'antd'
 
 import { LIKE, UNLIKE } from '../../store/activity'
 import { GET_BY_ID, GET_BY_ID_RELOAD_BY_LU } from '../../store/activity'
+import history from '../../history'
 
 const Activity = ({
   match: {
     params: { id }
   }
 }) => {
-  const { dispatch, activityInfo } = useStoreon('activityInfo')
+  const { dispatch, activityInfo, userId } = useStoreon(
+    'activityInfo',
+    'userId'
+  )
   useEffect(() => {
     dispatch(GET_BY_ID, id)
   }, [id, dispatch])
@@ -22,12 +26,20 @@ const Activity = ({
     dispatch(event, { id, event: GET_BY_ID_RELOAD_BY_LU })
   }
   const { activity, likes } = activityInfo.data
-  console.log(activityInfo.data)
   return (
     <div>
       <Row>
         <Col span={16}>
-          <h2>{activity.name}</h2>
+          <h2>
+            {activity.name}{' '}
+            {userId && userId === activity.user.id && (
+              <Icon
+                type="edit"
+                onClick={() => history.push(`/activity/${activity.id}/edit`)}
+                style={{ color: '#1890ff' }}
+              />
+            )}
+          </h2>
           <div style={{ whiteSpace: 'pre-line' }}>{activity.description}</div>
           <span
             style={{ cursor: 'pointer' }}

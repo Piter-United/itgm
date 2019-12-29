@@ -18,7 +18,7 @@ const Community = ({
   useEffect(() => {
     dispatch(GET_BY_ID, id)
   }, [id, dispatch])
-  if (!communityInfo.data) {
+  if (!communityInfo.data || communityInfo.data.community.id !== id) {
     return <Spin size="large" />
   }
   const dispatchEvent = (event, id) => {

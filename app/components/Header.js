@@ -6,10 +6,10 @@ import { LOGOUT } from '../store/user'
 
 const { Header } = Layout
 
-const hasMatchRoute = (path, url) => {
+const hasMatchRoute = (path, url, exact = true) => {
   const m = matchPath(path, {
     path: url,
-    exact: true,
+    exact,
     strict: false
   })
   return m && 'path' in m
@@ -38,7 +38,9 @@ export default withRouter(
           </Menu.Item>
           <Menu.Item
             className={
-              hasMatchRoute(path, '/community') ? 'ant-menu-item-selected' : ''
+              hasMatchRoute(path, '/community', false)
+                ? 'ant-menu-item-selected'
+                : ''
             }
             key="2"
           >

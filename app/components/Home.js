@@ -4,7 +4,7 @@ import { List, Icon, Row, Col, Button, notification } from 'antd'
 import useStoreon from 'storeon/react'
 import { GET_LIST, LIKE, UNLIKE } from '../store/activity'
 
-const ShowItem = ({ dispatch, item }) => (
+export const ShowItem = ({ dispatch, item }) => (
   <List.Item
     key={item.id}
     actions={[
@@ -28,7 +28,10 @@ const ShowItem = ({ dispatch, item }) => (
       title={item.resource.name}
       description={
         <div>
-          {item.community.resource.name} ({item.resource.tags.join(',')})
+          {item.community &&
+            item.community.resource &&
+            item.community.resource.name}{' '}
+          ({item.resource.tags.join(',')})
         </div>
       }
     />

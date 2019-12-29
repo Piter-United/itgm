@@ -4,6 +4,7 @@ import history from '../history'
 const defaultState = {
   token: window.localStorage.getItem('token') || null,
   userId: window.localStorage.getItem('userId') || null,
+  userLoading: true,
   user: null
 }
 export const SET_USER_TOKEN = 'user/set-user-token'
@@ -16,6 +17,7 @@ export const UPDATE_USER_ERROR = 'user/update-error'
 export const UPDATE_USER_SUCCESS = 'user/update-success'
 export const LOGOUT = 'user/logout'
 export const LOGOUT_SUCCESS = 'user/logout_success'
+export const LOADING = 'user/loading'
 
 const user = store => {
   store.on('@init', () => {
@@ -28,6 +30,7 @@ const user = store => {
         },
         success: SET_USER,
         token: defaultState.token,
+        spinner: LOADING,
         error: {
           env: SET_USER_TOKEN,
           params: { token: null, user: null }
@@ -36,7 +39,10 @@ const user = store => {
     }
     return defaultState
   })
-  store.on(SET_USER_TOKEN, (store, { token, user }) => {
+  store.on(LOADING, (s, userLoading) => {
+    return { userLoading }
+  })
+  store.on(SET_USER_TOKEN, (s, { token, user }) => {
     if (token) {
       window.localStorage.setItem('token', token)
     } else {
@@ -103,7 +109,7 @@ const user = store => {
     notification.error({ message: 'Ошибка обновления профиля' })
   })
   store.on(UPDATE_USER_SUCCESS, (s, user) => {
-    store.dispatch(SET_USER, user)
+    store.dispatch(GET_CURRENT_USER)
     history.push('/user')
   })
   store.on(LOGOUT, async s => {

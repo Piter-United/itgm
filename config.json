@@ -11,6 +11,20 @@
       },
       "query": "#userprofile.sql"
     },
+    "community": {
+      "id": "community",
+      "params": {
+        "id": {
+          "isRequired": true,
+          "type": "string"
+        },
+        "user": {
+          "isRequired": true,
+          "type": "string"
+        }
+      },
+      "query": "#getCommunity.sql"
+    },
     "activity": {
       "id": "activity",
       "params": {
@@ -44,6 +58,36 @@
       }
     },
     "AccessPolicy": {
+      "allow-community-by-id-read": {
+        "engine": "complex",
+        "and": [
+          {
+            "engine": "json-schema",
+            "schema": {
+              "required": ["request-method", "params"],
+              "properties": {
+                "request-method": {
+                  "const": "get"
+                },
+                "params": {
+                  "required": ["query"],
+                  "properties": {
+                    "query": {
+                      "constant": "community"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "engine": "sql",
+            "sql": {
+              "query": "select {{user.id}} = {{params.user}} bool"
+            }
+          }
+        ]
+      },
       "allow-userinfo-save": {
         "engine": "complex",
         "and": [
@@ -280,6 +324,36 @@
             "engine": "sql",
             "sql": {
               "query": "select true from activitylike where id = {{params.resource/id}} and resource#>>'{user,id}' = {{user.id}}"
+            }
+          }
+        ]
+      },
+      "allow-activity-create": {
+        "engine": "complex",
+        "and": [
+          {
+            "engine": "json-schema",
+            "schema": {
+              "required": ["request-method", "params"],
+              "properties": {
+                "request-method": {
+                  "const": "post"
+                },
+                "params": {
+                  "required": ["resource/type"],
+                  "properties": {
+                    "resource/type": {
+                      "constant": "Activity"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "engine": "sql",
+            "sql": {
+              "query": "select {{user.id}} = {{body.user.id}} bool"
             }
           }
         ]

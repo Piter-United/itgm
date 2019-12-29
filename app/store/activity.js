@@ -14,10 +14,8 @@ export const LOADING = 'activity/loading'
 export const ERROR = 'activity/error'
 export const LIKE = 'activity/like'
 export const UPDATE_LIKE_SUCCESS = 'activity/update-like-success'
-export const UPDATE_LIKE_ERROR = 'activity/update-like-error'
 export const UNLIKE = 'activity/unlike'
 export const UPDATE_UNLIKE_SUCCESS = 'activity/update-unlike-success'
-export const UPDATE_UNLIKE_ERROR = 'activity/update-unlike-error'
 export const CREATE = 'activity/create'
 export const CREATE_SUCCESS = 'activity/create-success'
 
@@ -50,7 +48,13 @@ const activity = store => {
       notification.error({ message })
     }
   })
-  store.on(LIKE, (s, id) => {
+  store.on(LIKE, (s, params) => {
+    let event = null
+    let id = null
+    if (typeof id !== 'string') {
+      event = params.event
+      id = params.id
+    }
     store.dispatch('request', {
       resourceType: 'ActivityLike',
       method: 'post',
@@ -61,11 +65,11 @@ const activity = store => {
         },
         activity: {
           resourceType: 'Activity',
-          id
+          id: id || params
         }
       },
-      success: UPDATE_LIKE_SUCCESS,
-      error: UPDATE_LIKE_ERROR
+      success: event || UPDATE_LIKE_SUCCESS,
+      error: ERROR
     })
   })
   store.on(UPDATE_LIKE_SUCCESS, (s, data) => {
@@ -89,24 +93,22 @@ const activity = store => {
       }
     }
   })
-  store.on(UPDATE_LIKE_ERROR, (s, { data, message }) => {
-    if (data && data.message) {
-      notification.error({ message: data.message })
-    } else {
-      notification.error({ message })
+  store.on(UNLIKE, (s, params) => {
+    let event = null
+    let id = null
+    if (typeof id !== 'string') {
+      event = params.event
+      id = params.id
     }
-  })
-  store.on(UNLIKE, (s, id) => {
     store.dispatch('request', {
       resourceType: 'ActivityLike',
-      id,
+      id: id || params,
       method: 'delete',
-      success: UPDATE_UNLIKE_SUCCESS,
-      error: UPDATE_UNLIKE_ERROR
+      success: event || UPDATE_UNLIKE_SUCCESS,
+      error: ERROR
     })
   })
   store.on(UPDATE_UNLIKE_SUCCESS, (s, data) => {
-    console.log(s.activity, data)
     notification.success({ message: 'Все гуд, лайк убрали' })
     return {
       activity: {
@@ -125,14 +127,6 @@ const activity = store => {
         }),
         loading: false
       }
-    }
-  })
-  store.on(UPDATE_LIKE_ERROR, (s, { data, message }) => {
-    console.log(s.activity, data)
-    if (data && data.message) {
-      notification.error({ message: data.message })
-    } else {
-      notification.error({ message })
     }
   })
   store.on(CREATE, (s, newCommunity) => {

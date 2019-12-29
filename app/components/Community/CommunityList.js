@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 import { List, Icon, Button } from 'antd'
 
 import useStoreon from 'storeon/react'
 
-import VkIcon from '../../asset/vk.svg'
-import { GET_LIST } from '../store/community'
+import VkIcon from '../../../asset/vk.svg'
+import { GET_LIST } from '../../store/community'
+import history from '../../history'
 
-const Community = () => {
+const CommunityList = () => {
   const { user, community, dispatch } = useStoreon('community', 'user')
   useEffect(() => {
     dispatch(GET_LIST)
@@ -16,7 +18,12 @@ const Community = () => {
     <div className="content">
       <h2>Сообщества</h2>
       {user && user.verified && (
-        <Button icon="plus-circle">Добавить сообщество</Button>
+        <Button
+          icon="plus-circle"
+          onClick={() => history.push('/community/new')}
+        >
+          Добавить сообщество
+        </Button>
       )}
       <List
         itemLayout="vertical"
@@ -37,7 +44,9 @@ const Community = () => {
               </a>
             ))}
           >
-            <h3>{item.name}</h3>
+            <h3>
+              <Link to={`/community/${item.id}`}>{item.name}</Link>
+            </h3>
             <div style={{ whiteSpace: 'pre-line' }}>{item.description}</div>
           </List.Item>
         )}
@@ -46,4 +55,4 @@ const Community = () => {
   )
 }
 
-export default Community
+export default CommunityList

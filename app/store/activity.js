@@ -81,7 +81,7 @@ const activity = store => {
     })
   })
   store.on(UPDATE_LIKE_SUCCESS, (s, data) => {
-    notification.success({ message: 'Все гуд, лайк записан' })
+    notification.success({ message: 'Всё гуд, лайк записан' })
     return {
       activity: {
         list: s.activity.list.map(v => {
@@ -117,7 +117,7 @@ const activity = store => {
     })
   })
   store.on(UPDATE_UNLIKE_SUCCESS, (s, data) => {
-    notification.success({ message: 'Все гуд, лайк убрали' })
+    notification.success({ message: 'Всё гуд, лайк убрали' })
     return {
       activity: {
         list: s.activity.list.map(v => {
@@ -167,7 +167,7 @@ const activity = store => {
     return { communityInfo: { ...s.communityInfo, loading } }
   })
   store.on(GET_BY_ID_RELOAD_BY_LU, (s, data) => {
-    notification.success({ message: 'Все гуд, с лайком разобрались!' })
+    notification.success({ message: 'Всё гуд, с лайком разобрались!' })
     store.dispatch(GET_BY_ID, s.activityInfo.data.activity.id)
   })
   store.on(GET_BY_ID_SUCCESS, (s, { data }) => {

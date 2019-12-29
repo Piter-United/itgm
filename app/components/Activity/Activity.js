@@ -1,9 +1,56 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import useStoreon from 'storeon/react'
 
-const Activity = () => {
+import { Spin, Row, Col, Icon, Divider, List } from 'antd'
+
+import { LIKE, UNLIKE } from '../../store/activity'
+import { GET_BY_ID, GET_BY_ID_RELOAD_BY_LU } from '../../store/activity'
+
+const Activity = ({
+  match: {
+    params: { id }
+  }
+}) => {
+  const { dispatch, activityInfo } = useStoreon('activityInfo')
+  useEffect(() => {
+    dispatch(GET_BY_ID, id)
+  }, [id, dispatch])
+  if (!activityInfo.data || activityInfo.data.activity.id !== id) {
+    return <Spin size="large" />
+  }
+  const dispatchEvent = (event, id) => {
+    dispatch(event, { id, event: GET_BY_ID_RELOAD_BY_LU })
+  }
+  const { activity, likes } = activityInfo.data
+  console.log(activityInfo.data)
   return (
     <div>
-      <h2>Activity</h2>
+      <Row>
+        <Col span={16}>
+          <h2>{activity.name}</h2>
+          <div style={{ whiteSpace: 'pre-line' }}>{activity.description}</div>
+          <span
+            style={{ cursor: 'pointer' }}
+            onClick={() =>
+              activity.likes.isLike
+                ? dispatchEvent(UNLIKE, activity.likes.id)
+                : dispatchEvent(LIKE, activity.id)
+            }
+          >
+            <Icon
+              type="like-o"
+              style={{ color: activity.likes.isLike ? '#1890ff' : '' }}
+            />{' '}
+            {activity.likes.count}
+          </span>
+        </Col>
+        <Col span={8}>
+          <h3>Участники</h3>
+          {likes.map(item => (
+            <div key={item.id}>{item.user.name}</div>
+          ))}
+        </Col>
+      </Row>
     </div>
   )
 }

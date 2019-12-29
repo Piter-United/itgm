@@ -5,6 +5,10 @@ const defaultState = {
   activity: {
     list: [],
     loading: false
+  },
+  activityInfo: {
+    data: null,
+    loading: false
   }
 }
 
@@ -18,6 +22,10 @@ export const UNLIKE = 'activity/unlike'
 export const UPDATE_UNLIKE_SUCCESS = 'activity/update-unlike-success'
 export const CREATE = 'activity/create'
 export const CREATE_SUCCESS = 'activity/create-success'
+export const GET_BY_ID = 'activity/get-by-id'
+export const GET_BY_ID_SUCCESS = 'activity/get-by-id-success'
+export const GET_BY_ID_LOADING = 'activity/get-by-id-loading'
+export const GET_BY_ID_RELOAD_BY_LU = 'activity/get-by-id-rblu'
 
 const activity = store => {
   store.on('@init', () => defaultState)
@@ -140,8 +148,42 @@ const activity = store => {
     })
   })
   store.on(CREATE_SUCCESS, (s, newCommunity) => {
-    console.log(`newCommunity`, newCommunity)
     history.push(`/`)
+  })
+  store.on(GET_BY_ID, (s, id) => {
+    store.dispatch('request', {
+      resourceType: '$query',
+      id: 'activityinfo',
+      params: {
+        id,
+        user: s.userId
+      },
+      spinner: GET_BY_ID_LOADING,
+      success: GET_BY_ID_SUCCESS,
+      error: ERROR
+    })
+  })
+  store.on(GET_BY_ID_LOADING, (s, loading) => {
+    return { communityInfo: { ...s.communityInfo, loading } }
+  })
+  store.on(GET_BY_ID_RELOAD_BY_LU, (s, data) => {
+    notification.success({ message: 'Все гуд, с лайком разобрались!' })
+    store.dispatch(GET_BY_ID, s.activityInfo.data.activity.id)
+  })
+  store.on(GET_BY_ID_SUCCESS, (s, { data }) => {
+    const activity = data.find(v => v.resource_type === 'Activity')
+    const likes = data
+      .filter(v => v.resource_type === 'ActivityLike')
+      .map(v => ({ ...v, ...v.resource }))
+    return {
+      activityInfo: {
+        ...s.activityInfo,
+        data: {
+          activity: activity ? { ...activity, ...activity.resource } : null,
+          likes
+        }
+      }
+    }
   })
 }
 

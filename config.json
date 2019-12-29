@@ -11,6 +11,20 @@
       },
       "query": "#userprofile.sql"
     },
+    "activityinfo": {
+      "id": "activityinfo",
+      "params": {
+        "id": {
+          "isRequired": true,
+          "type": "string"
+        },
+        "user": {
+          "isRequired": true,
+          "type": "string"
+        }
+      },
+      "query": "#getActivity.sql"
+    },
     "community": {
       "id": "community",
       "params": {
@@ -58,6 +72,36 @@
       }
     },
     "AccessPolicy": {
+      "allow-activity-by-id-read": {
+        "engine": "complex",
+        "and": [
+          {
+            "engine": "json-schema",
+            "schema": {
+              "required": ["request-method", "params"],
+              "properties": {
+                "request-method": {
+                  "const": "get"
+                },
+                "params": {
+                  "required": ["query"],
+                  "properties": {
+                    "query": {
+                      "constant": "activityinfo"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "engine": "sql",
+            "sql": {
+              "query": "select {{user.id}} = {{params.user}} bool"
+            }
+          }
+        ]
+      },
       "allow-community-by-id-read": {
         "engine": "complex",
         "and": [

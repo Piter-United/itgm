@@ -1,5 +1,8 @@
 # SPA для IT Global Meetup
 
+- [Quick start](#quick-start)
+- [Contributors](#contributors)
+
 ## Quick start
 
 - создать бокс в [aidbox.app](https://aidbox.app)
@@ -48,7 +51,7 @@ resourceType: AccessPolicy
 
 - нажать **Save**
 - далее нам необходимо подключить провайдера для авторизации для разработки мы будем использовать `github`
-- идем на страницу (https://github.com/settings/applications/new)[https://github.com/settings/applications/new]
+- идем на страницу [https://github.com/settings/applications/new](https://github.com/settings/applications/new)
   - Application name: ITGM Dev
   - Homepage URL: #BOX_URL#
   - Authorization callback URL: #BOX_URL#/auth/callback/github
@@ -74,3 +77,7 @@ resourceType: IdentityProvider
 - конфигурируем наш бокс `npm run configure`
 - запускаем приложение `npm run start`
 - можно начинать работать
+
+## Contributors
+
+[<img alt="Realetive" src="https://avatars1.githubusercontent.com/u/2073959?v=4&s=117" width="117">](https://github.com/Realetive) [<img alt="mike1pol" src="https://avatars3.githubusercontent.com/u/584816?v=4&s=117" width="117">](https://github.com/mike1pol)

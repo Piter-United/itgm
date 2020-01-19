@@ -56,7 +56,7 @@ resourceType: AccessPolicy
   - Homepage URL: #BOX_URL#
   - Authorization callback URL: #BOX_URL#/auth/callback/github
 - сохраняем себе **Client ID** и **Client Secret**
-- переходив в вкладку `REST Console` и вписываем
+- переходим во вкладку `REST Console` и вписываем
 
 ```yaml
 PUT /IdentityProvider/github

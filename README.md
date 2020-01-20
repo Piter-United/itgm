@@ -6,7 +6,6 @@ ITGM App - это SPA приложение для формирование пр�
 [Подробнее о формате мероприятия и ключевых функциях приложения тут](https://github.com/Piter-United/itgm/wiki/Product-Vision)
 
 - [Quick start](#quick-start)
-- [Contributors](#contributors)
 
 ## Quick start
 

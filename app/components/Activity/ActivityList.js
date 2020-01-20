@@ -7,7 +7,7 @@ const { Title } = Typography
 
 import '../Heading/Heading.css'
 
-import { GET_LIST, LIKE, UNLIKE } from '../../store/activity'
+import { GET_LIST, LIKE, UNLIKE, ON_FILTER } from '../../store/activity'
 
 import history from '../../history'
 
@@ -91,6 +91,13 @@ const ActivityList = () => {
           )}
         </Col>
       </Row>
+      <div>
+        <input
+          onChange={({ target }) => {
+            dispatch(ON_FILTER, target.value)
+          }}
+        />
+      </div>
       <Divider />
       <Row>
         <Col span={18}>
@@ -99,7 +106,7 @@ const ActivityList = () => {
             size="large"
             pagination={false}
             loading={activity.loading}
-            dataSource={activity.list}
+            dataSource={activity.filter ? activity.filtered : activity.list}
             renderItem={item => (
               <ShowItem
                 key={item.id}

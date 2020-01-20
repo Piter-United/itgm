@@ -1,4 +1,7 @@
 {
   "extends": "airbnb",
-  "plugins": ["prettier"]
+  "rules": {
+    "react/prop-types": 0,
+    "no-shadow": "off"
+  }
 }

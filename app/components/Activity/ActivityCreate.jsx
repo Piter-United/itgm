@@ -2,16 +2,15 @@ import React, { useEffect } from 'react'
 
 import { Button, Typography, Form, Input, Select, Spin } from 'antd'
 
-import { GET_BY_ID } from '../../store/activity'
-
-const { Title } = Typography
+import { GET_BY_ID, CREATE, UPDATE } from '../../store/activity'
 
 import '../Heading/Heading.css'
 
 import useStoreon from 'storeon/react'
 
 import { GET_LIST } from '../../store/community'
-import { CREATE, UPDATE } from '../../store/activity'
+
+const { Title } = Typography
 
 const AcivityCreateForm = ({
   form,
@@ -107,7 +106,7 @@ const AcivityCreateForm = ({
             mode="tags"
             placeholder="Добавьте метки"
             optionLabelProp="label"
-          ></Select>
+          />
         )}
       </Form.Item>
       <Form.Item>

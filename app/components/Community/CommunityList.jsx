@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom'
 
 import { List, Icon, Button, Typography, Row, Col, Divider } from 'antd'
 
-const { Title } = Typography
-
 import useStoreon from 'storeon/react'
 
 import VkIcon from '../../asset/vk.svg'
 import { GET_LIST } from '../../store/community'
 import history from '../../history'
+
+const { Title } = Typography
 
 const CommunityList = () => {
   const { user, community, dispatch } = useStoreon('community', 'user')

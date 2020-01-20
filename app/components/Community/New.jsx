@@ -3,11 +3,11 @@ import useStoreon from 'storeon/react'
 
 import { Form, Input, Select, Button, Icon, Typography } from 'antd'
 
-const { Title } = Typography
-
 import '../Heading/Heading.css'
 
 import { CREATE } from '../../store/community'
+
+const { Title } = Typography
 
 const NewCommunityForm = ({ form, onCreateCommunity }) => {
   const {
@@ -16,7 +16,7 @@ const NewCommunityForm = ({ form, onCreateCommunity }) => {
     getFieldValue,
     setFieldsValue
   } = form
-  const _handleSubmit = e => {
+  const handleSubmit = e => {
     e.preventDefault()
     validateFieldsAndScroll((err, values) => {
       if (!err) {
@@ -56,8 +56,8 @@ const NewCommunityForm = ({ form, onCreateCommunity }) => {
 
   getFieldDecorator('keys', { initialValue: [0] })
 
-  const formItems = getFieldValue('keys').map((k, index) => (
-    <Form.Item key={index} style={{ marginBottom: 0 }}>
+  const formItems = getFieldValue('keys').map(k => (
+    <Form.Item key={k} style={{ marginBottom: 0 }}>
       <div
         style={{
           display: 'flex',
@@ -99,7 +99,7 @@ const NewCommunityForm = ({ form, onCreateCommunity }) => {
     <Form
       layout="vertical"
       className="form form_view_profile"
-      onSubmit={_handleSubmit}
+      onSubmit={handleSubmit}
     >
       <div className="form__header">
         <Title className="heading heading_level_1">Добавить сообщество</Title>

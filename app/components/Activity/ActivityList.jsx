@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom'
 import { List, Icon, Row, Col, Button, Typography, Divider } from 'antd'
 import useStoreon from 'storeon/react'
 
-const { Title } = Typography
-
 import '../Heading/Heading.css'
 
 import { GET_LIST, LIKE, UNLIKE } from '../../store/activity'
 
 import history from '../../history'
+
+const { Title } = Typography
 
 export const ShowItem = ({ dispatch, item, userId }) => (
   <List.Item
@@ -110,7 +110,7 @@ const ActivityList = () => {
             )}
           />
         </Col>
-        <Col span={6}></Col>
+        <Col span={6} />
       </Row>
     </div>
   )

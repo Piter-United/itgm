@@ -1,4 +1,5 @@
 import React from 'react'
+import './Partners.css'
 
 const Partners = () => {
   const partners = [
@@ -18,20 +19,22 @@ const Partners = () => {
   const renderPartners = () => (
     <ul className="partners__list">
       {partners.map(partner => (
-        <li className="partners">
+        <li className="partners-item">
           <div className="partner-cnt">
-            <img src={partner.img} alt="" className="partners__img" />
+            <img src={partner.img} alt="" className="partners-item__img" />
           </div>
-          <h3 className="partners__header">{partner.name}</h3>
-          <p className="partners__desc">{partner.desc}</p>
+          <h3 className="partners-item__header">{partner.name}</h3>
+          <p className="partners-item__desc">{partner.desc}</p>
         </li>
       ))}
     </ul>
   )
   return (
     <div className="container">
-      <h2 className="partners__header">Партнеры</h2>
-      <span className="partners__count">(8)</span>
+      <div className="header-wrapper">
+        <h2 className="partners__header">Партнеры</h2>
+        <span className="partners__count">(8)</span>
+      </div>
       {renderPartners()}
     </div>
   )

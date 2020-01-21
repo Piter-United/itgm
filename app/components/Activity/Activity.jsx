@@ -56,7 +56,6 @@ const Activity = ({
             )}
           </h2>
           <div style={{ whiteSpace: 'pre-line' }}>{activity.description}</div>
-          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
           <span
             style={{ cursor: 'pointer' }}
             onClick={() => onHandlerClick(userId, activity)}

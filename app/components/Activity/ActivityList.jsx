@@ -11,18 +11,23 @@ import history from '../../history'
 
 const { Title } = Typography
 
+const onHandlerClick = (userId, item, dispatch) => {
+  console.log('tets')
+  if (!userId) {
+    return history.push('/login')
+  }
+  if (item.likes.isLike) {
+    return dispatch(UNLIKE, item.likes.id)
+  }
+  return dispatch(LIKE, item.id)
+}
+
 export const ShowItem = ({ dispatch, item, userId }) => (
   <List.Item
     key={item.id}
     actions={[
       <span
-        onClick={() =>
-          !userId
-            ? history.push('/login')
-            : item.likes.isLike
-            ? dispatch(UNLIKE, item.likes.id)
-            : dispatch(LIKE, item.id)
-        }
+        onClick={() => onHandlerClick(userId, item, dispatch)}
         key={`list-item-like-${item.id}`}
       >
         <Icon
@@ -44,8 +49,12 @@ export const ShowItem = ({ dispatch, item, userId }) => (
           {item.community &&
             item.community.resource &&
             item.community.resource.name}{' '}
-          {item.resource.tags.map((tag, i) => (
-            <Button key={i} size="small" style={{ marginRight: '.5em' }}>
+          {item.resource.tags.map(tag => (
+            <Button
+              key={`tag_${tag}`}
+              size="small"
+              style={{ marginRight: '.5em' }}
+            >
               #{tag}
             </Button>
           ))}
@@ -55,6 +64,28 @@ export const ShowItem = ({ dispatch, item, userId }) => (
     <div style={{ whiteSpace: 'pre-line' }}>{item.resource.description}</div>
   </List.Item>
 )
+
+const RenderDiscussion = (userId, user) => {
+  if (userId) {
+    if (user) {
+      return (
+        <Button icon="plus-circle" href="/activity/new">
+          Добавить обсуждение
+        </Button>
+      )
+    }
+    return (
+      <Button icon="plus-circle" href="/user/edit">
+        Добавить обсуждение
+      </Button>
+    )
+  }
+  return (
+    <Button icon="plus-circle" href="/login">
+      Добавить обсуждение
+    </Button>
+  )
+}
 
 const ActivityList = () => {
   const { userId, user, activity, dispatch } = useStoreon(
@@ -73,23 +104,7 @@ const ActivityList = () => {
         <Col span={18}>
           <Title className="heading heading_level_1">Обсуждения</Title>
         </Col>
-        <Col span={6}>
-          {userId ? (
-            user ? (
-              <Button icon="plus-circle" href="/activity/new">
-                Добавить обсуждение
-              </Button>
-            ) : (
-              <Button icon="plus-circle" href="/user/edit">
-                Добавить обсуждение
-              </Button>
-            )
-          ) : (
-            <Button icon="plus-circle" href="/login">
-              Добавить обсуждение
-            </Button>
-          )}
-        </Col>
+        <Col span={6}>{RenderDiscussion(userId, user)}</Col>
       </Row>
       <Divider />
       <Row>

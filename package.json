@@ -10,7 +10,7 @@
     "size": "size-limit",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint-all": "prettier --write \"**/*.{ts,js,tsx}\"",
-    "eslint": "node_modules/.bin/eslint app/"
+    "eslint": "node_modules/.bin/eslint app/components"
   },
   "keywords": [],
   "author": "Mikhail Poluboyarinov <mikle.sol@gmail.com>",

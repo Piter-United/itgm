@@ -3,12 +3,14 @@ import './Partners.css'
 
 const partners = [
   {
+    id: 1,
     name: 'Important Partner Name',
     photo: 'img.jpeg',
     desc:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
   },
   {
+    id: 2,
     name: 'Important Partner Name',
     photo: 'img.jpeg',
     desc:
@@ -19,7 +21,7 @@ const partners = [
 const Partner = () => (
   <ul className="partners__list">
     {partners.map(partner => (
-      <li className="partners-item">
+      <li className="partners-item" key={partner.id}>
         <div className="partner-cnt">
           <img src={partner.img} alt="" className="partners-item__img" />
         </div>

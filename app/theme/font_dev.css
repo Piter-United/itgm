@@ -2,6 +2,7 @@
   font-family: 'Open-Sans';
   font-style: normal;
   font-weight: 400;
-  src: url('public/fonts/OpenSans-Regular.ttf');
-  src: local('OpenSans'), local('Open-Sans');
+  src: url('../../public/fonts/OpenSans-Regular.woff');
+  src: local('OpenSans'), local('Open-Sans'),
+    url('../../public/fonts/OpenSans-Regular.ttf') format('truetype'); /* Safari, Android, iOS */
 }

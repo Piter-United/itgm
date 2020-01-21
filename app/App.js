@@ -43,7 +43,6 @@ const App = () => (
           <PrivateRoute path="/user" exact component={User} />
           <PrivateRoute path="/user/edit" component={UserEdit} />
           <Route path="/login" component={Login} />
-          {/* Добавил роут страницы Partners для верстки */}
           <Route path="/partners" component={Partners} />
           <Route component={NotFound} />
         </Switch>

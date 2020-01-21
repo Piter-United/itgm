@@ -183,7 +183,10 @@ const UserEditForm = ({ form, user, community, onUpdateUser }) => {
       </Form.Item>
       <Form.Item label="Дополнительные сообщества">
         {getFieldDecorator('communities', {
-          initialValue: (user && user.communities.map(item => item.id)) || []
+          initialValue:
+            user && user.communities.length
+              ? user.communities.map(item => item.id)
+              : []
         })(
           <Select
             mode="multiple"

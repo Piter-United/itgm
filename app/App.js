@@ -23,7 +23,6 @@ const App = () => (
   <Layout>
     <Header />
     <Content style={{ padding: '0 50px' }}>
-      {/* antd переопределяет основные стили, поэтому временно закомментил */}
       <div
       // style={{
       //   background: '#fff',

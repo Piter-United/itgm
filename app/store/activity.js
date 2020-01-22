@@ -204,30 +204,6 @@ const activity = store => {
   store.on(UPDATE_SUCCESS, (s, updated) => {
     history.push(`/activity/${updated.id}`)
   })
-
-  // ON_FILTER
-  store.on(ON_FILTER, (s, payload) => {
-    const f = filterActivity(payload)
-    return {
-      ...s,
-      activity: {
-        ...s.activity,
-        filter: payload,
-        filtered: s.activity.list.map(v => (f(v) ? v : false)).filter(v => v)
-      }
-    }
-  })
 }
 
 export default activity
-
-// libs
-const filterActivity = payload => {
-  const regexp = new RegExp(`${payload}`, 'gi')
-  return v => {
-    const { resource, community } = v
-    return !![resource.name, resource.desctiption, community.resource.name]
-      .join(' ')
-      .match(regexp)
-  }
-}

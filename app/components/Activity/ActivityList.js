@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { List, Icon, Row, Col, Button, Typography, Divider } from 'antd'
 import useStoreon from 'storeon/react'
@@ -63,6 +63,13 @@ const ActivityList = () => {
     'activity'
   )
 
+  const [filtered, setFiltered] = useState(activity.list)
+  const filterActivites = s => {
+    if (s === '') return setFiltered(activity.list)
+    const f = filterActivity(s)
+    setFiltered(activity.list.map(v => (f(v) ? v : false)).filter(v => v))
+  }
+
   useEffect(() => {
     dispatch(GET_LIST)
   }, [dispatch])
@@ -94,7 +101,7 @@ const ActivityList = () => {
       <div>
         <input
           onChange={({ target }) => {
-            dispatch(ON_FILTER, target.value)
+            filterActivites(target.value)
           }}
         />
       </div>
@@ -106,7 +113,7 @@ const ActivityList = () => {
             size="large"
             pagination={false}
             loading={activity.loading}
-            dataSource={activity.filter ? activity.filtered : activity.list}
+            dataSource={filtered.length ? filtered : activity.list}
             renderItem={item => (
               <ShowItem
                 key={item.id}
@@ -124,3 +131,14 @@ const ActivityList = () => {
 }
 
 export default ActivityList
+
+// libs
+const filterActivity = payload => {
+  const regexp = new RegExp(payload, 'gi')
+  return v => {
+    const { resource, community } = v
+    return !![resource.name, resource.desctiption, community.resource.name]
+      .join(' ')
+      .match(regexp)
+  }
+}

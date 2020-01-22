@@ -1,0 +1,11 @@
+.logo {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 30px;
+}
+
+.logo--theme-dark {
+  color: #fff;
+}

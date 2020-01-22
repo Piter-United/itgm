@@ -184,7 +184,7 @@ const UserEditForm = ({ form, user, community, onUpdateUser }) => {
       <Form.Item label="Дополнительные сообщества">
         {getFieldDecorator('communities', {
           initialValue:
-            user && user.communities.length
+            user && Array.isArray(user.communities)
               ? user.communities.map(item => item.id)
               : []
         })(

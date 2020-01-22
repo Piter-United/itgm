@@ -4,7 +4,6 @@ import history from '../history'
 const defaultState = {
   activity: {
     filter: '',
-    filtered: [],
     list: [],
     loading: false
   },
@@ -204,6 +203,11 @@ const activity = store => {
   store.on(UPDATE_SUCCESS, (s, updated) => {
     history.push(`/activity/${updated.id}`)
   })
+  // on-filter
+  store.on(ON_FILTER, (s, filter) => ({
+    ...s,
+    activity: { ...s.activity, filter }
+  }))
 }
 
 export default activity

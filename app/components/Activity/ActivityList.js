@@ -72,6 +72,7 @@ const ActivityList = () => {
 
   useEffect(() => {
     dispatch(GET_LIST)
+    filterActivites(activity.filter)
   }, [dispatch])
 
   return (
@@ -100,7 +101,9 @@ const ActivityList = () => {
       </Row>
       <div>
         <input
+          defaultValue={activity.filter}
           onChange={({ target }) => {
+            dispatch(ON_FILTER, target.value)
             filterActivites(target.value)
           }}
         />

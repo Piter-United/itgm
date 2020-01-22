@@ -222,7 +222,7 @@ const activity = store => {
 export default activity
 
 // libs
-const filterActivity = payload => {
+export const filterActivity = payload => {
   const regexp = new RegExp(`${payload}`, 'gi')
   return v => {
     const { resource, community } = v

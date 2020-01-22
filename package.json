@@ -8,7 +8,7 @@
     "build": "NODE_ENV=production parcel build index.html",
     "configure": "node cmd",
     "size": "size-limit",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [],
   "author": "Mikhail Poluboyarinov <mikle.sol@gmail.com>",
@@ -24,15 +24,17 @@
     "storeon": "^0.9.7"
   },
   "devDependencies": {
-    "@babel/core": "^7.7.7",
+    "@babel/core": "^7.8.3",
     "@babel/plugin-proposal-class-properties": "^7.7.4",
     "@babel/polyfill": "^7.7.0",
-    "@babel/preset-env": "^7.7.7",
+    "@babel/preset-env": "^7.8.3",
     "@babel/preset-react": "^7.7.4",
     "aidbox": "^2.0.0-beta.0",
     "autoprefixer": "^9.7.3",
+    "babel-jest": "^25.1.0",
     "dotenv": "^8.2.0",
     "husky": "^3.0.9",
+    "jest": "^25.1.0",
     "parcel-bundler": "^1.12.4",
     "postcss-modules": "^1.4.1",
     "postcss-preset-env": "^6.7.0",

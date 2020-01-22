@@ -24,12 +24,12 @@ const App = () => (
     <Header />
     <Content style={{ padding: '0 50px' }}>
       <div
-      // style={{
-      //   background: '#fff',
-      //   padding: 24,
-      //   minHeight: 380,
-      //   marginTop: '16px'
-      // }}
+        style={{
+          background: '#fff',
+          padding: 24,
+          minHeight: 380,
+          marginTop: '16px'
+        }}
       >
         <Switch>
           <Route path="/" exact component={ActivityList} />

@@ -18,28 +18,28 @@ const partners = [
   }
 ]
 
-const Partner = () => (
-  <ul className="partners__list">
-    {partners.map(partner => (
-      <li className="partners-item" key={partner.id}>
-        <div className="partner-cnt">
-          <img src={partner.img} alt="" className="partners-item__img" />
-        </div>
-        <h3 className="partners-item__header">{partner.name}</h3>
-        <p className="partners-item__desc">{partner.desc}</p>
-      </li>
-    ))}
-  </ul>
+const Partner = ({ id, img, name, desc }) => (
+  <li className="partner" key={id}>
+    <div className="partner__cnt">
+      <img src={img} alt="" className="partner__img" />
+    </div>
+    <h3 className="partner__header">{name}</h3>
+    <p className="partner__desc">{desc}</p>
+  </li>
 )
 
 const PartnerList = () => {
   return (
-    <div className="container">
-      <div className="header-wrapper">
+    <div className="partners">
+      <div className="partners__wrapper">
         <h2 className="partners__header">Партнеры</h2>
         <span className="partners__count">({partners.length})</span>
       </div>
-      {Partner()}
+      <ul className="partners__list">
+        {partners.map(partner => (
+          <Partner {...partner} key={partner.id} />
+        ))}
+      </ul>
     </div>
   )
 }

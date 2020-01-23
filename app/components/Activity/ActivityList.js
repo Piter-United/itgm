@@ -12,7 +12,6 @@ import history from '../../history'
 const { Title } = Typography
 
 const onHandlerClick = (userId, item, dispatch) => {
-  console.log('tets')
   if (!userId) {
     return history.push('/login')
   }
@@ -65,7 +64,7 @@ export const ShowItem = ({ dispatch, item, userId }) => (
   </List.Item>
 )
 
-const RenderDiscussion = (userId, user) => {
+const RenderDiscussion = ({ userId, user }) => {
   if (userId) {
     if (user) {
       return (
@@ -104,7 +103,9 @@ const ActivityList = () => {
         <Col span={18}>
           <Title className="heading heading_level_1">Обсуждения</Title>
         </Col>
-        <Col span={6}>{RenderDiscussion(userId, user)}</Col>
+        <Col span={6}>
+          <RenderDiscussion userId={userId} user={user} />
+        </Col>
       </Row>
       <Divider />
       <Row>

@@ -1,0 +1,61 @@
+.main-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Desktop */
+@media only screen and (min-width: 800px) {
+  .main-menu {
+    flex-direction: row;
+    background-color: transparent;
+  }
+
+  .main-menu .ant-menu-item {
+    margin: 0;
+    margin-right: 25px;
+    padding: 0;
+    line-height: 1;
+    height: auto;
+    border: none;
+    color: inherit;
+  }
+
+  .main-menu .ant-menu-item:hover a {
+    color: #2a2a2a;
+  }
+
+  .main-menu .ant-menu-item:last-child {
+    margin-right: 0;
+  }
+
+  .main-menu .ant-menu-item:not(:last-child) {
+    margin-bottom: 0;
+  }
+
+  .main-menu .ant-menu-item::before {
+    content: none;
+  }
+
+  /* Активный пункты меню */
+  .main-menu .ant-menu-item.ant-menu-item-selected {
+    background-color: transparent;
+    font-weight: bold;
+  }
+
+  /* Сами ссылки */
+  .main-menu .ant-menu-item a {
+    font-size: 14px;
+    line-height: 1;
+    color: #2a2a2a;
+  }
+
+  /* Активная ссылка */
+  .main-menu .ant-menu-item.ant-menu-item-selected a {
+    cursor: default;
+  }
+
+  /* Theme Dark */
+  .main-menu.ant-menu-dark .ant-menu-item a {
+    color: #fff;
+  }
+}

@@ -1,0 +1,12 @@
+.footer {
+  min-height: 200px;
+  padding-right: 15px;
+  padding-left: 15px;
+  background: #6f4297;
+  color: #fff;
+}
+
+.footer__inner {
+  max-width: 1178px;
+  margin: 0 auto;
+}

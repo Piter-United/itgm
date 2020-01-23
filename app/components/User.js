@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react'
 import useStoreon from 'storeon/react'
 import { Card, Avatar, Spin, Divider, Typography, Button } from 'antd'
 
-const { Paragraph } = Typography
-
 import { GET_CURRENT_USER } from '../store/user'
 import history from '../history'
 
 import './Form/_view/Form_view_profile.css'
 import './List/_type/List_type_unstyled.css'
 import './List/_view/List_view_communities.css'
+
+const { Paragraph } = Typography
 
 const User = () => {
   const { user, dispatch } = useStoreon('user')
@@ -48,7 +48,7 @@ const User = () => {
             )}
           </div>
         </div>
-        {user.specialization} в {user.company}
+        {user.specialization} в{user.company}
         <br />
         <br />
         {[user.email, user.phone].join(' | ')}

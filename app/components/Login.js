@@ -56,10 +56,20 @@ const Login = ({ location: { search } }) => {
   }, [search, dispatch])
 
   if (user) {
-    return <div>Welcome {user.name ? user.name.formatted : user.email}</div>
+    return (
+      <div>
+        Welcome
+        {user.name ? user.name.formatted : user.email}
+      </div>
+    )
   }
   if (error) {
-    return <div>Auth error: {error}</div>
+    return (
+      <div>
+        Auth error:
+        {error}
+      </div>
+    )
   }
   const { code } = parse(search.slice(1))
   if (!code) {

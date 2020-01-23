@@ -11,7 +11,7 @@ import { UPDATE_USER } from '../store/user'
 
 const UserEditForm = ({ form, user, community, onUpdateUser }) => {
   const { getFieldDecorator, validateFieldsAndScroll, getFieldValue } = form
-  const _handleSubmit = e => {
+  const handleSubmit = e => {
     e.preventDefault()
     validateFieldsAndScroll((err, values) => {
       if (!err) {
@@ -24,7 +24,7 @@ const UserEditForm = ({ form, user, community, onUpdateUser }) => {
     <Form
       className="form form_view_profile"
       layout="vertical"
-      onSubmit={_handleSubmit}
+      onSubmit={handleSubmit}
     >
       <div className="form__header">
         <div className="form__user">

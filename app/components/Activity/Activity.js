@@ -1,10 +1,15 @@
 import React, { useEffect } from 'react'
 import useStoreon from 'storeon/react'
 
-import { Spin, Row, Col, Icon, Divider, List } from 'antd'
+import { Spin, Row, Col, Icon } from 'antd'
 
-import { LIKE, UNLIKE } from '../../store/activity'
-import { GET_BY_ID, GET_BY_ID_RELOAD_BY_LU } from '../../store/activity'
+import {
+  LIKE,
+  UNLIKE,
+  GET_BY_ID,
+  GET_BY_ID_RELOAD_BY_LU
+} from '../../store/activity'
+
 import history from '../../history'
 
 const Activity = ({
@@ -25,6 +30,16 @@ const Activity = ({
   const dispatchEvent = (event, id) => {
     dispatch(event, { id, event: GET_BY_ID_RELOAD_BY_LU })
   }
+  const onHandlerClick = (userId, activity) => {
+    if (!userId) {
+      return history.push('/login')
+    }
+    if (activity.likes.isLike) {
+      return dispatchEvent(UNLIKE, activity.likes.id)
+    }
+    return dispatchEvent(LIKE, activity.id)
+  }
+
   const { activity, likes } = activityInfo.data
   return (
     <div>
@@ -43,13 +58,7 @@ const Activity = ({
           <div style={{ whiteSpace: 'pre-line' }}>{activity.description}</div>
           <span
             style={{ cursor: 'pointer' }}
-            onClick={() =>
-              !userId
-                ? history.push('/login')
-                : activity.likes.isLike
-                ? dispatchEvent(UNLIKE, activity.likes.id)
-                : dispatchEvent(LIKE, activity.id)
-            }
+            onClick={() => onHandlerClick(userId, activity)}
           >
             <Icon
               type="like-o"

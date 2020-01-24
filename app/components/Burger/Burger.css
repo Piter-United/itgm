@@ -1,0 +1,68 @@
+.burger {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.burger::before,
+.burger::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  left: 0;
+  height: 2px;
+  background: #002b3b;
+  transition: transform 0.2s;
+}
+
+.burger::before {
+  top: 0;
+}
+
+.burger::after {
+  bottom: 0;
+}
+
+.burger__icon {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  height: 2px;
+  background: #002b3b;
+  transform: translateY(-50%);
+}
+
+/* Активное состояние */
+
+.burger.is-active::before {
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.burger.is-active::after {
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+.burger.is-active .burger__icon {
+  opacity: 0;
+}
+
+/* Темная тема */
+
+.burger--theme-dark::before,
+.burger--theme-dark::after {
+  background: white;
+}
+
+.burger--theme-dark .burger__icon {
+  background: white;
+}

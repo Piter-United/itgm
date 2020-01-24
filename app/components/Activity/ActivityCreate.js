@@ -1,28 +1,26 @@
 import React, { useEffect } from 'react'
+import useStoreon from 'storeon/react'
+import { Button, Form, Input, Select, Spin, Typography } from 'antd'
 
-import { Button, Typography, Form, Input, Select, Spin } from 'antd'
-
-import { GET_BY_ID } from '../../store/activity'
-
-const { Title } = Typography
+import { CREATE, GET_BY_ID, UPDATE } from '../../store/activity'
 
 import '../Heading/Heading.css'
 
-import useStoreon from 'storeon/react'
-
 import { GET_LIST } from '../../store/community'
-import { CREATE, UPDATE } from '../../store/activity'
+
+const { Title } = Typography
 
 const AcivityCreateForm = ({
   form,
+  // eslint-disable-next-line no-unused-vars
   user,
   community,
   onCreateActivity,
   activity
 }) => {
   const act = activity && activity.data && activity.data.activity
-  const { getFieldDecorator, validateFieldsAndScroll, getFieldValue } = form
-  const _handleSubmit = e => {
+  const { getFieldDecorator, validateFieldsAndScroll } = form
+  const handleSubmit = e => {
     e.preventDefault()
     validateFieldsAndScroll((err, values) => {
       if (!err) {
@@ -35,7 +33,7 @@ const AcivityCreateForm = ({
     <Form
       className="form form_view_profile"
       layout="vertical"
-      onSubmit={_handleSubmit}
+      onSubmit={handleSubmit}
     >
       <div className="form__header">
         <Title className="heading heading_level_1">
@@ -107,7 +105,7 @@ const AcivityCreateForm = ({
             mode="tags"
             placeholder="Добавьте метки"
             optionLabelProp="label"
-          ></Select>
+          />
         )}
       </Form.Item>
       <Form.Item>
@@ -145,6 +143,7 @@ const AcivityCreate = ({
   }, [dispatch, id])
 
   const formatCommunity = key => {
+    // eslint-disable-next-line no-underscore-dangle
     const _community = community.list.find(_ => _.id === key)
 
     return {

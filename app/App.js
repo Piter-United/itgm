@@ -17,6 +17,7 @@ import CommunityList from './components/Community/CommunityList'
 import Community from './components/Community/Community'
 import NewActivity from './components/Activity/ActivityCreate'
 import NewCommunity from './components/Community/New'
+import Participants from './components/Participants/Participants'
 
 const App = () => (
   <Layout>
@@ -41,6 +42,7 @@ const App = () => (
           <PrivateRoute path="/user" exact component={User} />
           <PrivateRoute path="/user/edit" component={UserEdit} />
           <Route path="/login" component={Login} />
+          <Route path="/participants" component={Participants} />
           <Route component={NotFound} />
         </Switch>
       </div>

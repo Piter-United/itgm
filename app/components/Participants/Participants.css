@@ -1,0 +1,13 @@
+.participants {
+  width: 780px;
+  margin: 0 auto;
+}
+
+.participants__wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  position: relative;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}

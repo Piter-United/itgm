@@ -16,6 +16,7 @@ import Community from './components/Community/Community'
 import NewActivity from './components/Activity/ActivityCreate'
 import NewCommunity from './components/Community/New'
 import Partners from './components/Partners/Partners'
+import Participants from './components/Participants/Participants'
 
 const App = () => (
   <Switch>

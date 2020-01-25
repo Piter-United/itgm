@@ -4,9 +4,9 @@ import { parse } from 'qs'
 import { Button, Icon, Typography } from 'antd'
 
 import { client_id, site_url } from '../config'
-import history from '../history'
+import history from 'history'
 
-import { GET_CURRENT_USER, SET_TOKEN, SET_USER_ID } from '../store/user'
+import { GET_CURRENT_USER, SET_TOKEN, SET_USER_ID } from 'store/user'
 
 import './Heading/Heading.css'
 import './Form/_view/Form_view_auth.css'

@@ -1,5 +1,5 @@
 import { notification } from 'antd'
-import history from '../history'
+import history from 'history'
 
 const defaultState = {
   activity: {

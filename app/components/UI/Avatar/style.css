@@ -1,0 +1,37 @@
+.Avatar {
+  display: block;
+  border-radius: 50%;
+  background-color: rgba(42, 42, 42, 0.1);
+  overflow: hidden;
+}
+
+.Avatar_size_default {
+  width: 80px;
+  height: 80px;
+}
+
+.Avatar_size_participant {
+  width: 80px;
+  height: 80px;
+}
+
+.Avatar_size_partner {
+  width: 180px;
+  height: 180px;
+}
+
+.Avatar_size_activityAuthorSmall {
+  width: 32px;
+  height: 32px;
+}
+
+.Avatar_size_activityAuthorLarge {
+  width: 60px;
+  height: 60px;
+}
+
+.Avatar_size_activityParticipant {
+  width: 48px;
+  height: 48px;
+  overflow: hidden;
+}

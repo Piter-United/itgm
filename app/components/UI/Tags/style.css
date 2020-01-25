@@ -1,0 +1,39 @@
+.Tags {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Tags__Item {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.Tags__Tag {
+  display: block;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-decoration: none;
+  padding: 3px 15px;
+  font-size: 16px;
+  line-height: 22px;
+  color: #ffffff;
+  background-color: #6f4297;
+  border-radius: 3px;
+  border: 1px solid #6f4297;
+}
+
+.Tags__Tag:hover,
+.Tags__Tag:focus {
+  background-color: #ffffff;
+  color: #6f4297;
+}
+
+.Tags__Tag:active {
+  opacity: 0.5;
+}

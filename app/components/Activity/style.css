@@ -1,0 +1,56 @@
+.Activity {
+  max-width: 1180px;
+  padding-bottom: 200px;
+  padding-top: 60px;
+}
+
+.Activity__Breadcrumbs {
+  margin-bottom: 24px;
+}
+
+.Activity__Wrapper {
+  display: flex;
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+.Activity__Content {
+  flex-grow: 1;
+  padding-right: 100px;
+  border-right: 2px solid #ababab;
+}
+
+.Activity__Meta {
+  box-sizing: border-box;
+  min-width: 380px;
+  padding-left: 100px;
+  padding-top: 20px;
+}
+
+.Activity__Community {
+  margin-bottom: 50px;
+}
+
+.Activity__Header {
+  font-size: 36px;
+  line-height: 40px;
+  font-family: 'PlayfairDisplay', serif;
+  font-weight: 700;
+}
+
+.Activity__SecondaryHeader {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 10px;
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: normal;
+}
+
+.Activity__Tags {
+  margin-bottom: 30px;
+}
+
+.Activity__Description {
+  padding-bottom: 36px;
+}

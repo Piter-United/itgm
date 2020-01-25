@@ -19,11 +19,13 @@ import Partners from './components/Partners/Partners'
 
 import Trying_header from './pages/trying_header'
 import Trying_user_menu from './pages/trying_user_menu'
+import Trying_main_menu from './pages/trying_main_menu'
 
 const App = () => (
   <Switch>
-    <Route path="/trying/usermenu" exact component={Trying_user_menu} />
+    <Route path="/trying/mainmenu" exact component={Trying_main_menu} />
     <Route path="/trying/header" exact component={Trying_header} />
+    <Route path="/trying/usermenu" exact component={Trying_user_menu} />
 
     <Route path="/" exact component={HomePage} />
     <PrivateRoute path="/activity/new" component={NewActivity} />

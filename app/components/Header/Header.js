@@ -23,7 +23,6 @@ const Header = () => {
       <div className="Header-Cnt">
         <Logo />
         {HeaderList()}
-        {/* <div className="Header-Menu"></div> */}
         <div className="Header-UserMenu">
           <button type="button" className="Header-Search" />
           <button type="button" className="Header-Notification" />

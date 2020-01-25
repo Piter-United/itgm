@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Hero from '../Hero/Hero'
-import Header from '../Header'
+import Header from '../Header/Header'
 import PageSection from '../PageSection/PageSection'
 import ContentContainer from '../ContentContainer/ContentContainer'
 import Footer from '../Footer/Footer'

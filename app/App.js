@@ -17,8 +17,14 @@ import NewActivity from './components/Activity/ActivityCreate'
 import NewCommunity from './components/Community/New'
 import Partners from './components/Partners/Partners'
 
+import Trying_header from './pages/trying_header'
+import Trying_user_menu from './pages/trying_user_menu'
+
 const App = () => (
   <Switch>
+    <Route path="/trying/usermenu" exact component={Trying_user_menu} />
+    <Route path="/trying/header" exact component={Trying_header} />
+
     <Route path="/" exact component={HomePage} />
     <PrivateRoute path="/activity/new" component={NewActivity} />
     <Route exact path="/activity/:id" component={Activity} />

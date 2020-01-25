@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import { withRouter, Link, matchPath } from 'react-router-dom'
 import useStoreon from 'storeon/react'
 import { Layout, Menu } from 'antd'
-import { LOGOUT } from '../store/user'
+import { LOGOUT } from '../../store/user'
 
-import Logo from './Logo/Logo'
-import Burger from './Burger/Burger'
+import Logo from '../Logo/Logo'
+import Burger from '../Burger/Burger'
 
-import './main-nav.css'
-import './main-menu.css'
+import '../main-nav.css'
+import '../main-menu.css'
 
 const { Header } = Layout
 
@@ -101,6 +101,7 @@ export default withRouter(
             ]}
           </Menu>
         </div>
+
         <div className="main-nav__user-menu">
           <button
             type="button"

@@ -15,7 +15,7 @@ import CommunityList from './components/Community/CommunityList'
 import Community from './components/Community/Community'
 import NewActivity from './components/Activity/ActivityCreate'
 import NewCommunity from './components/Community/New'
-import Partners from './components/Partners/Partners'
+import PartnersPage from './components/PartnersPage/PartnersPage'
 
 const App = () => (
   <Switch>
@@ -28,7 +28,7 @@ const App = () => (
     <Route exact path="/community/:id" component={Community} />
     <PrivateRoute path="/user" exact component={User} />
     <PrivateRoute path="/user/edit" component={UserEdit} />
-    <Route path="/partners" component={Partners} />
+    <Route path="/partners" component={PartnersPage} />
     <Route path="/login" component={Login} />
     <Route component={NotFound} />
   </Switch>

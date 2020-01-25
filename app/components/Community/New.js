@@ -5,7 +5,7 @@ import { Form, Input, Select, Button, Icon, Typography } from 'antd'
 
 import '../Heading/Heading.css'
 
-import { CREATE } from 'store/community'
+import { CREATE } from '../../store/community'
 
 const { Title } = Typography
 

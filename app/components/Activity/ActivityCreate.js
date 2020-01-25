@@ -2,11 +2,11 @@ import React, { useEffect } from 'react'
 import useStoreon from 'storeon/react'
 import { Button, Form, Input, Select, Spin, Typography } from 'antd'
 
-import { CREATE, GET_BY_ID, UPDATE } from 'store/activity'
+import { CREATE, GET_BY_ID, UPDATE } from '../../store/activity'
 
 import '../Heading/Heading.css'
 
-import { GET_LIST } from 'store/community'
+import { GET_LIST } from '../../store/community'
 
 const { Title } = Typography
 

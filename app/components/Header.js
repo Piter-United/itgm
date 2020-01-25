@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { withRouter, Link, matchPath } from 'react-router-dom'
 import useStoreon from 'storeon/react'
 import { Layout, Menu } from 'antd'
-import { LOGOUT } from 'store/user'
+import { LOGOUT } from '../store/user'
 
 import Logo from './Logo/Logo'
 import Burger from './Burger/Burger'

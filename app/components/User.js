@@ -3,7 +3,7 @@ import useStoreon from 'storeon/react'
 import { Card, Avatar, Spin, Divider, Typography, Button } from 'antd'
 
 import { GET_CURRENT_USER } from 'store/user'
-import history from 'history'
+import history from '../history'
 
 import './Form/_view/Form_view_profile.css'
 import './List/_type/List_type_unstyled.css'

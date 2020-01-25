@@ -7,7 +7,7 @@ import useStoreon from 'storeon/react'
 
 import VkIcon from '../../asset/vk.svg'
 import { GET_LIST } from 'store/community'
-import history from 'history'
+import history from '../../history'
 
 const { Title } = Typography
 

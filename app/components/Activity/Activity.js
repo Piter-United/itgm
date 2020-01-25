@@ -5,7 +5,7 @@ import { Spin, Row, Col, Icon } from 'antd'
 
 import { LIKE, UNLIKE, GET_BY_ID, GET_BY_ID_RELOAD_BY_LU } from 'store/activity'
 
-import history from 'history'
+import history from '../../history'
 
 const Activity = ({
   match: {

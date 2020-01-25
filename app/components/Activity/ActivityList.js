@@ -7,7 +7,7 @@ import '../Heading/Heading.css'
 
 import { GET_LIST, LIKE, UNLIKE } from 'store/activity'
 
-import history from 'history'
+import history from '../../history'
 
 const { Title } = Typography
 

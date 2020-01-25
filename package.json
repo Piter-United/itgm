@@ -88,7 +88,6 @@
     "root": ".",
     "icons": "./asset/icons",
     "store": "./app/store",
-    "history": "./app/history",
     "components": "./app/components",
     "ui": "./app/components/UI"
   }

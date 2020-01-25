@@ -41,7 +41,7 @@ export default withRouter(
     return (
       <Header className="main-nav">
         <div className="main-nav__logo">
-          <Logo theme="dark" />
+          <Logo theme={themeMenu} />
         </div>
         <div className={`main-nav__menu ${isMenuOpen ? 'is-open' : ''}`}>
           <Menu theme={themeMenu} selectable={false} className="main-menu">

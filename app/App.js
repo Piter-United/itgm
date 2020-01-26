@@ -17,8 +17,12 @@ import NewActivity from './components/Activity/ActivityCreate'
 import NewCommunity from './components/Community/New'
 import Partners from './components/Partners/Partners'
 
+import TryPage from './components/title_filter_sort/try_title_filter_sort'
+
 const App = () => (
   <Switch>
+    <Route path="/try" exact component={TryPage} />
+
     <Route path="/" exact component={HomePage} />
     <PrivateRoute path="/activity/new" component={NewActivity} />
     <Route exact path="/activity/:id" component={Activity} />

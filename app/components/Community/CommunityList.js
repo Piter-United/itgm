@@ -28,11 +28,11 @@ const style = {
 }
 
 const descStyle = {
-  whiteSpace: 'pre-line',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
-  whiteSpace: 'nowrap'
-  // "line-clamp": 4,
+  display: '-webkit-box',
+  WebkitBoxOrient: 'vertical',
+  WebkitLineClamp: '2'
 }
 
 const CommunityListItem = item => (
@@ -42,7 +42,7 @@ const CommunityListItem = item => (
         <h3>
           <Link to={`/community/${item.id}`}>{item.name}</Link>
         </h3>
-        <div style={descStyle}>{item.description}</div>
+        <div style={descStyle}> {item.description} </div>
       </Col>
       <Col span={4}>
         <Avatar size={80} src={`https://www.gravatar.com/avatar/`} />
@@ -62,8 +62,8 @@ const mapper = (arr, iterator) => {
 
 const splitList = arr => {
   return [
-    arr.map((v, i) => (i % 2 === 0 ? v : 0)).filter(v => v),
-    arr.map((v, i) => (i % 2 !== 0 ? v : 0)).filter(v => v)
+    arr.map((v, i) => (i % 2 ? v : 0)).filter(v => v),
+    arr.map((v, i) => (i % 2 ? v : 0)).filter(v => v)
   ]
 }
 

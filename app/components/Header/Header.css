@@ -35,6 +35,10 @@
   font-weight: bold;
 }
 
+.Header-Link:active {
+  font-weight: bold;
+}
+
 .Header-UserMenu {
   display: flex;
   justify-content: space-between;

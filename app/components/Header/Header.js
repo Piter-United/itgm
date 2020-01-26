@@ -20,7 +20,7 @@ const HeaderList = () => {
 const Header = () => {
   return (
     <div className="Header">
-      <div className="Header-Cnt">
+      <div className="Header-Container">
         <Logo />
         {HeaderList()}
         <div className="Header-UserMenu">

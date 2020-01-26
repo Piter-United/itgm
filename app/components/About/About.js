@@ -3,6 +3,19 @@ import './About.css'
 import AboutImgLogo from './about-logo.jpg'
 import AboutImgInfo from './about-info.jpg'
 
+const descriptions = [
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed deiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enimad minim veniam, quis nostrud exercitation ullamco laboris nisi utaliquip ex ea commodo consequat.',
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed deiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enimad minim veniam, quis nostrud exercitation ullamco laboris nisi utaliquip ex ea commodo consequat.',
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua.'
+]
+
+const AboutDescription = () =>
+  descriptions.map((description, index) => (
+    <p className="About-Text" key={index}>
+      {description}
+    </p>
+  ))
+
 const About = () => (
   <div className="About">
     <h2 className="About-Header">Кто мы такие ?</h2>
@@ -19,24 +32,7 @@ const About = () => (
         aliquip ex ea commodo consequat.
       </p>
       <div className="About-Container">
-        <div className="About-ContainerLeft">
-          <p className="About-Text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
-          </p>
-          <p className="About-Text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
-          </p>
-          <p className="About-Text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.{' '}
-          </p>
-        </div>
+        <div className="About-ContainerLeft">{AboutDescription()}</div>
         <div className="About-ContainerRight">
           <img src={AboutImgInfo} alt="about-info" className="About-Img" />
         </div>

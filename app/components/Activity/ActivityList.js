@@ -94,10 +94,21 @@ const ActivityList = () => {
   )
 
   const [filtered, setFiltered] = useState(activity.list)
-  const filterActivites = s => {
-    if (s === '') return setFiltered(activity.list)
-    const f = filterActivity(s)
-    setFiltered(activity.list.map(v => (f(v) ? v : false)).filter(v => v))
+  /**
+   * func filtered Activite
+   * @param  {string} s value from input
+   * @return {[type]}   [description]
+   */
+  const filterActivites = string_input_value => {
+    if (sInputValue === '') {
+      return setFiltered(activity.list)
+    }
+    const isActivityLike = filterActivity(sInputValue)
+    const activites = activity.list.map(Activity =>
+      isActivityLookLike(Activity) ? Activity : false
+    )
+    const filtered = activites.filter(v => v)
+    setFiltered(filtered)
   }
 
   useEffect(() => {
@@ -132,7 +143,7 @@ const ActivityList = () => {
             size="large"
             pagination={false}
             loading={activity.loading}
-            dataSource={filtered.length ? filtered : activity.list}
+            dataSource={filtered}
             renderItem={item => (
               <ShowItem
                 key={item.id}
@@ -154,8 +165,7 @@ export default ActivityList
 // libs
 const filterActivity = payload => {
   const regexp = new RegExp(payload, 'gi')
-  return v => {
-    const { resource, community } = v
+  return ({ resource, community }) => {
     return !![resource.name, resource.desctiption, community.resource.name]
       .join(' ')
       .match(regexp)

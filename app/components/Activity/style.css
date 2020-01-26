@@ -53,4 +53,5 @@
 
 .Activity__Description {
   padding-bottom: 36px;
+  white-space: pre-line;
 }

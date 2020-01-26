@@ -6,6 +6,7 @@
 }
 
 .ActivityAuthor__Avatar {
+  flex-shrink: 0;
   margin-right: 10px;
 }
 

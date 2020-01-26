@@ -11,7 +11,8 @@ export const ActivityAuthor = ({ user, community, createdAt }) => {
   return (
     <div className="ActivityAuthor">
       <Avatar
-        type="activityAuthorSmall"
+        type="user"
+        size="xs"
         alt={user}
         className="ActivityAuthor__Avatar"
       />

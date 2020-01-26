@@ -99,7 +99,7 @@ const ActivityList = () => {
    * @param  {string} s value from input
    * @return {[type]}   [description]
    */
-  const filterActivites = string_input_value => {
+  const filterActivites = sInputValue => {
     if (sInputValue === '') {
       return setFiltered(activity.list)
     }

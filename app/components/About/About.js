@@ -1,7 +1,7 @@
 import React from 'react'
 import './About.css'
-import AboutImgLogo from '../../asset/about-logo.jpg'
-import AboutImgInfo from '../../asset/about-info.jpg'
+import AboutImgLogo from './about-logo.jpg'
+import AboutImgInfo from './about-info.jpg'
 
 const About = () => (
   <div className="About">

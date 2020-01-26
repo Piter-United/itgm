@@ -7,7 +7,7 @@ const About = () => (
   <div className="About">
     <h2 className="About-Header">Кто мы такие ?</h2>
     <div className="About-Description">
-      <div className="About-Cnt">
+      <div className="About-Container">
         <img src={AboutImgLogo} alt="about-logo" className="About-Img" />
       </div>
       <p className="About-Text">
@@ -18,8 +18,8 @@ const About = () => (
         enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
         aliquip ex ea commodo consequat.
       </p>
-      <div className="About-Cnt">
-        <div className="About-CntLeft">
+      <div className="About-Container">
+        <div className="About-ContainerLeft">
           <p className="About-Text">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -37,7 +37,7 @@ const About = () => (
             eiusmod tempor incididunt ut labore et dolore magna aliqua.{' '}
           </p>
         </div>
-        <div className="About-CntRight">
+        <div className="About-ContainerRight">
           <img src={AboutImgInfo} alt="about-info" className="About-Img" />
         </div>
       </div>

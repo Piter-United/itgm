@@ -26,7 +26,7 @@
   width: 100%;
 }
 
-.About-Cnt {
+.About-Container {
   width: 100%;
   margin-bottom: 30px;
   display: flex;
@@ -41,11 +41,11 @@
   margin-bottom: 20px;
 }
 
-.About-CntLeft {
+.About-ContainerLeft {
   width: 60%;
   margin-right: 20px;
 }
 
-.About-CntRight {
+.About-ContainerRight {
   width: 40%;
 }

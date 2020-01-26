@@ -4,10 +4,10 @@ import { Avatar, Button, Form, Input, Select } from 'antd/es'
 import useStoreon from 'storeon/react'
 import { Card, Slider, Tooltip, Icon, Row, Col } from 'antd'
 
-import './Form/_view/Form_view_profile.css'
+import '../../../components/Form/_view/Form_view_profile.css'
 
-import { GET_LIST } from '../store/community'
-import { UPDATE_USER } from '../store/user'
+import { GET_LIST } from '../../../store/community'
+import { UPDATE_USER } from '../../../store/user'
 
 const UserEditForm = ({ form, user, community, onUpdateUser }) => {
   const { getFieldDecorator, validateFieldsAndScroll, getFieldValue } = form

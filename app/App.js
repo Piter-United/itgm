@@ -6,9 +6,9 @@ const { Content, Footer } = Layout
 
 import HomePage from './components/HomePage/HomePage'
 import PrivateRoute from './components/PrivateRoute'
-import User from './components/User'
+import User from './containers/User/User'
 import Login from './components/Login'
-import UserEdit from './components/UserEdit'
+import UserEdit from './containers/User/Edit/UserEdit'
 import Activity from './components/Activity/Activity'
 import NotFound from './components/NotFound'
 import CommunityList from './components/Community/CommunityList'

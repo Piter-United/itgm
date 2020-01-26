@@ -1,0 +1,12 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+.header {
+  min-height: 7%;
+}
+.footer {
+  min-height: 18.3%;
+}

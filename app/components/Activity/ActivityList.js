@@ -2,9 +2,11 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { List, Icon, Row, Col, Button, Typography, Divider } from 'antd'
 import useStoreon from 'storeon/react'
+import moment from 'moment';
+import cn from 'classnames';
 
 import '../Heading/Heading.css'
-import './Activity.css'
+import './ActivityList.css'
 
 import { GET_LIST, LIKE, UNLIKE } from 'store/activity'
 
@@ -22,62 +24,53 @@ const onHandlerClick = (userId, item, dispatch) => {
   return dispatch(LIKE, item.id)
 }
 
-export const ShowItem = ({ dispatch, item, userId }) => {
-  const dateActivity = new Date(item.ts)
-  const formatedDateCreationActivity = `
-    ${dateActivity.getDate()}.
-    ${dateActivity.getMonth() + 1}.
-    ${dateActivity.getFullYear()}`
-
-  return (
-    <List.Item className="activity-list-item" key={item.id}>
-      <div className="activity-list-item__meta">
-        <div className="activity-list-item__misc">
-          <span className="activity-list-item__date">
-            {formatedDateCreationActivity}
-          </span>
-          <div className="activity-list-item__communities">
-            {item.community &&
-              item.community.resource &&
-              item.community.resource.name}{' '}
-          </div>
-        </div>
-        <Link
-          className="activity-list-item__title-link"
-          to={`/activity/${item.id}`}
-        >
-          {item.resource.name}
-        </Link>
-      </div>
-      <div className="activity-list-item__description">
-        {item.resource.description}
-      </div>
-      <div className="activity-list-item__footer">
-        <div
-          className="activity-list-item__likes"
-          onClick={() => onHandlerClick(userId, item, dispatch)}
-          key={`list-item-like-${item.id}`}
-        >
-          <Icon
-            type="heart"
-            theme={`${item.likes.isLike ? 'filled' : ''}`}
-            className={`activity-list-item__like-icon
-               ${
-                 item.likes.isLike
-                   ? 'activity-list-item__like-icon_islike'
-                   : 'activity-list-item__like-icon_notlike'
-               }
-              `}
-          />{' '}
-          <span className="activity-list-item__like-counter">{`(${item.likes.count})`}</span>
-        </div>
-        <span className="activity-list-item__author">
-          Автор: {item.resource.user.id}
+export const ShowItem = ({ dispatch, item, userId }) => (
+  <List.Item className="ActivityListItem" key={item.id}>
+    <div>
+      <div className="ActivityListItem-Misc">
+        <span>
+          {moment(item.ts).format('DD.MM.YYYY')}
         </span>
+        <div>
+          {item.community &&
+            item.community.resource &&
+            item.community.resource.name}{' '}
+        </div>
       </div>
-    </List.Item>
-  )
-}
+      <Link
+        className="ActivityListItem-TitleLink"
+        to={`/activity/${item.id}`}
+      >
+        {item.resource.name}
+      </Link>
+    </div>
+    <div className="ActivityListItem-Description">
+      {item.resource.description}
+    </div>
+    <div className="ActivityListItem-Footer">
+      <div
+        className="ActivityListItem-Likes"
+        key={`list-item-like-${item.id}`}
+      >
+        <Icon
+          onClick={() => onHandlerClick(userId, item, dispatch)}
+          type="heart"
+          theme={item.likes.isLike ? 'filled' : ''}
+          className={
+            cn({
+              'ActivityListItem-LikeIcon': true,
+              'ActivityListItem-LikeIcon_islike_true': item.likes.isLike,
+            })
+          }
+        />{' '}
+        <span className="ActivityListItem-LikeCounter">{`(${item.likes.count})`}</span>
+      </div>
+      <span className="ActivityListItem-Author">
+        Автор: {item.resource.user.id}
+      </span>
+    </div>
+  </List.Item>
+)
 
 const RenderDiscussion = ({ userId, user }) => {
   if (userId) {

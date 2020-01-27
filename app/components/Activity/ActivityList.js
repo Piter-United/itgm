@@ -5,7 +5,7 @@ import useStoreon from 'storeon/react'
 
 import '../Heading/Heading.css'
 
-import { GET_LIST, LIKE, UNLIKE } from '../../store/activity'
+import { GET_LIST, LIKE, UNLIKE } from 'store/activity'
 
 import history from '../../history'
 

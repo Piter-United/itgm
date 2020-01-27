@@ -2,8 +2,6 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { Layout } from 'antd'
 
-const { Content, Footer } = Layout
-
 import HomePage from 'components/HomePage/HomePage'
 import PrivateRoute from 'components/PrivateRoute'
 import User from 'components/User'

@@ -104,9 +104,7 @@ const ActivityList = () => {
       return setFiltered(activity.list)
     }
     const isActivityLike = filterActivity(sInputValue)
-    const activites = activity.list.map(Activity =>
-      isActivityLookLike(Activity) ? Activity : false
-    )
+    const activites = activity.list.filter(isActivityLike)
     const filtered = activites.filter(v => v)
     setFiltered(filtered)
   }
@@ -143,7 +141,9 @@ const ActivityList = () => {
             size="large"
             pagination={false}
             loading={activity.loading}
-            dataSource={filtered}
+            dataSource={
+              activity.filter || filtered.length ? filtered : activity.list
+            }
             renderItem={item => (
               <ShowItem
                 key={item.id}

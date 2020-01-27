@@ -14,3 +14,7 @@ ITGM App - это SPA приложение для формирование пр�
 - копируем env `cp .env.tpl .env`
 - запускаем приложение `make start`
 - разрабатываем
+
+## Common Rules Development
+
+- Именование css BEM ([cтиль React](https://ru.bem.info/methodology/naming-convention/#%D1%81%D1%82%D0%B8%D0%BB%D1%8C-react))

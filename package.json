@@ -84,5 +84,12 @@
   "prettier": {
     "semi": false,
     "singleQuote": true
+  },
+  "alias": {
+    "root": ".",
+    "icons": "./asset/icons",
+    "store": "./app/store",
+    "components": "./app/components",
+    "ui": "./app/components/UI"
   }
 }

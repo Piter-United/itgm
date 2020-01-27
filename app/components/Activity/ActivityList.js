@@ -8,7 +8,7 @@ import cn from 'classnames';
 import '../Heading/Heading.css'
 import './ActivityList.css'
 
-import { GET_LIST, LIKE, UNLIKE } from '../../store/activity'
+import { GET_LIST, LIKE, UNLIKE } from 'store/activity'
 
 import history from '../../history'
 

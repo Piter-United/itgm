@@ -4,7 +4,7 @@ import useStoreon from 'storeon/react'
 import './style.css'
 
 import { Spin, Icon } from 'antd'
-import { Breadcrumbs, Tags, Button } from '../UI'
+import { Breadcrumbs, Tags, Button, Curl } from '../UI'
 import { ActivityAuthor, CommunityAvatar, Participants } from './atoms'
 
 import {
@@ -91,6 +91,7 @@ const Activity = ({
           activity.likes.isLike ? 'Передумал участвовать' : 'Хочу участвовать!'
         }
       />
+      <Curl />
     </main>
   )
 }

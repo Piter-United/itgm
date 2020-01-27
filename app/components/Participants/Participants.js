@@ -1,35 +1,67 @@
 import React, { useEffect } from 'react'
+import { Icon } from 'antd'
+
+import find from '../../asset/find.svg'
+import sort from '../../asset/sort.svg'
+import Avatar from '../UI/Avatar/index'
 
 import './Participants.css'
 
-import { List, Icon, Button, Typography, Row, Col, Divider } from 'antd'
+const participants = [
+  {
+    id: 1,
+    avatar: 'img.jpeg',
+    firstName: 'Иван',
+    lastName: 'Иванов',
+    community: 'PiterJS'
+  },
+  {
+    id: 2,
+    avatar: 'img.jpeg',
+    firstName: 'Иван',
+    lastName: 'Иванов',
+    community: 'SPb Python Community'
+  },
+  {
+    id: 3,
+    avatar: 'img.jpeg',
+    firstName: 'Иван',
+    lastName: 'Иванов',
+    community: 'UX Analytics'
+  }
+]
 
-const { Title } = Typography
-
-import Avatar from '../UI/Avatar'
-
-const Participant = ({ id, img, name, desc }) => (
+const Participant = ({ id, avatar, firstName, lastName, community }) => (
   <li className="participant" key={id}>
-    <div className="partner__cnt">
-      <img src={img} alt="" className="partner__img" />
+    <div className="participant__avatar">
+      <Avatar
+        type={'participant'}
+        src={avatar}
+        alt={`${firstName}
+        ${lastName}`}
+      />
     </div>
-    <h3 className="partner__header">{name}</h3>
-    <p className="partner__desc">{desc}</p>
+    <h3 className="participant__name">{`${firstName} ${lastName}`}</h3>
+    <p className="participant__community">{community}</p>
   </li>
 )
 
 const ParticipantList = () => (
   <div className="participants">
-    <div className="participants__wrapper">
-      <h2 className="participants_header">Участники конференции</h2>
+    <div className="participants__header">
+      <h2 className="participants__title">Участники конференции</h2>
       <p className="participants__count">(789)</p>
-      <p className="participants__find">find</p>
-      <p className="participants__sort">sort</p>
+      <Icon
+        className="participants__find"
+        style={{ fontSize: 20 }}
+        component={find}
+      />
+      <Icon style={{ fontSize: 24 }} component={sort} />
     </div>
     <ul className="participants__list">
-      {/* {partners.map(partner => (
-				<Partner {...partner} key={partner.id} />
-			))} */}
+      {participants.map(participant => (
+        <Participant {...participant} key={participant.id} />
+      ))}
     </ul>
   </div>
 )

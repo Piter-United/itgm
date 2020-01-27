@@ -29,6 +29,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
+    "store": "^2.0.12",
     "storeon": "^0.9.7"
   },
   "devDependencies": {
@@ -83,5 +84,12 @@
   "prettier": {
     "semi": false,
     "singleQuote": true
+  },
+  "alias": {
+    "root": ".",
+    "icons": "./asset/icons",
+    "store": "./app/store",
+    "components": "./app/components",
+    "ui": "./app/components/UI"
   }
 }

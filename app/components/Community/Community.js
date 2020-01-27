@@ -3,7 +3,7 @@ import useStoreon from 'storeon/react'
 
 import { Spin, Row, Col, Icon, Divider, List } from 'antd'
 
-import { GET_BY_ID, GET_BY_ID_RELOAD_BY_LU } from '../../store/community'
+import { GET_BY_ID, GET_BY_ID_RELOAD_BY_LU } from 'store/community'
 
 import VkIcon from '../../asset/vk.svg'
 

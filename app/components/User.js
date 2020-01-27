@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import useStoreon from 'storeon/react'
 import { Card, Avatar, Spin, Divider, Typography, Button } from 'antd'
 
-import { GET_CURRENT_USER } from '../store/user'
+import { GET_CURRENT_USER } from 'store/user'
 import history from '../history'
 
 import './Form/_view/Form_view_profile.css'

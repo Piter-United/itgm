@@ -4,18 +4,18 @@ import { Layout } from 'antd'
 
 const { Content, Footer } = Layout
 
-import HomePage from './components/HomePage/HomePage'
-import PrivateRoute from './components/PrivateRoute'
+import HomePage from 'components/HomePage/HomePage'
+import PrivateRoute from 'components/PrivateRoute'
 import User from './containers/User/User'
-import Login from './components/Login'
+import Login from 'components/Login'
 import UserEdit from './containers/User/Edit/UserEdit'
-import Activity from './components/Activity/Activity'
-import NotFound from './components/NotFound'
-import CommunityList from './components/Community/CommunityList'
-import Community from './components/Community/Community'
-import NewActivity from './components/Activity/ActivityCreate'
-import NewCommunity from './components/Community/New'
-import Partners from './components/Partners/Partners'
+import Activity from 'components/Activity/Activity'
+import NotFound from 'components/NotFound'
+import CommunityList from 'components/Community/CommunityList'
+import Community from 'components/Community/Community'
+import NewActivity from 'components/Activity/ActivityCreate'
+import NewCommunity from 'components/Community/New'
+import Partners from 'components/Partners/Partners'
 
 const App = () => (
   <Switch>

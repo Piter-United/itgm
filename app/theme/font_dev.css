@@ -2,7 +2,16 @@
   font-family: 'Open-Sans';
   font-style: normal;
   font-weight: 400;
-  src: url('../../public/fonts/OpenSans-Regular.woff');
   src: local('OpenSans'), local('Open-Sans'),
+    url('../../public/fonts/OpenSans-Regular.woff'),
     url('../../public/fonts/OpenSans-Regular.ttf') format('truetype'); /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'PlayfairDisplay';
+  font-style: normal;
+  font-weight: 700;
+  src: local('PlayfairDisplay'), local('Playfair-Display'),
+    url('../../public/fonts/PlayfairDisplay-Bold.woff'),
+    url('../../public/fonts/PlayfairDisplay-Bold.ttf') format('truetype'); /* Safari, Android, iOS */
 }

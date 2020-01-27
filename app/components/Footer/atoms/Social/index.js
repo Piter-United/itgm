@@ -7,14 +7,14 @@ export const Social = ({ data = [], theme = 'default' }) =>
   data.length > 0 && (
     <ul className={cn('Social', `Social_theme_${theme}`)}>
       {data.map(({ Icon, url }) => (
-        <li key={url} className="Social__Item">
+        <li key={url} className="Social-Item">
           <a
-            className="Social__Link"
+            className="Social-Link"
             href={url}
             target="_blank"
             rel="nofollow noopener"
           >
-            <Icon className="Social__Icon" />
+            <Icon className="Social-Icon" />
           </a>
         </li>
       ))}

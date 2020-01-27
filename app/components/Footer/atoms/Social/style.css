@@ -5,29 +5,29 @@
   list-style: none;
 }
 
-.Social__Link {
+.Social-Link {
   display: block;
   width: 30px;
   height: 30px;
 }
 
-.Social__Item {
+.Social-Item {
   margin-right: 10px;
 }
 
-.Social__Item:last-child {
+.Social-Item:last-child {
   margin-right: 0;
 }
 
-.Social__Link:hover,
-.Social__Link:focus {
+.Social-Link:hover,
+.Social-Link:focus {
   opacity: 0.5;
 }
 
-.Social_theme_default .Social__Icon path {
+.Social_theme_default .Social-Icon path {
   fill: #ffffff;
 }
 
-.Social_theme_inverse .Social__Icon path {
+.Social_theme_inverse .Social-Icon path {
   fill: #2a2a2a;
 }

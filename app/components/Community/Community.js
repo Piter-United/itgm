@@ -1,22 +1,25 @@
 import React, { useEffect } from 'react'
 import useStoreon from 'storeon/react'
 import { Link } from 'react-router-dom'
-import Header from '../Header'
-import Footer from '../Footer/Footer'
+import { Breadcrumbs } from 'ui/Breadcrumbs'
+import { Curl } from 'ui/Curl'
+import { ActivityAuthor } from '../Activity/atoms/ActivityAuthor'
+import { Participants } from '../Activity/atoms/Participants'
 
 import { Spin, Tag, Divider } from 'antd'
 
 import { GET_BY_ID } from 'store/community'
 
 import './Community.css'
-import PenIcon from '../../asset/Pen.svg'
-import VkIcon from '../../asset/communityVk.svg'
-import TwitterIcon from '../../asset/twitter.svg'
-import FacebookIcon from '../../asset/fb.svg'
-import GithubIcon from '../../asset/github.svg'
-import InstagramIcon from '../../asset/insta.svg'
-import LinkedInIcon from '../../asset/linkedin.svg'
-import YoutubeIcon from '../../asset/linkedin.svg'
+import PenIcon from 'icons/Pen.svg'
+import VkIcon from 'icons/vk.svg'
+import TwitterIcon from 'icons/twitter.svg'
+import FacebookIcon from 'icons/facebook.svg'
+import GithubIcon from 'icons/github.svg'
+import InstagramIcon from 'icons/instagram.svg'
+import LinkedInIcon from 'icons/linkedin.svg'
+//TODO add youtube icon
+import YoutubeIcon from 'icons/linkedin.svg'
 
 const socialIconsMap = {
   vk: <VkIcon className="Community-SocialIcon" />,
@@ -50,41 +53,20 @@ const Community = ({
   const { community } = communityInfo.data
 
   const social = community.social.filter(s => s.icon !== 'global')
-  const global = community.social.filter(s => s.icon === 'global')[0]
+  const globalLink = community.social.filter(s => s.icon === 'global')[0]
+  //TODO link tags with the server data when it will be exist
   const tags = ['Tag 1', 'UX Analytics', 'tag 3']
-
-  const communityCreateDate = new Date(community.ts)
-  const normalizeNum = (num, size) => {
-    let string = num.toString()
-    while (string.length < size) string = '0' + string
-    return string
-  }
-  const communityCreateYear = communityCreateDate
-    .getFullYear()
-    .toString()
-    .substr(2, 2)
-  const communityCreateMonth = normalizeNum(
-    communityCreateDate.getMonth().toString(),
-    2
-  )
-  const communityCreateCalendarDay = normalizeNum(
-    communityCreateDate.getDay().toString(),
-    2
-  )
-  const communityCreateHours = communityCreateDate.getHours().toString()
-  const communityCreateMinutes = communityCreateDate.getMinutes().toString()
-  const communityCreateDateString = `Создана ${communityCreateCalendarDay}.${communityCreateMonth}.${communityCreateYear} в ${communityCreateHours}:${communityCreateMinutes}`
+  //TODO link tags with the server data when it will be exist
+  const participants = [{ id: 1 }, { id: 2 }, { id: 3 }]
 
   const renderSocial = socialData =>
-    socialData.length == 0 ? null : (
+    socialData.length !== 0 && (
       <div className="Community-Social">
         <div className="Community-SocialTitle">Сообщество в интернете</div>
         {social.map(social => (
           <a
             style={{
-              marginRight: 10,
-              width: '45px',
-              display: 'inlineBlock'
+              marginRight: 10
             }}
             key={social.icon}
             href={social.link}
@@ -97,59 +79,48 @@ const Community = ({
 
   return (
     <div className="Community-Page">
-      <Header />
-      <div className="Community-All">
-        <div className="Community-Path">
-          <Link style={{ color: 'black' }} to="/community">
-            /Сообщества
-          </Link>
-        </div>
-        <div className="Community-Body">
-          <div className="Community-Content">
-            <div className="Community-HeaderContainer">
-              <h2 className="Community-Header">{community.name}</h2>
-              {userId === community.owner.id ? (
-                <Link
-                  style={{ lineHeight: '48px' }}
-                  to={`/community/${id}/edit`}
-                >
-                  <PenIcon />
-                </Link>
-              ) : null}
-            </div>
-            {global && (
-              <div className="Community-Link">
-                <a href={global.link}>{global.link}</a>
-              </div>
+      <div className="Community-Breadcrumbs">
+        <Breadcrumbs path="/community" viewPath="/Сообщества" />
+      </div>
+      <div className="Community-Body">
+        <div className="Community-Content">
+          <div className="Community-HeaderContainer">
+            <h2 className="Community-Header">{community.name}</h2>
+            {userId === community.owner.id && (
+              <Link style={{ lineHeight: '48px' }} to={`/community/${id}/edit`}>
+                <PenIcon />
+              </Link>
             )}
-            <div className="Community-Tags">
-              {tags.map(tag => (
-                <Tag key={`community-${tag}`} className="Community-Tag">
-                  {tag}
-                </Tag>
-              ))}
-            </div>
-            <div className="Community-Description">{community.description}</div>
-            <div className="Community-CreatorContainer">
-              <div className="Community-CreatorAvatar"></div>
-              <div>
-                <div className="Community-CreatorRequisites">{`${community.owner.name}, ${community.name}`}</div>
-                <div className="Community-CreatorDate">
-                  {communityCreateDateString}
-                </div>
-              </div>
-            </div>
           </div>
-          <Divider className="Community-Separator" type="vertical" />
-          <div className="Community-Additional">
-            {renderSocial(social)}
-            <div className="Community-Participants">
-              {/* for participants */}
+          {globalLink && (
+            <div className="Community-Link">
+              <a href={globalLink.link}>{globalLink.link}</a>
             </div>
+          )}
+          <div className="Community-Tags">
+            {tags.map(tag => (
+              <Tag key={`community-${tag}`} className="Community-Tag">
+                {tag}
+              </Tag>
+            ))}
+          </div>
+          <div className="Community-Description">{community.description}</div>
+          <ActivityAuthor
+            user={community.owner.name}
+            community={community.name}
+            createdAt={community.ts}
+          />
+        </div>
+        <Divider className="Community-Separator" type="vertical" />
+        <div className="Community-Additional">
+          {renderSocial(social)}
+          <div className="Community-Participants">
+            <p className="Community-ParticipantsTitle">Участники</p>
+            <Participants data={participants} />
           </div>
         </div>
       </div>
-      <Footer />
+      <Curl />
     </div>
   )
 }

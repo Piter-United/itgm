@@ -20,6 +20,7 @@ const Activity = ({
     'activityInfo',
     'userId'
   )
+  console.log(activityInfo)
   useEffect(() => {
     dispatch(GET_BY_ID, id)
   }, [id, dispatch])
@@ -45,7 +46,7 @@ const Activity = ({
   return (
     <main className="Activity">
       <div className="Activity__Breadcrumbs">
-        <Breadcrumbs />
+        <Breadcrumbs path="#" viewPath="/Программа" />
       </div>
       <div className="Activity__Wrapper">
         <section className="Activity__Content">

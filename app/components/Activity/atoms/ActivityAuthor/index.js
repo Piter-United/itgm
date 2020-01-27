@@ -6,8 +6,8 @@ import Avatar from '../../../UI/Avatar'
 
 export const ActivityAuthor = ({ user, community, createdAt }) => {
   const dateObj = new Date(createdAt)
-  const date = dateObj.toLocaleDateString()
-  const time = dateObj.toLocaleTimeString()
+  const date = dateObj.toLocaleDateString('ru')
+  const time = dateObj.toLocaleTimeString('en-GB', { timeStyle: 'short' })
   return (
     <div className="ActivityAuthor">
       <Avatar
@@ -21,7 +21,7 @@ export const ActivityAuthor = ({ user, community, createdAt }) => {
           {user}
           {community && `, ${community}`}
         </p>
-        <p className="ActivityAuthor__Date">{`Создано ${date} в ${time}`}</p>
+        <p className="ActivityAuthor__Date">{`Создана ${date} в ${time}`}</p>
       </div>
     </div>
   )

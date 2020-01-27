@@ -1,18 +1,7 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
-import {
-  Avatar,
-  List,
-  Icon,
-  Button,
-  Typography,
-  Row,
-  Col,
-  Divider,
-  Card,
-  Meta
-} from 'antd'
+import { Avatar, Button, Typography, Row } from 'antd'
 import TitleFilter from '../title_filter_sort/title_filter_sort'
 import './CommunityList.css'
 

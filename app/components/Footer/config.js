@@ -1,9 +1,9 @@
-import VK from 'asset/socialVK.svg'
-import LinkedIn from 'asset/socialLinked.svg'
-import GitHub from 'asset/socialGit.svg'
-import Instagram from 'asset/socialInstagram.svg'
-import FB from 'asset/socialFB.svg'
-import Twitter from 'asset/socialTwitter.svg'
+import VK from '/asset/icons/vk.svg'
+import LinkedIn from '/asset/icons/linkedin.svg'
+import GitHub from '/asset/icons/github.svg'
+import Instagram from '/asset/icons/instagram.svg'
+import FB from '/asset/icons/facebook.svg'
+import Twitter from '/asset/icons/twitter.svg'
 
 export const navigation = [
   [

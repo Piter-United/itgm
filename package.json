@@ -30,8 +30,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
-    "storeon": "^0.9.7",
-    "style.css": "^1.0.0"
+    "storeon": "^0.9.7"
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",
@@ -91,7 +90,6 @@
     "icons": "./asset/icons",
     "store": "./app/store",
     "components": "./app/components",
-    "ui": "./app/components/UI",
-    "asset": "./app/asset"
+    "ui": "./app/components/UI"
   }
 }

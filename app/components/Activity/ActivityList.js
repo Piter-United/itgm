@@ -2,8 +2,8 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { List, Icon, Row, Col, Button, Typography, Divider } from 'antd'
 import useStoreon from 'storeon/react'
-import moment from 'moment';
-import cn from 'classnames';
+import moment from 'moment'
+import cn from 'classnames'
 
 import '../Heading/Heading.css'
 import './ActivityList.css'
@@ -28,19 +28,14 @@ export const ShowItem = ({ dispatch, item, userId }) => (
   <List.Item className="ActivityListItem" key={item.id}>
     <div>
       <div className="ActivityListItem-Misc">
-        <span>
-          {moment(item.ts).format('DD.MM.YYYY')}
-        </span>
+        <span>{moment(item.ts).format('DD.MM.YYYY')}</span>
         <div>
           {item.community &&
             item.community.resource &&
             item.community.resource.name}{' '}
         </div>
       </div>
-      <Link
-        className="ActivityListItem-TitleLink"
-        to={`/activity/${item.id}`}
-      >
+      <Link className="ActivityListItem-TitleLink" to={`/activity/${item.id}`}>
         {item.resource.name}
       </Link>
     </div>
@@ -48,20 +43,15 @@ export const ShowItem = ({ dispatch, item, userId }) => (
       {item.resource.description}
     </div>
     <div className="ActivityListItem-Footer">
-      <div
-        className="ActivityListItem-Likes"
-        key={`list-item-like-${item.id}`}
-      >
+      <div className="ActivityListItem-Likes" key={`list-item-like-${item.id}`}>
         <Icon
           onClick={() => onHandlerClick(userId, item, dispatch)}
           type="heart"
           theme={item.likes.isLike ? 'filled' : ''}
-          className={
-            cn({
-              'ActivityListItem-LikeIcon': true,
-              'ActivityListItem-LikeIcon_islike_true': item.likes.isLike,
-            })
-          }
+          className={cn({
+            'ActivityListItem-LikeIcon': true,
+            'ActivityListItem-LikeIcon_islike_true': item.likes.isLike
+          })}
         />{' '}
         <span className="ActivityListItem-LikeCounter">{`(${item.likes.count})`}</span>
       </div>

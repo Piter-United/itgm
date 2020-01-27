@@ -1,0 +1,42 @@
+.Avatar {
+  display: block;
+  border-radius: 50%;
+  background-color: rgba(42, 42, 42, 0.1);
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+}
+
+.Avatar_size_xs {
+  width: 32px;
+  height: 32px;
+}
+
+.Avatar_size_s {
+  width: 48px;
+  height: 48px;
+}
+
+.Avatar_size_m {
+  width: 60px;
+  height: 60px;
+}
+
+.Avatar_size_l {
+  width: 80px;
+  height: 80px;
+}
+
+.Avatar_size_xl {
+  width: 180px;
+  height: 180px;
+}
+
+.Avatar_type_user {
+  background-image: url(../../../asset/userFallbackAvatar.png);
+}
+
+.Avatar_type_community {
+  background-image: url(../../../asset/communityFallbackAvatar.png);
+}

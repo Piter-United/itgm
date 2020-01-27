@@ -6,7 +6,7 @@ import Footer from '../Footer/Footer'
 
 import { Spin, Tag, Divider } from 'antd'
 
-import { GET_BY_ID } from '../../store/community'
+import { GET_BY_ID } from 'store/community'
 
 import './Community.css'
 import PenIcon from '../../asset/Pen.svg'

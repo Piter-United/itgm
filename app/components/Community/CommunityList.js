@@ -6,7 +6,7 @@ import { List, Icon, Button, Typography, Row, Col, Divider } from 'antd'
 import useStoreon from 'storeon/react'
 
 import VkIcon from '../../asset/vk.svg'
-import { GET_LIST } from '../../store/community'
+import { GET_LIST } from 'store/community'
 import history from '../../history'
 
 const { Title } = Typography

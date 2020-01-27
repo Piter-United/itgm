@@ -1,0 +1,37 @@
+.Nav {
+  display: flex;
+}
+
+.Nav_theme_default .Nav__Link {
+  color: #ffffff;
+}
+
+.Nav_theme_inverse .Nav__Link {
+  color: #2a2a2a;
+}
+
+.Nav__Link:hover,
+.Nav__Link:focus {
+  opacity: 0.5;
+}
+
+.Nav__Column {
+  padding: 0;
+  margin: 0;
+  margin-right: 20px;
+  list-style: none;
+}
+
+.Nav__Column:last-child {
+  margin-right: 0;
+}
+
+.Nav__Item {
+  font-size: 14px;
+  line-height: 16px;
+  margin-bottom: 10px;
+}
+
+.Nav__Item:last-child {
+  margin-bottom: 0;
+}

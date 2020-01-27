@@ -1,0 +1,163 @@
+@media only screen and (max-width: 1024px) {
+  .Community-Body {
+    flex-direction: column;
+  }
+  .Community-Separator {
+    display: none;
+  }
+  .Community-Additional {
+    width: 100%;
+    margin-top: 60px;
+  }
+  .Community-All {
+    max-width: auto;
+    padding: 136px 8% 260px 8%;
+  }
+  .Community-Content {
+    width: auto;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .Community-Body {
+    flex-direction: row;
+  }
+  .Community-Additional {
+    width: 230px;
+  }
+  .Community-All {
+    max-width: 1129px;
+    padding: 136px 20px 260px 20px;
+  }
+  .Community-Content {
+    width: 680px;
+  }
+}
+
+.Community-Page {
+  height: auto;
+}
+
+.Community-All {
+  margin: 0 auto 0 auto;
+  height: auto;
+}
+
+.Community-Path {
+  margin-bottom: 24px;
+  width: auto;
+  font-family: Open-Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 24px;
+}
+
+.Community-Body {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Community-HeaderContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.Community-Header {
+  font-family: Playfair Display;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 40px;
+  margin: 0 6px 10px 0;
+}
+
+.Community-Link {
+  margin-bottom: 20px;
+  height: 24px;
+  font-family: Open-Sans;
+}
+
+.Community-Tags {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+}
+
+.Community-Tag {
+  font-family: Open-Sans;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 22px;
+  background-color: white;
+  color: #2a2a2a;
+  padding: 4px 17px;
+  border: 1px solid #ababab;
+  box-sizing: border-box;
+  border-radius: 3px;
+}
+
+.Community-Description {
+  margin: 40px 0;
+  font-family: Open-Sans;
+  font-size: 14px;
+  line-height: 19px;
+  color: #2a2a2a;
+}
+
+.Community-CreatorContainer {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  font-family: Open-Sans;
+  font-size: 12px;
+  line-height: 19px;
+}
+
+.Community-CreatorAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  background: rgba(42, 42, 42, 0.1);
+  margin-right: 10px;
+}
+
+.Community-CreatorRequisites {
+  width: 100%;
+  color: #2a2a2a;
+}
+
+.Community-CreatorDate {
+  color: rgba(158, 158, 158, 0.6);
+}
+
+.Community-Separator {
+  height: auto;
+  margin: 0 100px;
+  background: #ababab;
+}
+
+.Community-Social {
+  margin-bottom: 56px;
+}
+
+.Community-SocialTitle {
+  font-family: Open-Sans;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 6px;
+  color: #2a2a2a;
+}
+
+.Community-SocialIcon {
+  width: 45px;
+  height: 45px;
+  transform: scale(1.5);
+  filter: invert(57%);
+  padding: 7px;
+}
+
+.Community-Participants {
+  width: 100%;
+  height: auto;
+}

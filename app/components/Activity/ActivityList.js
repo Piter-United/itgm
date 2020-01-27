@@ -4,6 +4,7 @@ import { List, Icon, Row, Col, Button, Typography, Divider } from 'antd'
 import useStoreon from 'storeon/react'
 
 import '../Heading/Heading.css'
+import './Activity.css'
 
 import { GET_LIST, LIKE, UNLIKE } from 'store/activity'
 
@@ -21,48 +22,62 @@ const onHandlerClick = (userId, item, dispatch) => {
   return dispatch(LIKE, item.id)
 }
 
-export const ShowItem = ({ dispatch, item, userId }) => (
-  <List.Item
-    key={item.id}
-    actions={[
-      <span
-        onClick={() => onHandlerClick(userId, item, dispatch)}
-        key={`list-item-like-${item.id}`}
-      >
-        <Icon
-          type="like-o"
-          style={{ color: item.likes.isLike ? '#1890ff' : '' }}
-        />{' '}
-        {item.likes.count}
-      </span>
-    ]}
-  >
-    <List.Item.Meta
-      title={
-        <Link style={{ color: '#1890ff' }} to={`/activity/${item.id}`}>
+export const ShowItem = ({ dispatch, item, userId }) => {
+  const dateActivity = new Date(item.ts)
+  const formatedDateCreationActivity = `
+    ${dateActivity.getDate()}.
+    ${dateActivity.getMonth() + 1}.
+    ${dateActivity.getFullYear()}`
+
+  return (
+    <List.Item className="activity-list-item" key={item.id}>
+      <div className="activity-list-item__meta">
+        <div className="activity-list-item__misc">
+          <span className="activity-list-item__date">
+            {formatedDateCreationActivity}
+          </span>
+          <div className="activity-list-item__communities">
+            {item.community &&
+              item.community.resource &&
+              item.community.resource.name}{' '}
+          </div>
+        </div>
+        <Link
+          className="activity-list-item__title-link"
+          to={`/activity/${item.id}`}
+        >
           {item.resource.name}
         </Link>
-      }
-      description={
-        <div>
-          {item.community &&
-            item.community.resource &&
-            item.community.resource.name}{' '}
-          {item.resource.tags.map(tag => (
-            <Button
-              key={`tag_${tag}`}
-              size="small"
-              style={{ marginRight: '.5em' }}
-            >
-              #{tag}
-            </Button>
-          ))}
+      </div>
+      <div className="activity-list-item__description">
+        {item.resource.description}
+      </div>
+      <div className="activity-list-item__footer">
+        <div
+          className="activity-list-item__likes"
+          onClick={() => onHandlerClick(userId, item, dispatch)}
+          key={`list-item-like-${item.id}`}
+        >
+          <Icon
+            type="heart"
+            theme={`${item.likes.isLike ? 'filled' : ''}`}
+            className={`activity-list-item__like-icon
+               ${
+                 item.likes.isLike
+                   ? 'activity-list-item__like-icon_islike'
+                   : 'activity-list-item__like-icon_notlike'
+               }
+              `}
+          />{' '}
+          <span className="activity-list-item__like-counter">{`(${item.likes.count})`}</span>
         </div>
-      }
-    />
-    <div style={{ whiteSpace: 'pre-line' }}>{item.resource.description}</div>
-  </List.Item>
-)
+        <span className="activity-list-item__author">
+          Автор: {item.resource.user.id}
+        </span>
+      </div>
+    </List.Item>
+  )
+}
 
 const RenderDiscussion = ({ userId, user }) => {
   if (userId) {

@@ -46,7 +46,7 @@
 }
 
 .activity-list-item__description {
-  whiteSpace: pre-line;
+  whitespace: pre-line;
 }
 
 .activity-list-item__footer {

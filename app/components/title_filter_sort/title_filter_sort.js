@@ -1,42 +1,52 @@
 import React, { useState } from 'react'
 import { Row, Col, Button, Icon } from 'antd'
+import './title_filter_sort.css'
 /*
  */
-const Header = props => {
+const Title = props => {
   const [Sort, setSort] = useState(props.sort)
   const [Filter, setFilter] = useState(false)
   const onClick = () => setFilter(!Filter)
   const onSort = () => {
+    //check onSort in props
     props.onSort && props.onSort(!Sort)
     setSort(!Sort)
   }
+
   const onChange = ({ target }) => {
     const { value } = target
     props.onFilter(value)
   }
 
   return (
-    <Row>
-      <Col span={12}>
-        {Filter ? (
-          <input defaultValue={props.filter} onChange={onChange} />
-        ) : (
-          <h3>
-            {props.name}
-            <span>({props.counter})</span>
-          </h3>
-        )}
-      </Col>
-      <Col span={12}>
-        <Icon onClick={onClick} type="search" />
+    <div className="title__">
+      <div className="title__header">
+        {props.name}
+        <span className="title__count">({props.counter})</span>
+      </div>
+      <div className="title__filter">
+        <input
+          className="title__input"
+          defaultValue={props.filter}
+          onChange={onChange}
+        />
+        <Icon className="title__icon" onClick={onClick} type="search" />
         {Sort ? (
-          <Icon onClick={onSort} type="sort-ascending" />
+          <Icon
+            className="title__icon"
+            onClick={onSort}
+            type="sort-ascending"
+          />
         ) : (
-          <Icon onClick={onSort} type="sort-descending" />
+          <Icon
+            className="title__icon"
+            onClick={onSort}
+            type="sort-descending"
+          />
         )}
-      </Col>
-    </Row>
+      </div>
+    </div>
   )
 }
 
-export default Header
+export default Title

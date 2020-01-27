@@ -13,6 +13,8 @@ import {
   Card,
   Meta
 } from 'antd'
+import TitleFilter from '../title_filter_sort/title_filter_sort'
+import './CommunityList.css'
 
 import useStoreon from 'storeon/react'
 
@@ -21,11 +23,6 @@ import { GET_LIST } from '../../store/community'
 import history from '../../history'
 
 const { Title } = Typography
-
-const style = {
-  height: 300,
-  margin: 16
-}
 
 const descStyle = {
   overflow: 'hidden',
@@ -36,20 +33,22 @@ const descStyle = {
 }
 
 const CommunityListItem = item => (
-  <Card key={item.id} style={style}>
-    <Row>
-      <Col span={20}>
-        <h3>
-          <Link to={`/community/${item.id}`}>{item.name}</Link>
-        </h3>
-        <div style={descStyle}> {item.description} </div>
-      </Col>
-      <Col span={4}>
-        <Avatar size={80} src={`https://www.gravatar.com/avatar/`} />
-      </Col>
-    </Row>
-    <Link to={`/community/${item.id}`}> Подробнее </Link>
-  </Card>
+  <div className="community-item" key={item.id}>
+    <div className="community-item__header">
+      <h3>
+        <Link to={`/community/${item.id}`}>{item.name}</Link>
+      </h3>
+      <div className="community-item__desc">
+        {item.description}
+        <h4 className="community-item__more">
+          <Link to={`/community/${item.id}`}>Подробнее</Link>
+        </h4>
+      </div>
+    </div>
+    <div className="community-item__img">
+      <Avatar size={80} src={`https://www.gravatar.com/avatar/`} />
+    </div>
+  </div>
 )
 
 const mapper = (arr, iterator) => {
@@ -73,56 +72,34 @@ const CommunityList = () => {
     dispatch(GET_LIST)
   }, [dispatch])
 
+  const titleProps = {
+    name: 'Сообщества',
+    counter: community.list ? community.list.length : 0
+  }
+
   const [left, right] = splitList(community.list)
   return (
-    <div className="content">
-      <Row style={{ display: 'flex', alignItems: 'baseline' }}>
-        <Title className="heading heading_level_1">Сообщества</Title>
-        <div>TODO: filter sort, </div>
-      </Row>
-
+    <div className="container">
+      <div className="header-wrapper">
+        <TitleFilter {...titleProps} />
+      </div>
       <Row style={{ display: 'flex', alignItems: 'baseline' }}>
         {user && (
-          <Button icon="plus-circle" href="/community/new">
+          <Button className="community__button" href="/community/new">
             Добавить сообщество
           </Button>
         )}
       </Row>
-      <Divider />
-      <Row>
-        <Col span={12}>{mapper(left, CommunityListItem)}</Col>
-        <Col span={12}>{mapper(right, CommunityListItem)}</Col>
-      </Row>
+      <div className="community__list">
+        <div className="community__list_col">
+          {mapper(left, CommunityListItem)}
+        </div>
+        <div className="community__list_col">
+          {mapper(right, CommunityListItem)}
+        </div>
+      </div>
     </div>
   )
 }
 
 export default CommunityList
-
-/*
-      <List
-        itemLayout="vertical"
-        size="large"
-        pagination={false}
-        loading={community.loading}
-        dataSource={community.list}
-        renderItem={CommunityListItem}
-      />
-
-          <div
-      
-      actions={item.social.map(social => (
-        <a key={social.icon} href={social.link} target="_blank">
-          {social.icon === 'vk' ? (
-            <Icon style={{ fontSize: 24 }} component={VkIcon} />
-          ) : (
-            <Icon style={{ fontSize: 24 }} type={social.icon} />
-          )}
-        </a>
-      ))}
-    >
-
-      
-    </div>
-
-*/

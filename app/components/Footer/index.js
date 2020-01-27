@@ -11,16 +11,16 @@ import { Link } from 'react-router-dom'
 export const Footer = ({ theme = 'default' }) => {
   return (
     <footer className={`Footer Footer_theme_${theme}`}>
-      <div className="Footer__Inner">
-        <div className="Footer__Logo">
+      <div className="Footer-Inner">
+        <div className="Footer-Logo">
           <Link to="/">
             <Logo theme={theme} />
           </Link>
         </div>
-        <div className="Footer__Nav">
+        <div className="Footer-Nav">
           <Nav data={navigation} theme={theme} />
         </div>
-        <div className="Footer__Social">
+        <div className="Footer-Social">
           <Social data={social} theme={theme} />
         </div>
       </div>

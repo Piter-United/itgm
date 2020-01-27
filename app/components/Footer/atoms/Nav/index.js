@@ -9,10 +9,10 @@ export const Nav = withRouter(
     data.length > 0 && (
       <div className={cn('Nav', `Nav_theme_${theme}`)} theme={theme}>
         {data.map((columnData, i) => (
-          <ul className="Nav__Column" key={i}>
+          <ul className="Nav-Column" key={i}>
             {columnData.map(({ text, url }) => (
-              <li key={`${text}_${url}`} className="Nav__Item">
-                <Link to={url} className="Nav__Link">
+              <li key={`${text}_${url}`} className="Nav-Item">
+                <Link to={url} className="Nav-Link">
                   {text}
                 </Link>
               </li>

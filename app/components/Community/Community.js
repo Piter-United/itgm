@@ -5,31 +5,15 @@ import { Breadcrumbs } from 'ui/Breadcrumbs'
 import { Curl } from 'ui/Curl'
 import { ActivityAuthor } from '../Activity/atoms/ActivityAuthor'
 import { Participants } from '../Activity/atoms/Participants'
+import CommunitySocial from './atoms/CommunitySocial'
+import CommunityTags from './atoms/CommunityTags'
 
-import { Spin, Tag, Divider } from 'antd'
+import { Spin, Divider } from 'antd'
 
 import { GET_BY_ID } from 'store/community'
 
 import './Community.css'
 import PenIcon from 'icons/Pen.svg'
-import VkIcon from 'icons/vk.svg'
-import TwitterIcon from 'icons/twitter.svg'
-import FacebookIcon from 'icons/facebook.svg'
-import GithubIcon from 'icons/github.svg'
-import InstagramIcon from 'icons/instagram.svg'
-import LinkedInIcon from 'icons/linkedin.svg'
-//TODO add youtube icon
-import YoutubeIcon from 'icons/linkedin.svg'
-
-const socialIconsMap = {
-  vk: <VkIcon className="Community-SocialIcon" />,
-  twitter: <TwitterIcon className="Community-SocialIcon" />,
-  facebook: <FacebookIcon className="Community-SocialIcon" />,
-  github: <GithubIcon className="Community-SocialIcon" />,
-  instagram: <InstagramIcon className="Community-SocialIcon" />,
-  linkedIn: <LinkedInIcon className="Community-SocialIcon" />,
-  youtube: <YoutubeIcon className="Community-SocialIcon" />
-}
 
 const Community = ({
   match: {
@@ -45,37 +29,17 @@ const Community = ({
     dispatch(GET_BY_ID, id)
   }, [id, dispatch])
 
-  console.log(communityInfo, userId)
   if (!communityInfo.data || communityInfo.data.community.id !== id) {
     return <Spin size="large" />
   }
 
   const { community } = communityInfo.data
-
   const social = community.social.filter(s => s.icon !== 'global')
   const globalLink = community.social.filter(s => s.icon === 'global')[0]
   //TODO link tags with the server data when it will be exist
-  const tags = ['Tag 1', 'UX Analytics', 'tag 3']
-  //TODO link tags with the server data when it will be exist
-  const participants = [{ id: 1 }, { id: 2 }, { id: 3 }]
-
-  const renderSocial = socialData =>
-    socialData.length !== 0 && (
-      <div className="Community-Social">
-        <div className="Community-SocialTitle">Сообщество в интернете</div>
-        {social.map(social => (
-          <a
-            style={{
-              marginRight: 10
-            }}
-            key={social.icon}
-            href={social.link}
-          >
-            {socialIconsMap[social.icon]}
-          </a>
-        ))}
-      </div>
-    )
+  const tags = []
+  //TODO link participants with the server data when it will be exist
+  const participants = []
 
   return (
     <div className="Community-Page">
@@ -97,13 +61,7 @@ const Community = ({
               <a href={globalLink.link}>{globalLink.link}</a>
             </div>
           )}
-          <div className="Community-Tags">
-            {tags.map(tag => (
-              <Tag key={`community-${tag}`} className="Community-Tag">
-                {tag}
-              </Tag>
-            ))}
-          </div>
+          <CommunityTags data={tags} />
           <div className="Community-Description">{community.description}</div>
           <ActivityAuthor
             user={community.owner.name}
@@ -113,11 +71,13 @@ const Community = ({
         </div>
         <Divider className="Community-Separator" type="vertical" />
         <div className="Community-Additional">
-          {renderSocial(social)}
-          <div className="Community-Participants">
-            <p className="Community-ParticipantsTitle">Участники</p>
-            <Participants data={participants} />
-          </div>
+          <CommunitySocial data={social} />
+          {participants.length !== 0 && (
+            <div className="Community-Participants">
+              <p className="Community-ParticipantsTitle">Участники</p>
+              <Participants data={participants} />
+            </div>
+          )}
         </div>
       </div>
       <Curl />

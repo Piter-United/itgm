@@ -1,13 +1,12 @@
 import React from 'react'
-
+import moment from 'moment'
 import './style.css'
 
-import Avatar from '../../../UI/Avatar'
+import Avatar from 'ui/Avatar'
 
 export const ActivityAuthor = ({ user, community, createdAt }) => {
-  const dateObj = new Date(createdAt)
-  const date = dateObj.toLocaleDateString('ru')
-  const time = dateObj.toLocaleTimeString('en-GB', { timeStyle: 'short' })
+  const date = moment(createdAt).format('L')
+  const time = moment(createdAt).format('LT')
   return (
     <div className="ActivityAuthor">
       <Avatar

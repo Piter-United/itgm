@@ -20,7 +20,6 @@ const Activity = ({
     'activityInfo',
     'userId'
   )
-  console.log(activityInfo)
   useEffect(() => {
     dispatch(GET_BY_ID, id)
   }, [id, dispatch])

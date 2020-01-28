@@ -17,7 +17,7 @@ const HomePage = () => {
 
       <PageSection>
         <ContentContainer>
-          <ActivityList />
+          <ActivityList placement="HomePage" />
         </ContentContainer>
       </PageSection>
 

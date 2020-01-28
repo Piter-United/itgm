@@ -53,16 +53,29 @@ export default withRouter(
             >
               <Link to="/">Главная</Link>
             </Menu.Item>
+
+            <Menu.Item
+              className={
+                hasMatchRoute(path, '/activity', false)
+                  ? 'ant-menu-item-selected'
+                  : ''
+              }
+              key="2"
+            >
+              <Link to="/activity">Программы</Link>
+            </Menu.Item>
+
             <Menu.Item
               className={
                 hasMatchRoute(path, '/community', false)
                   ? 'ant-menu-item-selected'
                   : ''
               }
-              key="2"
+              key="3"
             >
               <Link to="/community">Сообщества</Link>
             </Menu.Item>
+
             {!userId && (
               <Menu.Item
                 key="97"
@@ -73,6 +86,7 @@ export default withRouter(
                 <Link to="/login">Вход</Link>
               </Menu.Item>
             )}
+
             {userId && [
               <Menu.Item
                 key="98"
@@ -88,6 +102,7 @@ export default withRouter(
                   </Link>
                 )}
               </Menu.Item>,
+
               <Menu.Item
                 key="99"
                 className={

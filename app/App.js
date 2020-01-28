@@ -8,6 +8,7 @@ import User from 'components/User'
 import Login from 'components/Login'
 import UserEdit from 'components/UserEdit'
 import Activity from 'components/Activity/Activity'
+import ActivityList from 'components/Activity/ActivityList'
 import NotFound from 'components/NotFound'
 import CommunityList from 'components/Community/CommunityList'
 import Community from 'components/Community/Community'
@@ -18,6 +19,7 @@ import Partners from 'components/Partners/Partners'
 const App = () => (
   <Switch>
     <Route path="/" exact component={HomePage} />
+    <Route exact path="/activity" component={ActivityList} />
     <PrivateRoute path="/activity/new" component={NewActivity} />
     <Route exact path="/activity/:id" component={Activity} />
     <PrivateRoute path="/activity/:id/edit" component={NewActivity} />

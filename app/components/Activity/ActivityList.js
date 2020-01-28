@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { List, Icon, Row, Col, Button, Typography, Divider } from 'antd'
+import { Layout, List, Icon, Row, Col, Button, Typography, Divider } from 'antd'
 import useStoreon from 'storeon/react'
 import moment from 'moment'
 import cn from 'classnames'
@@ -13,6 +13,7 @@ import { GET_LIST, LIKE, UNLIKE } from 'store/activity'
 import history from '../../history'
 
 const { Title } = Typography
+const { Header, Footer, Sider, Content } = Layout
 
 const onHandlerClick = (userId, item, dispatch) => {
   if (!userId) {
@@ -84,25 +85,15 @@ const RenderDiscussion = ({ userId, user }) => {
   )
 }
 
-const ActivityList = () => {
-  const { userId, user, activity, dispatch } = useStoreon(
-    'user',
-    'userId',
-    'activity'
-  )
-
-  useEffect(() => {
-    dispatch(GET_LIST)
-  }, [dispatch])
-
+const renderLandingActivity = (list, { activity, userId, dispatch }) => {
+  const firstThreeActivities = list.slice(0, 3)
   return (
     <div className="content">
       <Row style={{ display: 'flex', alignItems: 'baseline' }}>
         <Col span={18}>
-          <Title className="heading heading_level_1">Обсуждения</Title>
-        </Col>
-        <Col span={6}>
-          <RenderDiscussion userId={userId} user={user} />
+          <Title className="heading heading_level_1">
+            Программа обсуждения
+          </Title>
         </Col>
       </Row>
       <Divider />
@@ -113,7 +104,7 @@ const ActivityList = () => {
             size="large"
             pagination={false}
             loading={activity.loading}
-            dataSource={activity.list}
+            dataSource={firstThreeActivities}
             renderItem={item => (
               <ShowItem
                 key={item.id}
@@ -128,6 +119,77 @@ const ActivityList = () => {
       </Row>
     </div>
   )
+}
+
+const renderActivity = (list, { activity, userId, dispatch }) => {
+  return (
+    <Layout>
+      <Content>
+        <div className="content">
+          <Row style={{ display: 'flex', alignItems: 'baseline' }}>
+            <Col span={18}>
+              <Title className="heading heading_level_1">
+                Программа обсуждения
+              </Title>
+            </Col>
+          </Row>
+          <Divider />
+          <Row>
+            <Col span={18}>
+              <List
+                itemLayout="vertical"
+                size="large"
+                pagination={false}
+                loading={activity.loading}
+                dataSource={list}
+                renderItem={item => (
+                  <ShowItem
+                    key={item.id}
+                    userId={userId}
+                    item={item}
+                    dispatch={dispatch}
+                  />
+                )}
+              />
+            </Col>
+            <Col span={6} />
+          </Row>
+        </div>
+      </Content>
+    </Layout>
+  )
+}
+
+const ActivityList = ({ placement }) => {
+  const { userId, user, activity, dispatch } = useStoreon(
+    'user',
+    'userId',
+    'activity'
+  )
+
+  useEffect(() => {
+    dispatch(GET_LIST)
+  }, [dispatch])
+
+  const activitiesByNewest = [...activity.list].sort((a, b) => {
+    if (new Date(a.ts) > new Date(b.ts)) {
+      return -1
+    } else if (new Date(a.ts) < new Date(b.ts)) {
+      return 1
+    }
+    return 0
+  })
+
+  switch (placement) {
+    case 'HomePage':
+      return renderLandingActivity(activitiesByNewest, {
+        activity,
+        userId,
+        dispatch
+      })
+    default:
+      return renderActivity(activitiesByNewest, { activity, userId, dispatch })
+  }
 }
 
 export default ActivityList

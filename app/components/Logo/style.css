@@ -1,11 +1,15 @@
-.logo {
-  font-family: Open Sans;
+.Logo {
+  font-family: 'Open-Sans';
   font-style: normal;
   font-weight: bold;
   font-size: 30px;
   line-height: 30px;
 }
 
-.logo--theme-dark {
+.Logo_theme_default {
   color: #fff;
+}
+
+.Logo_theme_inverse {
+  color: #2a2a2a;
 }

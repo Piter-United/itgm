@@ -1,13 +1,19 @@
 import React, { useEffect } from 'react'
 import useStoreon from 'storeon/react'
+import { Link } from 'react-router-dom'
+import { Breadcrumbs } from 'ui/Breadcrumbs'
+import { Curl } from 'ui/Curl'
+import { ActivityAuthor } from '../Activity/atoms/ActivityAuthor'
+import { Participants } from '../Activity/atoms/Participants'
+import CommunitySocial from './atoms/CommunitySocial'
+import CommunityTags from './atoms/CommunityTags'
 
-import { Spin, Row, Col, Icon, Divider, List } from 'antd'
+import { Spin, Divider } from 'antd'
 
-import { GET_BY_ID, GET_BY_ID_RELOAD_BY_LU } from '../../store/community'
+import { GET_BY_ID } from 'store/community'
 
-import VkIcon from '../../asset/vk.svg'
-
-import { ShowItem } from '../Activity/ActivityList'
+import './Community.css'
+import PenIcon from 'icons/Pen.svg'
 
 const Community = ({
   match: {
@@ -18,64 +24,59 @@ const Community = ({
     'communityInfo',
     'userId'
   )
+
   useEffect(() => {
     dispatch(GET_BY_ID, id)
   }, [id, dispatch])
+
   if (!communityInfo.data || communityInfo.data.community.id !== id) {
     return <Spin size="large" />
   }
-  const dispatchEvent = (event, id) => {
-    dispatch(event, { id, event: GET_BY_ID_RELOAD_BY_LU })
-  }
-  const { community, manager, activity } = communityInfo.data
+
+  const { community } = communityInfo.data
+  const social = community.social.filter(s => s.icon !== 'global')
+  const globalLink = community.social.filter(s => s.icon === 'global')[0]
+
   return (
-    <div>
-      <Row>
-        <Col span={16}>
-          <h2>{community.name}</h2>
-          <div style={{ marginBottom: '1em' }}>
-            {community.social.map(social => (
-              <a
-                style={{ marginRight: 10 }}
-                key={social.icon}
-                href={social.link}
-                target="_blank"
-              >
-                {social.icon === 'vk' ? (
-                  <Icon style={{ fontSize: 24 }} component={VkIcon} />
-                ) : (
-                  <Icon style={{ fontSize: 24 }} type={social.icon} />
-                )}
-              </a>
-            ))}
-          </div>
-          <div style={{ whiteSpace: 'pre-line' }}>{community.description}</div>
-          <Divider />
-          <h3>Темы</h3>
-          <List
-            itemLayout="vertical"
-            size="large"
-            pagination={false}
-            loading={communityInfo.loading}
-            dataSource={activity}
-            renderItem={item => (
-              <ShowItem
-                key={item.id}
-                userId={userId}
-                item={item}
-                dispatch={dispatchEvent}
-              />
+    <div className="Community-Page">
+      <div className="Community-Breadcrumbs">
+        <Breadcrumbs path="/community" viewPath="/Сообщества" />
+      </div>
+      <div className="Community-Body">
+        <div className="Community-Content">
+          <div className="Community-HeaderContainer">
+            <h2 className="Community-Header">{community.name}</h2>
+            {userId === community.owner.id && (
+              <Link style={{ lineHeight: '48px' }} to={`/community/${id}/edit`}>
+                <PenIcon />
+              </Link>
             )}
+          </div>
+          {globalLink && (
+            <div className="Community-Link">
+              <a href={globalLink.link}>{globalLink.link}</a>
+            </div>
+          )}
+          <CommunityTags data={community.tags || []} />
+          <div className="Community-Description">{community.description}</div>
+          <ActivityAuthor
+            user={community.owner.name}
+            community={community.name}
+            createdAt={community.ts}
           />
-        </Col>
-        <Col span={8}>
-          <h3>Администраторы</h3>
-          <div>{community.owner.name}</div>
-          {manager.map(item => (
-            <div key={item.id}>{item.user.name}</div>
-          ))}
-        </Col>
-      </Row>
+        </div>
+        <Divider className="Community-Separator" type="vertical" />
+        <div className="Community-Additional">
+          <CommunitySocial data={social} />
+          {community.participants.length !== 0 && (
+            <div className="Community-Participants">
+              <p className="Community-ParticipantsTitle">Участники</p>
+              <Participants data={community.participants} />
+            </div>
+          )}
+        </div>
+      </div>
+      <Curl />
     </div>
   )
 }

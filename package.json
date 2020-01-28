@@ -24,6 +24,7 @@
   "dependencies": {
     "@svgr/parcel-plugin-svgr": "^5.0.0",
     "antd": "^3.26.4",
+    "classnames": "^2.2.6",
     "history": "^4.10.1",
     "qs": "^6.9.1",
     "react": "^16.12.0",
@@ -83,5 +84,12 @@
   "prettier": {
     "semi": false,
     "singleQuote": true
+  },
+  "alias": {
+    "root": ".",
+    "icons": "./asset/icons",
+    "store": "./app/store",
+    "components": "./app/components",
+    "ui": "./app/components/UI"
   }
 }

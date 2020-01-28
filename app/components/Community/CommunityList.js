@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 import { Avatar, Button, Typography, Row } from 'antd'
 import TitleFilter from '../title_filter_sort/title_filter_sort'
+import CommunityListItem from './CommunityListItem'
 import './CommunityList.css'
 
 import useStoreon from 'storeon/react'
@@ -12,41 +13,12 @@ import { GET_LIST, ON_FILTER } from '../../store/community'
 import history from '../../history'
 
 const { Title } = Typography
-
-const descStyle = {
-  overflow: 'hidden',
-  textOverflow: 'ellipsis',
-  display: '-webkit-box',
-  WebkitBoxOrient: 'vertical',
-  WebkitLineClamp: '2'
-}
-
-const CommunityListItem = item => (
-  <div className="community-item" key={item.id}>
-    <div className="community-item__header">
-      <h3>
-        <Link to={`/community/${item.id}`}>{item.name}</Link>
-      </h3>
-      <div className="community-item__desc">
-        {item.description}
-        <h4 className="community-item__more">
-          <Link to={`/community/${item.id}`}>Подробнее</Link>
-        </h4>
-      </div>
-    </div>
-    <div className="community-item__img">
-      <div>
-        <Avatar size={80} src={`https://www.gravatar.com/avatar/`} />
-      </div>
-    </div>
-  </div>
-)
-
-const mapper = (arr, iterator) => {
+const mapper = (arr, Iterator) => {
   try {
-    return arr.map(iterator)
-  } catch {
-    ;<div>Список пуст!</div>
+    return arr.map(v => <Iterator key={v.id} {...v} />)
+  } catch (e) {
+    console.log('mapper error', e)
+    // <div>Список пуст!</div>
   }
 }
 
@@ -61,6 +33,7 @@ const splitList = arr => {
 }
 
 const CommunityList = props => {
+  console.log(props)
   const { user, community, dispatch } = useStoreon('community', 'user')
   const [filtered, setFiltered] = useState(community.list)
   // console.log(filtered, community.list)
@@ -88,7 +61,8 @@ const CommunityList = props => {
     name: 'Сообщества',
     counter: community.list ? community.list.length : 0,
     filter: community.filter,
-    onFilter: value => dispatch(ON_FILTER, value)
+    onFilter: value => dispatch(ON_FILTER, value),
+    onSort: console.log
   }
 
   const [left, right] = splitList(filtered)
@@ -106,6 +80,7 @@ const CommunityList = props => {
       </Row>
       <div className="community__list">
         <div className="community__list_col">
+          {console.log(left)}
           {mapper(left, CommunityListItem)}
         </div>
         <div className="community__list_col">

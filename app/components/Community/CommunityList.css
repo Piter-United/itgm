@@ -36,23 +36,6 @@ body {
   width: 220px;
 }
 
-.community__button {
-  height: 48px;
-  width: 100%;
-  border-radius: 3px;
-  box-shadow: 0 0 10px 0 rgba(255, 87, 98, 0.5);
-  background-color: #ff5762;
-
-  /*font-family: OpenSans;*/
-  font-size: 16px;
-  font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.19;
-  letter-spacing: normal;
-  color: #ffffff;
-}
-
 .community__count {
   font-size: 30px;
   font-weight: 600;
@@ -64,7 +47,9 @@ body {
 .community__list {
   display: flex;
   flex-direction: row;
-  margin: 16px 0 0 0;
+  justify-content: space-between;
+
+  margin: 16px 0;
   padding: 0;
   list-style: none;
 }
@@ -79,9 +64,9 @@ body {
 .community-item {
   display: flex;
   flex-direction: row;
+  align-items: flex-start;
 
   padding: 26px;
-  align-items: center;
   width: 380px;
   /*height: 156px;*/
   border-radius: 3px;
@@ -92,6 +77,8 @@ body {
 }
 
 .community-item__img {
+  vertical-align: top;
+  text-align: center;
   width: 102px;
   height: 102px;
   background-color: rgba(42, 42, 42, 0.1);
@@ -143,4 +130,34 @@ body {
   line-height: 1;
   letter-spacing: normal;
   color: #6f4297;
+}
+
+.community__button {
+  text-align: center;
+  padding: 15px 32px;
+  width: 100%;
+  box-shadow: 0 0 10px 0 rgba(255, 87, 98, 0.5);
+  background-color: #ff5762;
+
+  border-radius: 3px;
+  border: 1px solid #942911;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+
+  font-family: OpenSans;
+  font-size: 16px;
+  font-weight: bold;
+
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #854629;
+}
+.community__button:hover {
+  color: #ffffff;
+  background: linear-gradient(to bottom, #bc3315 5%, #d0451b 100%);
+  background-color: #bc3315;
+}
+.community__button:active {
+  position: relative;
+  top: 1px;
 }

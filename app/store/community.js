@@ -4,6 +4,7 @@ import history from '../history'
 
 const defaultState = {
   community: {
+    filter: '',
     list: [],
     loading: false
   },
@@ -24,6 +25,7 @@ export const GET_BY_ID = 'community/get-by-id'
 export const GET_BY_ID_SUCCESS = 'community/get-by-id-success'
 export const GET_BY_ID_LOADING = 'community/get-by-id-loading'
 export const GET_BY_ID_RELOAD_BY_LU = 'community/get-by-id-rblu'
+export const ON_FILTER = 'activity/on-filter'
 
 const community = store => {
   store.on('@init', () => defaultState)
@@ -117,6 +119,11 @@ const community = store => {
       }
     }
   })
+  // on-filter
+  store.on(ON_FILTER, (s, filter) => ({
+    ...s,
+    community: { ...s.community, filter }
+  }))
 }
 
 export default community

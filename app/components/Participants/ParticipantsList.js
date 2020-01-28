@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Icon } from 'antd'
 
 import find from '../../asset/find.svg'
 import sort from '../../asset/sort.svg'
-import Avatar from '../UI/Avatar/index'
+import Participant from './Participant'
 
-import './Participants.css'
+import './ParticipantsList.css'
 
 const participants = [
   {
@@ -31,34 +31,19 @@ const participants = [
   }
 ]
 
-const Participant = ({ id, avatar, firstName, lastName, community }) => (
-  <li className="participant" key={id}>
-    <div className="participant__avatar">
-      <Avatar
-        type={'participant'}
-        src={avatar}
-        alt={`${firstName}
-        ${lastName}`}
-      />
-    </div>
-    <h3 className="participant__name">{`${firstName} ${lastName}`}</h3>
-    <p className="participant__community">{community}</p>
-  </li>
-)
-
 const ParticipantList = () => (
-  <div className="participants">
-    <div className="participants__header">
-      <h2 className="participants__title">Участники конференции</h2>
-      <p className="participants__count">(789)</p>
+  <div className="participantList">
+    <div className="participantList__header">
+      <h2 className="participantList__title">Участники конференции</h2>
+      <p className="participantList__count">(789)</p>
       <Icon
-        className="participants__find"
+        className="participantList__find"
         style={{ fontSize: 20 }}
         component={find}
       />
       <Icon style={{ fontSize: 24 }} component={sort} />
     </div>
-    <ul className="participants__list">
+    <ul className="participantList__list">
       {participants.map(participant => (
         <Participant {...participant} key={participant.id} />
       ))}

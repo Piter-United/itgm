@@ -1,0 +1,59 @@
+.Footer {
+  display: flex;
+  padding-top: 30px;
+  padding-bottom: 45px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.Footer-Inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.Footer-Logo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 120px;
+  padding-right: 110px;
+  border-right-width: 2px;
+  border-right-style: solid;
+}
+
+.Footer-Logo a:hover,
+.Footer-Logo a:focus {
+  opacity: 0.5;
+}
+
+.Footer-Nav {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.Footer-Social {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Footer_theme_default {
+  background-color: #6f4297;
+  color: #ffffff;
+}
+
+.Footer_theme_inverse {
+  background-color: #ffffff;
+  color: #2a2a2a;
+}
+
+.Footer_theme_default .Footer-Logo {
+  border-right-color: #ffffff;
+}
+
+.Footer_theme_inverse .Footer-Logo {
+  border-right-color: #2a2a2a;
+}

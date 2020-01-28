@@ -48,7 +48,7 @@ const User = () => {
     //TODO: Remove this after page layout will be done
     <Layout className="wrapper">
       <Header className="header" />
-      <Content style={{ margin: '0 auto', maxWidth: '54%' }}>
+      <Content style={{ margin: '0 auto', width: '54%' }}>
         <UserInfo {...user} />
         <Divider style={{ border: '1px solid #ABABAB', margin: '0' }} />
         <CommunityBadgeList list={communityList} />

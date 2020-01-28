@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { Button, Card, Tooltip } from 'antd'
 import './CommunityBadgeList.css'
 
-const CommunityBadgeList = ({ list: communities }) => {
+const CommunityBadgeList = ({ communities, community }) => {
+  const allCommunities = [{ ...community, primary: true }, ...communities]
   return (
     <Card bordered={false} className="Community-Badge-List">
-      {communities.map(community => {
+      {allCommunities.map(community => {
         const isPrimary = community.primary
         return (
           <Tooltip placement="top" key={community.name} title={community.name}>

@@ -43,7 +43,7 @@
 }
 
 .ActivityListItem-Description {
-  whitespace: pre-line;
+  white-space: pre-line;
 }
 
 .ActivityListItem-Footer {

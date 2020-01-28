@@ -1,7 +1,7 @@
 import React from 'react'
 import './About.css'
-import AboutImgLogo from './about-logo.jpg'
-import AboutImgInfo from './about-info.jpg'
+import AboutImgLogo from '../../asset/about-logo.jpg'
+import AboutImgInfo from '../../asset/about-info.jpg'
 
 const descriptions = [
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed deiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enimad minim veniam, quis nostrud exercitation ullamco laboris nisi utaliquip ex ea commodo consequat.',

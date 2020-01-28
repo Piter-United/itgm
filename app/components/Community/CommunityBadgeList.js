@@ -1,24 +1,27 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Card } from 'antd'
+import { Button, Card, Tooltip } from 'antd'
 import './CommunityBadgeList.css'
 
-const CommunityBadgeList = ({ list }) => {
+const CommunityBadgeList = ({ communities, community }) => {
+  const allCommunities = [{ ...community, primary: true }, ...communities]
   return (
-    <Card>
-      {list.map(community => {
+    <Card bordered={false} className="Community-Badge-List">
+      {allCommunities.map(community => {
         const isPrimary = community.primary
         return (
-          <Button
-            className="community-badge"
-            key={community.name}
-            style={{
-              border: '1px solid #6F4297',
-              backgroundColor: isPrimary ? '#6F4297' : 'white',
-              color: isPrimary ? 'white' : '#6F4297'
-            }}
-          >
-            {community.name}
-          </Button>
+          <Tooltip placement="top" key={community.name} title={community.name}>
+            <Button
+              href={`./community/${community.id}`}
+              className="Community-Badge-List__badge"
+              style={{
+                border: '1px solid #6F4297',
+                backgroundColor: isPrimary ? '#6F4297' : 'white',
+                color: isPrimary ? 'white' : '#6F4297'
+              }}
+            >
+              {community.name}
+            </Button>
+          </Tooltip>
         )
       })}
     </Card>

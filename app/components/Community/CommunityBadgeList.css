@@ -1,8 +1,33 @@
-.community-badge {
-  margin-right: 0.8rem;
+.Community-Badge-List {
+  overflow: auto;
+  display: flex;
+  justify-content: left;
+}
+
+.Community-Badge-List > div {
+  display: flex;
+  max-width: 100vw;
+  padding: 1rem 0;
+}
+.Community-Badge-List__badge {
+  margin-right: 1rem;
+  max-width: 30%;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-family: Open Sans;
   font-style: normal;
   font-weight: 300;
-  font-size: 16px;
-  line-height: 22px;
+  font-size: 1rem;
+  flex: auto 0 1;
+  line-height: 1.5rem;
+}
+
+.Community-Badge-List__badge span {
+  display: inline;
+}
+
+@media (min-width: 1200px) {
+  .Community-Badge-List__badge {
+    max-width: 20%;
+  }
 }

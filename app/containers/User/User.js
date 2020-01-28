@@ -24,6 +24,7 @@ const User = () => {
     dispatch(GET_CURRENT_USER)
   }, [dispatch])
 
+  //TODO: remove it!
   console.log('User = ', user)
   if (!user) {
     return <Spin size="large" />
@@ -42,8 +43,8 @@ const User = () => {
   } = user
 
   //TODO: format with regexp for phones;
-  const formattedPhone = num => {}
-  const communityList = [{ ...community, primary: true }, ...communities]
+  // const formattedPhone = num => { }
+  const communityList = { community, communities }
   return (
     //TODO: Remove this after page layout will be done
     <Layout className="wrapper">
@@ -51,7 +52,7 @@ const User = () => {
       <Content style={{ margin: '0 auto', width: '54%' }}>
         <UserInfo {...user} />
         <Divider style={{ border: '1px solid #ABABAB', margin: '0' }} />
-        <CommunityBadgeList list={communityList} />
+        <CommunityBadgeList {...communityList} />
         <Divider style={{ border: '1px solid #ABABAB', margin: '0' }} />
       </Content>
       <Footer className="footer" />

@@ -48,7 +48,7 @@ const Activity = ({
     <>
       <main className="Activity">
         <div className="Activity__Breadcrumbs">
-          <Breadcrumbs />
+          <Breadcrumbs path="#" viewPath="/Программа" />
         </div>
         <div className="Activity__Wrapper">
           <section className="Activity__Content">

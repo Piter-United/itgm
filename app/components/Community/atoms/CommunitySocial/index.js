@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.css'
 
-import VkIcon from 'icons/vk.svg'
+import VkIcon from '/asset/icons/vk.svg'
 import TwitterIcon from 'icons/twitter.svg'
 import FacebookIcon from 'icons/facebook.svg'
 import GithubIcon from 'icons/github.svg'

@@ -7,8 +7,7 @@ import CommunityListItem from './CommunityListItem'
 import './CommunityList.css'
 
 import useStoreon from 'storeon/react'
-
-import VkIcon from '../../asset/vk.svg'
+import VkIcon from '/asset/icons/vk.svg'
 import { GET_LIST, ON_FILTER } from '../../store/community'
 import history from '../../history'
 

@@ -4,14 +4,6 @@ import { Avatar, Button, Typography, Row } from 'antd'
 import './CommunityList.css'
 import cn from 'classnames'
 
-// const descStyle = {
-//   overflow: 'hidden',
-//   textOverflow: 'ellipsis',
-//   display: '-webkit-box',
-//   WebkitBoxOrient: 'vertical',
-//   WebkitLineClamp: '2'
-// }
-
 class CommunityListItem extends Component {
   constructor(props) {
     super(props)

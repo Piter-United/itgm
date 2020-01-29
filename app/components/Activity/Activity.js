@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, Fragment } from 'react'
 import useStoreon from 'storeon/react'
 
 import './style.css'
@@ -47,7 +47,7 @@ const Activity = ({
   const { tags = [], resource = {}, ts = '' } = activity
 
   return (
-    <>
+    <Fragment>
       <Header />
       <InnerPageContentContainer>
         <main className="Activity">
@@ -101,7 +101,7 @@ const Activity = ({
         </main>
       </InnerPageContentContainer>
       <Footer />
-    </>
+    </Fragment>
   )
 }
 

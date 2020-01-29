@@ -1,7 +1,11 @@
 select
   a.id,
   a.ts,
-  a.resource,
+  a.resource || jsonb_build_object('user', jsonb_build_object(
+    'id', u.id,
+    'resourceType', 'User',
+    'name', u.resource#>>'{name}'
+  )) resource,
   jsonb_build_object(
     'id', c.id,
     'resource', c.resource
@@ -21,5 +25,7 @@ select
   ) likes
 from activity a
 join community c on c.id = a.resource#>>'{community,id}'
-group by a.id, c.id
-order by a.ts asc limit {{params.__count}} offset {{params.__skip}}
+join userprofile u on u.id = a.resource#>>'{user,id}'
+group by a.id, c.id, u.id
+order by a.ts asc
+limit {{params.__count}} offset {{params.__skip}}

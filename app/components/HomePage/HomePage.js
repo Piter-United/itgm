@@ -1,20 +1,16 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 
 import Hero from '../Hero/Hero'
-import Header from 'components/Header/Header'
 import PageSection from '../PageSection/PageSection'
 import ContentContainer from '../ContentContainer/ContentContainer'
-import { Footer } from 'components/Footer'
 import ActivityList from '../Activity/ActivityList'
 
 import './HomePage.css'
 
 const HomePage = () => {
   return (
-    <div className="out">
-      <Header theme="default" />
+    <Fragment>
       <Hero />
-
       <PageSection>
         <ContentContainer>
           <ActivityList />
@@ -38,9 +34,7 @@ const HomePage = () => {
           <p>PageSection</p>
         </ContentContainer>
       </PageSection>
-
-      <Footer />
-    </div>
+    </Fragment>
   )
 }
 

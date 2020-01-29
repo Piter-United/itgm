@@ -55,7 +55,7 @@
           "default": 100
         }
       },
-      "query": "#community.sql",
+      "query": "#activityList.sql",
       "count-query": "select count(*) from activity"
     }
   },

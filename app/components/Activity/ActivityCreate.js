@@ -7,6 +7,7 @@ import { CREATE, GET_BY_ID, UPDATE } from 'store/activity'
 import '../Heading/Heading.css'
 
 import { GET_LIST } from 'store/community'
+import { InnerPageContentContainer } from '../InnerPageContentContainer'
 
 const { Title } = Typography
 
@@ -121,7 +122,7 @@ const WrappedAcivityCreateForm = Form.create({ name: 'user_edit' })(
   AcivityCreateForm
 )
 
-const AcivityCreate = ({
+const ActivityCreate = ({
   match: {
     params: { id }
   }
@@ -173,15 +174,17 @@ const AcivityCreate = ({
   }
 
   return (
-    <div className="content">
-      <WrappedAcivityCreateForm
-        user={user}
-        community={community}
-        activity={activityInfo}
-        onCreateActivity={onCreateActivity}
-      />
-    </div>
+    <InnerPageContentContainer>
+      <div className="content">
+        <WrappedAcivityCreateForm
+          user={user}
+          community={community}
+          activity={activityInfo}
+          onCreateActivity={onCreateActivity}
+        />
+      </div>
+    </InnerPageContentContainer>
   )
 }
 
-export default AcivityCreate
+export default ActivityCreate

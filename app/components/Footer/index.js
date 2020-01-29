@@ -12,8 +12,8 @@ export const Footer = ({ theme = 'default' }) => {
   return (
     <footer className={`Footer Footer_theme_${theme}`}>
       <div className="Footer-Inner">
-        <div className="Footer-Logo">
-          <Link to="/">
+        <div className="Footer-LogoContainer">
+          <Link className="Footer-Logo" to="/">
             <Logo theme={theme} />
           </Link>
         </div>

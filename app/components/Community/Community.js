@@ -14,6 +14,7 @@ import { GET_BY_ID } from 'store/community'
 
 import './Community.css'
 import PenIcon from 'icons/Pen.svg'
+import { InnerPageContentContainer } from '../InnerPageContentContainer'
 
 const Community = ({
   match: {
@@ -38,46 +39,51 @@ const Community = ({
   const globalLink = community.social.filter(s => s.icon === 'global')[0]
 
   return (
-    <div className="Community-Page">
-      <div className="Community-Breadcrumbs">
-        <Breadcrumbs path="/community" viewPath="/Сообщества" />
-      </div>
-      <div className="Community-Body">
-        <div className="Community-Content">
-          <div className="Community-HeaderContainer">
-            <h2 className="Community-Header">{community.name}</h2>
-            {userId === community.owner.id && (
-              <Link style={{ lineHeight: '48px' }} to={`/community/${id}/edit`}>
-                <PenIcon />
-              </Link>
+    <InnerPageContentContainer>
+      <div className="Community-Page">
+        <div className="Community-Breadcrumbs">
+          <Breadcrumbs path="/community" viewPath="/Сообщества" />
+        </div>
+        <div className="Community-Body">
+          <div className="Community-Content">
+            <div className="Community-HeaderContainer">
+              <h2 className="Community-Header">{community.name}</h2>
+              {userId === community.owner.id && (
+                <Link
+                  style={{ lineHeight: '48px' }}
+                  to={`/community/${id}/edit`}
+                >
+                  <PenIcon />
+                </Link>
+              )}
+            </div>
+            {globalLink && (
+              <div className="Community-Link">
+                <a href={globalLink.link}>{globalLink.link}</a>
+              </div>
+            )}
+            <CommunityTags data={community.tags || []} />
+            <div className="Community-Description">{community.description}</div>
+            <ActivityAuthor
+              user={community.owner.name}
+              community={community.name}
+              createdAt={community.ts}
+            />
+          </div>
+          <Divider className="Community-Separator" type="vertical" />
+          <div className="Community-Additional">
+            <CommunitySocial data={social} />
+            {community.participants.length !== 0 && (
+              <div className="Community-Participants">
+                <p className="Community-ParticipantsTitle">Участники</p>
+                <Participants data={community.participants} />
+              </div>
             )}
           </div>
-          {globalLink && (
-            <div className="Community-Link">
-              <a href={globalLink.link}>{globalLink.link}</a>
-            </div>
-          )}
-          <CommunityTags data={community.tags || []} />
-          <div className="Community-Description">{community.description}</div>
-          <ActivityAuthor
-            user={community.owner.name}
-            community={community.name}
-            createdAt={community.ts}
-          />
         </div>
-        <Divider className="Community-Separator" type="vertical" />
-        <div className="Community-Additional">
-          <CommunitySocial data={social} />
-          {community.participants.length !== 0 && (
-            <div className="Community-Participants">
-              <p className="Community-ParticipantsTitle">Участники</p>
-              <Participants data={community.participants} />
-            </div>
-          )}
-        </div>
+        <Curl />
       </div>
-      <Curl />
-    </div>
+    </InnerPageContentContainer>
   )
 }
 

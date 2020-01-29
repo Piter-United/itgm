@@ -10,6 +10,7 @@ import useStoreon from 'storeon/react'
 import VkIcon from '/asset/icons/vk.svg'
 import { GET_LIST, ON_FILTER } from '../../store/community'
 import history from '../../history'
+import { InnerPageContentContainer } from '../InnerPageContentContainer'
 
 const { Title } = Typography
 const mapper = (arr, Iterator) => {

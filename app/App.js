@@ -13,7 +13,7 @@ import Community from 'components/Community/Community'
 import NewActivity from 'components/Activity/ActivityCreate'
 import NewCommunity from 'components/Community/New'
 import Partners from 'components/Partners/Partners'
-import ParticipantList from './components/Participants/ParticipantsList'
+import Participants from './components/Participants/ParticipantsList'
 import About from 'components/About/About'
 
 const App = () => (
@@ -28,7 +28,7 @@ const App = () => (
     <PrivateRoute path="/user" exact component={User} />
     <PrivateRoute path="/user/edit" component={UserEdit} />
     <Route path="/partners" component={Partners} />
-    <Route path="/participants" component={ParticipantList} />
+    <Route path="/participants" component={Participants} />
     <Route path="/about" component={About} />
     <Route path="/login" component={Login} />
     <Route component={NotFound} />

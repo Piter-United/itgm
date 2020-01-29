@@ -1,5 +1,4 @@
 .Footer {
-  display: flex;
   padding-top: 30px;
   padding-bottom: 45px;
   padding-right: 15px;
@@ -10,12 +9,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
-  max-width: 1440px;
+  max-width: 1180px;
   margin: 0 auto;
 }
 
-.Footer-Logo {
+.Footer-LogoContainer {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -25,8 +23,8 @@
   border-right-style: solid;
 }
 
-.Footer-Logo a:hover,
-.Footer-Logo a:focus {
+.Footer-Logo:hover,
+.Footer-Logo:focus {
   opacity: 0.5;
 }
 
@@ -40,20 +38,20 @@
   justify-content: flex-end;
 }
 
-.Footer_theme_default {
+.Footer_theme_inverse {
   background-color: #6f4297;
   color: #ffffff;
 }
 
-.Footer_theme_inverse {
+.Footer_theme_default {
   background-color: #ffffff;
   color: #2a2a2a;
 }
 
-.Footer_theme_default .Footer-Logo {
+.Footer_theme_inverse .Footer-Logo {
   border-right-color: #ffffff;
 }
 
-.Footer_theme_inverse .Footer-Logo {
+.Footer_theme_default .Footer-Logo {
   border-right-color: #2a2a2a;
 }

@@ -13,14 +13,14 @@ export const ActivityAuthor = ({ user, community, createdAt }) => {
         type="user"
         size="xs"
         alt={user}
-        className="ActivityAuthor__Avatar"
+        className="ActivityAuthor-Avatar"
       />
       <div>
-        <p className="ActivityAuthor__Name">
+        <p className="ActivityAuthor-Name">
           {user}
           {community && `, ${community}`}
         </p>
-        <p className="ActivityAuthor__Date">{`Создана ${date} в ${time}`}</p>
+        <p className="ActivityAuthor-Date">{`Создана ${date} в ${time}`}</p>
       </div>
     </div>
   )

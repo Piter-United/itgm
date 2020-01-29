@@ -7,7 +7,7 @@ export const Participants = ({ data }) =>
   data.length > 0 && (
     <ul className="Participants">
       {data.map(({ id }) => (
-        <li className="Participants__Item" key={id}>
+        <li className="Participants-Item" key={id}>
           <Avatar type="user" size="s" alt={id} />
         </li>
       ))}

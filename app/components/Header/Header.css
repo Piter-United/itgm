@@ -1,0 +1,80 @@
+.Header {
+  width: 100%;
+}
+
+.Header-Container {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.Header-List {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 380px;
+}
+
+.Header-Item {
+  padding-right: 25px;
+}
+
+.Header-Link {
+  color: inherit;
+}
+
+.Header-Link:hover,
+.Header-Link:focus {
+  color: inherit;
+  opacity: 0.5;
+}
+
+.Header-UserMenu {
+  display: flex;
+  justify-content: space-between;
+  min-width: 100px;
+}
+
+.Header-Icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.Header-Icon:hover,
+.Header-Icon:focus,
+.Header-Logo:hover,
+.Header-Logo:focus {
+  opacity: 0.5;
+}
+
+.Header_theme_inverse {
+  background-color: #6f4297;
+  color: #ffffff;
+}
+
+.Header_theme_default {
+  background-color: #ffffff;
+  color: #2a2a2a;
+}
+
+.Header_theme_inverse .Header-Icon path {
+  fill: #ffffff;
+}
+
+.Header_theme_default .Header-Icon path {
+  fill: #ababab;
+}

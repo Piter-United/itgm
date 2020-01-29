@@ -2,11 +2,11 @@
   display: flex;
 }
 
-.Nav_theme_default .Nav-Link {
+.Nav_theme_inverse .Nav-Link {
   color: #ffffff;
 }
 
-.Nav_theme_inverse .Nav-Link {
+.Nav_theme_default .Nav-Link {
   color: #2a2a2a;
 }
 

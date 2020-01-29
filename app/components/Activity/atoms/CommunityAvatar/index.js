@@ -9,8 +9,8 @@ export const CommunityAvatar = ({ name }) => (
       alt="name"
       type="community"
       size="m"
-      className="CommunityAvatar__Avatar"
+      className="CommunityAvatar-Avatar"
     />
-    <p className="CommunityAvatar__Description">{name}</p>
+    <p className="CommunityAvatar-Description">{name}</p>
   </div>
 )

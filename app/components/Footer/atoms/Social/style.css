@@ -24,10 +24,10 @@
   opacity: 0.5;
 }
 
-.Social_theme_default .Social-Icon path {
+.Social_theme_inverse .Social-Icon path {
   fill: #ffffff;
 }
 
-.Social_theme_inverse .Social-Icon path {
+.Social_theme_default .Social-Icon path {
   fill: #2a2a2a;
 }

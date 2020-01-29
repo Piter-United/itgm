@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, Fragment } from 'react'
 import useStoreon from 'storeon/react'
 
 import './style.css'
@@ -12,6 +12,8 @@ import { LIKE, UNLIKE, GET_BY_ID, GET_BY_ID_RELOAD_BY_LU } from 'store/activity'
 import history from '../../history'
 
 import { Footer } from '../Footer'
+import { InnerPageContentContainer } from '../InnerPageContentContainer'
+import Header from '../Header/Header'
 
 const Activity = ({
   match: {
@@ -45,56 +47,61 @@ const Activity = ({
   const { tags = [], resource = {}, ts = '' } = activity
 
   return (
-    <>
-      <main className="Activity">
-        <div className="Activity__Breadcrumbs">
-          <Breadcrumbs path="#" viewPath="/Программа" />
-        </div>
-        <div className="Activity__Wrapper">
-          <section className="Activity__Content">
-            <h1 className="Activity__Header">
-              {activity.name}
-              {userId && userId === activity.user.id && (
-                <Icon
-                  type="edit"
-                  onClick={() => history.push(`/activity/${activity.id}/edit`)}
-                  style={{ color: '#1890ff' }}
-                />
-              )}
-            </h1>
-            <div className="Activity__Tags">
-              <Tags data={tags} />
-            </div>
-            <p className="Activity__Description">{activity.description}</p>
-            <ActivityAuthor
-              user={resource.user.name}
-              community={resource.community.name}
-              createdAt={ts}
-            />
-          </section>
-          <section className="Activity__Meta">
-            <div className="Activity__Community">
-              <h2 className="Activity__SecondaryHeader">Сообщество</h2>
-              <CommunityAvatar name={resource.community.name} />
-            </div>
-            <div className="Activity__Participants">
-              <h2 className="Activity__SecondaryHeader">Участники</h2>
-              <Participants data={likes} />
-            </div>
-          </section>
-        </div>
-        <Button
-          onClick={() => toggleLike(userId, activity)}
-          text={
-            activity.likes.isLike
-              ? 'Передумал участвовать'
-              : 'Хочу участвовать!'
-          }
-        />
-        <Curl />
-      </main>
-      <Footer theme="inverse" />
-    </>
+    <Fragment>
+      <Header />
+      <InnerPageContentContainer>
+        <main className="Activity">
+          <div className="Activity-Breadcrumbs">
+            <Breadcrumbs path="#" viewPath="/Программа" />
+          </div>
+          <div className="Activity-Wrapper">
+            <section className="Activity-Content">
+              <h1 className="Activity-Header">
+                {activity.name}
+                {userId && userId === activity.user.id && (
+                  <Icon
+                    type="edit"
+                    onClick={() =>
+                      history.push(`/activity/${activity.id}/edit`)
+                    }
+                    style={{ color: '#1890ff' }}
+                  />
+                )}
+              </h1>
+              <div className="Activity-Tags">
+                <Tags data={tags} />
+              </div>
+              <p className="Activity-Description">{activity.description}</p>
+              <ActivityAuthor
+                user={resource.user.name}
+                community={resource.community.name}
+                createdAt={ts}
+              />
+            </section>
+            <section className="Activity-Meta">
+              <div className="Activity-Community">
+                <h2 className="Activity-SecondaryHeader">Сообщество</h2>
+                <CommunityAvatar name={resource.community.name} />
+              </div>
+              <div className="Activity-Participants">
+                <h2 className="Activity-SecondaryHeader">Участники</h2>
+                <Participants data={likes} />
+              </div>
+            </section>
+          </div>
+          <Button
+            onClick={() => toggleLike(userId, activity)}
+            text={
+              activity.likes.isLike
+                ? 'Передумал участвовать'
+                : 'Хочу участвовать!'
+            }
+          />
+          <Curl />
+        </main>
+      </InnerPageContentContainer>
+      <Footer />
+    </Fragment>
   )
 }
 

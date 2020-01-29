@@ -121,7 +121,7 @@ const WrappedAcivityCreateForm = Form.create({ name: 'user_edit' })(
   AcivityCreateForm
 )
 
-const AcivityCreate = ({
+const ActivityCreate = ({
   match: {
     params: { id }
   }
@@ -184,4 +184,4 @@ const AcivityCreate = ({
   )
 }
 
-export default AcivityCreate
+export default ActivityCreate

@@ -1,0 +1,33 @@
+.Social {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.Social-Link {
+  display: block;
+  width: 30px;
+  height: 30px;
+}
+
+.Social-Item {
+  margin-right: 10px;
+}
+
+.Social-Item:last-child {
+  margin-right: 0;
+}
+
+.Social-Link:hover,
+.Social-Link:focus {
+  opacity: 0.5;
+}
+
+.Social_theme_default .Social-Icon path {
+  fill: #ffffff;
+}
+
+.Social_theme_inverse .Social-Icon path {
+  fill: #2a2a2a;
+}

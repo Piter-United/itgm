@@ -35,9 +35,9 @@
 }
 
 .Avatar_type_user {
-  background-image: url(../../../asset/userFallbackAvatar.png);
+  background-image: url(/asset/userFallbackAvatar.png);
 }
 
 .Avatar_type_community {
-  background-image: url(../../../asset/communityFallbackAvatar.png);
+  background-image: url(/asset/communityFallbackAvatar.png);
 }

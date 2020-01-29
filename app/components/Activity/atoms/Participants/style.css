@@ -8,6 +8,7 @@
 
 .Participants__Item {
   margin-right: 12px;
+  margin-bottom: 12px;
 }
 
 .Participants__Item:nth-child(4n) {

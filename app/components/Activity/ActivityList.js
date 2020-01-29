@@ -11,6 +11,7 @@ import './ActivityList.css'
 import { GET_LIST, LIKE, UNLIKE } from 'store/activity'
 
 import history from '../../history'
+import { InnerPageContentContainer } from '../InnerPageContentContainer'
 
 const { Title } = Typography
 
@@ -129,5 +130,11 @@ const ActivityList = () => {
     </div>
   )
 }
+
+export const WrappedActivityList = () => (
+  <InnerPageContentContainer>
+    <ActivityList />
+  </InnerPageContentContainer>
+)
 
 export default ActivityList

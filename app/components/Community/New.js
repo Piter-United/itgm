@@ -6,6 +6,7 @@ import { Form, Input, Select, Button, Icon, Typography } from 'antd'
 import '../Heading/Heading.css'
 
 import { CREATE } from 'store/community'
+import { InnerPageContentContainer } from '../InnerPageContentContainer'
 
 const { Title } = Typography
 
@@ -138,9 +139,11 @@ const NewCommunity = () => {
     dispatch(CREATE, community)
   }
   return (
-    <div>
-      <WrappedNewCommunityForm onCreateCommunity={onCreateCommunity} />
-    </div>
+    <InnerPageContentContainer>
+      <div>
+        <WrappedNewCommunityForm onCreateCommunity={onCreateCommunity} />
+      </div>
+    </InnerPageContentContainer>
   )
 }
 

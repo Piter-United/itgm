@@ -7,6 +7,7 @@ import { CREATE, GET_BY_ID, UPDATE } from 'store/activity'
 import '../Heading/Heading.css'
 
 import { GET_LIST } from 'store/community'
+import { InnerPageContentContainer } from '../InnerPageContentContainer'
 
 const { Title } = Typography
 
@@ -173,14 +174,16 @@ const ActivityCreate = ({
   }
 
   return (
-    <div className="content">
-      <WrappedAcivityCreateForm
-        user={user}
-        community={community}
-        activity={activityInfo}
-        onCreateActivity={onCreateActivity}
-      />
-    </div>
+    <InnerPageContentContainer>
+      <div className="content">
+        <WrappedAcivityCreateForm
+          user={user}
+          community={community}
+          activity={activityInfo}
+          onCreateActivity={onCreateActivity}
+        />
+      </div>
+    </InnerPageContentContainer>
   )
 }
 

@@ -47,8 +47,16 @@ const activity = store => {
     return { activity: { ...s.activity, loading } }
   })
   store.on(SET_LIST, (s, data) => {
+    const activityListByNewest = [...data.data].sort((a, b) => {
+      if (new Date(a.ts) > new Date(b.ts)) {
+        return -1
+      } else if (new Date(b.ts) < new Date(a.ts)) {
+        return 1
+      }
+      return 0
+    })
     return {
-      activity: { ...s.activity, list: data.data }
+      activity: { ...s.activity, list: activityListByNewest }
     }
   })
   store.on(ERROR, (s, { data, message }) => {

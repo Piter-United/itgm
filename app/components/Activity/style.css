@@ -3,41 +3,41 @@
   padding-top: 60px;
 }
 
-.Activity__Breadcrumbs {
+.Activity-Breadcrumbs {
   margin-bottom: 24px;
 }
 
-.Activity__Wrapper {
+.Activity-Wrapper {
   display: flex;
   width: 100%;
   margin-bottom: 50px;
 }
 
-.Activity__Content {
+.Activity-Content {
   flex-grow: 1;
   padding-right: 100px;
   border-right: 2px solid #ababab;
 }
 
-.Activity__Meta {
+.Activity-Meta {
   box-sizing: border-box;
   min-width: 380px;
   padding-left: 100px;
   padding-top: 20px;
 }
 
-.Activity__Community {
+.Activity-Community {
   margin-bottom: 50px;
 }
 
-.Activity__Header {
+.Activity-Header {
   font-size: 36px;
   line-height: 40px;
   font-family: 'PlayfairDisplay', serif;
   font-weight: 700;
 }
 
-.Activity__SecondaryHeader {
+.Activity-SecondaryHeader {
   padding: 0;
   margin: 0;
   margin-bottom: 10px;
@@ -46,11 +46,11 @@
   font-weight: normal;
 }
 
-.Activity__Tags {
+.Activity-Tags {
   margin-bottom: 30px;
 }
 
-.Activity__Description {
+.Activity-Description {
   padding-bottom: 36px;
   white-space: pre-line;
 }

@@ -6,10 +6,10 @@
   line-height: 30px;
 }
 
-.Logo_theme_default {
-  color: #fff;
+.Logo_theme_inverse {
+  color: #ffffff;
 }
 
-.Logo_theme_inverse {
+.Logo_theme_default {
   color: #2a2a2a;
 }

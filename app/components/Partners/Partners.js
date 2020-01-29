@@ -1,5 +1,6 @@
 import React from 'react'
 import './Partners.css'
+import { InnerPageContentContainer } from '../InnerPageContentContainer'
 
 const partners = [
   {
@@ -30,17 +31,19 @@ const Partner = ({ id, img, name, desc }) => (
 
 const PartnerList = () => {
   return (
-    <div className="partners">
-      <div className="partners__wrapper">
-        <h2 className="partners__header">Партнеры</h2>
-        <span className="partners__count">({partners.length})</span>
+    <InnerPageContentContainer>
+      <div className="partners">
+        <div className="partners__wrapper">
+          <h2 className="partners__header">Партнеры</h2>
+          <span className="partners__count">({partners.length})</span>
+        </div>
+        <ul className="partners__list">
+          {partners.map(partner => (
+            <Partner {...partner} key={partner.id} />
+          ))}
+        </ul>
       </div>
-      <ul className="partners__list">
-        {partners.map(partner => (
-          <Partner {...partner} key={partner.id} />
-        ))}
-      </ul>
-    </div>
+    </InnerPageContentContainer>
   )
 }
 

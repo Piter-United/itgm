@@ -6,11 +6,11 @@
   flex-wrap: wrap;
 }
 
-.Participants__Item {
+.Participants-Item {
   margin-right: 12px;
   margin-bottom: 12px;
 }
 
-.Participants__Item:nth-child(4n) {
+.Participants-Item:nth-child(4n) {
   margin-right: 0;
 }

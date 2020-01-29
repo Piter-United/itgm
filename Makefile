@@ -1,7 +1,7 @@
-.PHONY: test configure
+.PHONY: test configure lint
 
 install:
-	npm run install
+	npm install
 
 start:
 	npm run start
@@ -14,3 +14,6 @@ configure:
 
 test:
 	npm run test
+
+lint:
+	npm run lint

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Hero from '../Hero/Hero'
-import Header from '../Header'
+import Header from 'components/Header/Header'
 import PageSection from '../PageSection/PageSection'
 import ContentContainer from '../ContentContainer/ContentContainer'
 import { Footer } from 'components/Footer'
@@ -12,8 +12,8 @@ import './HomePage.css'
 const HomePage = () => {
   return (
     <div className="out">
+      <Header theme="default" />
       <Hero />
-      <Header />
 
       <PageSection>
         <ContentContainer>

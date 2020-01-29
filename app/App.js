@@ -31,6 +31,7 @@ const App = () => (
             <Layout
               theme={route.theme}
               component={route.component}
+              path={route.path}
               {...props}
             />
           )}

@@ -12,6 +12,7 @@ const App = () => (
     {routes.map(route =>
       route.private ? (
         <PrivateRoute
+          key={route.path}
           path={route.path}
           component={props => (
             <Layout
@@ -23,6 +24,7 @@ const App = () => (
         />
       ) : (
         <Route
+          key={route.path}
           path={route.path}
           exact
           component={props => (

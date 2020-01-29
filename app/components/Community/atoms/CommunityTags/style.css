@@ -1,0 +1,19 @@
+.Community-Tags {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+}
+
+.Community-Tag {
+  font-family: Open-Sans;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 22px;
+  background-color: white;
+  color: #2a2a2a;
+  padding: 4px 17px;
+  border: 1px solid #ababab;
+  box-sizing: border-box;
+  border-radius: 3px;
+}

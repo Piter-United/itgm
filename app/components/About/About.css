@@ -1,0 +1,52 @@
+.About {
+  width: 780px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.About-Header {
+  font-family: 'PlayfareDisplay';
+  font-weight: 700;
+  font-size: 36px;
+  margin-top: 60px;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.About-Header::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: -19px;
+  left: 0;
+  background-color: #ababab;
+}
+
+.About-Description {
+  width: 100%;
+}
+
+.About-Container {
+  width: 100%;
+  margin-bottom: 30px;
+  display: flex;
+}
+
+.About-Img {
+  width: 100%;
+}
+
+.About-Text {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.About-ContainerLeft {
+  width: 60%;
+  margin-right: 20px;
+}
+
+.About-ContainerRight {
+  width: 40%;
+}

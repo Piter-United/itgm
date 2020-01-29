@@ -1,0 +1,19 @@
+.Community-Social {
+  margin-bottom: 56px;
+}
+
+.Community-SocialTitle {
+  font-family: Open-Sans;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 6px;
+  color: #2a2a2a;
+}
+
+.Community-SocialIcon {
+  width: 45px;
+  height: 45px;
+  transform: scale(1.5);
+  filter: invert(57%);
+  padding: 7px;
+}

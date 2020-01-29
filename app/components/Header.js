@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { withRouter, Link, matchPath } from 'react-router-dom'
 import useStoreon from 'storeon/react'
 import { Layout, Menu } from 'antd'
-import { LOGOUT } from '../store/user'
+import { LOGOUT } from 'store/user'
 
-import Logo from './Logo/Logo'
+import { Logo } from 'components/Logo'
 import Burger from './Burger/Burger'
 
 import './main-nav.css'
@@ -41,7 +41,7 @@ export default withRouter(
     return (
       <Header className="main-nav">
         <div className="main-nav__logo">
-          <Logo theme="dark" />
+          <Logo theme="default" />
         </div>
         <div className={`main-nav__menu ${isMenuOpen ? 'is-open' : ''}`}>
           <Menu theme={themeMenu} selectable={false} className="main-menu">

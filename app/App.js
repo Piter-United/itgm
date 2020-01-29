@@ -2,21 +2,18 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { Layout } from 'antd'
 
-const { Content, Footer } = Layout
-
-import HomePage from './components/HomePage/HomePage'
-import PrivateRoute from './components/PrivateRoute'
-import User from './components/User'
-import Login from './components/Login'
-import UserEdit from './components/UserEdit'
-import Activity from './components/Activity/Activity'
-import NotFound from './components/NotFound'
-import CommunityList from './components/Community/CommunityList'
-import Community from './components/Community/Community'
-import NewActivity from './components/Activity/ActivityCreate'
-import NewCommunity from './components/Community/New'
-import Partners from './components/Partners/Partners'
-import About from './components/About/About'
+import HomePage from 'components/HomePage/HomePage'
+import PrivateRoute from 'compsonents/PrivateRoute'
+import User from 'components/User'
+import Login from 'components/Login'
+import UserEdit from 'components/UserEdit'
+import Activity from 'components/Activity/Activity'
+import NotFound from 'components/NotFound'
+import CommunityList from 'components/Community/CommunityList'
+import Community from 'components/Community/Community'
+import NewActivity from 'components/Activity/ActivityCreate'
+import NewCommunity from 'components/Community/New'
+import Partners from 'components/Partners/Partners'
 
 const App = () => (
   <Switch>

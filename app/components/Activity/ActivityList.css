@@ -1,0 +1,58 @@
+.ActivityListItem {
+  border: 1px solid rgba(42, 42, 42, 0.1);
+  box-sizing: border-box;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  margin-bottom: 20px;
+  padding: 28px 51px;
+}
+
+.ActivityListItem-Misc {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ActivityListItem-TitleLink {
+  font-size: 22px;
+  font-weight: 600;
+  color: #2a2a2a;
+}
+
+.ActivityListItem-TitleLink:hover {
+  color: #2a2a2a;
+  text-decoration: underline;
+}
+
+.ActivityListItem-Likes {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.ActivityListItem-LikeIcon {
+  font-size: 20px;
+  color: #2a2a2a;
+}
+
+.ActivityListItem-LikeIcon_islike_true {
+  color: #ff5762;
+}
+
+.ActivityListItem-LikeCounter {
+  margin-left: 10px;
+}
+
+.ActivityListItem-Description {
+  white-space: pre-line;
+}
+
+.ActivityListItem-Footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 11px;
+}
+
+.ActivityListItem-Author {
+  font-size: 14px;
+  font-weight: 300;
+}

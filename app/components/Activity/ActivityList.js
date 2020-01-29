@@ -2,10 +2,13 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { List, Icon, Row, Col, Button, Typography, Divider } from 'antd'
 import useStoreon from 'storeon/react'
+import moment from 'moment'
+import cn from 'classnames'
 
 import '../Heading/Heading.css'
+import './ActivityList.css'
 
-import { GET_LIST, LIKE, UNLIKE } from '../../store/activity'
+import { GET_LIST, LIKE, UNLIKE } from 'store/activity'
 
 import history from '../../history'
 
@@ -22,45 +25,40 @@ const onHandlerClick = (userId, item, dispatch) => {
 }
 
 export const ShowItem = ({ dispatch, item, userId }) => (
-  <List.Item
-    key={item.id}
-    actions={[
-      <span
-        onClick={() => onHandlerClick(userId, item, dispatch)}
-        key={`list-item-like-${item.id}`}
-      >
-        <Icon
-          type="like-o"
-          style={{ color: item.likes.isLike ? '#1890ff' : '' }}
-        />{' '}
-        {item.likes.count}
-      </span>
-    ]}
-  >
-    <List.Item.Meta
-      title={
-        <Link style={{ color: '#1890ff' }} to={`/activity/${item.id}`}>
-          {item.resource.name}
-        </Link>
-      }
-      description={
+  <List.Item className="ActivityListItem" key={item.id}>
+    <div>
+      <div className="ActivityListItem-Misc">
+        <span>{moment(item.ts).format('DD.MM.YYYY')}</span>
         <div>
           {item.community &&
             item.community.resource &&
             item.community.resource.name}{' '}
-          {item.resource.tags.map(tag => (
-            <Button
-              key={`tag_${tag}`}
-              size="small"
-              style={{ marginRight: '.5em' }}
-            >
-              #{tag}
-            </Button>
-          ))}
         </div>
-      }
-    />
-    <div style={{ whiteSpace: 'pre-line' }}>{item.resource.description}</div>
+      </div>
+      <Link className="ActivityListItem-TitleLink" to={`/activity/${item.id}`}>
+        {item.resource.name}
+      </Link>
+    </div>
+    <div className="ActivityListItem-Description">
+      {item.resource.description}
+    </div>
+    <div className="ActivityListItem-Footer">
+      <div className="ActivityListItem-Likes" key={`list-item-like-${item.id}`}>
+        <Icon
+          onClick={() => onHandlerClick(userId, item, dispatch)}
+          type="heart"
+          theme={item.likes.isLike ? 'filled' : ''}
+          className={cn({
+            'ActivityListItem-LikeIcon': true,
+            'ActivityListItem-LikeIcon_islike_true': item.likes.isLike
+          })}
+        />{' '}
+        <span className="ActivityListItem-LikeCounter">{`(${item.likes.count})`}</span>
+      </div>
+      <span className="ActivityListItem-Author">
+        Автор: {item.resource.user.id}
+      </span>
+    </div>
   </List.Item>
 )
 

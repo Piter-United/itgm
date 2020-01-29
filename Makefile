@@ -1,7 +1,7 @@
 .PHONY: test configure lint
 
 install:
-	npm run install
+	npm install
 
 start:
 	npm run start

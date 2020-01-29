@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import { Layout } from 'antd'
 
 import HomePage from 'components/HomePage/HomePage'
-import PrivateRoute from 'compsonents/PrivateRoute'
+import PrivateRoute from 'components/PrivateRoute'
 import User from 'components/User'
 import Login from 'components/Login'
 import UserEdit from 'components/UserEdit'
@@ -14,6 +14,7 @@ import Community from 'components/Community/Community'
 import NewActivity from 'components/Activity/ActivityCreate'
 import NewCommunity from 'components/Community/New'
 import Partners from 'components/Partners/Partners'
+import About from 'components/About/About'
 
 const App = () => (
   <Switch>

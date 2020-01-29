@@ -5,14 +5,34 @@ import PrivateRoute from 'components/PrivateRoute'
 import NotFound from 'components/NotFound'
 
 import routes from './routes'
+import Layout from './components/Layout'
 
 const App = () => (
   <Switch>
     {routes.map(route =>
       route.private ? (
-        <PrivateRoute path={route.path} component={route.component} />
+        <PrivateRoute
+          path={route.path}
+          component={props => (
+            <Layout
+              theme={route.theme}
+              component={route.component}
+              {...props}
+            />
+          )}
+        />
       ) : (
-        <Route path={route.path} exact component={route.component} />
+        <Route
+          path={route.path}
+          exact
+          component={props => (
+            <Layout
+              theme={route.theme}
+              component={route.component}
+              {...props}
+            />
+          )}
+        />
       )
     )}
     <Route component={NotFound} />

@@ -6,10 +6,15 @@
   line-height: 30px;
 }
 
-.Logo_theme_default {
-  color: #fff;
+.Logo:hover,
+.Logo:focus {
+  opacity: 0.5;
 }
 
 .Logo_theme_inverse {
+  color: #ffffff;
+}
+
+.Logo_theme_default {
   color: #2a2a2a;
 }

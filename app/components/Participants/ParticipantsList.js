@@ -1,8 +1,8 @@
 import React from 'react'
 import { Icon } from 'antd'
 
-import find from '../../asset/find.svg'
-import sort from '../../asset/sort.svg'
+import find from '/asset/find.svg'
+import sort from '/asset/sort.svg'
 import Participant from './Participant'
 import { InnerPageContentContainer } from '../InnerPageContentContainer'
 

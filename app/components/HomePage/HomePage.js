@@ -12,7 +12,7 @@ import './HomePage.css'
 const HomePage = () => {
   return (
     <div className="out">
-      <Header theme="default" />
+      <Header theme="inverse" />
       <Hero />
 
       <PageSection>
@@ -39,7 +39,7 @@ const HomePage = () => {
         </ContentContainer>
       </PageSection>
 
-      <Footer />
+      <Footer theme="inverse" />
     </div>
   )
 }

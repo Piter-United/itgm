@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { List, Icon, Row, Col, Button, Typography, Divider } from 'antd'
+import { List, Icon, Row, Col, Typography, Divider } from 'antd'
 import useStoreon from 'storeon/react'
 import moment from 'moment'
 import cn from 'classnames'
 
+import { ButtonLink } from '../UI'
 import '../Heading/Heading.css'
 import './ActivityList.css'
 
@@ -66,26 +67,14 @@ export const ShowItem = ({ dispatch, item, userId }) => (
 const RenderDiscussion = ({ userId, user }) => {
   if (userId) {
     if (user) {
-      return (
-        <Button icon="plus-circle" href="/activity/new">
-          Добавить обсуждение
-        </Button>
-      )
+      return <ButtonLink text="Добавить Тему" href="/activity/new" />
     }
-    return (
-      <Button icon="plus-circle" href="/user/edit">
-        Добавить обсуждение
-      </Button>
-    )
+    return <ButtonLink text="Добавить Тему" href="/user/edit" />
   }
-  return (
-    <Button icon="plus-circle" href="/login">
-      Добавить обсуждение
-    </Button>
-  )
+  return <ButtonLink text="Добавить Тему" href="/login" />
 }
 
-const ActivityList = () => {
+const ActivityListSection = () => {
   const { userId, user, activity, dispatch } = useStoreon(
     'user',
     'userId',
@@ -99,16 +88,98 @@ const ActivityList = () => {
   return (
     <div className="content">
       <Row style={{ display: 'flex', alignItems: 'baseline' }}>
-        <Col span={18}>
-          <Title className="heading heading_level_1">Обсуждения</Title>
-        </Col>
-        <Col span={6}>
-          <RenderDiscussion userId={userId} user={user} />
+        <Col span={24}>
+          <Title className="heading heading_level_1">
+            Программа обсуждений
+          </Title>
         </Col>
       </Row>
       <Divider />
       <Row>
-        <Col span={18}>
+        <Col span={24}>
+          <List
+            itemLayout="vertical"
+            size="large"
+            pagination={false}
+            loading={activity.loading}
+            dataSource={activity.list.slice(0, 3)}
+            renderItem={item => (
+              <ShowItem
+                key={item.id}
+                userId={userId}
+                item={item}
+                dispatch={dispatch}
+              />
+            )}
+          />
+        </Col>
+      </Row>
+    </div>
+  )
+}
+
+const ActivityListPage = () => {
+  const { userId, user, activity, dispatch } = useStoreon(
+    'user',
+    'userId',
+    'activity'
+  )
+  const countActivityRecords = activity.list.length
+
+  const [showFilter, toggleFilter] = useState(false)
+
+  useEffect(() => {
+    dispatch(GET_LIST)
+  }, [dispatch])
+
+  return (
+    <div className="content">
+      <Row style={{ display: 'flex', alignItems: 'baseline' }}>
+        <Col span={18} offset={3}>
+          <Title className="heading heading_level_1">
+            Программа обсуждений
+            <span style={{ color: '#ABABAB', fontWeight: '300' }}>
+              {' '}
+              ({countActivityRecords})
+            </span>
+          </Title>
+        </Col>
+      </Row>
+      <Row
+        style={{ display: 'flex', alignItems: 'baseline', marginTop: '20px' }}
+      >
+        <Col
+          span={18}
+          offset={3}
+          style={{ display: 'flex', justifyContent: 'space-between' }}
+        >
+          <RenderDiscussion userId={userId} user={user} />
+          <button
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              outline: 'none'
+            }}
+            onClick={() => toggleFilter(!showFilter)}
+          >
+            <Icon type="search" style={{ fontSize: '20px' }} />
+            <Icon
+              type="filter"
+              style={{ fontSize: '20px', marginLeft: '10px' }}
+            />
+          </button>
+        </Col>
+      </Row>
+      <Row style={{ display: 'flex', alignItems: 'baseline' }}>
+        <Col span={18} offset={3}>
+          <Divider />
+        </Col>
+      </Row>
+      <Row>
+        <Col span={18} offset={3}>
           <List
             itemLayout="vertical"
             size="large"
@@ -125,7 +196,6 @@ const ActivityList = () => {
             )}
           />
         </Col>
-        <Col span={6} />
       </Row>
     </div>
   )
@@ -133,8 +203,8 @@ const ActivityList = () => {
 
 export const WrappedActivityList = () => (
   <InnerPageContentContainer>
-    <ActivityList />
+    <ActivityListPage />
   </InnerPageContentContainer>
 )
 
-export default ActivityList
+export default ActivityListSection

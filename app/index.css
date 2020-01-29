@@ -70,9 +70,3 @@
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-display: swap;
 }
-
-#app {
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
-}

@@ -5,8 +5,9 @@
 }
 
 .About-Header {
+  font-family: 'PlayfareDisplay';
+  font-weight: 700;
   font-size: 36px;
-  font-weight: bold;
   margin-top: 60px;
   margin-bottom: 40px;
   position: relative;

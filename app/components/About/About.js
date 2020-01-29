@@ -32,7 +32,9 @@ const About = () => (
         aliquip ex ea commodo consequat.
       </p>
       <div className="About-Container">
-        <div className="About-ContainerLeft">{AboutDescription()}</div>
+        <div className="About-ContainerLeft">
+          <AboutDescription />
+        </div>
         <div className="About-ContainerRight">
           <img src={AboutImgInfo} alt="about-info" className="About-Img" />
         </div>

@@ -16,7 +16,9 @@ const HeaderList = () => {
     <ul className="Header-List">
       {linkList.map(link => (
         <li className="Header-Item" key={link}>
-          <a className="Header-Link">{link}</a>
+          <a className="Header-Link" href="/">
+            {link}
+          </a>
         </li>
       ))}
     </ul>
@@ -27,7 +29,7 @@ const Header = ({ theme = 'default' }) => {
   return (
     <header className={`Header Header_theme_${theme}`}>
       <div className="Header-Container">
-        <Link to="/">
+        <Link className="Header-Logo" to="/">
           <Logo theme={theme} />
         </Link>
         <HeaderList />

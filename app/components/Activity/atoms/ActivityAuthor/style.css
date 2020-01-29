@@ -5,18 +5,18 @@
   line-height: 19px;
 }
 
-.ActivityAuthor__Avatar {
+.ActivityAuthor-Avatar {
   flex-shrink: 0;
   margin-right: 10px;
 }
 
-.ActivityAuthor__Name {
+.ActivityAuthor-Name {
   padding: 0;
   margin: 0;
   color: #2a2a2a;
 }
 
-.ActivityAuthor__Date {
+.ActivityAuthor-Date {
   padding: 0;
   margin: 0;
   color: rgba(158, 158, 158, 0.6);

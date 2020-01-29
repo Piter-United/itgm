@@ -13,7 +13,7 @@
   margin: 0 auto;
 }
 
-.Footer-Logo {
+.Footer-LogoContainer {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -21,6 +21,11 @@
   padding-right: 110px;
   border-right-width: 2px;
   border-right-style: solid;
+}
+
+.Footer-Logo:hover,
+.Footer-Logo:focus {
+  opacity: 0.5;
 }
 
 .Footer-Nav {

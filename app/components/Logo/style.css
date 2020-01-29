@@ -6,11 +6,6 @@
   line-height: 30px;
 }
 
-.Logo:hover,
-.Logo:focus {
-  opacity: 0.5;
-}
-
 .Logo_theme_inverse {
   color: #ffffff;
 }

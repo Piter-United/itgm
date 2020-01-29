@@ -9,18 +9,22 @@ import UserIcon from 'icons/user-icon.svg'
 
 import { Logo } from 'components/Logo'
 
+import routes from '../../routes'
+
 const linkList = ['Главная', 'Программа', 'Сообщества', 'Участники', 'Партнеры']
 
 const HeaderList = () => {
   return (
     <ul className="Header-List">
-      {linkList.map(link => (
-        <li className="Header-Item" key={link}>
-          <a className="Header-Link" href="/">
-            {link}
-          </a>
-        </li>
-      ))}
+      {routes
+        .filter(v => v.inHeader)
+        .map(({ path, title }) => (
+          <li className="Header-Item" key={path}>
+            <Link className="Header-Link" to={path}>
+              {title}
+            </Link>
+          </li>
+        ))}
     </ul>
   )
 }

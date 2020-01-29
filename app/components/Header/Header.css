@@ -35,10 +35,6 @@
   opacity: 0.5;
 }
 
-.Header-Link:active {
-  opacity: 0.5;
-}
-
 .Header-UserMenu {
   display: flex;
   justify-content: space-between;
@@ -59,7 +55,9 @@
 }
 
 .Header-Icon:hover,
-.Header-Icon:focus {
+.Header-Icon:focus,
+.Header-Logo:hover,
+.Header-Logo:focus {
   opacity: 0.5;
 }
 

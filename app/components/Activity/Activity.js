@@ -51,12 +51,12 @@ const Activity = ({
       <Header />
       <InnerPageContentContainer>
         <main className="Activity">
-          <div className="Activity__Breadcrumbs">
+          <div className="Activity-Breadcrumbs">
             <Breadcrumbs path="#" viewPath="/Программа" />
           </div>
-          <div className="Activity__Wrapper">
-            <section className="Activity__Content">
-              <h1 className="Activity__Header">
+          <div className="Activity-Wrapper">
+            <section className="Activity-Content">
+              <h1 className="Activity-Header">
                 {activity.name}
                 {userId && userId === activity.user.id && (
                   <Icon
@@ -68,23 +68,23 @@ const Activity = ({
                   />
                 )}
               </h1>
-              <div className="Activity__Tags">
+              <div className="Activity-Tags">
                 <Tags data={tags} />
               </div>
-              <p className="Activity__Description">{activity.description}</p>
+              <p className="Activity-Description">{activity.description}</p>
               <ActivityAuthor
                 user={resource.user.name}
                 community={resource.community.name}
                 createdAt={ts}
               />
             </section>
-            <section className="Activity__Meta">
-              <div className="Activity__Community">
-                <h2 className="Activity__SecondaryHeader">Сообщество</h2>
+            <section className="Activity-Meta">
+              <div className="Activity-Community">
+                <h2 className="Activity-SecondaryHeader">Сообщество</h2>
                 <CommunityAvatar name={resource.community.name} />
               </div>
-              <div className="Activity__Participants">
-                <h2 className="Activity__SecondaryHeader">Участники</h2>
+              <div className="Activity-Participants">
+                <h2 className="Activity-SecondaryHeader">Участники</h2>
                 <Participants data={likes} />
               </div>
             </section>

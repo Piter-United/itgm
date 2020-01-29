@@ -18,6 +18,7 @@ const routes = [
     path: '/',
     inHeader: true,
     title: 'Главная',
+    theme: 'inverse',
     component: HomePage
   },
   {

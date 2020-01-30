@@ -59,26 +59,23 @@ const UserProfile = () => {
       <p className="User-Profile__text">Пока еще не выбрал тему обсуждения</p>
     )
 
-  const UserActivities = () =>
-    userActivities.length > 0 ? (
-      <List
-        itemLayout="vertical"
-        size="large"
-        pagination={false}
-        loading={activity.loading}
-        dataSource={userActivities}
-        renderItem={item => (
-          <ShowItem
-            key={item.id}
-            userId={userId}
-            item={item}
-            dispatch={dispatch}
-          />
-        )}
-      />
-    ) : (
-      false
-    )
+  const UserActivities = () => (
+    <List
+      itemLayout="vertical"
+      size="large"
+      pagination={false}
+      loading={activity.loading}
+      dataSource={userActivities}
+      renderItem={item => (
+        <ShowItem
+          key={item.id}
+          userId={userId}
+          item={item}
+          dispatch={dispatch}
+        />
+      )}
+    />
+  )
 
   return (
     <main className="User-Profile__wrapper">
@@ -88,7 +85,7 @@ const UserProfile = () => {
         <CommunityBadgeList {...communityList} />
         <Divider style={{ border: '1px solid #ABABAB', margin: '0' }} />
         {ActivitiesHeader}
-        <UserActivities />
+        {userActivities.length > 0 && <UserActivities />}
       </section>
     </main>
   )

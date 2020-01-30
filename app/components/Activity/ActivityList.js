@@ -56,7 +56,7 @@ export const ShowItem = ({ dispatch, item, userId }) => (
         <span className="ActivityListItem-LikeCounter">{`(${item.likes.count})`}</span>
       </div>
       <span className="ActivityListItem-Author">
-        Автор: {item.resource.user.id}
+        Автор: {item.resource.user.name}
       </span>
     </div>
   </List.Item>

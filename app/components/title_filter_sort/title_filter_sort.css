@@ -4,11 +4,13 @@ body {
   font-size: 16px;
 }
 
-.title__ {
-  width: 780px;
+.title {
+  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
 }
 
 .title__header {
@@ -16,7 +18,13 @@ body {
   font-size: 36px;
   font-weight: bold;
   margin: 0;
-  margin-right: 20px;
+  margin-right: 10px;
+}
+
+.title__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
 }
 
 .title__count {
@@ -26,12 +34,10 @@ body {
   color: #2a2a2a;
   opacity: 0.4;
 }
-.title__input {
-}
 
 .title__filter {
   width: 300px;
-}
-
-.title__icon {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }

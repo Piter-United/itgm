@@ -19,17 +19,17 @@ const Title = props => {
   }
 
   return (
-    <div className="title__">
-      <div className="title__header">
-        {props.name}
+    <div className="title">
+      <div className="title__wrapper">
+        <div className="title__header">{props.name}</div>
         <span className="title__count">({props.counter})</span>
       </div>
       <div className="title__filter">
-        <input
+        {/* <input
           className="title__input"
           defaultValue={props.filter}
           onChange={onChange}
-        />
+        /> */}
         <Icon className="title__icon" onClick={onClick} type="search" />
         {Sort ? (
           <Icon

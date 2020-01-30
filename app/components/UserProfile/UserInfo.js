@@ -19,20 +19,19 @@ const UserInfo = props => {
     'Пара слов об участнике, которые он написал или не написал при регистрации. Об интересах, сфере деятельности, целях и т.д.'
   const UserPhoto = () => {
     //TODO: should be src for photo
-    const defaultSize = 80
     return (
       <div className="Profile-photo">
         {avatar_hash ? (
           <Avatar
             className="photo"
-            size={defaultSize}
+            alt="Avatar"
             src={`https://www.gravatar.com/avatar/${avatar_hash}`}
           />
         ) : (
           <Fragment>
             <Avatar
+              alt="Avatar"
               icon="user"
-              size={defaultSize}
               className="photo"
               style={{ fontSize: '70px', backgroundColor: '#46325e' }}
             />

@@ -3,9 +3,14 @@
   padding-top: unset;
 }
 .Profile-photo {
+  width: 6vw;
   position: relative;
   float: right;
   text-align: center;
+}
+.Profile-photo > .photo {
+  width: 100%;
+  height: 100%;
 }
 .Profile-info__description > h3 {
   font-family: Playfair Display;

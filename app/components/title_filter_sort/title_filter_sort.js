@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Row, Col, Button, Icon } from 'antd'
+import { Row, Col, Button, Icon, Input } from 'antd'
 import './title_filter_sort.css'
 /*
  */
@@ -19,13 +19,13 @@ const Title = props => {
   }
 
   return (
-    <div className="title__">
-      <div className="title__header">
-        {props.name}
+    <div className="title">
+      <div className="title-wrapper">
+        <div className="title__header">{props.name}</div>
         <span className="title__count">({props.counter})</span>
       </div>
       <div className="title__filter">
-        <input
+        <Input
           className="title__input"
           defaultValue={props.filter}
           onChange={onChange}

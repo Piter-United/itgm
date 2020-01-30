@@ -1,0 +1,17 @@
+.User-Profile {
+  width: calc(100vw * 0.54);
+  margin: 0 auto;
+}
+
+.User-Profile > p {
+  padding: 20px 0;
+  margin: unset;
+}
+
+.User-Profile__text {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 19px;
+}

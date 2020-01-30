@@ -1,8 +1,7 @@
 import HomePage from './components/HomePage/HomePage'
-import ActivityList from './components/Activity/ActivityList'
+import { WrappedActivityList } from './components/Activity/ActivityList'
 import ActivityCreate from 'components/Activity/ActivityCreate'
 import Activity from './components/Activity/Activity'
-import NewActivity from './components/Activity/ActivityCreate'
 import CommunityList from './components/Community/CommunityList'
 import NewCommunity from './components/Community/New'
 import Community from './components/Community/Community'
@@ -25,7 +24,7 @@ const routes = [
     path: '/activity',
     inHeader: true,
     title: 'Программа',
-    component: ActivityList
+    component: WrappedActivityList
   },
   {
     path: '/activity/new',
@@ -38,7 +37,7 @@ const routes = [
   },
   {
     path: '/activity/:id/edit',
-    component: NewActivity,
+    component: ActivityCreate,
     private: true
   },
   {

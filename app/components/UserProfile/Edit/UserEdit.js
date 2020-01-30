@@ -8,6 +8,7 @@ import '../../../components/Form/_view/Form_view_profile.css'
 
 import { GET_LIST } from 'store/community'
 import { UPDATE_USER } from 'store/user'
+import { InnerPageContentContainer } from './InnerPageContentContainer'
 
 const UserEditForm = ({ form, user, community, onUpdateUser }) => {
   const { getFieldDecorator, validateFieldsAndScroll, getFieldValue } = form
@@ -266,11 +267,13 @@ const UserEdit = () => {
     dispatch(UPDATE_USER, newData)
   }
   return (
-    <WrappedUserEditForm
-      user={user}
-      community={community}
-      onUpdateUser={onUpdateUser}
-    />
+    <InnerPageContentContainer>
+      <WrappedUserEditForm
+        user={user}
+        community={community}
+        onUpdateUser={onUpdateUser}
+      />
+    </InnerPageContentContainer>
   )
 }
 

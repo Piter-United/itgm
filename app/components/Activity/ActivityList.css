@@ -56,3 +56,16 @@
   font-size: 14px;
   font-weight: 300;
 }
+
+.ActivityFilter {
+  border-left: 1px solid rgba(42, 42, 42, 0.4);
+  display: flex;
+}
+
+.ActivityFilter-Content {
+  margin-left: 100px;
+}
+
+.ActivityPage-Content_filter_show {
+  margin-right: 100px;
+}

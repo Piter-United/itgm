@@ -1,6 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { List, Icon, Row, Col, Typography, Divider } from 'antd'
+import {
+  Button,
+  Form,
+  Input,
+  List,
+  Icon,
+  Row,
+  Col,
+  Typography,
+  Divider
+} from 'antd'
 import useStoreon from 'storeon/react'
 import moment from 'moment'
 import cn from 'classnames'
@@ -10,6 +20,7 @@ import '../Heading/Heading.css'
 import './ActivityList.css'
 
 import { GET_LIST, LIKE, UNLIKE } from 'store/activity'
+import { GET_LIST as GET_LIST_COMMUNITY } from 'store/community'
 
 import history from '../../history'
 import { InnerPageContentContainer } from '../InnerPageContentContainer'
@@ -118,6 +129,44 @@ const ActivityListSection = () => {
   )
 }
 
+const ActivityFilter = () => {
+  const { community, activity, dispatch } = useStoreon('community', 'activity')
+
+  useEffect(() => {
+    dispatch(GET_LIST_COMMUNITY)
+  }, [dispatch])
+
+  const btnsCommunities = community.list.map(e => (
+    <Button key={e.id}>{e.name}</Button>
+  ))
+
+  const btnsTags = activity.list
+    .map(e => e.resource.tags)
+    .flat()
+    .map((e, i) => <Button key={i + 'tag'}>{e}</Button>)
+
+  return (
+    <Col span={8} className="ActivityFilter">
+      <div className="ActivityFilter-Content">
+        <span>Поиск по темам</span>
+        <Form className="login-form">
+          <Form.Item>
+            <Input
+              prefix={
+                <Icon type="search" style={{ color: 'rgba(0,0,0,.25)' }} />
+              }
+            />
+          </Form.Item>
+        </Form>
+        <span>Сообщества</span>
+        <div>{btnsCommunities}</div>
+        <span>Метки</span>
+        <div>{btnsTags}</div>
+      </div>
+    </Col>
+  )
+}
+
 const ActivityListPage = () => {
   const { userId, user, activity, dispatch } = useStoreon(
     'user',
@@ -134,68 +183,62 @@ const ActivityListPage = () => {
 
   return (
     <div className="content">
-      <Row style={{ display: 'flex', alignItems: 'baseline' }}>
-        <Col span={18} offset={3}>
-          <Title className="heading heading_level_1">
-            Программа обсуждений
-            <span style={{ color: '#ABABAB', fontWeight: '300' }}>
-              {' '}
-              ({countActivityRecords})
-            </span>
-          </Title>
-        </Col>
-      </Row>
-      <Row
-        style={{ display: 'flex', alignItems: 'baseline', marginTop: '20px' }}
-      >
-        <Col
-          span={18}
-          offset={3}
-          style={{ display: 'flex', justifyContent: 'space-between' }}
-        >
-          <RenderDiscussion userId={userId} user={user} />
-          <button
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer',
-              outline: 'none'
-            }}
-            onClick={() => toggleFilter(!showFilter)}
-          >
-            <Icon type="search" style={{ fontSize: '20px' }} />
-            <Icon
-              type="filter"
-              style={{ fontSize: '20px', marginLeft: '10px' }}
-            />
-          </button>
-        </Col>
-      </Row>
-      <Row style={{ display: 'flex', alignItems: 'baseline' }}>
-        <Col span={18} offset={3}>
-          <Divider />
-        </Col>
-      </Row>
       <Row>
-        <Col span={18} offset={3}>
-          <List
-            itemLayout="vertical"
-            size="large"
-            pagination={false}
-            loading={activity.loading}
-            dataSource={activity.list}
-            renderItem={item => (
-              <ShowItem
-                key={item.id}
-                userId={userId}
-                item={item}
-                dispatch={dispatch}
-              />
-            )}
-          />
+        <Col span={showFilter ? 16 : 18} offset={showFilter ? 0 : 3}>
+          <div
+            className={cn({
+              'ActivityPage-Content': true,
+              'ActivityPage-Content_filter_show': showFilter
+            })}
+          >
+            <Title className="heading heading_level_1">
+              Программа обсуждений
+              <span style={{ color: '#ABABAB', fontWeight: '300' }}>
+                {' '}
+                ({countActivityRecords})
+              </span>
+            </Title>
+            <Row type="flex" justify="space-between">
+              <RenderDiscussion userId={userId} user={user} />
+              <button
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  outline: 'none'
+                }}
+                onClick={() => {
+                  toggleFilter(!showFilter)
+                }}
+              >
+                <Icon type="search" style={{ fontSize: '20px' }} />
+                <Icon
+                  type="filter"
+                  style={{ fontSize: '20px', marginLeft: '10px' }}
+                />
+              </button>
+            </Row>
+            <Divider />
+            <List
+              itemLayout="vertical"
+              size="large"
+              pagination={false}
+              loading={activity.loading}
+              dataSource={activity.list}
+              renderItem={item => (
+                <ShowItem
+                  key={item.id}
+                  userId={userId}
+                  item={item}
+                  dispatch={dispatch}
+                />
+              )}
+            />
+          </div>
         </Col>
+        {showFilter ? <ActivityFilter /> : null}
       </Row>
     </div>
   )

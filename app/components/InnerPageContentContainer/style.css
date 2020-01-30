@@ -1,11 +1,11 @@
 .InnerPageContentContainer {
+  flex: auto;
   padding-top: 50px;
   padding-bottom: 10px;
   padding-right: 15px;
   padding-left: 15px;
   box-shadow: inset 0px -10px 15px -15px rgb(150, 150, 150),
     inset 0px 10px 15px -15px rgb(150, 150, 150);
-  background-color: rgba(53, 59, 80, 0.05);
 }
 
 .InnerPageContentContainer-Inner {

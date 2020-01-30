@@ -1,5 +1,8 @@
 .PHONY: test configure lint
 
+setup: install
+	cp .env.tpl .env
+
 install:
 	npm install
 

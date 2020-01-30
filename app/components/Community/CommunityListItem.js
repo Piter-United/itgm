@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Avatar, Button, Typography, Row } from 'antd'
+import { Button, Typography, Row } from 'antd'
 import './CommunityList.css'
 import cn from 'classnames'
 
@@ -27,20 +27,23 @@ class CommunityListItem extends Component {
 
     return (
       <div className="community-item">
-        <div className="community-item__header">
-          <h3>
-            <Link to={`/community/${id}`}>{name}</Link>
+        <div className="community-item__wrapper">
+          <h3 className="community-item__header">
+            <Link to={`/community/${id}`} className="community-item__link">
+              {name}
+            </Link>
           </h3>
           <div className={state.cls}>{description}</div>
-          <h4 className="community-item__more">
-            <button onClick={() => setMore(!state.more)}>Подробнее</button>
+          <h4 className="community-item__datails">
+            <button
+              className="community-item__button"
+              onClick={() => setMore(!state.more)}
+            >
+              Подробнее
+            </button>
           </h4>
         </div>
-        <div className="community-item__img">
-          <div>
-            <Avatar size={80} src={`https://www.gravatar.com/avatar/`} />
-          </div>
-        </div>
+        <div className="community-item__img"></div>
       </div>
     )
   }

@@ -9,10 +9,6 @@
     width: 100%;
     margin-top: 60px;
   }
-  .Community-Page {
-    max-width: auto;
-    padding: 136px 8% 0 8%;
-  }
   .Community-Content {
     width: auto;
   }
@@ -25,18 +21,9 @@
   .Community-Additional {
     width: 230px;
   }
-  .Community-Page {
-    max-width: 1129px;
-    padding: 136px 20px 0 20px;
-  }
   .Community-Content {
     width: 680px;
   }
-}
-
-.Community-Page {
-  margin: 0 auto 0 auto;
-  height: auto;
 }
 
 .Community-Breadcrumbs {

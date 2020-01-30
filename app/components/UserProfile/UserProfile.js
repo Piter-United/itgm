@@ -59,7 +59,7 @@ const UserProfile = () => {
       <p className="User-Profile__text">Пока еще не выбрал тему обсуждения</p>
     )
 
-  const renderUserActivities = () =>
+  const UserActivities = () =>
     userActivities.length > 0 ? (
       <List
         itemLayout="vertical"
@@ -88,7 +88,7 @@ const UserProfile = () => {
         <CommunityBadgeList {...communityList} />
         <Divider style={{ border: '1px solid #ABABAB', margin: '0' }} />
         {ActivitiesHeader}
-        {renderUserActivities()}
+        <UserActivities />
       </section>
     </main>
   )

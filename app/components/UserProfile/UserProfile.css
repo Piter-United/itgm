@@ -1,3 +1,10 @@
+.User-Profile__wrapper {
+  flex: auto 1 1;
+  padding-top: 54px;
+  box-shadow: inset 0px -10px 15px -15px rgb(150, 150, 150),
+    inset 0px 10px 15px -15px rgb(150, 150, 150);
+}
+
 .User-Profile {
   width: calc(100vw * 0.54);
   margin: 0 auto;

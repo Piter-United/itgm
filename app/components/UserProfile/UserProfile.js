@@ -81,14 +81,16 @@ const UserProfile = () => {
     )
 
   return (
-    <div className="User-Profile">
-      <UserInfo {...user} />
-      <Divider style={{ border: '1px solid #ABABAB', margin: '0' }} />
-      <CommunityBadgeList {...communityList} />
-      <Divider style={{ border: '1px solid #ABABAB', margin: '0' }} />
-      {ActivitiesHeader}
-      {renderUserActivities()}
-    </div>
+    <main className="User-Profile__wrapper">
+      <section className="User-Profile">
+        <UserInfo {...user} />
+        <Divider style={{ border: '1px solid #ABABAB', margin: '0' }} />
+        <CommunityBadgeList {...communityList} />
+        <Divider style={{ border: '1px solid #ABABAB', margin: '0' }} />
+        {ActivitiesHeader}
+        {renderUserActivities()}
+      </section>
+    </main>
   )
 }
 

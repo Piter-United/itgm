@@ -3,6 +3,8 @@ import history from '../history'
 
 const defaultState = {
   activity: {
+    filter: '',
+    tags: [],
     list: [],
     loading: false
   },
@@ -28,6 +30,8 @@ export const GET_BY_ID_LOADING = 'activity/get-by-id-loading'
 export const GET_BY_ID_RELOAD_BY_LU = 'activity/get-by-id-rblu'
 export const UPDATE = 'activity/update'
 export const UPDATE_SUCCESS = 'activity/update-success'
+export const ON_FILTER = 'activity/on-filter'
+export const ON_TAG = 'activity/on-tag'
 
 const activity = store => {
   store.on('@init', () => defaultState)
@@ -48,13 +52,15 @@ const activity = store => {
   })
   store.on(SET_LIST, (state, data) => {
     // TODO: make request to backend for return sorted activity
-    const activityListByNewest = [...data.data].sort(({ ts: ts1 }, { ts: ts2 }) => {
-      const date1 = new Date(ts1)
-      const date2 = new Date(ts2)
-      if (date1 > date2) return -1
-      if (date2 < date1) return 1
-      return 0
-    })
+    const activityListByNewest = [...data.data].sort(
+      ({ ts: ts1 }, { ts: ts2 }) => {
+        const date1 = new Date(ts1)
+        const date2 = new Date(ts2)
+        if (date1 > date2) return -1
+        if (date2 < date1) return 1
+        return 0
+      }
+    )
     return {
       activity: { ...state.activity, list: activityListByNewest }
     }
@@ -205,6 +211,21 @@ const activity = store => {
       error: ERROR,
       spinner: GET_BY_ID_LOADING
     })
+  })
+  store.on(ON_FILTER, (s, filter) => {
+    return { ...s, activity: { ...s.activity, filter } }
+  })
+  store.on(ON_TAG, (s, tag) => {
+    if (-1 === s.activity.tags.indexOf(tag)) {
+      return {
+        ...s,
+        activity: { ...s.activity, tags: [...s.activity.tags, tag] }
+      }
+    }
+    return {
+      ...s,
+      activity: { ...s.activity, tags: s.activity.tags.filter(v => v !== tag) }
+    }
   })
   store.on(UPDATE_SUCCESS, (s, updated) => {
     history.push(`/activity/${updated.id}`)

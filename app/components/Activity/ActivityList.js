@@ -19,7 +19,7 @@ import { Button as ButtonCustom } from '../UI'
 import '../Heading/Heading.css'
 import './ActivityList.css'
 
-import { GET_LIST, LIKE, UNLIKE } from 'store/activity'
+import { GET_LIST, LIKE, UNLIKE, ON_FILTER, ON_TAG } from 'store/activity'
 import { GET_LIST as GET_LIST_COMMUNITY } from 'store/community'
 
 import history from '../../history'
@@ -78,25 +78,18 @@ export const ShowItem = ({ dispatch, item, userId }) => (
 const RenderDiscussion = ({ userId, user }) => {
   if (userId) {
     if (user) {
-      return <ButtonCustom type="link" text="Добавить Тему" href="/activity/new" />
+      return (
+        <ButtonCustom type="link" text="Добавить Тему" href="/activity/new" />
+      )
     }
     return <ButtonCustom type="link" text="Добавить Тему" href="/user/edit" />
   }
   return <ButtonCustom type="link" text="Добавить Тему" href="/login" />
 }
 const ButtonShowFilter = ({ handleOpenFilter }) => (
-  <button
-    className="ActivityPage-BtnFilter"
-    onClick={handleOpenFilter}
-  >
-    <Icon
-      type="search"
-      style={{ fontSize: '20px' }}
-    />
-    <Icon
-      type="filter"
-      style={{ fontSize: '20px', marginLeft: '10px' }}
-    />
+  <button className="ActivityPage-BtnFilter" onClick={handleOpenFilter}>
+    <Icon type="search" style={{ fontSize: '20px' }} />
+    <Icon type="filter" style={{ fontSize: '20px', marginLeft: '10px' }} />
   </button>
 )
 
@@ -158,11 +151,15 @@ const ActivityFilter = ({ handleClose }) => {
   const btnsTags = activity.list
     .map(e => e.resource.tags)
     .flat()
-    .map((e, i) => <Button key={i + 'tag'}>{e}</Button>)
+    .map((e, i) => (
+      <Button onClick={() => dispatch(ON_TAG, e)} key={i + 'tag'}>
+        {e}
+      </Button>
+    ))
 
   return (
-  <div className="ActivityFilter-Content">
-    <Row type='flex' justify='end'>
+    <div className="ActivityFilter-Content">
+      <Row type="flex" justify="end">
         <Icon
           className="ActivityPage-BtnCloseFilter"
           type="close"
@@ -174,9 +171,8 @@ const ActivityFilter = ({ handleClose }) => {
       <Form className="login-form">
         <Form.Item>
           <Input
-            prefix={
-              <Icon type="search" style={{ color: 'rgba(0,0,0,.25)' }} />
-            }
+            onChange={({ target }) => dispatch(ON_FILTER, target.value)}
+            prefix={<Icon type="search" style={{ color: 'rgba(0,0,0,.25)' }} />}
           />
         </Form.Item>
       </Form>
@@ -205,8 +201,12 @@ const ActivityListPage = () => {
 
   return (
     <div className="content">
-      <Row type='flex' justify='center'>
-        <Col lg={24} xl={showFilter ? 16 : 18} className="ActivityPage-WrapperContent">
+      <Row type="flex" justify="center">
+        <Col
+          lg={24}
+          xl={showFilter ? 16 : 18}
+          className="ActivityPage-WrapperContent"
+        >
           <div
             className={cn({
               'ActivityPage-Content': true,
@@ -222,7 +222,9 @@ const ActivityListPage = () => {
             </Title>
             <Row type="flex" justify="space-between">
               <RenderDiscussion userId={userId} user={user} />
-              {!showFilter ? <ButtonShowFilter handleOpenFilter={handleToggleFilter} /> : null}
+              {!showFilter ? (
+                <ButtonShowFilter handleOpenFilter={handleToggleFilter} />
+              ) : null}
             </Row>
             <Divider />
             <List
@@ -245,7 +247,7 @@ const ActivityListPage = () => {
         <Col
           className={cn({
             ActivityFilter: true,
-            ActivityFilter_hidden: !showFilter,
+            ActivityFilter_hidden: !showFilter
           })}
           lg={24}
           xl={8}

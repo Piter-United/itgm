@@ -26,7 +26,9 @@ const Title = props => {
       </div>
       <div className="title__filter">
         <Input
-          className="title__input"
+          className={
+            Filter ? 'title__input title__input--isVisible' : 'title__input'
+          }
           defaultValue={props.filter}
           onChange={onChange}
         />
@@ -36,7 +38,6 @@ const Title = props => {
           onClick={onSort}
           type={Sort ? 'sort-ascending' : 'sort-descending'}
         />
-        }
       </div>
     </div>
   )

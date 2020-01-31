@@ -84,6 +84,21 @@ const RenderDiscussion = ({ userId, user }) => {
   }
   return <ButtonCustom type="link" text="Добавить Тему" href="/login" />
 }
+const ButtonShowFilter = ({ handleOpenFilter }) => (
+  <button
+    className="ActivityPage-BtnFilter"
+    onClick={handleOpenFilter}
+  >
+    <Icon
+      type="search"
+      style={{ fontSize: '20px' }}
+    />
+    <Icon
+      type="filter"
+      style={{ fontSize: '20px', marginLeft: '10px' }}
+    />
+  </button>
+)
 
 const ActivityListSection = () => {
   const { userId, user, activity, dispatch } = useStoreon(
@@ -129,7 +144,7 @@ const ActivityListSection = () => {
   )
 }
 
-const ActivityFilter = () => {
+const ActivityFilter = ({ handleClose }) => {
   const { community, activity, dispatch } = useStoreon('community', 'activity')
 
   useEffect(() => {
@@ -146,24 +161,30 @@ const ActivityFilter = () => {
     .map((e, i) => <Button key={i + 'tag'}>{e}</Button>)
 
   return (
-    <Col span={8} className="ActivityFilter">
-      <div className="ActivityFilter-Content">
-        <span>Поиск по темам</span>
-        <Form className="login-form">
-          <Form.Item>
-            <Input
-              prefix={
-                <Icon type="search" style={{ color: 'rgba(0,0,0,.25)' }} />
-              }
-            />
-          </Form.Item>
-        </Form>
-        <span>Сообщества</span>
-        <div>{btnsCommunities}</div>
-        <span>Метки</span>
-        <div>{btnsTags}</div>
-      </div>
-    </Col>
+  <div className="ActivityFilter-Content">
+    <Row type='flex' justify='end'>
+        <Icon
+          className="ActivityPage-BtnCloseFilter"
+          type="close"
+          style={{ fontSize: '20px' }}
+          onClick={handleClose}
+        />
+      </Row>
+      <span>Поиск по темам</span>
+      <Form className="login-form">
+        <Form.Item>
+          <Input
+            prefix={
+              <Icon type="search" style={{ color: 'rgba(0,0,0,.25)' }} />
+            }
+          />
+        </Form.Item>
+      </Form>
+      <span>Сообщества</span>
+      <div>{btnsCommunities}</div>
+      <span>Метки</span>
+      <div>{btnsTags}</div>
+    </div>
   )
 }
 
@@ -176,6 +197,7 @@ const ActivityListPage = () => {
   const countActivityRecords = activity.list.length
 
   const [showFilter, toggleFilter] = useState(false)
+  const handleToggleFilter = () => toggleFilter(!showFilter)
 
   useEffect(() => {
     dispatch(GET_LIST)
@@ -183,8 +205,8 @@ const ActivityListPage = () => {
 
   return (
     <div className="content">
-      <Row>
-        <Col span={showFilter ? 16 : 18} offset={showFilter ? 0 : 3}>
+      <Row type='flex' justify='center'>
+        <Col lg={24} xl={showFilter ? 16 : 18} className="ActivityPage-WrapperContent">
           <div
             className={cn({
               'ActivityPage-Content': true,
@@ -200,16 +222,7 @@ const ActivityListPage = () => {
             </Title>
             <Row type="flex" justify="space-between">
               <RenderDiscussion userId={userId} user={user} />
-              <button
-                className='ActivityPage-BtnFilter'
-                onClick={() => toggleFilter(!showFilter)}
-              >
-                <Icon type="search" style={{ fontSize: '20px' }} />
-                <Icon
-                  type="filter"
-                  style={{ fontSize: '20px', marginLeft: '10px' }}
-                />
-              </button>
+              {!showFilter ? <ButtonShowFilter handleOpenFilter={handleToggleFilter} /> : null}
             </Row>
             <Divider />
             <List
@@ -229,7 +242,16 @@ const ActivityListPage = () => {
             />
           </div>
         </Col>
-        {showFilter ? <ActivityFilter /> : null}
+        <Col
+          className={cn({
+            ActivityFilter: true,
+            ActivityFilter_hidden: !showFilter,
+          })}
+          lg={24}
+          xl={8}
+        >
+          <ActivityFilter handleClose={handleToggleFilter} />
+        </Col>
       </Row>
     </div>
   )

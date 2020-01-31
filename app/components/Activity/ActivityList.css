@@ -57,17 +57,33 @@
   font-weight: 300;
 }
 
+.ActivityPage-WrapperContent {
+  order: 2;
+}
+
 .ActivityFilter {
-  border-left: 1px solid rgba(42, 42, 42, 0.4);
   display: flex;
+  order: 1;
 }
 
-.ActivityFilter-Content {
-  margin-left: 100px;
+.ActivityFilter_visible {
+  display: none;
 }
 
-.ActivityPage-Content_filter_show {
-  margin-right: 100px;
+@media only screen and (min-width: 1200px)  {
+  .ActivityPage-WrapperContent {
+    order: 1;
+  }
+  .ActivityFilter {
+    border-left: 1px solid rgba(42, 42, 42, 0.4);
+    order: 2;
+  }
+  .ActivityPage-Content_filter_show {
+    margin-right: 100px;
+  }
+  .ActivityFilter-Content {
+    margin-left: 100px;
+  }
 }
 
 .ActivityPage-BtnFilter {
@@ -81,5 +97,15 @@
 
 .ActivityPage-BtnFilter:hover,
 .ActivityPage-BtnFilter:focus {
+  color: #ff5762;
+}
+
+.ActivityPage-BtnCloseFilter {
+  cursor: pointer;
+  outline: none;
+}
+
+.ActivityPage-BtnCloseFilter:hover,
+.ActivityPage-BtnCloseFilter:focus {
   color: #ff5762;
 }

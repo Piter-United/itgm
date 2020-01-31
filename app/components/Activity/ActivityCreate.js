@@ -37,7 +37,7 @@ const AcivityCreateForm = ({
       onSubmit={handleSubmit}
     >
       <div className="form__header">
-        <Title className="Heading Heading">
+        <Title className="Heading Heading_level_1">
           {act && act.id ? 'Редактирование темы' : 'Добавление новой темы'}
         </Title>
       </div>

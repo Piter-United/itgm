@@ -1,5 +1,7 @@
 import React from 'react'
 
+import cn from 'classnames'
+
 import './style.css'
 
 export const Button = ({
@@ -7,10 +9,15 @@ export const Button = ({
   size = 'm',
   type = 'button',
   color = 'primary',
-  onClick
+  onClick,
+  className = ''
 }) => (
   <button
-    className={`Button Button_size_${size} Button_color_${color}`}
+    className={cn(
+      `Button Button_size_${size}`,
+      `Button_color_${color}`,
+      className
+    )}
     type={type}
     onClick={onClick}
   >

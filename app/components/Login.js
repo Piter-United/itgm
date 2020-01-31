@@ -78,7 +78,7 @@ const Login = ({ location: { search } }) => {
       <InnerPageContentContainer>
         <div className="form form_view_auth" style={{ textAlign: 'center' }}>
           <header className="form__header">
-            <Title level={1} className="heading heading_level_1 form__heading">
+            <Title level={1} className="Heading Heading form__heading">
               Зарегистрироваться.
             </Title>
             <div className="form__subheading">

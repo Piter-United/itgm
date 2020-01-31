@@ -69,3 +69,17 @@
 .ActivityPage-Content_filter_show {
   margin-right: 100px;
 }
+
+.ActivityPage-BtnFilter {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.ActivityPage-BtnFilter:hover,
+.ActivityPage-BtnFilter:focus {
+  color: #ff5762;
+}

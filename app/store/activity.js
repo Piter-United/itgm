@@ -43,20 +43,20 @@ const activity = store => {
       spinner: LOADING
     })
   })
-  store.on(LOADING, (s, loading) => {
-    return { activity: { ...s.activity, loading } }
+  store.on(LOADING, (state, loading) => {
+    return { activity: { ...state.activity, loading } }
   })
-  store.on(SET_LIST, (s, data) => {
-    const activityListByNewest = [...data.data].sort((a, b) => {
-      if (new Date(a.ts) > new Date(b.ts)) {
-        return -1
-      } else if (new Date(b.ts) < new Date(a.ts)) {
-        return 1
-      }
+  store.on(SET_LIST, (state, data) => {
+    // TODO: make request to backend for return sorted activity
+    const activityListByNewest = [...data.data].sort(({ ts: ts1 }, { ts: ts2 }) => {
+      const date1 = new Date(ts1)
+      const date2 = new Date(ts2)
+      if (date1 > date2) return -1
+      if (date2 < date1) return 1
       return 0
     })
     return {
-      activity: { ...s.activity, list: activityListByNewest }
+      activity: { ...state.activity, list: activityListByNewest }
     }
   })
   store.on(ERROR, (s, { data, message }) => {

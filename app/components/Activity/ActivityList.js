@@ -15,7 +15,7 @@ import useStoreon from 'storeon/react'
 import moment from 'moment'
 import cn from 'classnames'
 
-import { ButtonLink } from '../UI'
+import { Button as ButtonCustom } from '../UI'
 import '../Heading/Heading.css'
 import './ActivityList.css'
 
@@ -78,11 +78,11 @@ export const ShowItem = ({ dispatch, item, userId }) => (
 const RenderDiscussion = ({ userId, user }) => {
   if (userId) {
     if (user) {
-      return <ButtonLink text="Добавить Тему" href="/activity/new" />
+      return <ButtonCustom type="link" text="Добавить Тему" href="/activity/new" />
     }
-    return <ButtonLink text="Добавить Тему" href="/user/edit" />
+    return <ButtonCustom type="link" text="Добавить Тему" href="/user/edit" />
   }
-  return <ButtonLink text="Добавить Тему" href="/login" />
+  return <ButtonCustom type="link" text="Добавить Тему" href="/login" />
 }
 
 const ActivityListSection = () => {
@@ -201,17 +201,8 @@ const ActivityListPage = () => {
             <Row type="flex" justify="space-between">
               <RenderDiscussion userId={userId} user={user} />
               <button
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  background: 'none',
-                  border: 'none',
-                  cursor: 'pointer',
-                  outline: 'none'
-                }}
-                onClick={() => {
-                  toggleFilter(!showFilter)
-                }}
+                className='ActivityPage-BtnFilter'
+                onClick={() => toggleFilter(!showFilter)}
               >
                 <Icon type="search" style={{ fontSize: '20px' }} />
                 <Icon

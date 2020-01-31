@@ -8,6 +8,24 @@
 }
 
 @font-face {
+  font-family: 'Open-Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local('OpenSans'), local('Open-Sans'),
+    url('../../public/fonts/OpenSans-Light.woff'),
+    url('../../public/fonts/OpenSans-Light.ttf') format('truetype'); /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'Open-Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: local('OpenSans'), local('Open-Sans'),
+    url('../../public/fonts/OpenSans-SemiBold.woff'),
+    url('../../public/fonts/OpenSans-SemiBold.ttf') format('truetype'); /* Safari, Android, iOS */
+}
+
+@font-face {
   font-family: 'PlayfairDisplay';
   font-style: normal;
   font-weight: 700;

@@ -100,7 +100,7 @@ const ActivityList = () => {
     <div className="content">
       <Row style={{ display: 'flex', alignItems: 'baseline' }}>
         <Col span={18}>
-          <Title className="heading heading_level_1">Обсуждения</Title>
+          <Title className="Heading Heading_level_1">Обсуждения</Title>
         </Col>
         <Col span={6}>
           <RenderDiscussion userId={userId} user={user} />

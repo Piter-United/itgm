@@ -18,7 +18,6 @@ const mapper = (arr, Iterator) => {
     return arr.map(v => <Iterator key={v.id} {...v} />)
   } catch (e) {
     console.log('mapper error', e)
-    // <div>Список пуст!</div>
   }
 }
 
@@ -33,19 +32,14 @@ const splitList = arr => {
 }
 
 const CommunityList = props => {
-  console.log(props)
   const { user, community, dispatch } = useStoreon('community', 'user')
   const [filtered, setFiltered] = useState(community.list)
-  // console.log(filtered, community.list)
 
   const filterCommunites = sInputValue => {
     if (sInputValue === '') {
       return setFiltered(community.list)
     }
-
     const isCommunityLike = filterCommunity(sInputValue)
-    // console.log("filtered filter", community.list.filter(isCommunityLike))
-    // console.log("filtered map", community.list.map(v=>isCommunityLike(v)))
     setFiltered(community.list.filter(isCommunityLike))
   }
 
@@ -62,7 +56,10 @@ const CommunityList = props => {
     counter: community.list ? community.list.length : 0,
     filter: community.filter,
     onFilter: value => dispatch(ON_FILTER, value),
-    onSort: console.log
+    // TODO: сделать сортировку
+    onSort: e => {
+      console.log
+    }
   }
 
   const [left, right] = splitList(filtered)

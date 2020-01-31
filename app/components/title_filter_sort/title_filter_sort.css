@@ -5,10 +5,15 @@ body {
 }
 
 .title {
-  width: 100%;
+  width: 780px;
   margin: 0 auto;
   display: flex;
-  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title-wrapper {
+  display: flex;
   justify-content: space-between;
   align-items: baseline;
 }
@@ -21,12 +26,6 @@ body {
   margin-right: 10px;
 }
 
-.title__wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-}
-
 .title__count {
   font-size: 30px;
   font-weight: 600;
@@ -36,8 +35,23 @@ body {
 }
 
 .title__filter {
-  width: 300px;
+  width: 400px;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+}
+
+.title__input {
+  display: none;
+  margin-right: 10px;
+}
+
+.title__input--isVisible {
+  display: inline-block;
+}
+
+.title__icon {
+  display: flex;
+  justify-content: center;
   align-items: center;
 }

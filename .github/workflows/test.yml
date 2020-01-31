@@ -1,7 +1,7 @@
 name: Tests
 on:
-  pull_request:
-    branches:
+  pull_request:	
+    branches:	
       - '*'
   push:
     branches-ignore:
@@ -30,9 +30,9 @@ jobs:
 
       - name: lint
         run: npm run lint
-
+     
       - uses: yanzay/notify-telegram@v0.1.0
-        if: always()
+        if: always() && github.event == 'push'
         with:
           chat: ${{ secrets.chat }}
           token: ${{ secrets.token }}

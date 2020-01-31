@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Row, Col, Button, Icon } from 'antd'
+import { Row, Col, Button, Icon, Input } from 'antd'
 import './title_filter_sort.css'
 /*
  */
@@ -20,30 +20,24 @@ const Title = props => {
 
   return (
     <div className="title">
-      <div className="title__wrapper">
+      <div className="title-wrapper">
         <div className="title__header">{props.name}</div>
         <span className="title__count">({props.counter})</span>
       </div>
       <div className="title__filter">
-        {/* <input
-          className="title__input"
+        <Input
+          className={
+            Filter ? 'title__input title__input--isVisible' : 'title__input'
+          }
           defaultValue={props.filter}
           onChange={onChange}
-        /> */}
+        />
         <Icon className="title__icon" onClick={onClick} type="search" />
-        {Sort ? (
-          <Icon
-            className="title__icon"
-            onClick={onSort}
-            type="sort-ascending"
-          />
-        ) : (
-          <Icon
-            className="title__icon"
-            onClick={onSort}
-            type="sort-descending"
-          />
-        )}
+        <Icon
+          className="title__icon"
+          onClick={onSort}
+          type={Sort ? 'sort-ascending' : 'sort-descending'}
+        />
       </div>
     </div>
   )

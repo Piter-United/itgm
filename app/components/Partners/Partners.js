@@ -1,6 +1,7 @@
 import React from 'react'
 import './Partners.css'
 import { InnerPageContentContainer } from '../InnerPageContentContainer'
+import Avatar from 'ui/Avatar'
 
 const partners = [
   {
@@ -22,7 +23,13 @@ const partners = [
 const Partner = ({ id, img, name, desc }) => (
   <li className="partner" key={id}>
     <div className="partner__cnt">
-      <img src={img} alt="" className="partner__img" />
+      <Avatar
+        type="user"
+        size="xl"
+        alt={name}
+        src={img}
+        className="partner__img"
+      />
     </div>
     <h3 className="partner__header">{name}</h3>
     <p className="partner__desc">{desc}</p>

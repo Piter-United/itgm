@@ -12,9 +12,10 @@ class CommunityListItem extends Component {
       more: false,
       cls: cn('community-item__desc', 'community__desc_overflow')
     }
+    this.setMore = this.setMore.bind(this)
   }
 
-  setMore = more => {
+  setMore(more) {
     // const style = more ? descStyle: { }
     const cls = more
       ? cn('community-item__desc')

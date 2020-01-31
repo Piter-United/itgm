@@ -1,11 +1,22 @@
 import React from 'react'
+import useStoreon from 'storeon/react'
 
 import './style.css'
 
 import { Button } from 'ui'
 import { Link } from 'react-router-dom'
 
+const ButtonRegistration = () => (
+  <Button
+    text="Зарегистрироваться"
+    onClick={() => console.log('ok')}
+    className="Hero-Register"
+  />
+)
+
 const Hero = () => {
+  const { user } = useStoreon('user')
+
   return (
     <div className="Hero">
       <div className="Hero-ContentWrapper">
@@ -15,11 +26,7 @@ const Hero = () => {
             Весенний слёт IT-сообществ Петербурга 28 марта 2020.
           </p>
           <div className="Hero-ButtonsWrapper">
-            <Button
-              text="Зарегистрироваться"
-              onClick={() => console.log('ok')}
-              className="Hero-Register"
-            />
+            {user === null ? <ButtonRegistration /> : null}
             <Link className="Hero-About" to="/about">
               Подробнее
             </Link>

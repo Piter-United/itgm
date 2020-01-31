@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import connect from 'storeon/react/connect'
 import { Link } from 'react-router-dom'
 import {
   Button,
@@ -171,6 +172,7 @@ const ActivityFilter = ({ handleClose }) => {
       <Form className="login-form">
         <Form.Item>
           <Input
+            defaultValue={activity.filter}
             onChange={({ target }) => dispatch(ON_FILTER, target.value)}
             prefix={<Icon type="search" style={{ color: 'rgba(0,0,0,.25)' }} />}
           />
@@ -184,17 +186,42 @@ const ActivityFilter = ({ handleClose }) => {
   )
 }
 
-const ActivityListPage = () => {
+const createFilter = (filter, tags) => {
+  const isFilter = filter || !!tags.length
+  const filterLow = filter.toLowerCase()
+  return activity => {
+    if (!isFilter) {
+      return true
+    }
+    // tags
+    if (activity.resource.tags.filter(tag => tags.indexOf(tag) == -1) > 0) {
+      return true
+    }
+    // filter
+    const data = [activity.resource.name, activity.resource.description]
+      .join(' ')
+      .toLowerCase()
+    if (data.indexOf(filterLow) !== -1) {
+      return true
+    }
+    return false
+  }
+}
+
+const ActivityListPage = props => {
+  console.log('ActivityListPage', props)
   const { userId, user, activity, dispatch } = useStoreon(
     'user',
     'userId',
     'activity'
   )
   const countActivityRecords = activity.list.length
-
+  const countTags = activity.tags.length
   const [showFilter, toggleFilter] = useState(false)
   const handleToggleFilter = () => toggleFilter(!showFilter)
-
+  const filter = createFilter(activity.filter, activity.tags)
+  const filtered = activity.list.filter(filter)
+  const countFilteredRecords = filtered.length
   useEffect(() => {
     dispatch(GET_LIST)
   }, [dispatch])
@@ -217,7 +244,7 @@ const ActivityListPage = () => {
               Программа обсуждений
               <span style={{ color: '#ABABAB', fontWeight: '300' }}>
                 {' '}
-                ({countActivityRecords})
+                ({countFilteredRecords})
               </span>
             </Title>
             <Row type="flex" justify="space-between">
@@ -232,7 +259,7 @@ const ActivityListPage = () => {
               size="large"
               pagination={false}
               loading={activity.loading}
-              dataSource={activity.list}
+              dataSource={filtered}
               renderItem={item => (
                 <ShowItem
                   key={item.id}

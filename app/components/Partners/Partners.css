@@ -1,6 +1,7 @@
 .partners {
   width: 100%;
   max-width: 780px;
+  min-width: 320px;
   margin: 0 auto;
 }
 
@@ -83,4 +84,13 @@
 .partner__desc {
   margin: 0;
   text-align: center;
+}
+
+@media only screen and (max-width: 760px) {
+  .partners__wrapper {
+    justify-content: center;
+  }
+  .partner__desc {
+    font-size: 18px;
+  }
 }

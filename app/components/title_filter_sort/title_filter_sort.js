@@ -31,19 +31,12 @@ const Title = props => {
           onChange={onChange}
         />
         <Icon className="title__icon" onClick={onClick} type="search" />
-        {Sort ? (
-          <Icon
-            className="title__icon"
-            onClick={onSort}
-            type="sort-ascending"
-          />
-        ) : (
-          <Icon
-            className="title__icon"
-            onClick={onSort}
-            type="sort-descending"
-          />
-        )}
+        <Icon
+          className="title__icon"
+          onClick={onSort}
+          type={Sort ? 'sort-ascending' : 'sort-descending'}
+        />
+        }
       </div>
     </div>
   )

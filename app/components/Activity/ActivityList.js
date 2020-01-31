@@ -274,7 +274,7 @@ const ActivityListPage = props => {
         <Col
           className={cn({
             ActivityFilter: true,
-            ActivityFilter_hidden: !showFilter
+            ActivityFilter_visible: !showFilter
           })}
           lg={24}
           xl={8}

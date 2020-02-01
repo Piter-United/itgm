@@ -17,3 +17,7 @@ ITGM App - это SPA приложение для формирование пр�
 ## Common Rules Development
 
 - Именование css BEM ([cтиль React](https://ru.bem.info/methodology/naming-convention/#%D1%81%D1%82%D0%B8%D0%BB%D1%8C-react))
+
+## Обновляем локальный репозиторий
+
+`git remote add upstream https://github.com/Piter-United/itgm.git git fetch upstream git checkout master git merge upstream/master`

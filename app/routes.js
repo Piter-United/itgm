@@ -1,4 +1,3 @@
-import HomePage from './components/HomePage/HomePage'
 import { WrappedActivityList } from './components/Activity/ActivityList'
 import ActivityCreate from 'components/Activity/ActivityCreate'
 import Activity from './components/Activity/Activity'
@@ -13,13 +12,6 @@ import PartnerList from './components/Partners/Partners'
 import About from './components/About/About'
 
 const routes = [
-  {
-    path: '/',
-    inHeader: true,
-    title: 'Главная',
-    theme: 'inverse',
-    component: HomePage
-  },
   {
     path: '/activity',
     inHeader: true,

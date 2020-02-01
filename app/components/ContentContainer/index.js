@@ -1,9 +1,9 @@
 import React from 'react'
 
-import './ContentContainer.css'
+import './style.css'
 
 const ContentContainer = ({ children }) => {
-  return <div className="content-container">{children}</div>
+  return <div className="ContentContainer">{children}</div>
 }
 
 export default ContentContainer

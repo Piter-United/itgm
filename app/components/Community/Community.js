@@ -40,49 +40,42 @@ const Community = ({
 
   return (
     <InnerPageContentContainer>
-      <div className="Community-Page">
-        <div className="Community-Breadcrumbs">
-          <Breadcrumbs path="/community" viewPath="/Сообщества" />
-        </div>
-        <div className="Community-Body">
-          <div className="Community-Content">
-            <div className="Community-HeaderContainer">
-              <h2 className="Community-Header">{community.name}</h2>
-              {userId === community.owner.id && (
-                <Link
-                  style={{ lineHeight: '48px' }}
-                  to={`/community/${id}/edit`}
-                >
-                  <PenIcon />
-                </Link>
-              )}
-            </div>
-            {globalLink && (
-              <div className="Community-Link">
-                <a href={globalLink.link}>{globalLink.link}</a>
-              </div>
-            )}
-            <CommunityTags data={community.tags || []} />
-            <div className="Community-Description">{community.description}</div>
-            <ActivityAuthor
-              user={community.owner.name}
-              community={community.name}
-              createdAt={community.ts}
-            />
-          </div>
-          <Divider className="Community-Separator" type="vertical" />
-          <div className="Community-Additional">
-            <CommunitySocial data={social} />
-            {community.participants.length !== 0 && (
-              <div className="Community-Participants">
-                <p className="Community-ParticipantsTitle">Участники</p>
-                <Participants data={community.participants} />
-              </div>
-            )}
-          </div>
-        </div>
-        <Curl />
+      <div className="Community-Breadcrumbs">
+        <Breadcrumbs path="/community" viewPath="/Сообщества" />
       </div>
+      <div className="Community-Body">
+        <div className="Community-Content">
+          <div className="Community-HeaderContainer">
+            <h2 className="Community-Header">{community.name}</h2>
+            {userId === community.owner.id && (
+              <Link style={{ lineHeight: '48px' }} to={`/community/${id}/edit`}>
+                <PenIcon />
+              </Link>
+            )}
+          </div>
+          {globalLink && (
+            <div className="Community-Link">
+              <a href={globalLink.link}>{globalLink.link}</a>
+            </div>
+          )}
+          <CommunityTags data={community.tags || []} />
+          <div className="Community-Description">{community.description}</div>
+          <ActivityAuthor
+            user={community.owner.name}
+            community={community.name}
+            createdAt={community.ts}
+          />
+        </div>
+        <Divider className="Community-Separator" type="vertical" />
+        <div className="Community-Additional">
+          <CommunitySocial data={social} />
+          <div className="Community-Participants">
+            <p className="Community-ParticipantsTitle">Участники</p>
+            <Participants data={community.participants || []} />
+          </div>
+        </div>
+      </div>
+      <Curl />
     </InnerPageContentContainer>
   )
 }

@@ -1,16 +1,21 @@
 import React, { Fragment } from 'react'
 
-import Hero from '../Hero/Hero'
+import Hero from 'components/Hero'
 import PageSection from '../PageSection/PageSection'
-import ContentContainer from '../ContentContainer/ContentContainer'
+import ContentContainer from 'components/ContentContainer'
 import ActivityList from '../Activity/ActivityList'
+import Footer from 'components/Footer'
+import Header from 'components/Header'
 
-import './HomePage.css'
+import './style.css'
 
 const HomePage = () => {
   return (
     <Fragment>
-      <Hero />
+      <div className="HomePage-FirstScreenWrapper">
+        <Header theme="inverse" />
+        <Hero />
+      </div>
       <PageSection>
         <ContentContainer>
           <ActivityList />
@@ -34,6 +39,7 @@ const HomePage = () => {
           <p>PageSection</p>
         </ContentContainer>
       </PageSection>
+      <Footer theme="inverse" />
     </Fragment>
   )
 }

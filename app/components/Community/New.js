@@ -103,7 +103,7 @@ const NewCommunityForm = ({ form, onCreateCommunity }) => {
       onSubmit={handleSubmit}
     >
       <div className="form__header">
-        <Title className="heading heading_level_1">Добавить сообщество</Title>
+        <Title className="Heading Heading_level_1">Добавить сообщество</Title>
       </div>
       <Form.Item label="Название">
         {getFieldDecorator('name', {

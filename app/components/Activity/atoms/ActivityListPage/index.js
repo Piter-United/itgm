@@ -16,12 +16,12 @@ const RenderDiscussion = ({ userId, user }) => {
   if (userId) {
     if (user) {
       return (
-        <ButtonCustom type="link" text="Добавить Тему" href="/activity/new" />
+        <ButtonCustom asLink={true} text="Добавить Тему" url="/activity/new" />
       )
     }
-    return <ButtonCustom type="link" text="Добавить Тему" href="/user/edit" />
+    return <ButtonCustom asLink={true} text="Добавить Тему" url="/user/edit" />
   }
-  return <ButtonCustom type="link" text="Добавить Тему" href="/login" />
+  return <ButtonCustom asLink={true} text="Добавить Тему" url="/login" />
 }
 const ButtonShowFilter = ({ handleOpenFilter }) => (
   <button className="ActivityPage-BtnFilter" onClick={handleOpenFilter}>

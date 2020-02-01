@@ -102,6 +102,7 @@ const activity = store => {
     notification.success({ message: 'Всё гуд, лайк записан' })
     return {
       activity: {
+        ...s.activity,
         list: s.activity.list.map(v => {
           if (v.id === data.activity.id) {
             return {
@@ -138,6 +139,7 @@ const activity = store => {
     notification.success({ message: 'Всё гуд, лайк убрали' })
     return {
       activity: {
+        ...s.activity,
         list: s.activity.list.map(v => {
           if (v.id === data.activity.id) {
             return {

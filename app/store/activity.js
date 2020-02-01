@@ -214,12 +214,21 @@ const activity = store => {
       spinner: GET_BY_ID_LOADING
     })
   })
+
   store.on(ON_FILTER, (s, filter) => {
     return { ...s, activity: { ...s.activity, filter } }
   })
+
   store.on(ON_COMMUNITY, (s, community) => {
-    return { ...s, activity: { ...s.activity, community } }
+    return {
+      ...s,
+      activity: {
+        ...s.activity,
+        community: community === s.activity.community ? '' : community
+      }
+    }
   })
+
   store.on(ON_TAG, (s, tag) => {
     if (-1 === s.activity.tags.indexOf(tag)) {
       return {

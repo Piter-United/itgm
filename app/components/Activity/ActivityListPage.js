@@ -7,6 +7,7 @@ import { List, Icon, Row, Col, Typography, Divider } from 'antd'
 import ActivityFilter from './ActivityFilter'
 import { Button as ButtonCustom } from '../UI'
 import { GET_LIST } from 'store/activity'
+import ShowItem from './ActivityListItem'
 
 const { Title } = Typography
 
@@ -21,6 +22,7 @@ const RenderDiscussion = ({ userId, user }) => {
   }
   return <ButtonCustom type="link" text="Добавить Тему" href="/login" />
 }
+
 const ButtonShowFilter = ({ handleOpenFilter }) => (
   <button className="ActivityPage-BtnFilter" onClick={handleOpenFilter}>
     <Icon type="search" style={{ fontSize: '20px' }} />
@@ -28,52 +30,13 @@ const ButtonShowFilter = ({ handleOpenFilter }) => (
   </button>
 )
 
-export const ShowItem = ({ dispatch, item, userId }) => (
-  <List.Item className="ActivityListItem" key={item.id}>
-    <div>
-      <div className="ActivityListItem-Misc">
-        <span>{moment(item.ts).format('DD.MM.YYYY')}</span>
-        <div>
-          {item.community &&
-            item.community.resource &&
-            item.community.resource.name}{' '}
-        </div>
-      </div>
-      <Link className="ActivityListItem-TitleLink" to={`/activity/${item.id}`}>
-        {item.resource.name}
-      </Link>
-    </div>
-    <div className="ActivityListItem-Description">
-      {item.resource.description}
-    </div>
-    <div className="ActivityListItem-Footer">
-      <div className="ActivityListItem-Likes" key={`list-item-like-${item.id}`}>
-        <Icon
-          onClick={() => onHandlerClick(userId, item, dispatch)}
-          type="heart"
-          theme={item.likes.isLike ? 'filled' : ''}
-          className={cn({
-            'ActivityListItem-LikeIcon': true,
-            'ActivityListItem-LikeIcon_islike_true': item.likes.isLike
-          })}
-        />{' '}
-        <span className="ActivityListItem-LikeCounter">{`(${item.likes.count})`}</span>
-      </div>
-      <span className="ActivityListItem-Author">
-        Автор: {item.resource.user.id}
-      </span>
-    </div>
-  </List.Item>
-)
-
 const ActivityListPage = props => {
-  console.log('ActivityListPage', props)
   const { userId, user, activity, dispatch } = useStoreon(
     'user',
     'userId',
     'activity'
   )
-  const countActivityRecords = activity.list.length
+
   const countTags = activity.tags.length
   const [showFilter, toggleFilter] = useState(false)
   const handleToggleFilter = () => toggleFilter(!showFilter)

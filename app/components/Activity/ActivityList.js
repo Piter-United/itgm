@@ -13,18 +13,15 @@ import {
   Divider
 } from 'antd'
 import useStoreon from 'storeon/react'
-import moment from 'moment'
-import cn from 'classnames'
-
-import { Button as ButtonCustom } from '../UI'
 import '../Heading/Heading.css'
 import './ActivityList.css'
 
-import { GET_LIST, LIKE, UNLIKE, ON_FILTER, ON_TAG } from 'store/activity'
+import { GET_LIST, LIKE, UNLIKE } from 'store/activity'
 
 import history from '../../history'
 import { InnerPageContentContainer } from '../InnerPageContentContainer'
 import ActivityListPage from './ActivityListPage'
+import ShowItem from './ActivityListItem'
 
 const { Title } = Typography
 
@@ -74,14 +71,16 @@ const ActivityListSection = () => {
             pagination={false}
             loading={activity.loading}
             dataSource={activity.list.slice(0, 3)}
-            renderItem={item => (
-              <ShowItem
-                key={item.id}
-                userId={userId}
-                item={item}
-                dispatch={dispatch}
-              />
-            )}
+            renderItem={item => {
+              return (
+                <ShowItem
+                  key={item.id}
+                  userId={userId}
+                  item={item}
+                  dispatch={dispatch}
+                />
+              )
+            }}
           />
         </Col>
       </Row>

@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { List, Icon, Row, Col, Typography, Divider } from 'antd'
-import { Link } from 'react-router-dom'
+import React from 'react'
 import cn from 'classnames'
 import moment from 'moment'
+import { Link } from 'react-router-dom'
+import { List, Icon } from 'antd'
+import './style.css'
 
-export const ShowItem = ({ dispatch, item, userId }) => (
+export default ({ dispatch, item, userId }) => (
   <List.Item className="ActivityListItem" key={item.id}>
     <div>
       <div className="ActivityListItem-Misc">
@@ -41,5 +42,3 @@ export const ShowItem = ({ dispatch, item, userId }) => (
     </div>
   </List.Item>
 )
-
-export default ShowItem

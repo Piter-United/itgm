@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import useStoreon from 'storeon/react'
 import cn from 'classnames'
-import moment from 'moment'
-import { Link } from 'react-router-dom'
 import { List, Icon, Row, Col, Typography, Divider } from 'antd'
-import ActivityFilter from './ActivityFilter'
-import { Button as ButtonCustom } from '../UI'
+import ActivityFilter from '../ActivityListFilter'
+import { Button as ButtonCustom } from '../../../UI'
 import { GET_LIST } from 'store/activity'
-import ShowItem from './ActivityListItem'
+import ShowItem from '../ActivityListItem'
+
+import '../../../Heading/Heading.css'
+import '../../style.css'
 
 const { Title } = Typography
 
@@ -30,13 +31,12 @@ const ButtonShowFilter = ({ handleOpenFilter }) => (
   </button>
 )
 
-const ActivityListPage = props => {
+const ActivityListPage = () => {
   const { userId, user, activity, dispatch } = useStoreon(
     'user',
     'userId',
     'activity'
   )
-
   const countTags = activity.tags.length
   const [showFilter, toggleFilter] = useState(false)
   const handleToggleFilter = () => toggleFilter(!showFilter)

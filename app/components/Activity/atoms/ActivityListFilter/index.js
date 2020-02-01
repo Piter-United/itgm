@@ -4,6 +4,7 @@ import { Button, Form, Input, Icon, Row } from 'antd'
 
 import { GET_LIST as GET_LIST_COMMUNITY } from 'store/community'
 import { ON_FILTER, ON_TAG, ON_COMMUNITY } from 'store/activity'
+
 const ActivityFilter = ({ handleClose }) => {
   const { community, activity, dispatch } = useStoreon('community', 'activity')
 

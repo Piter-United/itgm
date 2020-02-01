@@ -24,6 +24,7 @@
 .Button_color_primary:hover,
 .Button_color_primary:focus {
   box-shadow: 0px 0px 10px rgba(255, 87, 98, 0.5);
+  color: #ffffff;
 }
 
 .Button_color_primary:active {

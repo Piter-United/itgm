@@ -1,0 +1,14 @@
+.Description {
+  padding: 0;
+}
+
+.Description-HeroWrapper {
+  background-color: #f3c892;
+  padding: 45px 15px 50px;
+}
+
+.Description-Hero {
+  max-width: 1180px;
+  margin: 0 auto;
+  border-right: 2px solid #ffffff;
+}

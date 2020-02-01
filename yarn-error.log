@@ -1,0 +1,131 @@
+Arguments: 
+  /home/roman/.nvm/versions/node/v10.18.1/bin/node /usr/share/yarn/bin/yarn.js add React
+
+PATH: 
+  /home/roman/.nvm/versions/node/v10.18.1/lib/node_modules/npm/node_modules/npm-lifecycle/node-gyp-bin:/home/roman/projects/itgm/node_modules/.bin:/home/roman/.local/bin:/home/roman/.nvm/versions/node/v10.18.1/bin:/home/roman/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+
+Yarn version: 
+  1.21.1
+
+Node version: 
+  10.18.1
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: https://registry.npmjs.org/React: Not found
+      at Request.params.callback [as _callback] (/usr/share/yarn/lib/cli.js:66947:18)
+      at Request.self.callback (/usr/share/yarn/lib/cli.js:140665:22)
+      at Request.emit (events.js:198:13)
+      at Request.<anonymous> (/usr/share/yarn/lib/cli.js:141637:10)
+      at Request.emit (events.js:198:13)
+      at IncomingMessage.<anonymous> (/usr/share/yarn/lib/cli.js:141559:12)
+      at Object.onceWrapper (events.js:286:20)
+      at IncomingMessage.emit (events.js:203:15)
+      at endReadableNT (_stream_readable.js:1145:12)
+      at process._tickCallback (internal/process/next_tick.js:63:19)
+
+npm manifest: 
+  {
+    "name": "itgm",
+    "version": "0.0.1",
+    "description": "ITGM app",
+    "main": "index.js",
+    "scripts": {
+      "start": "parcel index.html",
+      "build": "NODE_ENV=production parcel build index.html",
+      "configure": "node cmd",
+      "size": "size-limit",
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "prettier": "prettier --write \"**/*.{js,jsx,json,css}\"",
+      "lint": "eslint ."
+    },
+    "keywords": [],
+    "author": "Mikhail Poluboyarinov <mikle.sol@gmail.com>",
+    "license": "MIT",
+    "lint-staged": {
+      "src/**/*.{js,jsx,json,css}": [
+        "prettier --write",
+        "git add"
+      ]
+    },
+    "dependencies": {
+      "@svgr/parcel-plugin-svgr": "^5.0.0",
+      "antd": "^3.26.4",
+      "classnames": "^2.2.6",
+      "history": "^4.10.1",
+      "qs": "^6.9.1",
+      "react": "^16.12.0",
+      "react-dom": "^16.12.0",
+      "react-router-dom": "^5.1.2",
+      "storeon": "^0.9.7"
+    },
+    "devDependencies": {
+      "@babel/core": "^7.7.7",
+      "@babel/plugin-proposal-class-properties": "^7.7.4",
+      "@babel/polyfill": "^7.7.0",
+      "@babel/preset-env": "^7.7.7",
+      "@babel/preset-react": "^7.7.4",
+      "aidbox": "^2.0.0-beta.0",
+      "autoprefixer": "^9.7.3",
+      "dotenv": "^8.2.0",
+      "eslint": "^6.8.0",
+      "eslint-config-prettier": "^6.9.0",
+      "eslint-plugin-babel": "^5.3.0",
+      "eslint-plugin-prettier": "^3.1.2",
+      "eslint-plugin-react": "^7.18.0",
+      "husky": "^3.1.0",
+      "lint-staged": "^10.0.0",
+      "parcel-bundler": "^1.12.4",
+      "postcss-modules": "^1.4.1",
+      "postcss-preset-env": "^6.7.0",
+      "prettier": "^1.19.1",
+      "pretty-quick": "^2.0.1",
+      "size-limit": "^2.2.4"
+    },
+    "babel": {
+      "presets": [
+        "@babel/preset-env",
+        "@babel/preset-react"
+      ],
+      "plugins": [
+        "@babel/plugin-proposal-class-properties"
+      ]
+    },
+    "browserslist": [
+      "last 1 version",
+      "> 1%",
+      "maintained node versions",
+      "not dead"
+    ],
+    "size-limit": [
+      {
+        "webpack": false,
+        "path": "dist/*.{js,jsx}"
+      }
+    ],
+    "husky": {
+      "hooks": {
+        "pre-commit": "pretty-quick --staged"
+      }
+    },
+    "prettier": {
+      "semi": false,
+      "singleQuote": true
+    },
+    "alias": {
+      "root": ".",
+      "icons": "./asset/icons",
+      "store": "./app/store",
+      "components": "./app/components",
+      "ui": "./app/components/UI",
+      "asset": "./asset"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

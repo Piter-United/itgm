@@ -17,8 +17,9 @@ const Hero = () => {
           <div className="Hero-ButtonsWrapper">
             <Button
               text="Зарегистрироваться"
-              onClick={() => console.log('ok')}
               className="Hero-Register"
+              asLink
+              url="/login"
             />
             <Link className="Hero-About" to="/about">
               Подробнее

@@ -1,0 +1,34 @@
+.UserProfile__wrapper {
+  flex-grow: 1;
+  flex-basis: auto;
+  padding-top: 54px;
+  box-shadow: inset 0px -10px 15px -15px rgb(150, 150, 150),
+    inset 0px 10px 15px -15px rgb(150, 150, 150);
+}
+
+.UserProfile {
+  max-width: 1180px;
+  padding: 0 184px;
+  margin: 0 auto;
+}
+
+.UserProfile__text {
+  padding: 20px 0;
+  margin: unset;
+  font-family: 'Open-Sans';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 19px;
+}
+
+@media (min-width: 768px) {
+  .UserProfile {
+    padding: 0 50px;
+  }
+}
+@media (min-width: 992px) {
+  .UserProfile {
+    padding: 0 184px;
+  }
+}

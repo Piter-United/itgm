@@ -1,17 +1,17 @@
 import React, { useEffect, useState, Fragment } from 'react'
 import useStoreon from 'storeon/react'
-import { Spin, Typography, Divider, List } from 'antd'
+import { Spin, Typography, Divider } from 'antd'
 
 import { GET_CURRENT_USER } from 'store/user'
 import { GET_LIST, LIKE, UNLIKE } from 'store/activity'
 
 import history from '../../history'
 
-import UserInfo from './UserInfo'
+import ProfileInfo from './atoms/ProfileInfo'
+import UserActivities from './atoms/UserActivities'
 import CommunityBadgeList from 'components/Community/CommunityBadgeList'
-import { ShowItem } from 'components/Activity/ActivityList'
 
-import './UserProfile.css'
+import './style.css'
 
 const { Paragraph } = Typography
 
@@ -51,41 +51,30 @@ const UserProfile = () => {
   const userActivities = activity.list.filter(
     event => event.resource.user.id === userId
   )
+  const userActivitiesTitle =
+    userActivities.length > 0
+      ? 'Участвует в следующих обсуждениях:'
+      : 'Пока еще не выбрал тему обсуждения'
   const communityList = { community, communities }
-  const ActivitiesHeader =
-    userActivities.length > 0 ? (
-      <p className="User-Profile__text">Участвует в следующих обсуждениях:</p>
-    ) : (
-      <p className="User-Profile__text">Пока еще не выбрал тему обсуждения</p>
-    )
-
-  const UserActivities = () => (
-    <List
-      itemLayout="vertical"
-      size="large"
-      pagination={false}
-      loading={activity.loading}
-      dataSource={userActivities}
-      renderItem={item => (
-        <ShowItem
-          key={item.id}
-          userId={userId}
-          item={item}
-          dispatch={dispatch}
-        />
-      )}
-    />
+  const ActivitiesHeader = ({ text }) => (
+    <p className="UserProfile__text">{text}</p>
   )
 
+  const activitiesProps = {
+    activity,
+    activities: userActivities,
+    userId,
+    dispatch
+  }
   return (
-    <main className="User-Profile__wrapper">
-      <section className="User-Profile">
-        <UserInfo {...user} />
+    <main className="UserProfile__wrapper">
+      <section className="UserProfile">
+        <ProfileInfo {...user} />
         <Divider style={{ border: '1px solid #ABABAB', margin: '0' }} />
         <CommunityBadgeList {...communityList} />
         <Divider style={{ border: '1px solid #ABABAB', margin: '0' }} />
-        {ActivitiesHeader}
-        {userActivities.length > 0 && <UserActivities />}
+        <ActivitiesHeader text={userActivitiesTitle} />
+        {userActivities.length > 0 && <UserActivities {...activitiesProps} />}
       </section>
     </main>
   )

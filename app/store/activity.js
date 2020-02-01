@@ -3,6 +3,7 @@ import history from '../history'
 
 const defaultState = {
   activity: {
+    filter: '',
     list: [],
     loading: false
   },
@@ -28,6 +29,7 @@ export const GET_BY_ID_LOADING = 'activity/get-by-id-loading'
 export const GET_BY_ID_RELOAD_BY_LU = 'activity/get-by-id-rblu'
 export const UPDATE = 'activity/update'
 export const UPDATE_SUCCESS = 'activity/update-success'
+export const ON_FILTER = 'activity/on-filter'
 
 const activity = store => {
   store.on('@init', () => defaultState)
@@ -201,6 +203,11 @@ const activity = store => {
   store.on(UPDATE_SUCCESS, (s, updated) => {
     history.push(`/activity/${updated.id}`)
   })
+  // on-filter
+  store.on(ON_FILTER, (s, filter) => ({
+    ...s,
+    activity: { ...s.activity, filter }
+  }))
 }
 
 export default activity

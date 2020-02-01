@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { List, Icon, Row, Col, Button, Typography, Divider } from 'antd'
 import useStoreon from 'storeon/react'
@@ -8,7 +8,7 @@ import cn from 'classnames'
 import '../Heading/Heading.css'
 import './ActivityList.css'
 
-import { GET_LIST, LIKE, UNLIKE } from 'store/activity'
+import { GET_LIST, LIKE, UNLIKE, ON_FILTER } from '../../store/activity'
 
 import history from '../../history'
 import { InnerPageContentContainer } from '../InnerPageContentContainer'
@@ -92,8 +92,25 @@ const ActivityList = () => {
     'activity'
   )
 
+  const [filtered, setFiltered] = useState(activity.list)
+  /**
+   * func filtered Activite
+   * @param  {string} s value from input
+   * @return {[type]}   [description]
+   */
+  const filterActivites = sInputValue => {
+    if (sInputValue === '') {
+      return setFiltered(activity.list)
+    }
+    const isActivityLike = filterActivity(sInputValue)
+    const activites = activity.list.filter(isActivityLike)
+    const filtered = activites.filter(v => v)
+    setFiltered(filtered)
+  }
+
   useEffect(() => {
     dispatch(GET_LIST)
+    filterActivites(activity.filter)
   }, [dispatch])
 
   return (
@@ -106,6 +123,15 @@ const ActivityList = () => {
           <RenderDiscussion userId={userId} user={user} />
         </Col>
       </Row>
+      <div>
+        <input
+          defaultValue={activity.filter}
+          onChange={({ target }) => {
+            dispatch(ON_FILTER, target.value)
+            filterActivites(target.value)
+          }}
+        />
+      </div>
       <Divider />
       <Row>
         <Col span={18}>
@@ -114,7 +140,9 @@ const ActivityList = () => {
             size="large"
             pagination={false}
             loading={activity.loading}
-            dataSource={activity.list}
+            dataSource={
+              activity.filter || filtered.length ? filtered : activity.list
+            }
             renderItem={item => (
               <ShowItem
                 key={item.id}
@@ -138,3 +166,13 @@ export const WrappedActivityList = () => (
 )
 
 export default ActivityList
+
+// libs
+const filterActivity = payload => {
+  const regexp = new RegExp(payload, 'gi')
+  return ({ resource, community }) => {
+    return !![resource.name, resource.desctiption, community.resource.name]
+      .join(' ')
+      .match(regexp)
+  }
+}

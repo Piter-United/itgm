@@ -90,6 +90,7 @@
     "icons": "./asset/icons",
     "store": "./app/store",
     "components": "./app/components",
-    "ui": "./app/components/UI"
+    "ui": "./app/components/UI",
+    "asset": "./asset"
   }
 }

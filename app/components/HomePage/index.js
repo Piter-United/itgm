@@ -1,21 +1,25 @@
 import React, { Fragment } from 'react'
 
-import Hero from 'components/Hero'
-import PageSection from '../PageSection/PageSection'
+import PageSection from 'components/PageSection'
 import ContentContainer from 'components/ContentContainer'
-import ActivityList from '../Activity/ActivityList'
+import ActivityList from 'components/Activity/ActivityList'
 import Footer from 'components/Footer'
 import Header from 'components/Header'
+
+import { Hero, Stats } from './atoms'
 
 import './style.css'
 
 const HomePage = () => {
   return (
     <Fragment>
-      <div className="HomePage-FirstScreenWrapper">
+      <section className="HomePage-FirstScreenWrapper">
         <Header theme="inverse" />
         <Hero />
-      </div>
+      </section>
+
+      <Stats className="HomePage-Stats" />
+
       <PageSection>
         <ContentContainer>
           <ActivityList />

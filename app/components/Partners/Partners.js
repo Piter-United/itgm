@@ -21,30 +21,30 @@ const partners = [
 ]
 
 const Partner = ({ id, img, name, desc }) => (
-  <li className="partner" key={id}>
-    <div className="partner__cnt">
+  <li className="Partner" key={id}>
+    <div className="Partner-Container">
       <Avatar
         type="user"
         size="xl"
         alt={name}
         src={img}
-        className="partner__img"
+        className="Partner-Img"
       />
     </div>
-    <h3 className="partner__header">{name}</h3>
-    <p className="partner__desc">{desc}</p>
+    <h3 className="Partner-Header">{name}</h3>
+    <p className="Partner-Description">{desc}</p>
   </li>
 )
 
 const PartnerList = () => {
   return (
     <InnerPageContentContainer>
-      <div className="partners">
-        <div className="partners__wrapper">
-          <h2 className="partners__header">Партнеры</h2>
-          <span className="partners__count">({partners.length})</span>
+      <div className="Partners">
+        <div className="Partners-Wrapper">
+          <h2 className="Partners-Header">Партнеры</h2>
+          <span className="Partners-Count">({partners.length})</span>
         </div>
-        <ul className="partners__list">
+        <ul className="Partners-List">
           {partners.map(partner => (
             <Partner {...partner} key={partner.id} />
           ))}

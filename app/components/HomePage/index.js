@@ -6,7 +6,7 @@ import ActivityList from 'components/Activity/ActivityList'
 import Footer from 'components/Footer'
 import Header from 'components/Header'
 
-import { Hero, Stats, Description } from './atoms'
+import { Hero, Stats, Description, PastEvents } from './atoms'
 
 import './style.css'
 
@@ -26,6 +26,8 @@ const HomePage = () => {
           <ActivityList />
         </ContentContainer>
       </PageSection>
+
+      <PastEvents className="HomePage-PastEvents" />
 
       <PageSection style={{ background: 'lightgray' }}>
         <ContentContainer>

@@ -20,7 +20,8 @@ ITGM App - это SPA приложение для формирование пр�
 
 ## Get update from remote repo
 
-```git remote add upstream https://github.com/Piter-United/itgm.git
+```
+   git remote add upstream https://github.com/Piter-United/itgm.git
    git fetch upstream
    git checkout master
    git merge upstream/master

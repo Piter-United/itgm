@@ -23,6 +23,7 @@ const RenderDiscussion = ({ userId, user }) => {
   }
   return <ButtonCustom type="link" text="Добавить Тему" href="/login" />
 }
+
 const ButtonShowFilter = ({ handleOpenFilter }) => (
   <button className="ActivityPage-BtnFilter" onClick={handleOpenFilter}>
     <Icon type="search" style={{ fontSize: '20px' }} />

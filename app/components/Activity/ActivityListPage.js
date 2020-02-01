@@ -46,6 +46,7 @@ export const ShowItem = ({ dispatch, item, userId }) => (
     <div className="ActivityListItem-Description">
       {item.resource.description}
     </div>
+    <pre>{JSON.stringify(item.resource.tags, null, '\t')}</pre>
     <div className="ActivityListItem-Footer">
       <div className="ActivityListItem-Likes" key={`list-item-like-${item.id}`}>
         <Icon

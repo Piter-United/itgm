@@ -24,7 +24,6 @@ import { GET_LIST, LIKE, UNLIKE, ON_FILTER, ON_TAG } from 'store/activity'
 
 import history from '../../history'
 import { InnerPageContentContainer } from '../InnerPageContentContainer'
-import ActivityFilter from './ActivityFilter'
 import ActivityListPage from './ActivityListPage'
 
 const { Title } = Typography

@@ -25,6 +25,7 @@ const Description = ({ className = '' }) => (
             className="Description-Register"
             asLink
             url="/login"
+            color="secondary"
           />
           <Link className="Description-About" to="/about">
             Подробнее

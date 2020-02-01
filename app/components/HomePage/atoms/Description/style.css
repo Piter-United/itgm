@@ -1,14 +1,61 @@
 .Description {
   padding: 0;
-}
-
-.Description-HeroWrapper {
   background-color: #f3c892;
   padding: 45px 15px 50px;
 }
 
-.Description-Hero {
+.Description-HeroWrapper {
   max-width: 1180px;
   margin: 0 auto;
-  border-right: 2px solid #ffffff;
+}
+
+.Description-Hero {
+  min-height: 520px;
+  padding-right: 17%;
+  padding-left: 600px;
+  border-right: 1px solid #2a2a2a;
+  background-image: url('/asset/mainDescriptionImage.png'),
+    url('/asset/curl1.png');
+  background-repeat: no-repeat, no-repeat;
+  background-position: left 200px center, right 30px top 0;
+}
+
+.Description-Heading {
+  color: #2a2a2a;
+  font-size: 36px;
+  line-height: 40px;
+  margin-bottom: 20px;
+}
+
+.Description-Text {
+  margin-bottom: 80px;
+  font-family: 'Open-Sans', sans-serif;
+  font-size: 18px;
+  line-height: 25px;
+  color: #2a2a2a;
+  font-weight: 300;
+}
+
+.Description-Register {
+  margin-right: 20px;
+}
+
+.Description-About {
+  display: block;
+  font-size: 14px;
+  line-height: 19px;
+  font-family: 'Open-Sans', sans-serif;
+  font-weight: 600;
+  color: #2a2a2a;
+}
+
+.Description-About:hover,
+.Description-About:focus {
+  color: #2a2a2a;
+  opacity: 0.5;
+}
+
+.Description-ButtonsWrapper {
+  display: flex;
+  align-items: center;
 }

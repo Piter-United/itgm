@@ -3,7 +3,7 @@ import useStoreon from 'storeon/react'
 import { Button, Form, Input, Icon, Row } from 'antd'
 
 import { GET_LIST as GET_LIST_COMMUNITY } from 'store/community'
-import { ON_FILTER, ON_TAG } from 'store/activity'
+import { ON_FILTER, ON_TAG, ON_COMMUNITY } from 'store/activity'
 const ActivityFilter = ({ handleClose }) => {
   const { community, activity, dispatch } = useStoreon('community', 'activity')
 
@@ -11,12 +11,21 @@ const ActivityFilter = ({ handleClose }) => {
     dispatch(GET_LIST_COMMUNITY)
   }, [dispatch])
 
-  const btnsCommunities = community.list.map(e => (
-    <Button key={e.id}>{e.name}</Button>
-  ))
+  const btnsCommunities = community.list.map(e => {
+    return (
+      <Button
+        type={e.id === activity.community ? 'primary' : ''}
+        onClick={() => dispatch(ON_COMMUNITY, e.id)}
+        key={e.id}
+      >
+        {e.name}
+      </Button>
+    )
+  })
 
   const btnsTags = activity.list
     .map(e => e.resource.tags)
+
     .flat()
     .map((e, i) => (
       <Button

@@ -6,6 +6,7 @@ const defaultState = {
     filter: '',
     tags: [],
     list: [],
+    community: '',
     loading: false
   },
   activityInfo: {
@@ -32,6 +33,7 @@ export const UPDATE = 'activity/update'
 export const UPDATE_SUCCESS = 'activity/update-success'
 export const ON_FILTER = 'activity/on-filter'
 export const ON_TAG = 'activity/on-tag'
+export const ON_COMMUNITY = 'activity/on-community'
 
 const activity = store => {
   store.on('@init', () => defaultState)
@@ -214,6 +216,9 @@ const activity = store => {
   })
   store.on(ON_FILTER, (s, filter) => {
     return { ...s, activity: { ...s.activity, filter } }
+  })
+  store.on(ON_COMMUNITY, (s, community) => {
+    return { ...s, activity: { ...s.activity, community } }
   })
   store.on(ON_TAG, (s, tag) => {
     if (-1 === s.activity.tags.indexOf(tag)) {

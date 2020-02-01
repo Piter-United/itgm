@@ -46,7 +46,6 @@ export const ShowItem = ({ dispatch, item, userId }) => (
     <div className="ActivityListItem-Description">
       {item.resource.description}
     </div>
-    <pre>{JSON.stringify(item.resource.tags, null, '\t')}</pre>
     <div className="ActivityListItem-Footer">
       <div className="ActivityListItem-Likes" key={`list-item-like-${item.id}`}>
         <Icon
@@ -78,8 +77,22 @@ const ActivityListPage = props => {
   const countTags = activity.tags.length
   const [showFilter, toggleFilter] = useState(false)
   const handleToggleFilter = () => toggleFilter(!showFilter)
-  const filter = createFilter(activity.filter, activity.tags)
-  const filtered = activity.list.filter(filter)
+
+  let filtered = activity.list
+
+  if (activity.community !== '') {
+    const filterByCommunity = createFilterByCommunity(activity.community)
+    filtered = filtered.filter(filterByCommunity)
+  }
+  if (countTags) {
+    const filterByTag = createFilterByTag(activity.tags)
+    filtered = filtered.filter(filterByTag)
+  }
+  if (activity.filter) {
+    const filter = createFilter(activity.filter, activity.tags)
+    filtered = filtered.filter(filter)
+  }
+
   const countFilteredRecords = filtered.length
   useEffect(() => {
     dispatch(GET_LIST)
@@ -145,25 +158,26 @@ const ActivityListPage = props => {
   )
 }
 
+const createFilterByCommunity = community => {
+  return item => {
+    return item.resource.community.id === community
+  }
+}
+
+const createFilterByTag = tags => {
+  return activity => {
+    return !!activity.resource.tags.filter(tag => tags.indexOf(tag) !== -1)
+      .length
+  }
+}
+
 const createFilter = (filter, tags) => {
-  const isFilter = filter || !!tags.length
   const filterLow = filter.toLowerCase()
   return activity => {
-    if (!isFilter) {
-      return true
-    }
-    // tags
-    if (activity.resource.tags.filter(tag => tags.indexOf(tag) == -1) > 0) {
-      return true
-    }
-    // filter
     const data = [activity.resource.name, activity.resource.description]
       .join(' ')
       .toLowerCase()
-    if (data.indexOf(filterLow) !== -1) {
-      return true
-    }
-    return false
+    return data.indexOf(filterLow) !== -1
   }
 }
 

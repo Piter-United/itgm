@@ -4,22 +4,23 @@ import ymaps from 'ymaps'
 import './map.css'
 
 const createMap = props => {
-  const { place, zoom, name, description } = props
+  const { api, place, zoom, name, description } = props
 
   ymaps
-    .load('https://api-maps.yandex.ru/2.1/?lang=ru_RU')
+    .load(`https://api-maps.yandex.ru/2.1/?apikey=${api}&lang=ru_RU`)
     .then(maps => {
       const map = new maps.Map('map', {
         center: [place[1], place[0]],
+        controls: [],
         zoom
       })
       const tpl = `
       <div class="home-map_block">
-        <h4 class="home-map_name">${name}</h4>
-        <p class="home-map_desc">${description}</p>
-        <div class="home-map_buttons_wrapper">
-          <a class="home-map_button_main" href="/">Зарегистрироваться</a>
-          <a class="home-map_button_link" href="">Подробнее</a>
+        <h4 class="home-map_name">Место проведения</h4>
+        <p class="home-map_desc">${description}<br>${name}</p>
+        <div class="Hero-ButtonsWrapper">
+          <a class="Button Button_size_m Button_color_primary Hero-Register" href="/login">Зарегистрироваться</a>
+          <a class="" href="">Подробнее</a>
         </div>
       </div>
       `
@@ -27,7 +28,6 @@ const createMap = props => {
         closeButton: false
       })
     })
-
     .catch(error => console.log('Failed to load Yandex Maps', error))
 }
 

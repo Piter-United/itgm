@@ -1,16 +1,15 @@
-.home-map_block {
+.home-map_name {
+  color: #000!;
+  font-size: 24px;
+  line-height: 48px;
+  margin-bottom: 20px;
+  margin: 0;
+  font-family: 'PlayfairDisplay', serif;
+  font-weight: 700;
 }
 
-.home-map_name {
-}
 .home-map_desc {
 }
 
 .home-map_buttons_wrapper {
-}
-
-.home-map_button_main {
-}
-
-.home-map_button_link {
 }

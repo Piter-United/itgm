@@ -468,6 +468,25 @@
             }
           }
         }
+      },
+      "allow-userprofile-read": {
+        "engine": "json-schema",
+        "schema": {
+          "required": ["request-method", "params"],
+          "properties": {
+            "request-method": {
+              "const": "get"
+            },
+            "params": {
+              "required": ["resource/type"],
+              "properties": {
+                "resource/type": {
+                  "constant": "UserProfile"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

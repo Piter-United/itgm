@@ -6,7 +6,7 @@ import { GET_LIST } from 'store/activity'
 
 import { List } from 'antd'
 import PageSection from 'components/PageSection'
-import { ShowItem } from 'components/Activity/ActivityList'
+import { ActivityListItem } from 'components/Activity/atoms'
 import { Button } from 'ui'
 
 import './style.css'
@@ -19,7 +19,12 @@ const Activities = ({ activitiesData, dispatch, userId }) => (
     loading={activitiesData.loading}
     dataSource={activitiesData.list}
     renderItem={item => (
-      <ShowItem key={item.id} userId={userId} item={item} dispatch={dispatch} />
+      <ActivityListItem
+        key={item.id}
+        userId={userId}
+        item={item}
+        dispatch={dispatch}
+      />
     )}
   />
 )

@@ -3,7 +3,7 @@ import useStoreon from 'storeon/react'
 
 import './style.css'
 
-import { Spin, Icon } from 'antd'
+import { Row, Col, Spin, Icon } from 'antd'
 import { Breadcrumbs, Tags, Button, Curl } from '../UI'
 import { ActivityAuthor, CommunityAvatar, Participants } from './atoms'
 import { InnerPageContentContainer } from '../InnerPageContentContainer'
@@ -45,11 +45,11 @@ const Activity = ({
 
   return (
     <InnerPageContentContainer>
-      <main className="Activity">
-        <div className="Activity-Breadcrumbs">
-          <Breadcrumbs path="#" viewPath="/Программа" />
-        </div>
-        <div className="Activity-Wrapper">
+      <div className="Activity-Breadcrumbs">
+        <Breadcrumbs path="/activity" viewPath="/Программа" />
+      </div>
+      <Row type="flex" justify="center" align="top">
+        <Col lg={24} xl={16}>
           <section className="Activity-Content">
             <h1 className="Activity-Header">
               {activity.name}
@@ -65,33 +65,38 @@ const Activity = ({
               <Tags data={tags} />
             </div>
             <p className="Activity-Description">{activity.description}</p>
-            <ActivityAuthor
-              user={resource.user.name}
-              community={resource.community.name}
-              createdAt={ts}
+            <div className="Activity-AuthorBlock">
+              <ActivityAuthor
+                user={resource.user.name}
+                community={resource.community.name}
+                createdAt={ts}
+              />
+            </div>
+            <Button
+              onClick={() => toggleLike(userId, activity)}
+              text={
+                activity.likes.isLike
+                  ? 'Передумал участвовать'
+                  : 'Хочу участвовать!'
+              }
             />
           </section>
-          <section className="Activity-Meta">
-            <div className="Activity-Community">
+        </Col>
+        <Col className="Activity-AsideRight" xl={8} lg={24}>
+          <section className="Activity-AsideRightContent">
+            <div className="Activity-AsideRightItem">
               <h2 className="Activity-SecondaryHeader">Сообщество</h2>
               <CommunityAvatar name={resource.community.name} />
             </div>
-            <div className="Activity-Participants">
+            <div className="Activity-AsideRightItem">
               <h2 className="Activity-SecondaryHeader">Участники</h2>
               <Participants data={likes} />
             </div>
           </section>
-        </div>
-        <Button
-          onClick={() => toggleLike(userId, activity)}
-          text={
-            activity.likes.isLike
-              ? 'Передумал участвовать'
-              : 'Хочу участвовать!'
-          }
-        />
+        </Col>
+
         <Curl />
-      </main>
+      </Row>
     </InnerPageContentContainer>
   )
 }

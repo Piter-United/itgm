@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Icon } from 'antd'
 
 import find from '/asset/find.svg'
@@ -6,6 +6,7 @@ import sort from '/asset/sort.svg'
 import Participant from './Participant'
 import { InnerPageContentContainer } from '../InnerPageContentContainer'
 import useStoreon from 'storeon/react'
+import { GET_LIST } from 'store/participant'
 
 import './ParticipantsList.css'
 
@@ -13,6 +14,10 @@ import './ParticipantsList.css'
 const ParticipantList = () => {
   const { participant, dispatch } = useStoreon('participant')
   const participantCount = participant.list.length
+  useEffect(() => {
+    dispatch(GET_LIST)
+  }, [dispatch])
+
   return (
     <InnerPageContentContainer>
       <pre>participant: {JSON.stringify(participant, null, '\t')}</pre>

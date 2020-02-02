@@ -26,6 +26,15 @@
 }
 
 @font-face {
+  font-family: 'Open-Sans';
+  font-style: normal;
+  font-weight: 800;
+  src: local('OpenSans'), local('Open-Sans'),
+    url('../../public/fonts/OpenSans-ExtraBold.woff'),
+    url('../../public/fonts/OpenSans-ExtraBold.ttf') format('truetype'); /* Safari, Android, iOS */
+}
+
+@font-face {
   font-family: 'PlayfairDisplay';
   font-style: normal;
   font-weight: 700;

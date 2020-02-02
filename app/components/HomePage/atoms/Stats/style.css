@@ -1,0 +1,41 @@
+.Stats {
+  position: relative;
+  overflow: hidden;
+}
+
+.Stats:before {
+  content: 'statistics';
+  position: absolute;
+  z-index: -1;
+  text-transform: uppercase;
+  font-family: 'Open-Sans', sans-serif;
+  font-size: 260px;
+  line-height: 290px;
+  text-align: center;
+  font-weight: 800;
+  top: 190px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #ffffff;
+  text-shadow: -1px -1px 0 #ececec, 1px -1px 0 #ececec, -1px 1px 0 #ececec,
+    1px 1px 0 #ececec;
+}
+
+.Stats-Wrapper {
+  width: 780px;
+  margin: 0 auto;
+}
+
+.Stats-Heading {
+  font-size: 36px;
+  line-height: 36px;
+  margin-bottom: 20px;
+}
+
+.Stats-Description {
+  font-family: 'Open-Sans', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 18px;
+  color: #2a2a2a;
+}

@@ -16,6 +16,7 @@ const App = () => (
         <PrivateRoute
           key={route.path}
           path={route.path}
+          exact
           component={props => (
             <Layout
               theme={route.theme}

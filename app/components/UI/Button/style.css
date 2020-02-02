@@ -1,4 +1,5 @@
 .Button {
+  display: inline-block;
   border: 0;
   background-color: transparent;
   cursor: pointer;
@@ -19,13 +20,34 @@
   border-radius: 3px;
   background-color: #ff5762;
   color: #ffffff;
+  text-decoration: none;
 }
 
 .Button_color_primary:hover,
 .Button_color_primary:focus {
   box-shadow: 0px 0px 10px rgba(255, 87, 98, 0.5);
+  color: #ffffff;
 }
 
 .Button_color_primary:active {
   box-shadow: 0px 0px 10px #ff5762;
+  color: #ffffff;
+}
+
+.Button_color_secondary {
+  border-radius: 3px;
+  background-color: #ffffff;
+  color: #2a2a2a;
+  text-decoration: none;
+}
+
+.Button_color_secondary:hover,
+.Button_color_secondary:focus {
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+  color: #2a2a2a;
+}
+
+.Button_color_secondary:active {
+  box-shadow: 0px 0px 10px #ffffff;
+  color: #2a2a2a;
 }

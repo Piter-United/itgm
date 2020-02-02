@@ -16,6 +16,11 @@
   padding: 14px 33px 15px;
 }
 
+.Button_fluid {
+  width: 100%;
+  text-align: center;
+}
+
 .Button_color_primary {
   border-radius: 3px;
   background-color: #ff5762;
@@ -50,4 +55,22 @@
 .Button_color_secondary:active {
   box-shadow: 0px 0px 10px #ffffff;
   color: #2a2a2a;
+}
+
+.Button_color_outline {
+  border-radius: 3px;
+  border: 1px solid #ff5762;
+  color: #ff5762;
+  text-decoration: none;
+}
+
+.Button_color_outline:hover,
+.Button_color_outline:focus {
+  box-shadow: 0px 0px 10px rgba(255, 87, 98, 0.5);
+  color: #ff5762;
+}
+
+.Button_color_outline:active {
+  box-shadow: 0px 0px 10px #ff5762;
+  color: #ff5762;
 }

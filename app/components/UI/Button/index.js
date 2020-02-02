@@ -13,7 +13,8 @@ export const Button = ({
   onClick,
   className = '',
   asLink = false,
-  url = '#'
+  url = '#',
+  fluid = false
 }) =>
   asLink ? (
     <Link
@@ -21,6 +22,7 @@ export const Button = ({
       className={cn(
         `Button Button_size_${size}`,
         `Button_color_${color}`,
+        fluid && `Button_fluid`,
         className
       )}
     >
@@ -31,6 +33,7 @@ export const Button = ({
       className={cn(
         `Button Button_size_${size}`,
         `Button_color_${color}`,
+        fluid && `Button_fluid`,
         className
       )}
       type={type}

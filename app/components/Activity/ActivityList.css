@@ -57,3 +57,14 @@
   font-size: 14px;
   font-weight: 300;
 }
+
+.ActivityListItem-Community {
+  font-weight: 300;
+  color: #2a2a2a;
+}
+
+.ActivityListItem-Community:hover,
+.ActivityListItem-Community:focus {
+  color: #2a2a2a;
+  text-decoration: underline;
+}

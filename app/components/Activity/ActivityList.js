@@ -31,9 +31,14 @@ export const ShowItem = ({ dispatch, item, userId }) => (
       <div className="ActivityListItem-Misc">
         <span>{moment(item.ts).format('DD.MM.YYYY')}</span>
         <div>
-          {item.community &&
-            item.community.resource &&
-            item.community.resource.name}{' '}
+          {item.community && item.community.resource && (
+            <Link
+              className="ActivityListItem-Community"
+              to={`/community/${item.community.id}`}
+            >
+              {item.community.resource.name}
+            </Link>
+          )}
         </div>
       </div>
       <Link className="ActivityListItem-TitleLink" to={`/activity/${item.id}`}>
@@ -57,7 +62,7 @@ export const ShowItem = ({ dispatch, item, userId }) => (
         <span className="ActivityListItem-LikeCounter">{`(${item.likes.count})`}</span>
       </div>
       <span className="ActivityListItem-Author">
-        Автор: {item.resource.user.id}
+        Автор: {item.resource.user.name}
       </span>
     </div>
   </List.Item>

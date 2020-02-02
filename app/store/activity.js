@@ -3,7 +3,10 @@ import history from '../history'
 
 const defaultState = {
   activity: {
+    filter: '',
+    tags: [],
     list: [],
+    community: '',
     loading: false
   },
   activityInfo: {
@@ -28,6 +31,9 @@ export const GET_BY_ID_LOADING = 'activity/get-by-id-loading'
 export const GET_BY_ID_RELOAD_BY_LU = 'activity/get-by-id-rblu'
 export const UPDATE = 'activity/update'
 export const UPDATE_SUCCESS = 'activity/update-success'
+export const ON_FILTER = 'activity/on-filter'
+export const ON_TAG = 'activity/on-tag'
+export const ON_COMMUNITY = 'activity/on-community'
 
 const activity = store => {
   store.on('@init', () => defaultState)
@@ -43,12 +49,22 @@ const activity = store => {
       spinner: LOADING
     })
   })
-  store.on(LOADING, (s, loading) => {
-    return { activity: { ...s.activity, loading } }
+  store.on(LOADING, (state, loading) => {
+    return { activity: { ...state.activity, loading } }
   })
-  store.on(SET_LIST, (s, data) => {
+  store.on(SET_LIST, (state, data) => {
+    // TODO: make request to backend for return sorted activity
+    const activityListByNewest = [...data.data].sort(
+      ({ ts: ts1 }, { ts: ts2 }) => {
+        const date1 = new Date(ts1)
+        const date2 = new Date(ts2)
+        if (date1 > date2) return -1
+        if (date2 < date1) return 1
+        return 0
+      }
+    )
     return {
-      activity: { ...s.activity, list: data.data }
+      activity: { ...state.activity, list: activityListByNewest }
     }
   })
   store.on(ERROR, (s, { data, message }) => {
@@ -86,6 +102,7 @@ const activity = store => {
     notification.success({ message: 'Всё гуд, лайк записан' })
     return {
       activity: {
+        ...s.activity,
         list: s.activity.list.map(v => {
           if (v.id === data.activity.id) {
             return {
@@ -122,6 +139,7 @@ const activity = store => {
     notification.success({ message: 'Всё гуд, лайк убрали' })
     return {
       activity: {
+        ...s.activity,
         list: s.activity.list.map(v => {
           if (v.id === data.activity.id) {
             return {
@@ -197,6 +215,33 @@ const activity = store => {
       error: ERROR,
       spinner: GET_BY_ID_LOADING
     })
+  })
+
+  store.on(ON_FILTER, (s, filter) => {
+    return { ...s, activity: { ...s.activity, filter } }
+  })
+
+  store.on(ON_COMMUNITY, (s, community) => {
+    return {
+      ...s,
+      activity: {
+        ...s.activity,
+        community: community === s.activity.community ? '' : community
+      }
+    }
+  })
+
+  store.on(ON_TAG, (s, tag) => {
+    if (-1 === s.activity.tags.indexOf(tag)) {
+      return {
+        ...s,
+        activity: { ...s.activity, tags: [...s.activity.tags, tag] }
+      }
+    }
+    return {
+      ...s,
+      activity: { ...s.activity, tags: s.activity.tags.filter(v => v !== tag) }
+    }
   })
   store.on(UPDATE_SUCCESS, (s, updated) => {
     history.push(`/activity/${updated.id}`)

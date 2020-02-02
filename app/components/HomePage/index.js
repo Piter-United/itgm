@@ -5,7 +5,7 @@ import ContentContainer from 'components/ContentContainer'
 import Footer from 'components/Footer'
 import Header from 'components/Header'
 
-import { Hero, Stats, Description, Program } from './atoms'
+import { Hero, Stats, Description, Program, Communities } from './atoms'
 
 import './style.css'
 
@@ -26,6 +26,8 @@ const HomePage = () => {
           <p>PageSection</p>
         </ContentContainer>
       </PageSection>
+
+      <Communities className="HomePage-Communities" />
 
       <PageSection style={{ background: 'gray' }}>
         <ContentContainer>

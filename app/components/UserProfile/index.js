@@ -67,8 +67,8 @@ const UserProfile = () => {
     dispatch
   }
   return (
-    <main className="UserProfile__wrapper">
-      <section className="UserProfile">
+    <main className="UserProfile">
+      <section className="UserProfile_section">
         <ProfileInfo {...user} />
         <Divider style={{ border: '1px solid #ABABAB', margin: '0' }} />
         <CommunityBadgeList {...communityList} />

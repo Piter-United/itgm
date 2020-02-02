@@ -10,8 +10,15 @@ import Login from './components/Login'
 import ParticipantList from './components/Participants/ParticipantsList'
 import PartnerList from './components/Partners/Partners'
 import About from './components/About/About'
+import Map from './components/Map'
 
 const routes = [
+  {
+    path: '/try_map',
+    inHeader: false,
+    title: 'Map',
+    component: Map
+  },
   {
     path: '/activity',
     inHeader: true,

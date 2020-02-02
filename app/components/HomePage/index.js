@@ -5,7 +5,14 @@ import ContentContainer from 'components/ContentContainer'
 import Footer from 'components/Footer'
 import Header from 'components/Header'
 
-import { Hero, Stats, Description, Program, Communities } from './atoms'
+import {
+  Hero,
+  Stats,
+  Description,
+  Program,
+  Communities,
+  PastEvents
+} from './atoms'
 
 import './style.css'
 
@@ -20,6 +27,8 @@ const HomePage = () => {
       <Stats className="HomePage-Stats" />
       <Description className="HomePage-Description" />
       <Program className="HomePage-Program" />
+
+      <PastEvents className="HomePage-PastEvents" />
 
       <PageSection style={{ background: 'lightgray' }}>
         <ContentContainer>

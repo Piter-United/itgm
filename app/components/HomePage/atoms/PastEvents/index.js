@@ -48,7 +48,7 @@ const PastEvents = ({ className = '' }) => (
   <PageSection className={cn('PastEvents', className)}>
     <div className="PastEvents-Wrapper">
       <h2 className="Heading PastEvents-Header">Прошедшие мероприятия</h2>
-      <Carousel>
+      <Carousel autoplay>
         {slides.map(slide => (
           <Slide {...slide} key={slide.id} />
         ))}

@@ -1,7 +1,6 @@
 import React from 'react'
 import { Spin, Typography, Divider, List } from 'antd'
-import { ShowItem } from 'components/Activity/ActivityList'
-import UserProfile from '../..'
+import ShowItem from 'components/Activity/atoms/ActivityListItem'
 
 const UserActivities = ({ activities, activity, userId, dispatch }) => (
   <List

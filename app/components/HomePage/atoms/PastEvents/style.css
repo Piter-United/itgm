@@ -1,6 +1,47 @@
 .PastEvents {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #6f4297;
 }
+
+.PastEvents-Wrapper {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.PastEvents-Header {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 40px;
+  color: #fff;
+  margin-bottom: 30px;
+}
+
+.Slide-Wrapper {
+  margin-bottom: 20px;
+}
+
+.Slide-Description {
+  font-family: Open Sans, serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  color: #fff;
+}
+
+.ant-carousel .slick-dots-bottom {
+  bottom: -5px;
+}
+/* 
+.Slide-Item {
+}
+
+.slick-dots {
+
+} */
 
 /* .ant-carousel .slick-slide {
   text-align: center;

@@ -11,12 +11,27 @@ const slides = [
   {
     id: 1,
     img: `${itgm}`,
-    desc: 'slide description'
+    desc: 'Летний ITGM #15. 27 июля, Туутари Парк'
   },
   {
     id: 2,
     img: `${itgm}`,
-    desc: 'slide description'
+    desc: 'Slide description'
+  },
+  {
+    id: 3,
+    img: `${itgm}`,
+    desc: 'Slide description'
+  },
+  {
+    id: 4,
+    img: `${itgm}`,
+    desc: 'Slide description'
+  },
+  {
+    id: 5,
+    img: `${itgm}`,
+    desc: 'Slide description'
   }
 ]
 
@@ -32,7 +47,7 @@ const Slide = ({ id, img, desc }) => (
 const PastEvents = ({ className = '' }) => (
   <PageSection className={cn('PastEvents', className)}>
     <div className="PastEvents-Wrapper">
-      <h2 className="PastEvents-Header">Прошедшие мероприятия</h2>
+      <h2 className="Heading PastEvents-Header">Прошедшие мероприятия</h2>
       <Carousel>
         {slides.map(slide => (
           <Slide {...slide} key={slide.id} />

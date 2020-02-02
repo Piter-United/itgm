@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import useStoreon from 'storeon/react'
 import cn from 'classnames'
-import { List, Icon, Row, Col, Typography, Divider } from 'antd'
+import { Icon, Row, Col, Typography, Divider } from 'antd'
 import ActivityFilter from '../ActivityListFilter'
 import { Button as ButtonCustom } from '../../../UI'
 import { GET_LIST } from 'store/activity'
-import ShowItem from '../ActivityListItem'
 
 import '../../../Heading/Heading.css'
 import '../../style.css'
+import ActivityList from '../ActivityList'
 
 const { Title } = Typography
 
@@ -88,20 +88,10 @@ const ActivityListPage = () => {
               ) : null}
             </Row>
             <Divider />
-            <List
-              itemLayout="vertical"
-              size="large"
-              pagination={false}
-              loading={activity.loading}
-              dataSource={filtered}
-              renderItem={item => (
-                <ShowItem
-                  key={item.id}
-                  userId={userId}
-                  item={item}
-                  dispatch={dispatch}
-                />
-              )}
+            <ActivityList
+              activitiesData={{ ...activity, list: filtered }}
+              dispatch={dispatch}
+              userId={userId}
             />
           </div>
         </Col>

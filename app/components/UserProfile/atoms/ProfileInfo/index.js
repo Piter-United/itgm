@@ -6,7 +6,7 @@ const defaultAboutText =
   'Пара слов об участнике, которые он написал или не написал при регистрации. Об интересах, сфере деятельности, целях и т.д.'
 
 const AboutUser = ({ text = defaultAboutText }) => (
-  <p className="ProfileInfo_about">{text}</p>
+  <p className="ProfileInfo-About">{text}</p>
 )
 
 const ProfileAvatar = ({ avatar }) => {
@@ -14,7 +14,7 @@ const ProfileAvatar = ({ avatar }) => {
     <div className="ProfileAvatar">
       {avatar ? (
         <Avatar
-          className="ProfileAvatar_image"
+          className="ProfileAvatar-Image"
           alt="Avatar"
           src={`https://www.gravatar.com/avatar/${avatar}`}
         />
@@ -23,10 +23,10 @@ const ProfileAvatar = ({ avatar }) => {
           <Avatar
             alt="Avatar"
             icon="user"
-            className="ProfileAvatar_image"
+            className="ProfileAvatar-Image"
             style={{ fontSize: '70px', backgroundColor: '#46325e' }}
           />
-          <Icon type="camera" className="ProfileAvatar_camera" />
+          <Icon type="camera" className="ProfileAvatar-Camera" />
         </Fragment>
       )}
     </div>
@@ -36,11 +36,11 @@ const ProfileAvatar = ({ avatar }) => {
 const Descriptions = ({ name, company, email, phone, about }) => {
   return (
     <div className="ProfileDescription">
-      <h3 className="ProfileDescription_name">{name}</h3>
-      <p className="ProfileDescription_company">{company}</p>
+      <h3 className="ProfileDescription-Name">{name}</h3>
+      <p className="ProfileDescription-Company">{company}</p>
       <address className="ProfileContacts">
-        <span className="ProfileContacts_email">{email}</span>
-        <span className="ProfileContacts_phone">{phone}</span>
+        <span className="ProfileContacts-Email">{email}</span>
+        <span className="ProfileContacts-Phone">{phone}</span>
       </address>
       <AboutUser text={about} />
     </div>

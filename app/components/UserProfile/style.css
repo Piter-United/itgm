@@ -6,13 +6,13 @@
     inset 0px 10px 15px -15px rgb(150, 150, 150);
 }
 
-.UserProfile_section {
+.UserProfile-Section {
   max-width: 1180px;
   padding: 0 184px;
   margin: 0 auto;
 }
 
-.UserProfile_text {
+.UserProfile-Text {
   padding: 20px 0;
   margin: unset;
   font-family: 'Open-Sans';
@@ -23,12 +23,12 @@
 }
 
 @media (min-width: 768px) {
-  .UserProfile_section {
+  .UserProfile-Section {
     padding: 0 50px;
   }
 }
 @media (min-width: 992px) {
-  .UserProfile_section {
+  .UserProfile-Section {
     padding: 0 184px;
   }
 }

@@ -12,6 +12,7 @@ import './ParticipantsList.css'
 // <pre>{JSON.stringify(participant, null, "\t")}</pre>
 const ParticipantList = () => {
   const { participant, dispatch } = useStoreon('participant')
+  const participantCount = participant.list.length
   return (
     <InnerPageContentContainer>
       <pre>participant: {JSON.stringify(participant, null, '\t')}</pre>
@@ -19,7 +20,7 @@ const ParticipantList = () => {
       <div className="participantList">
         <div className="participantList__header">
           <h2 className="participantList__title">Участники конференции</h2>
-          <p className="participantList__count">(789)</p>
+          <p className="participantList__count">({participantCount})</p>
           <Icon
             className="participantList__find"
             style={{ fontSize: 20 }}

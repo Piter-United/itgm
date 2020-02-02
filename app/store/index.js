@@ -5,7 +5,6 @@ import request from './request'
 import community from './community'
 import activity from './activity'
 import participant from './participant'
-console.log(participant)
 
 const store = createStore([
   request,

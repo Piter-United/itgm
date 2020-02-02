@@ -4,30 +4,11 @@ import useStoreon from 'storeon/react'
 
 import { GET_LIST } from 'store/activity'
 
-import { List } from 'antd'
 import PageSection from 'components/PageSection'
-import { ActivityListItem } from 'components/Activity/atoms'
+import { ActivityList } from 'components/Activity/atoms'
 import { Button } from 'ui'
 
 import './style.css'
-
-const Activities = ({ activitiesData, dispatch, userId }) => (
-  <List
-    itemLayout="vertical"
-    size="large"
-    pagination={false}
-    loading={activitiesData.loading}
-    dataSource={activitiesData.list}
-    renderItem={item => (
-      <ActivityListItem
-        key={item.id}
-        userId={userId}
-        item={item}
-        dispatch={dispatch}
-      />
-    )}
-  />
-)
 
 const Program = ({ className = '' }) => {
   const { activity = [], userId, dispatch } = useStoreon('activity', 'userId')
@@ -53,10 +34,8 @@ const Program = ({ className = '' }) => {
   return (
     <PageSection className={cn(className, 'Program')}>
       <div className="Program-Wrapper">
-        <h2 className="Heading Heading_level_1 Program-Heading">
-          Программа обсуждений
-        </h2>
-        <Activities
+        <h2 className="Heading Program-Heading">Программа обсуждений</h2>
+        <ActivityList
           dispatch={dispatch}
           activitiesData={{ ...activity, list: topThreeActivitiesByLikesCount }}
           userId={userId}

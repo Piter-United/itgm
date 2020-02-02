@@ -21,7 +21,7 @@
   flex-direction: column;
   justify-content: center;
   min-height: 660px;
-  border-left: 2px solid #ffffff;
+  border-left: 1px solid #ffffff;
   padding-left: 17%;
   padding-right: 600px;
   background-image: url('/asset/hero.png'), url('/asset/heroCurl.png');
@@ -38,12 +38,11 @@
 
 .Hero-Description {
   margin-bottom: 80px;
-  font-family: 'Open-Sans';
+  font-family: 'Open-Sans', sans-serif;
   font-size: 22px;
   line-height: 30px;
   color: #ffffff;
   font-weight: 300;
-  font-style: normal;
 }
 
 .Hero-Register {

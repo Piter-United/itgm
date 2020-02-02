@@ -23,6 +23,13 @@
   margin-bottom: 20px;
 }
 
+.Slide-Img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+
 .Slide-Description {
   font-family: Open Sans, serif;
   font-style: normal;
@@ -35,18 +42,3 @@
 .ant-carousel .slick-dots-bottom {
   bottom: -5px;
 }
-/* 
-.Slide-Item {
-}
-
-.slick-dots {
-
-} */
-
-/* .ant-carousel .slick-slide {
-  text-align: center;
-  height: 160px;
-  line-height: 160px;
-  background: #364d79;
-  overflow: hidden;
-} */

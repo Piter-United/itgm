@@ -4,33 +4,37 @@ import cn from 'classnames'
 
 import { Carousel } from 'antd'
 import PageSection from 'components/PageSection'
-import itgm from 'asset/ITGM_15.png'
+import itgm11 from 'asset/itgm11.png'
+import itgm12 from 'asset/itgm12.png'
+import itgm13 from 'asset/itgm13.png'
+import itgm14 from 'asset/itgm14.png'
+import itgm15 from 'asset/itgm15.png'
 import './style.css'
 
 const slides = [
   {
     id: 1,
-    img: `${itgm}`,
+    img: `${itgm11}`,
     desc: 'Летний ITGM #15. 27 июля, Туутари Парк'
   },
   {
     id: 2,
-    img: `${itgm}`,
+    img: `${itgm12}`,
     desc: 'Slide description'
   },
   {
     id: 3,
-    img: `${itgm}`,
+    img: `${itgm13}`,
     desc: 'Slide description'
   },
   {
     id: 4,
-    img: `${itgm}`,
+    img: `${itgm14}`,
     desc: 'Slide description'
   },
   {
     id: 5,
-    img: `${itgm}`,
+    img: `${itgm15}`,
     desc: 'Slide description'
   }
 ]

@@ -1,7 +1,7 @@
 .Description {
   padding: 0;
   background-color: #f3c892;
-  padding: 45px 15px 50px;
+  padding: 50px 15px;
 }
 
 .Description-HeroWrapper {
@@ -24,11 +24,11 @@
   color: #2a2a2a;
   font-size: 36px;
   line-height: 40px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .Description-Text {
-  margin-bottom: 80px;
+  margin-bottom: 90px;
   font-family: 'Open-Sans', sans-serif;
   font-size: 18px;
   line-height: 25px;

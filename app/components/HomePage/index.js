@@ -6,7 +6,7 @@ import ActivityList from 'components/Activity/ActivityList'
 import Footer from 'components/Footer'
 import Header from 'components/Header'
 
-import { Hero, Stats, Description } from './atoms'
+import { Hero, Stats, Description, Program } from './atoms'
 
 import './style.css'
 
@@ -20,12 +20,7 @@ const HomePage = () => {
 
       <Stats className="HomePage-Stats" />
       <Description className="HomePage-Description" />
-
-      <PageSection>
-        <ContentContainer>
-          <ActivityList />
-        </ContentContainer>
-      </PageSection>
+      <Program className="HomePage-Program" />
 
       <PageSection style={{ background: 'lightgray' }}>
         <ContentContainer>

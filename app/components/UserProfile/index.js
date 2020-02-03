@@ -7,7 +7,7 @@ import { GET_LIST } from 'store/activity'
 
 import history from '../../history'
 
-import ProfileInfo from './atoms/ProfileInfo'
+import ProfileInfo from './atoms'
 import ActivityList from 'components/Activity/atoms/ActivityList'
 import CommunityBadgeList from 'components/Community/CommunityBadgeList'
 

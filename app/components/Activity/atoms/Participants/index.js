@@ -1,7 +1,7 @@
 import React from 'react'
-import Avatar from '../../../UI/Avatar'
+import Avatar from 'ui/Avatar'
 
-import imageAvatar from '../../../../../asset/userFallbackAvatar.png'
+import imageAvatar from 'asset/userFallbackAvatar.png'
 import './style.css'
 
 export const Participants = ({ data }) =>

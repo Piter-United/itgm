@@ -11,7 +11,8 @@ import {
   Description,
   Program,
   Communities,
-  PastEvents
+  PastEvents,
+  PartnersSection
 } from './atoms'
 
 import './style.css'
@@ -27,28 +28,16 @@ const HomePage = () => {
       <Stats className="HomePage-Stats" />
       <Description className="HomePage-Description" />
       <Program className="HomePage-Program" />
-
       <PastEvents className="HomePage-PastEvents" />
-
-      <PageSection style={{ background: 'lightgray' }}>
-        <ContentContainer>
-          <p>PageSection</p>
-        </ContentContainer>
-      </PageSection>
-
       <Communities className="HomePage-Communities" />
 
       <PageSection style={{ background: 'gray' }}>
         <ContentContainer>
-          <p>PageSection</p>
+          <p>Карта</p>
         </ContentContainer>
       </PageSection>
 
-      <PageSection style={{ background: 'lightgray' }}>
-        <ContentContainer>
-          <p>PageSection</p>
-        </ContentContainer>
-      </PageSection>
+      <PartnersSection className="HomePage-Partners" />
       <Footer theme="inverse" />
     </Fragment>
   )

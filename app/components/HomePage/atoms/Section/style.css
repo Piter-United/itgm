@@ -3,6 +3,10 @@
   overflow: hidden;
 }
 
+.Section_align_center {
+  text-align: center;
+}
+
 .Section:before {
   position: absolute;
   z-index: -1;
@@ -12,9 +16,9 @@
   line-height: 290px;
   text-align: center;
   font-weight: 800;
-  top: 190px;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(-50%);
   color: #ffffff;
   text-shadow: -1px -1px 0 #ececec, 1px -1px 0 #ececec, -1px 1px 0 #ececec,
     1px 1px 0 #ececec;

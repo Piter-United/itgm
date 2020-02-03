@@ -15,7 +15,7 @@
 .UserProfile-Text {
   padding: 20px 0;
   margin: unset;
-  font-family: 'Open-Sans';
+  font-family: 'Open-Sans' sans-serif;
   font-style: normal;
   font-weight: 300;
   font-size: 14px;

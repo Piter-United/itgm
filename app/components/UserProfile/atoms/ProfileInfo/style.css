@@ -1,12 +1,13 @@
 .ProfileInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 .title {
   font-size: 36px;
 }
 .ProfileAvatar {
-  width: 5.5vw;
   position: relative;
-  float: right;
   text-align: center;
 }
 .ProfileAvatar-Image {
@@ -14,15 +15,15 @@
   height: 100%;
 }
 .ProfileDescription-Name {
-  font-family: 'PlayfairDisplay';
+  font-family: 'PlayfairDisplay' serif;
   font-style: normal;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 2rem;
   line-height: 40px;
   margin-bottom: 0px;
 }
 .ProfileDescription-Company {
-  font-family: 'Open-Sans';
+  font-family: 'Open-Sans' sans-serif;
   font-style: normal;
   font-weight: 300;
   font-size: 1rem;
@@ -38,7 +39,7 @@
 }
 .ProfileInfo-About {
   width: 65%;
-  font-family: 'Open-Sans';
+  font-family: 'Open-Sans' sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;

@@ -62,8 +62,8 @@ const ProfileInfo = props => {
 
   return (
     <div className="ProfileInfo">
-      <ProfileAvatar avatar={avatar_hash} />
       <Descriptions {...props} />
+      <ProfileAvatar avatar={avatar_hash} />
     </div>
   )
 }

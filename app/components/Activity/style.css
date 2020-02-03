@@ -25,6 +25,7 @@
 
 .Activity-AsideRightContent {
   width: 100%;
+  padding-top: 20px;
 }
 
 .Activity-AsideRightItem {
@@ -100,6 +101,7 @@
   }
   .Activity-AsideRight {
     border-left: 1px solid #ababab;
+    margin-top: 0px;
   }
 }
 

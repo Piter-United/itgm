@@ -30,7 +30,8 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
-    "storeon": "^0.9.7"
+    "storeon": "^0.9.7",
+    "ymaps": "^0.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",

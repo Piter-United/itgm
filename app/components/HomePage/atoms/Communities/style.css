@@ -1,0 +1,56 @@
+.Communities:before {
+  content: 'communities';
+}
+
+.Communities-Button {
+  align-self: center;
+}
+
+.CommunityCard-Content {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid rgba(42, 42, 42, 0.1);
+  box-sizing: border-box;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  margin-bottom: 20px;
+  padding: 28px;
+  background-color: #ffffff;
+}
+.CommunityCard-Heading {
+  width: 220px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-family: 'Open-Sans', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.CommunityCard-Description {
+  padding-right: 10px;
+  width: 220px;
+  height: 32px;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 16px;
+  color: #2a2a2a;
+  opacity: 0.7;
+  font-family: 'Open-Sans', sans-serif;
+  font-weight: 400;
+}
+
+.CommunityCard-Link {
+  font-family: 'Open-Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+  color: #6f4297;
+}
+
+.CommunityCard-Link:hover,
+.CommunityCard-Link:focus {
+  text-decoration: underline;
+  color: #6f4297;
+}

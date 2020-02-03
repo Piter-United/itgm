@@ -23,9 +23,14 @@ export default ({ dispatch, item, userId }) => (
       <div className="ActivityListItem-Misc">
         <span>{moment(item.ts).format('DD.MM.YYYY')}</span>
         <div>
-          {item.community &&
-            item.community.resource &&
-            item.community.resource.name}{' '}
+          {item.community && item.community.resource && (
+            <Link
+              to={`/community/${item.community.id}`}
+              className="ActivityListItem-Community"
+            >
+              {item.community.resource.name}
+            </Link>
+          )}
         </div>
       </div>
       <Link className="ActivityListItem-TitleLink" to={`/activity/${item.id}`}>

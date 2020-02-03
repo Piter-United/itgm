@@ -16,18 +16,24 @@
 .Activity-Content {
   flex-grow: 1;
   padding-right: 100px;
-  border-right: 1px solid #ababab;
 }
 
-.Activity-Meta {
-  box-sizing: border-box;
-  min-width: 380px;
-  padding-left: 100px;
+.Activity-AsideRight {
+  display: flex;
+  margin-top: 50px;
+}
+
+.Activity-AsideRightContent {
+  width: 100%;
   padding-top: 20px;
 }
 
-.Activity-Community {
+.Activity-AsideRightItem {
   margin-bottom: 50px;
+}
+
+.Activity-AsideRightItem:last-child {
+  margin-bottom: 0px;
 }
 
 .Activity-Header {
@@ -53,6 +59,10 @@
 .Activity-Description {
   padding-bottom: 36px;
   white-space: pre-line;
+}
+
+.Activity-AuthorBlock {
+  margin-bottom: 40px;
 }
 
 .ActivityPage-WrapperContent {
@@ -127,6 +137,13 @@
   }
   .ActivityFilter-Content {
     margin-left: 100px;
+  }
+  .Activity-AsideRightContent {
+    margin-left: 100px;
+  }
+  .Activity-AsideRight {
+    border-left: 1px solid #ababab;
+    margin-top: 0px;
   }
 }
 

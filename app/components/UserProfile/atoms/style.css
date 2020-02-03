@@ -3,9 +3,6 @@
   justify-content: space-between;
   align-items: flex-start;
 }
-.title {
-  font-size: 36px;
-}
 .ProfileAvatar {
   position: relative;
   text-align: center;

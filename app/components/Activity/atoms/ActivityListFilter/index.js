@@ -13,37 +13,37 @@ const ActivityFilter = ({ handleClose }) => {
     dispatch(GET_LIST_COMMUNITY)
   }, [dispatch])
 
-  const btnsCommunities = community.list.map(e => {
-    const isSelectedCommunity = e.id === activity.community
+  const btnsCommunities = community.list.map(({ id, name }) => {
+    const isSelectedCommunity = id === activity.community
     return (
       <Button
         className={cn({
           'ActivityFilter-Control': true,
           'ActivityFilter-Control_selected': isSelectedCommunity
         })}
-        onClick={() => dispatch(ON_COMMUNITY, e.id)}
-        key={e.id}
+        onClick={() => dispatch(ON_COMMUNITY, id)}
+        key={id}
       >
-        {e.name}
+        {name}
       </Button>
     )
   })
 
   const btnsTags = activity.list
-    .map(e => e.resource.tags)
+    .map(({ resource: { tags } }) => tags)
     .flat()
-    .map((e, i) => {
-      const isSelectedTag = activity.tags.indexOf(e) > -1
+    .map((tag, i) => {
+      const isSelectedTag = activity.tags.indexOf(tag) > -1
       return (
         <Button
           className={cn({
             'ActivityFilter-Control': true,
             'ActivityFilter-Control_selected': isSelectedTag
           })}
-          onClick={() => dispatch(ON_TAG, e)}
+          onClick={() => dispatch(ON_TAG, tag)}
           key={i + 'tag'}
         >
-          {e}
+          {tag}
         </Button>
       )
     })

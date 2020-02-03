@@ -9,7 +9,7 @@ import { Button } from 'ui'
 import './style.css'
 
 const yandexMapConfig = {
-  apiKey: '48aaa052-afe3-4a84-97a7-957e8255594e',
+  apiKey: process.env.YANDEX_MAP_API_KEY,
   zoom: 15,
   center: [59.991555, 30.188077]
 }

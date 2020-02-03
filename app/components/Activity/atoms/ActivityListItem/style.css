@@ -44,7 +44,19 @@
 }
 
 .ActivityListItem-Description {
+  position: relative;
   white-space: pre-line;
+  height: 76px;
+  overflow: hidden;
+}
+
+.ActivityListItem-DescriptionFade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0) 20%, rgba(255, 255, 255, 1) 90%);
 }
 
 .ActivityListItem-Footer {

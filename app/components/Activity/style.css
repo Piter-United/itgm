@@ -16,18 +16,24 @@
 .Activity-Content {
   flex-grow: 1;
   padding-right: 100px;
-  border-right: 1px solid #ababab;
 }
 
-.Activity-Meta {
-  box-sizing: border-box;
-  min-width: 380px;
-  padding-left: 100px;
+.Activity-AsideRight {
+  display: flex;
+  margin-top: 50px;
+}
+
+.Activity-AsideRightContent {
+  width: 100%;
   padding-top: 20px;
 }
 
-.Activity-Community {
+.Activity-AsideRightItem {
   margin-bottom: 50px;
+}
+
+.Activity-AsideRightItem:last-child {
+  margin-bottom: 0px;
 }
 
 .Activity-Header {
@@ -55,6 +61,10 @@
   white-space: pre-line;
 }
 
+.Activity-AuthorBlock {
+  margin-bottom: 40px;
+}
+
 .ActivityPage-WrapperContent {
   order: 2;
 }
@@ -72,6 +82,48 @@
   width: 100%;
 }
 
+.ActivityFilter-Control {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  color: rgba(170, 170, 170, 1);
+  border-color: rgba(170, 170, 170, 1);
+  background-color: transparent;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+  max-width: 270px;
+}
+
+.ActivityFilter-Control:hover,
+.ActivityFilter-Control:focus {
+  color: rgba(170, 170, 170, 0.5);
+  border-color: rgba(170, 170, 170, 0.5);
+  background-color: transparent;
+}
+
+.ActivityFilter-Control_selected {
+  color: #2a2a2a;
+  border-color: transparent;
+  background-color: rgba(191, 191, 191, 0.4);
+}
+
+.ActivityFilter-Control_selected:hover,
+.ActivityFilter-Control_selected:focus {
+  color: #2a2a2a;
+  border-color: transparent;
+  background-color: rgba(191, 191, 191, 0.2);
+}
+
+.ActivityFilter-FilterControlBlock {
+  margin-bottom: 30px;
+}
+
+.ActivityFilter-FilterControlLabel {
+  display: block;
+  margin-bottom: 20px;
+}
+
 @media only screen and (min-width: 1200px) {
   .ActivityPage-WrapperContent {
     order: 1;
@@ -85,6 +137,13 @@
   }
   .ActivityFilter-Content {
     margin-left: 100px;
+  }
+  .Activity-AsideRightContent {
+    margin-left: 100px;
+  }
+  .Activity-AsideRight {
+    border-left: 1px solid #ababab;
+    margin-top: 0px;
   }
 }
 

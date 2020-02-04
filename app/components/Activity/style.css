@@ -170,3 +170,33 @@
 .ActivityPage-BtnCloseFilter:focus {
   color: #ff5762;
 }
+
+.FormItem input,
+.FormItem textarea,
+.FormItem label,
+.FormItem-Select,
+.FormItem-SelectDropDown ul li {
+ font-size: 16px; 
+}
+
+.FormItem-Control {
+  padding: 12px 16px;
+  height: auto;
+}
+
+.FormItem-Select > div {
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.FormItem-Select > div > div {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin-left: 16px;
+}
+
+.FormItem-SelectDropDown ul li {
+  padding: 6px 16px;
+}

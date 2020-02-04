@@ -11,10 +11,11 @@ import './style.css'
 const yandexMapConfig = {
   apiKey: process.env.YANDEX_MAP_API_KEY,
   zoom: 15,
-  center: [59.991555, 30.188077]
+  center: [59.98786, 30.178783],
+  placemark: [59.98891, 30.188077]
 }
 
-const createMap = ({ apiKey, center, zoom }) => {
+const createMap = ({ apiKey, center, zoom, placemark }) => {
   ymaps
     .load(`https://api-maps.yandex.ru/2.1/?apikey=${apiKey}&lang=ru_RU`)
     .then(maps => {
@@ -23,6 +24,27 @@ const createMap = ({ apiKey, center, zoom }) => {
         controls: [],
         zoom
       })
+
+      const point = new maps.GeoObject(
+        {
+          geometry: {
+            type: 'Point',
+            coordinates: placemark
+          },
+          properties: {
+            balloonContent: '',
+            id: 1,
+            iconContent: ''
+          }
+        },
+        {
+          draggable: false,
+          preset: 'islands#icon',
+          iconColor: '#F65762'
+        }
+      )
+
+      map.geoObjects.add(point)
     })
     .catch(error => console.log('Failed to load Yandex Maps', error))
 }

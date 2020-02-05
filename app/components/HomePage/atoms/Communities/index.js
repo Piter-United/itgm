@@ -46,10 +46,7 @@ const Communities = ({ className = '' }) => {
   }, [dispatch])
 
   return (
-    <Section
-      className={cn(className, 'Communities')}
-      heading="Программа обсуждений"
-    >
+    <Section className={cn(className, 'Communities')} heading="Сообщества">
       <CommunitiesList
         communitiesData={{ ...community, list: community.list.slice(0, 4) }}
       />

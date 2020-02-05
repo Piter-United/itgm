@@ -39,6 +39,7 @@ export default ({ dispatch, item, userId }) => (
     </div>
     <div className="ActivityListItem-Description">
       {item.resource.description}
+      <span className="ActivityListItem-DescriptionFade" />
     </div>
     <div className="ActivityListItem-Footer">
       <div className="ActivityListItem-Likes" key={`list-item-like-${item.id}`}>

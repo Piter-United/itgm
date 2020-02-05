@@ -125,6 +125,7 @@ const user = store => {
     notification.success({ message: 'Вы вышли из системы' })
     store.dispatch(SET_USER_TOKEN, { token: null, user: null })
     store.dispatch(SET_USER_ID, null)
+    history.push('/')
   })
 }
 

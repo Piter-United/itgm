@@ -196,7 +196,7 @@ const activity = store => {
     const activity = data.find(v => v.resource_type === 'Activity')
     const likes = data
       .filter(v => v.resource_type === 'ActivityLike')
-      .map(v => ({ ...v, ...v.resource }))
+      .map(v => ({ ...v, ...v.resource.user }))
     return {
       activityInfo: {
         ...s.activityInfo,

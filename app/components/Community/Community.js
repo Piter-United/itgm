@@ -34,7 +34,7 @@ const Community = ({
     return <Spin size="large" />
   }
 
-  const { community } = communityInfo.data
+  const { community, participants } = communityInfo.data
   const social = community.social.filter(s => s.icon !== 'global')
   const globalLink = community.social.filter(s => s.icon === 'global')[0]
 
@@ -61,6 +61,7 @@ const Community = ({
           <CommunityTags data={community.tags || []} />
           <div className="Community-Description">{community.description}</div>
           <ActivityAuthor
+            avatar={`https://www.gravatar.com/avatar/${community.owner.avatar_hash}`}
             user={community.owner.name}
             community={community.name}
             createdAt={community.ts}
@@ -71,7 +72,7 @@ const Community = ({
           <CommunitySocial data={social} />
           <div className="Community-Participants">
             <p className="Community-ParticipantsTitle">Участники</p>
-            <Participants data={community.participants || []} />
+            <Participants data={participants || []} />
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 
 import './style.css'
@@ -16,7 +16,6 @@ import useStoreon from 'storeon/react'
 const Header = ({ theme = 'default' }) => {
   const { user, dispatch } = useStoreon('user')
   const signOut = () => dispatch(LOGOUT)
-
   useEffect(() => {
     dispatch(GET_CURRENT_USER)
   }, [dispatch])
@@ -35,7 +34,7 @@ const Header = ({ theme = 'default' }) => {
           <button type="button" className="Header-Icon">
             <Bell />
           </button>
-          {user ? <ProfileButton signOutHandler={signOut} /> : <SignUpButton />}
+          {user ? <ProfileButton handleSignOut={signOut} /> : <SignUpButton />}
         </div>
       </div>
     </header>

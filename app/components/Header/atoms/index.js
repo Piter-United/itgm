@@ -9,24 +9,14 @@ export const SignUpButton = () => (
     <Button>Sign Up</Button>
   </Link>
 )
-export const ProfileButton = ({ signOutHandler }) => {
-  const handler = ({ key }) => {
-    const eventHandlers = {
-      signOut: signOutHandler
-    }
-    return eventHandlers[key]()
-  }
+export const ProfileButton = ({ handleSignOut }) => {
   const menu = (
-    <Menu onClick={handler}>
-      <Menu.Item key="signOut">
-        <Link to="/" key="/">
-          Sign out
-        </Link>
+    <Menu>
+      <Menu.Item onClick={handleSignOut} key="signOut">
+        Sign out
       </Menu.Item>
       <Menu.Item key="edit">
-        <Link to="/user/edit" key="/edit">
-          Edit profile
-        </Link>
+        <Link to="/user/edit">Edit profile</Link>
       </Menu.Item>
     </Menu>
   )

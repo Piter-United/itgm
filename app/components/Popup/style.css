@@ -68,8 +68,8 @@
 }
 
 .Popup-Close:hover,
-.Popup-Close:active {
-  opacity: 0.75;
+.Popup-Close:focus {
+  opacity: 0.7;
 }
 
 .Popup-Close:before {

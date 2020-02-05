@@ -48,17 +48,7 @@ const Descriptions = ({ name, company, email, phone, about }) => {
 }
 
 const ProfileInfo = props => {
-  const {
-    email,
-    phone,
-    name,
-    company,
-    about,
-    id,
-    specialization,
-    photo,
-    avatar_hash
-  } = props
+  const { avatar_hash } = props
 
   return (
     <div className="ProfileInfo">

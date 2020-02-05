@@ -32,21 +32,8 @@ const UserProfile = () => {
   if (!user) {
     return <Spin size="large" />
   }
-  const {
-    email,
-    community,
-    phone,
-    name,
-    company,
-    about,
-    id,
-    communities,
-    specialization,
-    avatar_hash
-  } = user
+  const { community, communities } = user
 
-  //TODO: format with regexp for phones;
-  // const formattedPhone = num => { }
   const userActivities = activity.list.filter(
     event => event.resource.user.id === userId
   )
@@ -59,11 +46,6 @@ const UserProfile = () => {
     <p className="UserProfile-Text">{text}</p>
   )
 
-  const activitiesProps = {
-    activitiesData: { ...activity, list: userActivities },
-    userId,
-    dispatch
-  }
   return (
     <InnerPageContentContainer>
       <main className="UserProfile">

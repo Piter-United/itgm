@@ -1,15 +1,17 @@
 import React from 'react'
+import Avatar from 'ui/Avatar'
 
+import imageAvatar from 'asset/communityFallbackAvatar.png'
 import './style.css'
-import Avatar from '../../../UI/Avatar'
 
-export const CommunityAvatar = ({ name }) => (
+export const CommunityAvatar = ({ name, src = imageAvatar }) => (
   <div className="CommunityAvatar">
     <Avatar
       alt="name"
       type="community"
       size="m"
       className="CommunityAvatar-Avatar"
+      src={src}
     />
     <p className="CommunityAvatar-Description">{name}</p>
   </div>

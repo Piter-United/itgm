@@ -45,7 +45,7 @@ const AcivityCreateForm = ({
             onSubmit={handleSubmit}
           >
             <div className="form__header">
-              <Title className="Heading Heading_level_1">
+              <Title className="Heading">
                 {act && act.id ? 'Редактирование темы' : 'Добавление новой темы'}
               </Title>
             </div>
@@ -90,11 +90,13 @@ const AcivityCreateForm = ({
                   showSearch
                   placeholder="Выберите сообщество из списка"
                   optionFilterProp="children"
-                  filterOption={(input, option) =>
-                    option.props.children
+                  filterOption={(input, option) => {
+                    console.log(input)
+                    console.log(option)
+                    return option.props.children
                       .toLowerCase()
                       .indexOf(input.toLowerCase()) >= 0
-                  }
+                  }}
                 >
                   {!community.loading &&
                     community.list.map(item => (

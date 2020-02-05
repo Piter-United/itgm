@@ -1,0 +1,70 @@
+.Hero {
+  display: flex;
+  flex-grow: 1;
+  padding: 0 15px;
+  background-color: #6f4297;
+}
+
+.Hero-ContentWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+.Hero-Content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 660px;
+  border-left: 1px solid #ffffff;
+  padding-left: 17%;
+  padding-right: 600px;
+  background-image: url('/asset/hero.png'), url('/asset/heroCurl.png');
+  background-repeat: no-repeat, no-repeat;
+  background-position: right 100px center, left 100px top 100px;
+}
+
+.Hero-Heading {
+  color: #ffffff;
+  font-size: 36px;
+  line-height: 48px;
+  margin-bottom: 20px;
+}
+
+.Hero-Description {
+  margin-bottom: 80px;
+  font-family: 'Open-Sans', sans-serif;
+  font-size: 22px;
+  line-height: 30px;
+  color: #ffffff;
+  font-weight: 300;
+}
+
+.Hero-Register {
+  margin-right: 20px;
+}
+
+.Hero-About {
+  display: block;
+  font-size: 14px;
+  line-height: 19px;
+  font-family: 'Open-Sans', sans-serif;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.Hero-About:hover,
+.Hero-About:focus {
+  color: #ffffff;
+  opacity: 0.5;
+}
+
+.Hero-ButtonsWrapper {
+  display: flex;
+  align-items: center;
+}

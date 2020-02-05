@@ -3,19 +3,22 @@ import { Switch, Route } from 'react-router-dom'
 
 import PrivateRoute from 'components/PrivateRoute'
 import NotFound from 'components/NotFound'
+import Layout from 'components/Layout'
+import HomePage from 'components/HomePage'
 
 import routes from './routes'
-import Layout from './components/Layout'
 
 import TryPage from './components/title_filter_sort/try_title_filter_sort'
 
 const App = () => (
   <Switch>
+    <Route path="/" exact component={HomePage} />
     {routes.map(route =>
       route.private ? (
         <PrivateRoute
           key={route.path}
           path={route.path}
+          exact
           component={props => (
             <Layout
               theme={route.theme}

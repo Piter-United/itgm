@@ -10,11 +10,19 @@ ITGM App - это SPA приложение для формирование пр�
 
 ## Quick start
 
-- устанавливаем зависимости `make install`
-- копируем env `cp .env.tpl .env`
+- устанавливаем проект `make setup`
 - запускаем приложение `make start`
 - разрабатываем
 
 ## Common Rules Development
 
 - Именование css BEM ([cтиль React](https://ru.bem.info/methodology/naming-convention/#%D1%81%D1%82%D0%B8%D0%BB%D1%8C-react))
+
+## Get update from remote repo
+
+```
+   git remote add upstream https://github.com/Piter-United/itgm.git
+   git fetch upstream
+   git checkout master
+   git merge upstream/master
+```

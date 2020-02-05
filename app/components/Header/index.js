@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import './Header.css'
+import './style.css'
 
 import SearchIcon from 'icons/search.svg'
 import Bell from 'icons/bell.svg'
@@ -10,8 +10,6 @@ import UserIcon from 'icons/user-icon.svg'
 import { Logo } from 'components/Logo'
 
 import routes from '../../routes'
-
-const linkList = ['Главная', 'Программа', 'Сообщества', 'Участники', 'Партнеры']
 
 const HeaderList = () => {
   return (

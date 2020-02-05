@@ -5,6 +5,7 @@
   border-radius: 3px;
   margin-bottom: 20px;
   padding: 28px 51px;
+  background-color: #ffffff;
 }
 
 .ActivityListItem-Misc {
@@ -43,7 +44,19 @@
 }
 
 .ActivityListItem-Description {
+  position: relative;
   white-space: pre-line;
+  height: 76px;
+  overflow: hidden;
+}
+
+.ActivityListItem-DescriptionFade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0) 20%, rgba(255, 255, 255, 1) 90%);
 }
 
 .ActivityListItem-Footer {
@@ -55,4 +68,15 @@
 .ActivityListItem-Author {
   font-size: 14px;
   font-weight: 300;
+}
+
+.ActivityListItem-Community {
+  font-weight: 300;
+  color: #2a2a2a;
+}
+
+.ActivityListItem-Community:hover,
+.ActivityListItem-Community:focus {
+  color: #2a2a2a;
+  text-decoration: underline;
 }

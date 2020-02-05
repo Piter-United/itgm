@@ -8,7 +8,7 @@ import { Nav, Social } from './atoms'
 import { navigation, social } from './config'
 import { Link } from 'react-router-dom'
 
-export const Footer = ({ theme = 'default' }) => {
+const Footer = ({ theme = 'default' }) => {
   return (
     <footer className={`Footer Footer_theme_${theme}`}>
       <div className="Footer-Inner">
@@ -27,3 +27,5 @@ export const Footer = ({ theme = 'default' }) => {
     </footer>
   )
 }
+
+export default Footer

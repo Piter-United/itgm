@@ -70,14 +70,16 @@ const CommunityList = props => {
       </div>
       <Row style={{ display: 'flex', alignItems: 'baseline' }}>
         {user && (
-          <Link className="community__button" to="/community/new">
+          <Link
+            className="Button Button_size_m Button_color_primary Program-Button"
+            to="/community/new"
+          >
             Добавить сообщество
           </Link>
         )}
       </Row>
       <div className="community__list">
         <div className="community__list_col">
-          {console.log(left)}
           {mapper(left, CommunityListItem)}
         </div>
         <div className="community__list_col">

@@ -6,6 +6,12 @@
   height: 80px;
 }
 
+.participant:hover {
+  background: rgba(0, 1, 0, 0.01);
+  border-radius: 40px;
+  cursor: pointer;
+}
+
 .participant__avatar {
   position: absolute;
   width: 80px;

@@ -4,18 +4,13 @@ import Avatar from 'ui/Avatar'
 
 import './Participant.css'
 
-const Participant = ({ id, avatar, firstName, lastName, community }) => (
-  <li className="participant" key={id}>
+const Participant = ({ item }) => (
+  <li className="participant" key={item.id}>
     <div className="participant__avatar">
-      <Avatar
-        type={'participant'}
-        src={avatar}
-        alt={`${firstName}
-        ${lastName}`}
-      />
+      <Avatar type={'participant'} src={item.avatar} alt={item.name} />
     </div>
-    <h3 className="participant__name">{`${firstName} ${lastName}`}</h3>
-    <p className="participant__community">{community}</p>
+    <h3 className="participant__name">{item.name}</h3>
+    <p className="participant__community">{item.community.name}</p>
   </li>
 )
 

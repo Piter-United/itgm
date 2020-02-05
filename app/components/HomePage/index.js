@@ -2,11 +2,19 @@ import React, { Fragment } from 'react'
 
 import PageSection from 'components/PageSection'
 import ContentContainer from 'components/ContentContainer'
-import ActivityList from 'components/Activity/ActivityList'
 import Footer from 'components/Footer'
 import Header from 'components/Header'
 
-import { Hero, Stats, Description } from './atoms'
+import {
+  Hero,
+  Stats,
+  Description,
+  Program,
+  Communities,
+  PastEvents,
+  PartnersSection,
+  MapSection
+} from './atoms'
 
 import './style.css'
 
@@ -20,30 +28,13 @@ const HomePage = () => {
 
       <Stats className="HomePage-Stats" />
       <Description className="HomePage-Description" />
+      <Program className="HomePage-Program" />
+      <PastEvents className="HomePage-PastEvents" />
+      <Communities className="HomePage-Communities" />
 
-      <PageSection>
-        <ContentContainer>
-          <ActivityList />
-        </ContentContainer>
-      </PageSection>
+      <MapSection className="HomePage-Map" />
 
-      <PageSection style={{ background: 'lightgray' }}>
-        <ContentContainer>
-          <p>PageSection</p>
-        </ContentContainer>
-      </PageSection>
-
-      <PageSection style={{ background: 'gray' }}>
-        <ContentContainer>
-          <p>PageSection</p>
-        </ContentContainer>
-      </PageSection>
-
-      <PageSection style={{ background: 'lightgray' }}>
-        <ContentContainer>
-          <p>PageSection</p>
-        </ContentContainer>
-      </PageSection>
+      <PartnersSection className="HomePage-Partners" />
       <Footer theme="inverse" />
     </Fragment>
   )

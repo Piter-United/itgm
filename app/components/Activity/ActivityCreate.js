@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import useStoreon from 'storeon/react'
 import { Button, Form, Input, Select, Spin, Typography } from 'antd'
 
-import { CREATE, GET_BY_ID, UPDATE } from 'store/activity'
+import { CREATE, GET_BY_ID, UPDATE, DISABLE } from 'store/activity'
 
 import '../Heading/Heading.css'
 
@@ -11,13 +11,13 @@ import { InnerPageContentContainer } from '../InnerPageContentContainer'
 
 const { Title } = Typography
 
-const AcivityCreateForm = ({
+const ActivityCreateForm = ({
   form,
-  // eslint-disable-next-line no-unused-vars
   user,
   community,
   onCreateActivity,
-  activity
+  activity,
+  onDisableActivity
 }) => {
   const act = activity && activity.data && activity.data.activity
   const { getFieldDecorator, validateFieldsAndScroll } = form
@@ -28,6 +28,14 @@ const AcivityCreateForm = ({
         onCreateActivity(values)
       }
     })
+  }
+
+  // TODO check if user id === activity user
+  const handleDelete = e => {
+    e.preventDefault()
+    // console.log(activity)
+    // console.log(user)
+    onDisableActivity()
   }
 
   return (
@@ -114,14 +122,20 @@ const AcivityCreateForm = ({
           Сохранить
         </Button>
       </Form.Item>
+      <Form.Item>
+        <Button type="danger" onClick={handleDelete}>
+          Удалить
+        </Button>
+      </Form.Item>
     </Form>
   )
 }
 
-const WrappedAcivityCreateForm = Form.create({ name: 'user_edit' })(
-  AcivityCreateForm
+const WrappedActivityCreateForm = Form.create({ name: 'user_edit' })(
+  ActivityCreateForm
 )
 
+// TODO do not let user who is not activity to edit it, unless it is not author or manager
 const ActivityCreate = ({
   match: {
     params: { id }
@@ -153,10 +167,24 @@ const ActivityCreate = ({
     }
   }
 
-  const onCreateActivity = newCommunity => {
+  const formatUser = user => {
+    return {
+      id: user.id,
+      resourceType: 'User'
+    }
+  }
+
+  const formatActivityCommunity = community => {
+    return {
+      id: community.id,
+      resourceType: 'Community'
+    }
+  }
+
+  const onCreateActivity = newActivity => {
     const newData = {
-      ...newCommunity,
-      community: formatCommunity(newCommunity.community),
+      ...newActivity,
+      community: formatCommunity(newActivity.community),
       user: {
         id: user.id,
         resourceType: 'User'
@@ -169,6 +197,19 @@ const ActivityCreate = ({
       dispatch(CREATE, newData)
     }
   }
+
+  const onDisableActivity = () => {
+    console.log(activityInfo)
+    const { activity } = activityInfo.data
+    const disabledActivity = {
+      id: activity.id,
+      user: formatUser(activity.user),
+      active: false
+    }
+
+    dispatch(DISABLE, disabledActivity)
+  }
+
   if (id && id.length && activityInfo.loading) {
     return <Spin size="large" />
   }
@@ -176,11 +217,12 @@ const ActivityCreate = ({
   return (
     <InnerPageContentContainer>
       <div className="content">
-        <WrappedAcivityCreateForm
+        <WrappedActivityCreateForm
           user={user}
           community={community}
           activity={activityInfo}
           onCreateActivity={onCreateActivity}
+          onDisableActivity={onDisableActivity}
         />
       </div>
     </InnerPageContentContainer>

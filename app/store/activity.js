@@ -31,6 +31,8 @@ export const GET_BY_ID_LOADING = 'activity/get-by-id-loading'
 export const GET_BY_ID_RELOAD_BY_LU = 'activity/get-by-id-rblu'
 export const UPDATE = 'activity/update'
 export const UPDATE_SUCCESS = 'activity/update-success'
+export const DISABLE = 'activity/disable'
+export const DISABLE_SUCCESS = 'activity/disable-success'
 export const ON_FILTER = 'activity/on-filter'
 export const ON_TAG = 'activity/on-tag'
 export const ON_COMMUNITY = 'activity/on-community'
@@ -205,6 +207,7 @@ const activity = store => {
       }
     }
   })
+
   store.on(UPDATE, (s, body) => {
     store.dispatch('request', {
       resourceType: 'Activity',
@@ -214,6 +217,19 @@ const activity = store => {
       success: UPDATE_SUCCESS,
       error: ERROR,
       spinner: GET_BY_ID_LOADING
+    })
+  })
+
+  store.on(DISABLE, (s, activity) => {
+    console.log(activity)
+    store.dispatch('request', {
+      resourceType: 'Activity',
+      id: activity.id,
+      body: activity,
+      method: 'PATCH',
+      success: DISABLE_SUCCESS,
+      error: ERROR,
+      spinner: LOADING
     })
   })
 
@@ -245,6 +261,9 @@ const activity = store => {
   })
   store.on(UPDATE_SUCCESS, (s, updated) => {
     history.push(`/activity/${updated.id}`)
+  })
+  store.on(DISABLE_SUCCESS, () => {
+    history.push(`/activity`)
   })
 }
 

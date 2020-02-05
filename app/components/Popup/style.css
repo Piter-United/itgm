@@ -8,6 +8,7 @@
   padding: 60px;
   background-color: #fff;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+  background-image: url('../../../asset/1.png');
 }
 
 .Popup-Wrapper {
@@ -75,7 +76,7 @@
   content: '';
   position: absolute;
   top: 0;
-  left: -6px;
+  left: -8px;
   width: 20px;
   height: 5px;
   background-color: #959595;

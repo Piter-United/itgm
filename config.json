@@ -390,6 +390,30 @@
           }
         ]
       },
+      "allow-activity-update": {
+        "engine": "complex",
+        "and": [
+          {
+            "engine": "json-schema",
+            "schema": {
+              "required": ["request-method", "params"],
+              "properties": {
+                "request-method": {
+                  "const": "patch"
+                },
+                "params": {
+                  "required": ["resource/type"],
+                  "properties": {
+                    "resource/type": {
+                      "constant": "Activity"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
       "allow-activity-like-create": {
         "engine": "complex",
         "and": [
@@ -553,6 +577,9 @@
           "type": "Reference",
           "refers": ["User"],
           "isRequired": true
+        },
+        "active": {
+          "type": "boolean"
         }
       }
     },

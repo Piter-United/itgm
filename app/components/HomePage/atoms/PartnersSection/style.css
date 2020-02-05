@@ -1,0 +1,20 @@
+.PartnersSection:before {
+  content: 'partners';
+}
+
+.PartnersSection-List {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 40px;
+  padding-top: 50px;
+  border-top: 1px solid rgba(42, 42, 42, 0.3);
+  list-style: none;
+}
+
+.PartnersSection-ListItem {
+  padding: 0 10px;
+  margin-bottom: 20px;
+}

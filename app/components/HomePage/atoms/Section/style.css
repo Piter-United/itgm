@@ -1,0 +1,38 @@
+.Section {
+  position: relative;
+  overflow: hidden;
+}
+
+.Section_align_center {
+  text-align: center;
+}
+
+.Section:before {
+  position: absolute;
+  z-index: -1;
+  text-transform: uppercase;
+  font-family: 'Open-Sans', sans-serif;
+  font-size: 260px;
+  line-height: 290px;
+  text-align: center;
+  font-weight: 800;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  color: #ffffff;
+  text-shadow: -1px -1px 0 #ececec, 1px -1px 0 #ececec, -1px 1px 0 #ececec,
+    1px 1px 0 #ececec;
+}
+
+.Section-Wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 780px;
+  margin: 0 auto;
+}
+
+.Section-Heading {
+  font-size: 36px;
+  line-height: 40px;
+  margin-bottom: 30px;
+}

@@ -7,6 +7,7 @@ import { GET_LIST } from 'store/activity'
 
 import history from '../../history'
 
+import { InnerPageContentContainer } from 'components/InnerPageContentContainer'
 import ProfileInfo from './atoms'
 import ActivityList from 'components/Activity/atoms/ActivityList'
 import CommunityBadgeList from 'components/Community/CommunityBadgeList'
@@ -64,16 +65,22 @@ const UserProfile = () => {
     dispatch
   }
   return (
-    <main className="UserProfile">
-      <section className="UserProfile-Section">
+    <InnerPageContentContainer>
+      <main className="UserProfile">
         <ProfileInfo {...user} />
         <Divider style={{ border: '1px solid #ABABAB', margin: '0' }} />
         <CommunityBadgeList {...communityList} />
         <Divider style={{ border: '1px solid #ABABAB', margin: '0' }} />
         <ActivitiesHeader text={userActivitiesTitle} />
-        {userActivities.length > 0 && <ActivityList {...activitiesProps} />}
-      </section>
-    </main>
+        {userActivities.length > 0 && (
+          <ActivityList
+            activitiesData={{ ...activity, list: userActivities }}
+            userId
+            dispatch
+          />
+        )}
+      </main>
+    </InnerPageContentContainer>
   )
 }
 

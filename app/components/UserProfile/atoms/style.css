@@ -12,7 +12,7 @@
   height: 100%;
 }
 .ProfileDescription-Name {
-  font-family: 'PlayfairDisplay' serif;
+  font-family: 'PlayfairDisplay', serif;
   font-style: normal;
   font-weight: 600;
   font-size: 2rem;
@@ -20,7 +20,7 @@
   margin-bottom: 0px;
 }
 .ProfileDescription-Company {
-  font-family: 'Open-Sans' sans-serif;
+  font-family: 'Open-Sans', sans-serif;
   font-style: normal;
   font-weight: 300;
   font-size: 1rem;
@@ -36,9 +36,9 @@
 }
 .ProfileInfo-About {
   width: 65%;
-  font-family: 'Open-Sans' sans-serif;
+  font-family: 'Open-Sans', sans-serif;
   font-style: normal;
-  font-weight: normal;
+  font-weight: 400;
   font-size: 16px;
   line-height: 22px;
   color: #2a2a2a;

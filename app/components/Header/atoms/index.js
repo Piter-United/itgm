@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import useStoreon from 'storeon/react'
-import { Button, Menu, Dropdown, Icon } from 'antd'
+import { Button, Menu, Dropdown } from 'antd'
 import { Link } from 'react-router-dom'
-import CustomIcon from 'ui/CustomIcon'
+import UserIcon from 'icons/user-icon.svg'
 
 export const SignUpButton = () => (
   <Link to="/login">
@@ -23,7 +23,9 @@ export const ProfileButton = ({ handleSignOut }) => {
   return (
     <Dropdown overlay={menu}>
       <Button shape="circle">
-        <CustomIcon type="user" />
+        <Link to="/user">
+          <UserIcon />
+        </Link>
       </Button>
     </Dropdown>
   )

@@ -1,40 +1,32 @@
-import React from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 
 import './style.css'
 
 import SearchIcon from 'icons/search.svg'
 import Bell from 'icons/bell.svg'
-import UserIcon from 'icons/user-icon.svg'
+import { SignUpButton, ProfileButton, HeaderList } from './atoms'
 
 import { Logo } from 'components/Logo'
 
 import routes from '../../routes'
-
-const HeaderList = () => {
-  return (
-    <ul className="Header-List">
-      {routes
-        .filter(v => v.inHeader)
-        .map(({ path, title }) => (
-          <li className="Header-Item" key={path}>
-            <Link className="Header-Link" to={path}>
-              {title}
-            </Link>
-          </li>
-        ))}
-    </ul>
-  )
-}
+import { GET_CURRENT_USER, LOGOUT } from 'store/user'
+import useStoreon from 'storeon/react'
 
 const Header = ({ theme = 'default' }) => {
+  const { user, dispatch } = useStoreon('user')
+  const signOut = () => dispatch(LOGOUT)
+  useEffect(() => {
+    dispatch(GET_CURRENT_USER)
+  }, [dispatch])
+
   return (
     <header className={`Header Header_theme_${theme}`}>
       <div className="Header-Container">
         <Link className="Header-Logo" to="/">
           <Logo theme={theme} />
         </Link>
-        <HeaderList />
+        <HeaderList routes={routes} />
         <div className="Header-UserMenu">
           <button type="button" className="Header-Icon">
             <SearchIcon />
@@ -42,9 +34,7 @@ const Header = ({ theme = 'default' }) => {
           <button type="button" className="Header-Icon">
             <Bell />
           </button>
-          <a className="Header-Icon">
-            <UserIcon />
-          </a>
+          {user ? <ProfileButton handleSignOut={signOut} /> : <SignUpButton />}
         </div>
       </div>
     </header>

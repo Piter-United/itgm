@@ -5,7 +5,16 @@ import ContentContainer from 'components/ContentContainer'
 import Footer from 'components/Footer'
 import Header from 'components/Header'
 
-import { Hero, Stats, Description, Program } from './atoms'
+import {
+  Hero,
+  Stats,
+  Description,
+  Program,
+  Communities,
+  PastEvents,
+  PartnersSection,
+  MapSection
+} from './atoms'
 
 import './style.css'
 
@@ -20,24 +29,12 @@ const HomePage = () => {
       <Stats className="HomePage-Stats" />
       <Description className="HomePage-Description" />
       <Program className="HomePage-Program" />
+      <PastEvents className="HomePage-PastEvents" />
+      <Communities className="HomePage-Communities" />
 
-      <PageSection style={{ background: 'lightgray' }}>
-        <ContentContainer>
-          <p>PageSection</p>
-        </ContentContainer>
-      </PageSection>
+      <MapSection className="HomePage-Map" />
 
-      <PageSection style={{ background: 'gray' }}>
-        <ContentContainer>
-          <p>PageSection</p>
-        </ContentContainer>
-      </PageSection>
-
-      <PageSection style={{ background: 'lightgray' }}>
-        <ContentContainer>
-          <p>PageSection</p>
-        </ContentContainer>
-      </PageSection>
+      <PartnersSection className="HomePage-Partners" />
       <Footer theme="inverse" />
     </Fragment>
   )

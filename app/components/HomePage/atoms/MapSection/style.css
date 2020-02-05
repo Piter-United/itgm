@@ -1,0 +1,57 @@
+.MapSection {
+  position: relative;
+}
+
+.MapSection-Address {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  width: 50%;
+  min-width: 400px;
+  z-index: 1;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.Address {
+  background-color: #ffffff;
+}
+
+.Address-Container {
+  box-sizing: border-box;
+  width: 400px;
+  padding: 30px 30px 50px;
+  margin-left: auto;
+}
+
+.Address-Heading {
+  font-size: 36px;
+  line-height: 48px;
+  margin-bottom: 20px;
+}
+
+.Address-Description {
+  font-family: 'Open-Sans', sans-serif;
+  font-size: 22px;
+  line-height: 30px;
+  font-weight: 400;
+  color: #2a2a2a;
+  margin-bottom: 60px;
+}
+
+.Address-Register {
+  margin-right: 20px;
+}
+
+.Address-About {
+  font-family: 'Open-Sans', sans-serif;
+  font-size: 14px;
+  line-height: 19px;
+  font-weight: 600;
+  color: #2a2a2a;
+}
+
+.Address-About:hover,
+.Address-About:focus {
+  color: #2a2a2a;
+  opacity: 0.5;
+}

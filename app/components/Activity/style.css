@@ -184,17 +184,52 @@
   height: auto;
 }
 
-.FormItem-Select > div {
+.FormItem-Select > .ant-select-selection--multiple,
+.FormItem-Select > .ant-select-selection--single {
   height: 50px;
   display: flex;
   align-items: center;
 }
 
-.FormItem-Select > div > div {
+.FormItem-Select > .ant-select-selection--multiple {
+  height: auto;
+}
+
+.FormItem-Select > .ant-select-selection--multiple > .ant-select-selection__rendered,
+.FormItem-Select > .ant-select-selection--single > .ant-select-selection__rendered {
+  display: flex;
+  align-items: center;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
   margin-left: 16px;
+}
+
+.FormItem-Select > .ant-select-selection--multiple > .ant-select-selection__rendered > .ant-select-selection__placeholder,
+.FormItem-Select > .ant-select-selection--single > .ant-select-selection__rendered > .ant-select-selection__placeholder {
+  position: relative;
+  margin-top: 0px;
+}
+
+.FormItem-Select > .ant-select-selection--multiple > .ant-select-selection__rendered > .ant-select-selection__placeholder {
+
+}
+
+.FormItem-Select > .ant-select-selection--multiple > .ant-select-selection__rendered {
+  padding: 10px 0px;
+}
+
+.FormItem-Select > .ant-select-selection--multiple > .ant-select-selection__rendered > ul {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.FormItem-Select > .ant-select-selection--multiple > .ant-select-selection__rendered > ul li {
+  flex-grow: 1;
+  height: 40px;
+  display: flex;
+  align-items: center;
 }
 
 .FormItem-SelectDropDown ul li {

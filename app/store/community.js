@@ -99,11 +99,11 @@ const community = store => {
   })
   store.on(GET_BY_ID_SUCCESS, (s, { data }) => {
     const community = data.find(v => v.resource_type === 'Community')
+    const participants = data
+      .filter(v => v.resource_type === 'UserProfile')
+      .map(v => ({ ...v.resource }))
     const activity = data
       .filter(v => v.resource_type === 'Activity')
-      .map(v => ({ ...v, ...v.resource }))
-    const manager = data
-      .filter(v => v.resource_type === 'CommunityManager')
       .map(v => ({ ...v, ...v.resource }))
     activity.sort((a, b) => b.likes.count - a.likes.count)
     return {
@@ -112,7 +112,7 @@ const community = store => {
         data: {
           community: community ? { ...community, ...community.resource } : null,
           activity,
-          manager
+          participants
         }
       }
     }

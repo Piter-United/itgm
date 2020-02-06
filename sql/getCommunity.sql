@@ -2,7 +2,14 @@ select
   c.id,
   c.ts,
   c.resource_type resource_type,
-  c.resource || jsonb_build_object('owner', jsonb_build_object('id', u.id, 'resourceType', 'User', 'name', u.resource#>>'{name}')) resource
+  c.resource || jsonb_build_object('owner',
+    jsonb_build_object(
+      'id', u.id,
+      'resourceType', 'User',
+      'name', u.resource#>>'{name}',
+      'avatar_hash', md5(u.resource#>>'{email}')
+    )
+  ) resource
 from community c
 left join userprofile u
 on u.id = c.resource#>>'{owner,id}'
@@ -37,3 +44,18 @@ select
   )) resource
 from activity a
 where a.resource#>>'{community,id}' = {{params.id}}
+union
+select
+  u.id,
+  u.ts,
+  u.resource_type,
+  jsonb_build_object(
+    'id', u.id,
+    'name', u.resource#>>'{name}',
+    'resourceType', 'UserProfile',
+    'avatar_hash', md5(u.resource#>>'{email}')
+  ) resource
+from userprofile u
+where
+  u.resource#>>'{community,id}' = {{params.id}}
+  OR {{params.id}} = any(knife_extract_text(resource, '[["communities", "id"]]'));

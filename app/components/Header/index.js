@@ -19,7 +19,6 @@ const Header = ({ theme = 'default' }) => {
   useEffect(() => {
     dispatch(GET_CURRENT_USER)
   }, [dispatch])
-
   return (
     <header className={`Header Header_theme_${theme}`}>
       <div className="Header-Container">
@@ -34,7 +33,11 @@ const Header = ({ theme = 'default' }) => {
           <button type="button" className="Header-Icon">
             <Bell />
           </button>
-          {user ? <ProfileButton handleSignOut={signOut} /> : <SignUpButton />}
+          {user ? (
+            <ProfileButton avatar={user.avatar_hash} handleSignOut={signOut} />
+          ) : (
+            <SignUpButton />
+          )}
         </div>
       </div>
     </header>

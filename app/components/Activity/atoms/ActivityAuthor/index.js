@@ -4,7 +4,7 @@ import './style.css'
 
 import Avatar from 'ui/Avatar'
 
-export const ActivityAuthor = ({ user, community, createdAt }) => {
+export const ActivityAuthor = ({ user, avatar, community, createdAt }) => {
   const date = moment(createdAt).format('L')
   const time = moment(createdAt).format('LT')
   return (
@@ -12,6 +12,7 @@ export const ActivityAuthor = ({ user, community, createdAt }) => {
       <Avatar
         type="user"
         size="xs"
+        src={avatar}
         alt={user}
         className="ActivityAuthor-Avatar"
       />

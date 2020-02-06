@@ -68,6 +68,7 @@ const Activity = ({
             <div className="Activity-AuthorBlock">
               <ActivityAuthor
                 user={resource.user.name}
+                avatar={`https://www.gravatar.com/avatar/${resource.user.avatar_hash}`}
                 community={resource.community.name}
                 createdAt={ts}
               />

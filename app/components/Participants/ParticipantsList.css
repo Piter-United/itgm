@@ -47,7 +47,7 @@
   margin-right: 10px;
 }
 
-.ant-list-items {
+.participantList .ant-list-items {
   display: grid;
   grid-row-gap: 30px;
   grid-template-columns: 400px 380px;
@@ -72,7 +72,7 @@
     font-size: 18px;
   }
 
-  .ant-list-items {
+  .participantList .ant-list-items {
     grid-row-gap: 20px;
     grid-template-columns: auto;
   }

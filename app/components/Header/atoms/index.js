@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import useStoreon from 'storeon/react'
+import React from 'react'
 import { Button, Menu, Dropdown } from 'antd'
 import { Link } from 'react-router-dom'
+import Avatar from 'ui/Avatar'
 import UserIcon from 'icons/user-icon.svg'
 
 export const SignUpButton = () => (
@@ -9,7 +9,7 @@ export const SignUpButton = () => (
     <Button>Sign Up</Button>
   </Link>
 )
-export const ProfileButton = ({ handleSignOut }) => {
+export const ProfileButton = ({ avatar, handleSignOut }) => {
   const menu = (
     <Menu>
       <Menu.Item onClick={handleSignOut} key="signOut">
@@ -23,9 +23,18 @@ export const ProfileButton = ({ handleSignOut }) => {
   return (
     <Dropdown overlay={menu}>
       <Button shape="circle">
-        <Link to="/user">
-          <UserIcon />
-        </Link>
+        {avatar ? (
+          <Link to="/user">
+            <Avatar
+              size="xs"
+              src={`https://www.gravatar.com/avatar/${avatar}`}
+            />
+          </Link>
+        ) : (
+          <Link to="/user">
+            <UserIcon />
+          </Link>
+        )}
       </Button>
     </Dropdown>
   )

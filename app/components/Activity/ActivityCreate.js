@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import useStoreon from 'storeon/react'
 import { Row, Col, Form, Input, Select, Spin, Typography } from 'antd'
 
-import { CREATE, GET_BY_ID, UPDATE } from 'store/activity'
+import { CREATE, GET_BY_ID, UPDATE, CLEAR_ACTIVITY_INFO } from 'store/activity'
 
 import '../Heading/Heading.css'
 import './style.css'
@@ -160,6 +160,8 @@ const ActivityCreate = ({
   useEffect(() => {
     if (id && id.length > 0) {
       dispatch(GET_BY_ID, id)
+    } else {
+      dispatch(CLEAR_ACTIVITY_INFO)
     }
   }, [dispatch, id])
 

@@ -34,6 +34,7 @@ export const UPDATE_SUCCESS = 'activity/update-success'
 export const ON_FILTER = 'activity/on-filter'
 export const ON_TAG = 'activity/on-tag'
 export const ON_COMMUNITY = 'activity/on-community'
+export const CLEAR_ACTIVITY_INFO = 'activity/clear-activity-info'
 
 const activity = store => {
   store.on('@init', () => defaultState)
@@ -245,6 +246,12 @@ const activity = store => {
   })
   store.on(UPDATE_SUCCESS, (s, updated) => {
     history.push(`/activity/${updated.id}`)
+  })
+  store.on(CLEAR_ACTIVITY_INFO, (state) => {
+    return {
+      ...state,
+      activityInfo: { ...defaultState.activityInfo }
+    }
   })
 }
 

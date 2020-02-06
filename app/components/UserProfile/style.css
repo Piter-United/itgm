@@ -1,0 +1,24 @@
+.UserProfile {
+  padding: 0 184px;
+}
+
+.UserProfile-Text {
+  padding: 20px 0;
+  margin: unset;
+  font-family: 'Open-Sans', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 19px;
+}
+
+@media (min-width: 768px) {
+  .UserProfile {
+    padding: 0 50px;
+  }
+}
+@media (min-width: 992px) {
+  .UserProfile {
+    padding: 0 184px;
+  }
+}

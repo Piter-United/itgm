@@ -4,8 +4,8 @@ import Activity from './components/Activity/Activity'
 import CommunityList from './components/Community/CommunityList'
 import NewCommunity from './components/Community/New'
 import Community from './components/Community/Community'
-import User from './components/User'
-import UserEdit from './components/UserEdit'
+import UserProfile from './components/UserProfile'
+import UserEdit from './components/UserProfile/Edit/UserEdit'
 import Login from './components/Login'
 import ParticipantList from './components/Participants/ParticipantsList'
 import PartnerList from './components/Partners/Partners'
@@ -65,7 +65,7 @@ const routes = [
   },
   {
     path: '/user',
-    component: User,
+    component: UserProfile,
     private: true
   },
   {

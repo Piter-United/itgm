@@ -3,6 +3,8 @@ import React from 'react'
 import Form from 'antd/lib/form/Form'
 import { Input, Button } from 'antd'
 
+import './style.css'
+
 const ChangePasswordPopup = () => (
   <div className="Popup-Wrapper">
     <h2 className="Popup-Header">Изменить пароль</h2>

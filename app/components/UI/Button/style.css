@@ -1,7 +1,10 @@
 .Button {
   display: inline-block;
-  border: 0;
+  border-radius: 3px;
+  border-width: 1px;
+  border-style: solid;
   background-color: transparent;
+  text-decoration: none;
   cursor: pointer;
   outline: none;
 }
@@ -22,55 +25,38 @@
 }
 
 .Button_color_primary {
-  border-radius: 3px;
   background-color: #ff5762;
+  border-color: #ff5762;
   color: #ffffff;
-  text-decoration: none;
 }
 
 .Button_color_primary:hover,
 .Button_color_primary:focus {
   box-shadow: 0px 0px 10px rgba(255, 87, 98, 0.5);
+  border-color: #ff5762;
   color: #ffffff;
 }
 
 .Button_color_primary:active {
   box-shadow: 0px 0px 10px #ff5762;
-  color: #ffffff;
 }
 
 .Button_color_secondary {
-  border-radius: 3px;
-  background-color: #ffffff;
+  background-color: #cccccc;
   color: #2a2a2a;
-  text-decoration: none;
 }
 
 .Button_color_secondary:hover,
 .Button_color_secondary:focus {
-  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+  box-shadow: 0px 0px 10px rgba(59, 59, 59, 0.5);
+  border-color: #2a2a2a;
   color: #2a2a2a;
 }
 
 .Button_color_secondary:active {
   box-shadow: 0px 0px 10px #ffffff;
-  color: #2a2a2a;
 }
 
-.Button_color_outline {
-  border-radius: 3px;
-  border: 1px solid #ff5762;
-  color: #ff5762;
-  text-decoration: none;
-}
-
-.Button_color_outline:hover,
-.Button_color_outline:focus {
-  box-shadow: 0px 0px 10px rgba(255, 87, 98, 0.5);
-  color: #ff5762;
-}
-
-.Button_color_outline:active {
-  box-shadow: 0px 0px 10px #ff5762;
-  color: #ff5762;
+.Button_outline {
+  background: transparent;
 }

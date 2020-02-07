@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react'
 import useStoreon from 'storeon/react'
-import { Button, Form, Input, Select, Spin, Typography } from 'antd'
+import { Row, Col, Form, Input, Select, Spin, Typography } from 'antd'
 
-import { CREATE, GET_BY_ID, UPDATE, DISABLE } from 'store/activity'
+import { CREATE, GET_BY_ID, UPDATE, DISABLE, CLEAR_ACTIVITY_INFO } from 'store/activity'
 
 import '../Heading/Heading.css'
+import './style.css'
 
 import { GET_LIST } from 'store/community'
 import { InnerPageContentContainer } from '../InnerPageContentContainer'
+import { Breadcrumbs, Button } from '../UI'
 
 const { Title } = Typography
 
@@ -33,8 +35,6 @@ const ActivityCreateForm = ({
   // TODO check if user id === activity user
   const handleDelete = e => {
     e.preventDefault()
-    // console.log(activity)
-    // console.log(user)
     onDisableActivity()
   }
 
@@ -45,11 +45,11 @@ const ActivityCreateForm = ({
       onSubmit={handleSubmit}
     >
       <div className="form__header">
-        <Title className="Heading Heading_level_1">
+        <Title className="Heading">
           {act && act.id ? 'Редактирование темы' : 'Добавление новой темы'}
         </Title>
       </div>
-      <Form.Item label="Название">
+      <Form.Item label="Название" className="FormItem">
         {getFieldDecorator('name', {
           initialValue: (act && act.name) || '',
           rules: [
@@ -58,9 +58,15 @@ const ActivityCreateForm = ({
               message: 'Это поле обязательно ¯\\_(ツ)_/¯'
             }
           ]
-        })(<Input placeholder="Введите название темы" autoFocus />)}
+        })(
+          <Input
+            placeholder="Введите название темы"
+            autoFocus
+            className="FormItem-Control"
+          />
+        )}
       </Form.Item>
-      <Form.Item label="Описание темы">
+      <Form.Item label="Описание темы" className="FormItem">
         {getFieldDecorator('description', {
           initialValue: (act && act.description) || '',
           rules: [
@@ -73,25 +79,26 @@ const ActivityCreateForm = ({
           <Input.TextArea
             rows={6}
             placeholder="Введите краткое описание темы"
+            className="FormItem-Control"
           />
         )}
       </Form.Item>
-      <Form.Item label="Cообщество">
+      <Form.Item label="Cообщество" className="FormItem">
         {getFieldDecorator('community', {
           initialValue:
-            act && act.community && act.community.id
-              ? act.community.id
-              : '33e0bed1-9ac2-420a-9e4e-eeb05a96d464'
+            act && act.community && act.community.id ? act.community.id : [],
+          rules: [
+            {
+              required: true,
+              message: 'Это поле обязательно ¯\\_(ツ)_/¯'
+            }
+          ]
         })(
           <Select
-            showSearch
+            className="FormItem-Select"
+            dropdownClassName="FormItem-SelectDropDown"
             placeholder="Выберите сообщество из списка"
-            optionFilterProp="children"
-            filterOption={(input, option) =>
-              option.props.children
-                .toLowerCase()
-                .indexOf(input.toLowerCase()) >= 0
-            }
+            loading={community.loading}
           >
             {!community.loading &&
               community.list.map(item => (
@@ -106,11 +113,13 @@ const ActivityCreateForm = ({
           </Select>
         )}
       </Form.Item>
-      <Form.Item label="Метки">
+      <Form.Item label="Метки" className="FormItem">
         {getFieldDecorator('tags', {
           initialValue: (act && act.tags) || []
         })(
           <Select
+            className="FormItem-Select"
+            dropdownClassName="FormItem-SelectDropDown"
             mode="tags"
             placeholder="Добавьте метки"
             optionLabelProp="label"
@@ -118,14 +127,23 @@ const ActivityCreateForm = ({
         )}
       </Form.Item>
       <Form.Item>
-        <Button type="primary" htmlType="submit">
-          Сохранить
-        </Button>
-      </Form.Item>
-      <Form.Item>
-        <Button type="danger" onClick={handleDelete}>
-          Удалить
-        </Button>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'flex-end'
+          }}
+        >
+          <Button onClick={handleDelete} text="Удалить" />
+          <Button
+            text="Отмена"
+            asLink={true}
+            url="/activity"
+            color="secondary"
+            className="Button_outline"
+            style={{ marginRight: '20px' }}
+          />
+          <Button type="submit" text="Сохранить" onClick={handleSubmit} />
+        </div>
       </Form.Item>
     </Form>
   )
@@ -154,6 +172,8 @@ const ActivityCreate = ({
   useEffect(() => {
     if (id && id.length > 0) {
       dispatch(GET_BY_ID, id)
+    } else {
+      dispatch(CLEAR_ACTIVITY_INFO)
     }
   }, [dispatch, id])
 
@@ -199,7 +219,6 @@ const ActivityCreate = ({
   }
 
   const onDisableActivity = () => {
-    console.log(activityInfo)
     const { activity } = activityInfo.data
     const disabledActivity = {
       id: activity.id,
@@ -217,13 +236,23 @@ const ActivityCreate = ({
   return (
     <InnerPageContentContainer>
       <div className="content">
-        <WrappedActivityCreateForm
-          user={user}
-          community={community}
-          activity={activityInfo}
-          onCreateActivity={onCreateActivity}
-          onDisableActivity={onDisableActivity}
-        />
+        <div className="Activity-Breadcrumbs">
+          <Breadcrumbs path="/activity" viewPath="/Программа" />
+        </div>
+        <Row type="flex" justify="center" align="top">
+          <Col lg={24} xl={16}>
+            <WrappedActivityCreateForm
+              user={user}
+              community={community}
+              activity={activityInfo}
+              onCreateActivity={onCreateActivity}
+              onDisableActivity={onDisableActivity}
+            />
+          </Col>
+          <Col className="Activity-AsideRight" xl={8} lg={24}>
+            <section className="Activity-AsideRightContent" />
+          </Col>
+        </Row>
       </div>
     </InnerPageContentContainer>
   )

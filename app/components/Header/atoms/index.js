@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, Menu, Dropdown } from 'antd'
 import { Link } from 'react-router-dom'
 import Avatar from 'ui/Avatar'
+import UserIcon from 'icons/user-icon.svg'
 
 export const SignUpButton = () => (
   <Link to="/login">
@@ -23,9 +24,16 @@ export const ProfileButton = ({ avatar, handleSignOut }) => {
     <Dropdown overlay={menu}>
       <Button shape="circle">
         {avatar ? (
-          <Avatar size="xs" src={`https://www.gravatar.com/avatar/${avatar}`} />
+          <Link to="/user">
+            <Avatar
+              size="xs"
+              src={`https://www.gravatar.com/avatar/${avatar}`}
+            />
+          </Link>
         ) : (
-          <CustomIcon type="user" />
+          <Link to="/user">
+            <UserIcon />
+          </Link>
         )}
       </Button>
     </Dropdown>

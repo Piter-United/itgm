@@ -212,11 +212,13 @@
 }
 
 .FormItem-Select > .ant-select-selection--multiple > .ant-select-selection__rendered > .ant-select-selection__placeholder {
-
+  position: absolute;
+  top: auto;
 }
 
 .FormItem-Select > .ant-select-selection--multiple > .ant-select-selection__rendered {
   padding: 10px 0px;
+  width: 100%;
 }
 
 .FormItem-Select > .ant-select-selection--multiple > .ant-select-selection__rendered > ul {

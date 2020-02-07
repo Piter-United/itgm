@@ -247,7 +247,7 @@ const activity = store => {
   store.on(UPDATE_SUCCESS, (s, updated) => {
     history.push(`/activity/${updated.id}`)
   })
-  store.on(CLEAR_ACTIVITY_INFO, (state) => {
+  store.on(CLEAR_ACTIVITY_INFO, state => {
     return {
       ...state,
       activityInfo: { ...defaultState.activityInfo }

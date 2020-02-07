@@ -10,7 +10,6 @@ import './style.css'
 import { GET_LIST } from 'store/community'
 import { InnerPageContentContainer } from '../InnerPageContentContainer'
 import { Breadcrumbs, Button } from '../UI'
-import { getKeyFromChildrenIndex } from 'rc-menu/lib/util';
 
 const { Title } = Typography
 
@@ -53,7 +52,13 @@ const AcivityCreateForm = ({
               message: 'Это поле обязательно ¯\\_(ツ)_/¯'
             }
           ]
-        })(<Input placeholder="Введите название темы" autoFocus className="FormItem-Control"/>)}
+        })(
+          <Input
+            placeholder="Введите название темы"
+            autoFocus
+            className="FormItem-Control"
+          />
+        )}
       </Form.Item>
       <Form.Item label="Описание темы" className="FormItem">
         {getFieldDecorator('description', {
@@ -75,9 +80,7 @@ const AcivityCreateForm = ({
       <Form.Item label="Cообщество" className="FormItem">
         {getFieldDecorator('community', {
           initialValue:
-            act && act.community && act.community.id
-              ? act.community.id
-              : [],
+            act && act.community && act.community.id ? act.community.id : [],
           rules: [
             {
               required: true,
@@ -118,10 +121,11 @@ const AcivityCreateForm = ({
         )}
       </Form.Item>
       <Form.Item>
-        <div style={{
-          display: 'flex',
-          justifyContent: 'flex-end',
-        }}
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'flex-end'
+          }}
         >
           <Button
             text="Отмена"
@@ -129,7 +133,7 @@ const AcivityCreateForm = ({
             url="/activity"
             color="secondary"
             className="Button_outline"
-            style={{ marginRight: '20px'}}
+            style={{ marginRight: '20px' }}
           />
           <Button type="submit" text="Сохранить" onClick={handleSubmit} />
         </div>

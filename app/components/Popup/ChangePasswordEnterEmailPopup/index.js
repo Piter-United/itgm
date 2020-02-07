@@ -5,7 +5,7 @@ import { Input, Button } from 'antd'
 
 import './style.css'
 
-const ChangePasswordPopup = () => (
+const ChangePasswordEnterEmailPopup = () => (
   <div className="Popup-Wrapper">
     <h2 className="Popup-Header">Изменить пароль</h2>
     <div className="Popup-Body">
@@ -33,4 +33,4 @@ const ChangePasswordPopup = () => (
   </div>
 )
 
-export default ChangePasswordPopup
+export default ChangePasswordEnterEmailPopup

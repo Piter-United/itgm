@@ -2,7 +2,13 @@ import React, { useEffect } from 'react'
 import useStoreon from 'storeon/react'
 import { Row, Col, Form, Input, Select, Spin, Typography } from 'antd'
 
-import { CREATE, GET_BY_ID, UPDATE, DISABLE, CLEAR_ACTIVITY_INFO } from 'store/activity'
+import {
+  CREATE,
+  GET_BY_ID,
+  UPDATE,
+  DISABLE,
+  CLEAR_ACTIVITY_INFO
+} from 'store/activity'
 
 import '../Heading/Heading.css'
 import './style.css'
@@ -22,6 +28,7 @@ const ActivityCreateForm = ({
   onDisableActivity
 }) => {
   const act = activity && activity.data && activity.data.activity
+  const isNewActivity = act === null
   const { getFieldDecorator, validateFieldsAndScroll } = form
   const handleSubmit = e => {
     e.preventDefault()
@@ -46,7 +53,7 @@ const ActivityCreateForm = ({
     >
       <div className="form__header">
         <Title className="Heading">
-          {act && act.id ? 'Редактирование темы' : 'Добавление новой темы'}
+          {isNewActivity ? 'Добавление новой темы' : 'Редактирование темы'}
         </Title>
       </div>
       <Form.Item label="Название" className="FormItem">
@@ -133,7 +140,15 @@ const ActivityCreateForm = ({
             justifyContent: 'flex-end'
           }}
         >
-          <Button onClick={handleDelete} text="Удалить" />
+          {isNewActivity ? null : (
+            <Button
+              onClick={handleDelete}
+              text="Удалить"
+              color="secondary"
+              className="Button_outline"
+              style={{ marginRight: '20px' }}
+            />
+          )}
           <Button
             text="Отмена"
             asLink={true}

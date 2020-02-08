@@ -44,6 +44,7 @@
 .Button_color_secondary {
   background-color: #cccccc;
   color: #2a2a2a;
+  border-color: #2a2a2a;
 }
 
 .Button_color_secondary:hover,

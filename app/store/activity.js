@@ -55,9 +55,13 @@ const activity = store => {
   store.on(LOADING, (state, loading) => {
     return { activity: { ...state.activity, loading } }
   })
-  store.on(SET_LIST, (state, data) => {
+  store.on(SET_LIST, (state, { data }) => {
+    // TODO: make request to backend for return active activity
+    const activeActivity = data.filter(
+      ({ resource }) => typeof resource.active === 'undefined'
+    )
     // TODO: make request to backend for return sorted activity
-    const activityListByNewest = [...data.data].sort(
+    const activityListByNewest = [...activeActivity].sort(
       ({ ts: ts1 }, { ts: ts2 }) => {
         const date1 = new Date(ts1)
         const date2 = new Date(ts2)

@@ -1,53 +1,12 @@
-.Popup {
-  background-image: url('../../../../asset/2.png');
-}
-
-.Popup-Wrapper {
-  width: 480px;
-  margin: 0 auto;
-}
-
-.Popup-Header {
-  font-family: 'PlayfairDisplay', sans-serif;
-  font-size: 36px;
-  font-weight: 600;
-  line-height: normal;
-  color: #2a2a2a;
-  text-align: center;
+.Popup-Header-mb85 {
   margin-bottom: 85px;
 }
 
-.Popup-Text {
-  font-family: 'Open-Sans', sans-serif;
-  font-weight: 300;
-  font-size: 22px;
-  line-height: 26px;
-  color: #2a2a2a;
-  text-align: center;
+.Popup-Text-mb90 {
   margin-bottom: 90px;
 }
 
-.Popup-Form {
-  width: 280px;
-  margin: 0 auto;
-  margin-bottom: 45px;
-}
-
-.Popup-Submit {
-  width: 100%;
-}
-
-.Popup-Policy {
-  font-family: 'Open-Sans', sans-serif;
-  font-size: 14px;
-  line-height: 16px;
-  color: #9e9e9e;
-  text-align: center;
-}
-
-.Popup-Link {
-  color: inherit;
-  text-decoration: underline;
-  cursor: pointer;
-  text-align: center;
+.Popup-Text-fs22 {
+  font-size: 22px;
+  line-height: 26px;
 }

@@ -4,13 +4,15 @@ import './style.css'
 
 import ChangePasswordEnterEmailPopup from './ChangePasswordEnterEmailPopup'
 import ChangePasswordSendEmailPopup from './ChangePasswordSendEmailPopup'
+import ChangePasswordEnterPasswordPopup from './ChangePasswordEnterPasswordPopup'
 
 const config = {
   ChangePasswordEnterEmailPopup: <ChangePasswordEnterEmailPopup />,
-  ChangePasswordSendEmailPopup: <ChangePasswordSendEmailPopup />
+  ChangePasswordSendEmailPopup: <ChangePasswordSendEmailPopup />,
+  ChangePasswordEnterPasswordPopup: <ChangePasswordEnterPasswordPopup />
 }
 
-const modalContent = 'ChangePasswordSendEmailPopup'
+const modalContent = 'ChangePasswordEnterEmailPopup'
 
 const Popup = () => (
   <div className="Popup">

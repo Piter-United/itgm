@@ -10,8 +10,6 @@ import useStoreon from 'storeon/react'
 import { GET_LIST } from 'store/participant'
 import { List } from 'antd'
 
-import Popup from 'components/Popup'
-
 import './ParticipantsList.css'
 
 const ParticipantList = () => {
@@ -81,7 +79,6 @@ const ParticipantList = () => {
           </Col>
         </Row>
       </div>
-      <Popup />
     </InnerPageContentContainer>
   )
 }

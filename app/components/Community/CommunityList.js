@@ -1,67 +1,103 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import { List, Icon, Button, Typography, Row, Col, Divider } from 'antd'
+import { Avatar, Button, Typography, Row } from 'antd'
+import TitleFilter from '../title_filter_sort/title_filter_sort'
+import CommunityListItem from './CommunityListItem'
+import './CommunityList.css'
 
 import useStoreon from 'storeon/react'
-
 import VkIcon from '/asset/icons/vk.svg'
-import { GET_LIST } from 'store/community'
+import { GET_LIST, ON_FILTER } from '../../store/community'
 import history from '../../history'
 import { InnerPageContentContainer } from '../InnerPageContentContainer'
 
 const { Title } = Typography
+const mapper = (arr, Iterator) => {
+  try {
+    return arr.map(v => <Iterator key={v.id} {...v} />)
+  } catch (e) {
+    console.log('mapper error', e)
+  }
+}
 
-const CommunityList = () => {
+const splitList = arr => {
+  if (arr.length === 1) {
+    return [[arr[0]], []]
+  }
+  return [
+    arr.map((v, i) => (i % 2 ? v : 0)).filter(v => v),
+    arr.map((v, i) => (!(i % 2) ? v : 0)).filter(v => v)
+  ]
+}
+
+const CommunityList = props => {
   const { user, community, dispatch } = useStoreon('community', 'user')
+  const [filtered, setFiltered] = useState(community.list)
+
+  const filterCommunites = sInputValue => {
+    if (sInputValue === '') {
+      return setFiltered(community.list)
+    }
+    const isCommunityLike = filterCommunity(sInputValue)
+    setFiltered(community.list.filter(isCommunityLike))
+  }
+
   useEffect(() => {
     dispatch(GET_LIST)
   }, [dispatch])
+
+  useEffect(() => {
+    filterCommunites(community.filter)
+  }, [community.list, community.filter])
+
+  const titleProps = {
+    name: 'Сообщества',
+    counter: community.list ? community.list.length : 0,
+    filter: community.filter,
+    onFilter: value => dispatch(ON_FILTER, value),
+    // TODO: сделать сортировку
+    onSort: e => {
+      console.log
+    }
+  }
+
+  const [left, right] = splitList(filtered)
   return (
-    <InnerPageContentContainer>
-      <div className="content">
-        <Row style={{ display: 'flex', alignItems: 'baseline' }}>
-          <Col span={18}>
-            <Title className="Heading Heading_level_1">Сообщества</Title>
-          </Col>
-          <Col span={6}>
-            {user && (
-              <Button icon="plus-circle" href="/community/new">
-                Добавить сообщество
-              </Button>
-            )}
-          </Col>
-        </Row>
-        <Divider />
-        <List
-          itemLayout="vertical"
-          size="large"
-          pagination={false}
-          loading={community.loading}
-          dataSource={community.list}
-          renderItem={item => (
-            <List.Item
-              key={item.id}
-              actions={item.social.map(social => (
-                <a key={social.icon} href={social.link} target="_blank">
-                  {social.icon === 'vk' ? (
-                    <Icon style={{ fontSize: 24 }} component={VkIcon} />
-                  ) : (
-                    <Icon style={{ fontSize: 24 }} type={social.icon} />
-                  )}
-                </a>
-              ))}
-            >
-              <h3>
-                <Link to={`/community/${item.id}`}>{item.name}</Link>
-              </h3>
-              <div style={{ whiteSpace: 'pre-line' }}>{item.description}</div>
-            </List.Item>
-          )}
-        />
+    <div className="container">
+      <div className="header-wrapper">
+        <TitleFilter {...titleProps} />
       </div>
-    </InnerPageContentContainer>
+      <Row style={{ display: 'flex', alignItems: 'baseline' }}>
+        {user && (
+          <Link
+            className="Button Button_size_m Button_color_primary Program-Button"
+            to="/community/new"
+          >
+            Добавить сообщество
+          </Link>
+        )}
+      </Row>
+      <div className="community__list">
+        <div className="community__list_col">
+          {mapper(left, CommunityListItem)}
+        </div>
+        <div className="community__list_col">
+          {mapper(right, CommunityListItem)}
+        </div>
+      </div>
+    </div>
   )
 }
 
 export default CommunityList
+
+// libs
+const filterCommunity = payload => {
+  const lowPayload = payload.toLowerCase()
+  return ({ name, description }) => {
+    const data = [name, description].join(' ').toLowerCase()
+    const place = data.indexOf(lowPayload)
+    return place !== -1
+  }
+}

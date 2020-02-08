@@ -25,12 +25,16 @@
     "@svgr/parcel-plugin-svgr": "^5.0.0",
     "antd": "^3.26.4",
     "classnames": "^2.2.6",
+    "components": "^0.1.0",
     "history": "^4.10.1",
+    "icons": "^1.0.0",
     "qs": "^6.9.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
+    "store": "^2.0.12",
     "storeon": "^0.9.7",
+    "ui": "^0.2.4",
     "ymaps": "^0.2.1"
   },
   "devDependencies": {

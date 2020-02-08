@@ -8,6 +8,8 @@ import HomePage from 'components/HomePage'
 
 import routes from './routes'
 
+import TryPage from './components/title_filter_sort/try_title_filter_sort'
+
 const App = () => (
   <Switch>
     <Route path="/" exact component={HomePage} />

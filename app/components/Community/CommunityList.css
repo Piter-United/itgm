@@ -1,0 +1,134 @@
+.container {
+  width: 780px;
+  margin: 0 auto;
+}
+
+.header-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  position: relative;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+.header-wrapper::after {
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  content: '';
+  width: 100%;
+  height: 1px;
+  background-color: #ababab;
+}
+
+.community__header {
+  font-size: 36px;
+  font-weight: bold;
+  margin: 0;
+  margin-right: 20px;
+  width: 220px;
+}
+
+.community__count {
+  font-size: 30px;
+  font-weight: 600;
+  font-style: normal;
+  color: #2a2a2a;
+  opacity: 0.4;
+}
+
+.community__list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  margin: 16px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.community__list_col {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 50%;
+}
+
+.community-item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+
+  padding: 26px;
+  width: 380px;
+  border-radius: 3px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  border: solid 1px #ececec;
+  background-color: #ffffff;
+  margin: 0 0 16px 0;
+}
+
+.community-item__wrapper {
+  width: 220px;
+}
+
+.community-item__header {
+  width: 220px;
+  padding-right: 10px;
+  margin-bottom: 10px;
+}
+
+.community-item__link {
+  font-size: 18px;
+  line-height: 24px;
+  color: #2a2a2a;
+}
+
+.community-item__desc {
+  font-family: Open Sans;
+  font-size: 14px;
+  line-height: 16px;
+  color: inherit;
+  padding-right: 20px;
+  margin-bottom: 25px;
+}
+
+.community-item__button {
+  position: relative;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 16px;
+  color: #6f4297;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  padding-right: 25px;
+}
+
+.community-item__button::after {
+  position: absolute;
+  content: '';
+  width: 17px;
+  height: 1px;
+  background-color: #6f4297;
+  top: 50%;
+  right: 0;
+}
+
+.community__desc_overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.community-item__img {
+  vertical-align: top;
+  text-align: center;
+  width: 100px;
+  height: 100px;
+  background-color: rgba(42, 42, 42, 0.1);
+  border-radius: 50%;
+}

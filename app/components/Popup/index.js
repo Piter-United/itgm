@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useCallback } from 'react'
+import useStoreon from 'storeon/react'
 
 import './style.css'
+
+import { POPUP_CLOSE } from 'store/popup'
 
 import ChangePasswordEnterEmailPopup from './ChangePasswordEnterEmailPopup'
 import ChangePasswordSendEmailPopup from './ChangePasswordSendEmailPopup'
@@ -12,13 +15,33 @@ const config = {
   ChangePasswordEnterPasswordPopup: <ChangePasswordEnterPasswordPopup />
 }
 
-const modalContent = 'ChangePasswordEnterEmailPopup'
+/*
+Как пользоваться:
 
-const Popup = () => (
-  <div className="Popup">
-    {config[modalContent]}
-    <button className="Popup-Close" />
-  </div>
-)
+import { POPUP_OPEN } from 'store/popup'
+
+<Button
+  text="OPEN MODAL"
+  onClick={() => {
+    dispatch(POPUP_OPEN, 'ChangePasswordEnterEmailPopup')
+  }}
+/>
+*/
+
+const Popup = () => {
+  const { popup, dispatch } = useStoreon('popup')
+  const closeModal = useCallback(() => {
+    dispatch(POPUP_CLOSE)
+  }, [dispatch])
+
+  return (
+    <div className="Popup">
+      <div className="Popup-Container">
+        <button onClick={closeModal} className="Popup-Close" />
+        {config[popup.modalContent] || 'jopalala'}
+      </div>
+    </div>
+  )
+}
 
 export default Popup

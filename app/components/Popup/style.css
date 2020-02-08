@@ -1,5 +1,15 @@
 .Popup {
   position: fixed;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.Popup-Container {
+  position: absolute;
   top: 50%;
   left: 50%;
   width: 780px;
@@ -14,9 +24,13 @@
 
 .Popup-Close {
   position: absolute;
+  width: 20px;
+  height: 20px;
   top: 25px;
   right: 20px;
   border: none;
+  cursor: pointer;
+  background-color: transparent;
 }
 
 .Popup-Close:hover,
@@ -27,7 +41,7 @@
 .Popup-Close:before {
   content: '';
   position: absolute;
-  top: 0;
+  top: 7px;
   left: 0;
   width: 20px;
   height: 5px;
@@ -38,7 +52,7 @@
 .Popup-Close:after {
   content: '';
   position: absolute;
-  top: 0;
+  top: 7px;
   left: 0;
   width: 20px;
   height: 5px;

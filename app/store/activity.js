@@ -4,14 +4,18 @@ import history from '../history'
 const defaultState = {
   activity: {
     filter: '',
-    tags: [],
     list: [],
-    community: '',
     loading: false
   },
   activityInfo: {
     data: null,
     loading: false
+  },
+  activityFilter: {
+    state: 'hidden',
+    searchString: '',
+    communityId: '',
+    tags: []
   }
 }
 
@@ -33,10 +37,11 @@ export const UPDATE = 'activity/update'
 export const UPDATE_SUCCESS = 'activity/update-success'
 export const DISABLE = 'activity/disable'
 export const DISABLE_SUCCESS = 'activity/disable-success'
-export const ON_FILTER = 'activity/on-filter'
-export const ON_TAG = 'activity/on-tag'
-export const ON_COMMUNITY = 'activity/on-community'
+export const SET_FILTER_TEXT = 'activity/set-filter-text'
+export const SET_FILTER_TAG = 'activity/set-filter-tag'
+export const SET_FILTER_COMMUNITY = 'activity/set-filter-community'
 export const CLEAR_ACTIVITY_INFO = 'activity/clear-activity-info'
+export const TOGGLE_ACTIVITY_FILTER = 'activity/toggle-activity-filter'
 
 const activity = store => {
   store.on('@init', () => defaultState)
@@ -226,7 +231,6 @@ const activity = store => {
   })
 
   store.on(DISABLE, (s, activity) => {
-    console.log(activity)
     store.dispatch('request', {
       resourceType: 'Activity',
       id: activity.id,
@@ -238,30 +242,43 @@ const activity = store => {
     })
   })
 
-  store.on(ON_FILTER, (s, filter) => {
-    return { ...s, activity: { ...s.activity, filter } }
-  })
-
-  store.on(ON_COMMUNITY, (s, community) => {
+  store.on(SET_FILTER_TEXT, (state, searchString) => {
     return {
-      ...s,
-      activity: {
-        ...s.activity,
-        community: community === s.activity.community ? '' : community
+      activityFilter: {
+        ...state.activityFilter,
+        searchString
       }
     }
   })
 
-  store.on(ON_TAG, (s, tag) => {
-    if (-1 === s.activity.tags.indexOf(tag)) {
+  store.on(SET_FILTER_COMMUNITY, (state, communityId) => {
+    return {
+      activityFilter: {
+        ...state.activityFilter,
+        communityId:
+          communityId === state.activityFilter.communityId ? '' : communityId
+      }
+    }
+  })
+
+  store.on(SET_FILTER_TAG, (state, tag) => {
+    const {
+      activityFilter: { tags }
+    } = state
+    if (tags.includes(tag)) {
       return {
-        ...s,
-        activity: { ...s.activity, tags: [...s.activity.tags, tag] }
+        activityFilter: {
+          ...state.activityFilter,
+          tags: tags.filter(e => e !== tag)
+        }
       }
     }
+
     return {
-      ...s,
-      activity: { ...s.activity, tags: s.activity.tags.filter(v => v !== tag) }
+      activityFilter: {
+        ...state.activityFilter,
+        tags: [...tags, tag]
+      }
     }
   })
   store.on(UPDATE_SUCCESS, (s, updated) => {
@@ -271,9 +288,18 @@ const activity = store => {
     history.push(`/activity`)
   })
   store.on(CLEAR_ACTIVITY_INFO, state => {
+    return { activityInfo: { ...defaultState.activityInfo } }
+  })
+  store.on(TOGGLE_ACTIVITY_FILTER, state => {
+    const {
+      activityFilter: { state: stateFilter }
+    } = state
+    const newStateFilter = stateFilter === 'hidden' ? 'visible' : 'hidden'
     return {
-      ...state,
-      activityInfo: { ...defaultState.activityInfo }
+      activityFilter: {
+        ...state.activityFilter,
+        state: newStateFilter
+      }
     }
   })
 }

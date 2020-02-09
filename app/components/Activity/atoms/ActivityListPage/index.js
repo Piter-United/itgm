@@ -4,7 +4,7 @@ import cn from 'classnames'
 import { Icon, Row, Col, Typography, Divider } from 'antd'
 import ActivityFilter from '../ActivityListFilter'
 import { Button as ButtonCustom } from '../../../UI'
-import { GET_LIST } from 'store/activity'
+import { GET_LIST, TOGGLE_ACTIVITY_FILTER } from 'store/activity'
 
 import '../../../Heading/Heading.css'
 import '../../style.css'
@@ -30,32 +30,43 @@ const ButtonShowFilter = ({ handleOpenFilter }) => (
   </button>
 )
 
+const filterActivities = (activityFilter, activities) => {
+  let filtered = [...activities]
+
+  if (activityFilter.communityId) {
+    filtered = filtered.filter(
+      ({ community: { id } }) => id === activityFilter.communityId
+    )
+  }
+  if (activityFilter.tags.length) {
+    filtered = filtered.filter(
+      ({ resource: { tags } }) =>
+        tags.filter(tag => activityFilter.tags.includes(tag)).length > 0
+    )
+  }
+  if (activityFilter.searchString) {
+    filtered = filtered.filter(({ resource: { name, description } }) => {
+      const text = `${name} ${description}`
+      const regex = RegExp(activityFilter.searchString, 'i')
+      return regex.test(text)
+    })
+  }
+  return filtered
+}
+
 const ActivityListPage = () => {
-  const { userId, user, activity, dispatch } = useStoreon(
+  const { userId, user, activity, activityFilter, dispatch } = useStoreon(
     'user',
     'userId',
-    'activity'
+    'activity',
+    'activityFilter'
   )
-  const countTags = activity.tags.length
-  const [showFilter, toggleFilter] = useState(false)
-  const handleToggleFilter = () => toggleFilter(!showFilter)
+  const stateActivityFilter = activityFilter.state
+  const handleToggleFilter = () => dispatch(TOGGLE_ACTIVITY_FILTER)
 
-  let filtered = activity.list
-
-  if (activity.community !== '') {
-    const filterByCommunity = createFilterByCommunity(activity.community)
-    filtered = filtered.filter(filterByCommunity)
-  }
-  if (countTags) {
-    const filterByTag = createFilterByTag(activity.tags)
-    filtered = filtered.filter(filterByTag)
-  }
-  if (activity.filter) {
-    const filter = createFilter(activity.filter, activity.tags)
-    filtered = filtered.filter(filter)
-  }
-
+  const filtered = filterActivities(activityFilter, activity.list)
   const countFilteredRecords = filtered.length
+
   useEffect(() => {
     dispatch(GET_LIST)
   }, [dispatch])
@@ -65,13 +76,14 @@ const ActivityListPage = () => {
       <Row type="flex" justify="center">
         <Col
           lg={24}
-          xl={showFilter ? 16 : 18}
+          xl={stateActivityFilter === 'visible' ? 16 : 18}
           className="ActivityPage-WrapperContent"
         >
           <div
             className={cn({
               'ActivityPage-Content': true,
-              'ActivityPage-Content_filter_show': showFilter
+              'ActivityPage-Content_filter_show':
+                stateActivityFilter === 'visible'
             })}
           >
             <Title className="heading heading_level_1">
@@ -83,7 +95,7 @@ const ActivityListPage = () => {
             </Title>
             <Row type="flex" justify="space-between">
               <RenderDiscussion userId={userId} user={user} />
-              {!showFilter ? (
+              {stateActivityFilter === 'hidden' ? (
                 <ButtonShowFilter handleOpenFilter={handleToggleFilter} />
               ) : null}
             </Row>
@@ -98,7 +110,7 @@ const ActivityListPage = () => {
         <Col
           className={cn({
             ActivityFilter: true,
-            ActivityFilter_visible: !showFilter
+            ActivityFilter_visible: stateActivityFilter === 'hidden'
           })}
           lg={24}
           xl={8}
@@ -108,29 +120,6 @@ const ActivityListPage = () => {
       </Row>
     </div>
   )
-}
-
-const createFilterByCommunity = community => {
-  return item => {
-    return item.resource.community.id === community
-  }
-}
-
-const createFilterByTag = tags => {
-  return activity => {
-    return !!activity.resource.tags.filter(tag => tags.indexOf(tag) !== -1)
-      .length
-  }
-}
-
-const createFilter = (filter, tags) => {
-  const filterLow = filter.toLowerCase()
-  return activity => {
-    const data = [activity.resource.name, activity.resource.description]
-      .join(' ')
-      .toLowerCase()
-    return data.indexOf(filterLow) !== -1
-  }
 }
 
 export default ActivityListPage

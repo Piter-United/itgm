@@ -1,37 +1,47 @@
-import React from 'react'
-import Form from 'antd/lib/form/Form'
-import { Input, Button } from 'antd'
+import React, { useCallback } from 'react'
+import useStoreon from 'storeon/react'
+
 import './style.css'
 
-const Popup = () => (
-  <div className="Popup">
-    <div className="Popup-Wrapper">
-      <h2 className="Popup-Header">Изменить пароль</h2>
-      <div className="Popup-Body">
-        <p className="Popup-Text">
-          Введите, пожалуйста, адрес email, чтобы мы могли отправить Вам письмо
-          со ссылкой для смены пароля.
-        </p>
-        <Form className="Popup-Form">
-          <Form.Item label="Введите адрес email">
-            <Input
-              className="Popup-Input"
-              placeholder="Минимум 6 символов и 1 цифра"
-            />
-          </Form.Item>
-          <Button className="Popup-Submit" htmlType="submit" type="danger">
-            Отправить письмо
-          </Button>
-        </Form>
+import { POPUP_CLOSE } from 'store/popup'
+
+import ChangePasswordEnterEmailPopup from './ChangePasswordEnterEmailPopup'
+import ChangePasswordSendEmailPopup from './ChangePasswordSendEmailPopup'
+import ChangePasswordEnterPasswordPopup from './ChangePasswordEnterPasswordPopup'
+
+const config = {
+  ChangePasswordEnterEmailPopup: <ChangePasswordEnterEmailPopup />,
+  ChangePasswordSendEmailPopup: <ChangePasswordSendEmailPopup />,
+  ChangePasswordEnterPasswordPopup: <ChangePasswordEnterPasswordPopup />
+}
+
+/*
+Как пользоваться:
+
+import { POPUP_OPEN } from 'store/popup'
+
+<Button
+  text="OPEN MODAL"
+  onClick={() => {
+    dispatch(POPUP_OPEN, 'ChangePasswordEnterEmailPopup')
+  }}
+/>
+*/
+
+const Popup = () => {
+  const { popup, dispatch } = useStoreon('popup')
+  const closeModal = useCallback(() => {
+    dispatch(POPUP_CLOSE)
+  }, [dispatch])
+
+  return (
+    <div className="Popup">
+      <div className="Popup-Container">
+        <button onClick={closeModal} className="Popup-Close" />
+        {config[popup.modalContent] || 'jopalala'}
       </div>
-      <p className="Popup-Policy">
-        Этим действием Вы подтверждаете согласие с нашей{' '}
-        <a className="Popup-Link">Политикой Конфиденциальности</a> и
-        соглашаетесь на обработку персональных данных.
-      </p>
     </div>
-    <button className="Popup-Close"></button>
-  </div>
-)
+  )
+}
 
 export default Popup

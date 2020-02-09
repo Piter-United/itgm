@@ -1,70 +1,36 @@
 .Popup {
+  position: fixed;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.Popup-Container {
   position: absolute;
   top: 50%;
   left: 50%;
   width: 780px;
+  min-height: 500px;
   transform: translate(-50%, -50%);
   border-radius: 3px;
   padding: 60px;
   background-color: #fff;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
-  background-image: url('../../../asset/1.png');
-}
-
-.Popup-Wrapper {
-  width: 480px;
-  margin: 0 auto;
-}
-
-.Popup-Header {
-  font-family: 'PlayfairDisplay', sans-serif;
-  font-size: 36px;
-  font-weight: 600;
-  line-height: normal;
-  color: #2a2a2a;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.Popup-Text {
-  font-family: 'Open-Sans', sans-serif;
-  font-weight: 300;
-  font-size: 18px;
-  line-height: 22px;
-  color: #2a2a2a;
-  text-align: center;
-}
-
-.Popup-Form {
-  width: 280px;
-  margin: 0 auto;
-  margin-bottom: 45px;
-}
-
-.Popup-Submit {
-  width: 100%;
-}
-
-.Popup-Policy {
-  font-family: 'Open-Sans', sans-serif;
-  font-size: 14px;
-  line-height: 16px;
-  color: #9e9e9e;
-  text-align: center;
-}
-
-.Popup-Link {
-  color: inherit;
-  text-decoration: underline;
-  cursor: pointer;
-  text-align: center;
+  background: url('../../../asset/1.png') no-repeat center / cover;
 }
 
 .Popup-Close {
   position: absolute;
+  width: 20px;
+  height: 20px;
   top: 25px;
   right: 20px;
   border: none;
+  cursor: pointer;
+  background-color: transparent;
 }
 
 .Popup-Close:hover,
@@ -75,8 +41,8 @@
 .Popup-Close:before {
   content: '';
   position: absolute;
-  top: 0;
-  left: -8px;
+  top: 7px;
+  left: 0;
   width: 20px;
   height: 5px;
   background-color: #959595;
@@ -86,8 +52,8 @@
 .Popup-Close:after {
   content: '';
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 7px;
+  left: 0;
   width: 20px;
   height: 5px;
   background-color: #959595;

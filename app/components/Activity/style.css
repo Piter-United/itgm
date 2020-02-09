@@ -176,7 +176,7 @@
 .FormItem label,
 .FormItem-Select,
 .FormItem-SelectDropDown ul li {
- font-size: 16px; 
+  font-size: 16px;
 }
 
 .FormItem-Control {
@@ -195,8 +195,12 @@
   height: auto;
 }
 
-.FormItem-Select > .ant-select-selection--multiple > .ant-select-selection__rendered,
-.FormItem-Select > .ant-select-selection--single > .ant-select-selection__rendered {
+.FormItem-Select
+  > .ant-select-selection--multiple
+  > .ant-select-selection__rendered,
+.FormItem-Select
+  > .ant-select-selection--single
+  > .ant-select-selection__rendered {
   display: flex;
   align-items: center;
   white-space: nowrap;
@@ -205,29 +209,47 @@
   margin-left: 16px;
 }
 
-.FormItem-Select > .ant-select-selection--multiple > .ant-select-selection__rendered > .ant-select-selection__placeholder,
-.FormItem-Select > .ant-select-selection--single > .ant-select-selection__rendered > .ant-select-selection__placeholder {
+.FormItem-Select
+  > .ant-select-selection--multiple
+  > .ant-select-selection__rendered
+  > .ant-select-selection__placeholder,
+.FormItem-Select
+  > .ant-select-selection--single
+  > .ant-select-selection__rendered
+  > .ant-select-selection__placeholder {
   position: relative;
   margin-top: 0px;
 }
 
-.FormItem-Select > .ant-select-selection--multiple > .ant-select-selection__rendered > .ant-select-selection__placeholder {
+.FormItem-Select
+  > .ant-select-selection--multiple
+  > .ant-select-selection__rendered
+  > .ant-select-selection__placeholder {
   position: absolute;
   top: auto;
 }
 
-.FormItem-Select > .ant-select-selection--multiple > .ant-select-selection__rendered {
+.FormItem-Select
+  > .ant-select-selection--multiple
+  > .ant-select-selection__rendered {
   padding: 10px 0px;
   width: 100%;
 }
 
-.FormItem-Select > .ant-select-selection--multiple > .ant-select-selection__rendered > ul {
+.FormItem-Select
+  > .ant-select-selection--multiple
+  > .ant-select-selection__rendered
+  > ul {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
 }
 
-.FormItem-Select > .ant-select-selection--multiple > .ant-select-selection__rendered > ul li {
+.FormItem-Select
+  > .ant-select-selection--multiple
+  > .ant-select-selection__rendered
+  > ul
+  li {
   flex-grow: 1;
   height: 40px;
   display: flex;
@@ -236,4 +258,8 @@
 
 .FormItem-SelectDropDown ul li {
   padding: 6px 16px;
+}
+
+.FormItem-Btn_mgRight_2 {
+  margin-right: 20px;
 }

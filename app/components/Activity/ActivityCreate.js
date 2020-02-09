@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import useStoreon from 'storeon/react'
 import { Row, Col, Form, Input, Select, Spin, Typography } from 'antd'
+import cn from 'classnames'
 
 import {
   CREATE,
@@ -15,7 +16,7 @@ import './style.css'
 
 import { GET_LIST } from 'store/community'
 import { InnerPageContentContainer } from '../InnerPageContentContainer'
-import { Breadcrumbs, Button } from '../UI'
+import { Breadcrumbs, Button } from 'ui'
 
 const { Title } = Typography
 
@@ -92,8 +93,7 @@ const ActivityCreateForm = ({
       </Form.Item>
       <Form.Item label="Cообщество" className="FormItem">
         {getFieldDecorator('community', {
-          initialValue:
-            act && act.community && act.community.id ? act.community.id : [],
+          initialValue: act?.community?.id || [],
           rules: [
             {
               required: true,
@@ -134,19 +134,13 @@ const ActivityCreateForm = ({
         )}
       </Form.Item>
       <Form.Item>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'flex-end'
-          }}
-        >
-          {isNewActivity ? null : (
+        <Row type="flex" justify="end">
+          {!isNewActivity && (
             <Button
               onClick={handleDelete}
               text="Удалить"
               color="secondary"
-              className="Button_outline"
-              style={{ marginRight: '20px' }}
+              className={cn('Button_outline', 'FormItem-Btn_mgRight_2')}
             />
           )}
           <Button
@@ -154,11 +148,10 @@ const ActivityCreateForm = ({
             asLink={true}
             url="/activity"
             color="secondary"
-            className="Button_outline"
-            style={{ marginRight: '20px' }}
+            className={cn('Button_outline', 'FormItem-Btn_mgRight_2')}
           />
           <Button type="submit" text="Сохранить" onClick={handleSubmit} />
-        </div>
+        </Row>
       </Form.Item>
     </Form>
   )

@@ -13,13 +13,11 @@ export const Button = ({
   className = '',
   asLink = false,
   url = '#',
-  fluid = false,
-  style = {}
+  fluid = false
 }) =>
   asLink ? (
     <Link
       to={url}
-      style={{ ...style }}
       className={cn(
         `Button Button_size_${size}`,
         `Button_color_${color}`,
@@ -38,7 +36,6 @@ export const Button = ({
         className
       )}
       type={type}
-      style={{ ...style }}
       onClick={onClick}
     >
       <span>{text}</span>

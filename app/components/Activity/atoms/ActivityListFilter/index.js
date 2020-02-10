@@ -4,24 +4,32 @@ import cn from 'classnames'
 import { Button, Form, Input, Icon, Row } from 'antd'
 
 import { GET_LIST as GET_LIST_COMMUNITY } from 'store/community'
-import { ON_FILTER, ON_TAG, ON_COMMUNITY } from 'store/activity'
+import {
+  SET_FILTER_TEXT,
+  SET_FILTER_TAG,
+  SET_FILTER_COMMUNITY
+} from 'store/activity'
 
 const ActivityFilter = ({ handleClose }) => {
-  const { community, activity, dispatch } = useStoreon('community', 'activity')
+  const { community, activity, activityFilter, dispatch } = useStoreon(
+    'community',
+    'activity',
+    'activityFilter'
+  )
 
   useEffect(() => {
     dispatch(GET_LIST_COMMUNITY)
   }, [dispatch])
 
   const btnsCommunities = community.list.map(({ id, name }) => {
-    const isSelectedCommunity = id === activity.community
+    const isSelectedCommunity = id === activityFilter.communityId
     return (
       <Button
         className={cn({
           'ActivityFilter-Control': true,
           'ActivityFilter-Control_selected': isSelectedCommunity
         })}
-        onClick={() => dispatch(ON_COMMUNITY, id)}
+        onClick={() => dispatch(SET_FILTER_COMMUNITY, id)}
         key={id}
       >
         {name}
@@ -33,14 +41,14 @@ const ActivityFilter = ({ handleClose }) => {
     .map(({ resource: { tags } }) => tags)
     .flat()
     .map((tag, i) => {
-      const isSelectedTag = activity.tags.indexOf(tag) > -1
+      const isSelectedTag = activityFilter.tags.includes(tag)
       return (
         <Button
           className={cn({
             'ActivityFilter-Control': true,
             'ActivityFilter-Control_selected': isSelectedTag
           })}
-          onClick={() => dispatch(ON_TAG, tag)}
+          onClick={() => dispatch(SET_FILTER_TAG, tag)}
           key={i + 'tag'}
         >
           {tag}
@@ -66,7 +74,7 @@ const ActivityFilter = ({ handleClose }) => {
           <Form.Item>
             <Input
               defaultValue={activity.filter}
-              onChange={({ target }) => dispatch(ON_FILTER, target.value)}
+              onChange={({ target }) => dispatch(SET_FILTER_TEXT, target.value)}
               prefix={
                 <Icon type="search" style={{ color: 'rgba(0,0,0,.25)' }} />
               }

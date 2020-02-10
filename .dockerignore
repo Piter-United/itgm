@@ -1,0 +1,8 @@
+.cache/
+.github/
+.vscode/
+app/
+asset/
+node_modules/
+public/
+sql/

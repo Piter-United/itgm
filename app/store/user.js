@@ -121,7 +121,6 @@ const user = store => {
     }
   })
   store.on(LOGIN_SUCCESS, (s, user) => {
-    console.log(user)
     store.dispatch(SET_TOKEN, { token: user.access_token })
     history.push('/')
   })

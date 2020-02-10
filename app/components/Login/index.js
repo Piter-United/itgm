@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import useStoreon from 'storeon/react'
 // import { parse } from 'qs'
 import { Button, Icon, Typography } from 'antd'

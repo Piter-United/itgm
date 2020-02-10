@@ -88,7 +88,6 @@
     "singleQuote": true
   },
   "alias": {
-    "root": ".",
     "icons": "./asset/icons",
     "store": "./app/store",
     "components": "./app/components",

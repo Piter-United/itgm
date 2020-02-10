@@ -1,5 +1,5 @@
 import React from 'react'
-import Avatar from 'ui/Avatar'
+import { Avatar } from 'ui'
 
 import imageAvatar from 'asset/communityFallbackAvatar.png'
 import './style.css'

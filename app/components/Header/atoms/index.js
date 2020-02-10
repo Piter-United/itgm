@@ -1,14 +1,12 @@
 import React from 'react'
-import { Button, Menu, Dropdown } from 'antd'
 import { Link } from 'react-router-dom'
-import Avatar from 'ui/Avatar'
-import UserIcon from 'icons/user-icon.svg'
 
-export const SignUpButton = () => (
-  <Link to="/login">
-    <Button>Вход</Button>
-  </Link>
-)
+import { Menu, Dropdown } from 'antd'
+
+import { Avatar } from 'ui'
+
+import './style.css'
+
 export const ProfileButton = ({ avatar, handleSignOut }) => {
   const menu = (
     <Menu>
@@ -21,18 +19,10 @@ export const ProfileButton = ({ avatar, handleSignOut }) => {
     </Menu>
   )
   return (
-    <Dropdown overlay={menu}>
-      <Button shape="circle">
-        {avatar ? (
-          <Link to="/user">
-            <Avatar size="xs" src={avatar} />
-          </Link>
-        ) : (
-          <Link to="/user">
-            <UserIcon />
-          </Link>
-        )}
-      </Button>
+    <Dropdown overlay={menu} className="Dropdown">
+      <Link to="/user" className="Dropdown-Button">
+        <Avatar size="xs" src={avatar} />
+      </Link>
     </Dropdown>
   )
 }

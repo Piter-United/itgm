@@ -1,24 +1,31 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useCallback, useEffect } from 'react'
+import useStoreon from 'storeon/react'
 import { Link } from 'react-router-dom'
 
 import './style.css'
 
+import { LOGOUT, GET_CURRENT_USER } from 'store/user'
+
+import { Button } from 'ui'
 import SearchIcon from 'icons/search.svg'
 import Bell from 'icons/bell.svg'
-import { SignUpButton, ProfileButton, HeaderList } from './atoms'
+import { ProfileButton, HeaderList } from './atoms'
 
 import { Logo } from 'components/Logo'
 
 import routes from '../../routes'
-import { GET_CURRENT_USER, LOGOUT } from 'store/user'
-import useStoreon from 'storeon/react'
 
 const Header = ({ theme = 'default' }) => {
   const { user, token, dispatch } = useStoreon('user', 'token')
-  const signOut = () => dispatch(LOGOUT)
+
   useEffect(() => {
     dispatch(GET_CURRENT_USER)
+  }, [token, dispatch])
+
+  const signOut = useCallback(() => {
+    dispatch(LOGOUT)
   }, [dispatch])
+  console.log(user)
   return (
     <header className={`Header Header_theme_${theme}`}>
       <div className="Header-Container">
@@ -30,17 +37,19 @@ const Header = ({ theme = 'default' }) => {
           <button type="button" className="Header-Icon">
             <SearchIcon />
           </button>
-          <button type="button" className="Header-Icon">
+          <button type="button" className="Header-Icon Header-Icon_mr_m">
             <Bell />
           </button>
           {token ? (
-            user ? (
-              <ProfileButton avatar={user.avatar} handleSignOut={signOut} />
-            ) : (
-              <ProfileButton handleSignOut={signOut} />
-            )
+            <ProfileButton handleSignOut={signOut} avatar={user?.avatar} />
           ) : (
-            <SignUpButton />
+            <Button
+              color="secondary"
+              text="Войти"
+              url="/login"
+              asLink
+              size="s"
+            />
           )}
         </div>
       </div>

@@ -14,7 +14,7 @@ import { GET_CURRENT_USER, LOGOUT } from 'store/user'
 import useStoreon from 'storeon/react'
 
 const Header = ({ theme = 'default' }) => {
-  const { user, dispatch } = useStoreon('user')
+  const { user, token, dispatch } = useStoreon('user', 'token')
   const signOut = () => dispatch(LOGOUT)
   useEffect(() => {
     dispatch(GET_CURRENT_USER)
@@ -33,8 +33,12 @@ const Header = ({ theme = 'default' }) => {
           <button type="button" className="Header-Icon">
             <Bell />
           </button>
-          {user ? (
-            <ProfileButton avatar={user.avatar_hash} handleSignOut={signOut} />
+          {token ? (
+            user ? (
+              <ProfileButton avatar={user.avatar} handleSignOut={signOut} />
+            ) : (
+              <ProfileButton handleSignOut={signOut} />
+            )
           ) : (
             <SignUpButton />
           )}

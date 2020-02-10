@@ -6,17 +6,17 @@ import UserIcon from 'icons/user-icon.svg'
 
 export const SignUpButton = () => (
   <Link to="/login">
-    <Button>Sign Up</Button>
+    <Button>Вход</Button>
   </Link>
 )
 export const ProfileButton = ({ avatar, handleSignOut }) => {
   const menu = (
     <Menu>
       <Menu.Item onClick={handleSignOut} key="signOut">
-        Sign out
+        Выход
       </Menu.Item>
       <Menu.Item key="edit">
-        <Link to="/user/edit">Edit profile</Link>
+        <Link to="/user/edit">Редактировать профиль</Link>
       </Menu.Item>
     </Menu>
   )
@@ -25,10 +25,7 @@ export const ProfileButton = ({ avatar, handleSignOut }) => {
       <Button shape="circle">
         {avatar ? (
           <Link to="/user">
-            <Avatar
-              size="xs"
-              src={`https://www.gravatar.com/avatar/${avatar}`}
-            />
+            <Avatar size="xs" src={avatar} />
           </Link>
         ) : (
           <Link to="/user">

@@ -12,16 +12,14 @@ import ActivityList from '../ActivityList'
 
 const { Title } = Typography
 
-const RenderDiscussion = ({ userId, user }) => {
-  if (userId) {
-    if (user) {
-      return (
-        <ButtonCustom asLink={true} text="Добавить Тему" url="/activity/new" />
-      )
-    }
-    return <ButtonCustom asLink={true} text="Добавить Тему" url="/user/edit" />
+const RenderDiscussionAdd = ({ user }) => {
+  let url = '/login'
+  if (user && user.community) {
+    url = '/activity/new'
+  } else if (user) {
+    url = '/user/edit'
   }
-  return <ButtonCustom asLink={true} text="Добавить Тему" url="/login" />
+  return <ButtonCustom asLink={true} text="Добавить Тему" url={url} />
 }
 const ButtonShowFilter = ({ handleOpenFilter }) => (
   <button className="ActivityPage-BtnFilter" onClick={handleOpenFilter}>
@@ -55,9 +53,8 @@ const filterActivities = (activityFilter, activities) => {
 }
 
 const ActivityListPage = () => {
-  const { userId, user, activity, activityFilter, dispatch } = useStoreon(
+  const { user, activity, activityFilter, dispatch } = useStoreon(
     'user',
-    'userId',
     'activity',
     'activityFilter'
   )
@@ -69,7 +66,7 @@ const ActivityListPage = () => {
 
   useEffect(() => {
     dispatch(GET_LIST)
-  }, [dispatch])
+  }, [dispatch, user])
 
   return (
     <div className="content">
@@ -94,7 +91,7 @@ const ActivityListPage = () => {
               </span>
             </Title>
             <Row type="flex" justify="space-between">
-              <RenderDiscussion userId={userId} user={user} />
+              <RenderDiscussionAdd user={user} />
               {stateActivityFilter === 'hidden' ? (
                 <ButtonShowFilter handleOpenFilter={handleToggleFilter} />
               ) : null}
@@ -103,7 +100,7 @@ const ActivityListPage = () => {
             <ActivityList
               activitiesData={{ ...activity, list: filtered }}
               dispatch={dispatch}
-              userId={userId}
+              userId={user?.id}
             />
           </div>
         </Col>

@@ -7,7 +7,7 @@ select
       'id', u.id,
       'resourceType', 'User',
       'name', u.resource#>>'{name}',
-      'avatar_hash', md5(u.resource#>>'{email}')
+      'avatar', concat('https://www.gravatar.com/avatar/', md5(u.resource#>>'{email}'))
     )
   ) resource
 from community c
@@ -53,7 +53,7 @@ select
     'id', u.id,
     'name', u.resource#>>'{name}',
     'resourceType', 'UserProfile',
-    'avatar_hash', md5(u.resource#>>'{email}')
+    'avatar', concat('https://www.gravatar.com/avatar/', md5(u.resource#>>'{email}'))
   ) resource
 from userprofile u
 where

@@ -17,10 +17,7 @@ const Activity = ({
     params: { id }
   }
 }) => {
-  const { dispatch, activityInfo, userId } = useStoreon(
-    'activityInfo',
-    'userId'
-  )
+  const { dispatch, activityInfo, user } = useStoreon('activityInfo', 'user')
   useEffect(() => {
     dispatch(GET_BY_ID, id)
   }, [id, dispatch])
@@ -30,8 +27,8 @@ const Activity = ({
   const dispatchEvent = (event, id) => {
     dispatch(event, { id, event: GET_BY_ID_RELOAD_BY_LU })
   }
-  const toggleLike = (userId, activity) => {
-    if (!userId) {
+  const toggleLike = activity => {
+    if (!user) {
       return history.push('/login')
     }
     if (activity.likes.isLike) {
@@ -53,7 +50,7 @@ const Activity = ({
           <section className="Activity-Content">
             <h1 className="Activity-Header">
               {activity.name}
-              {userId && userId === activity.user.id && (
+              {user.id && user.id === activity.user.id && (
                 <Icon
                   type="edit"
                   onClick={() => history.push(`/activity/${activity.id}/edit`)}
@@ -68,13 +65,13 @@ const Activity = ({
             <div className="Activity-AuthorBlock">
               <ActivityAuthor
                 user={resource.user.name}
-                avatar={`https://www.gravatar.com/avatar/${resource.user.avatar_hash}`}
+                avatar={resource.user.avatar}
                 community={resource.community.name}
                 createdAt={ts}
               />
             </div>
             <Button
-              onClick={() => toggleLike(userId, activity)}
+              onClick={() => toggleLike(activity)}
               text={
                 activity.likes.isLike
                   ? 'Передумал участвовать'

@@ -39,7 +39,7 @@
     "@babel/polyfill": "^7.7.0",
     "@babel/preset-env": "^7.7.7",
     "@babel/preset-react": "^7.7.4",
-    "aidbox": "^2.0.0-beta.0",
+    "aidbox": "Aidbox/aidbox-node-sdk#v2.0.0-beta.1",
     "autoprefixer": "^9.7.3",
     "babel-eslint": "^10.0.3",
     "dotenv": "^8.2.0",

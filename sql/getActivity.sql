@@ -11,7 +11,7 @@ select
   || jsonb_build_object('user', jsonb_build_object(
     'id', u.id,
     'resourceType', 'Community',
-    'avatar_hash', md5(u.resource#>>'{email}'),
+    'avatar', concat('https://www.gravatar.com/avatar/', md5(u.resource#>>'{email}')),
     'name', u.resource#>>'{name}'
   ))
   || jsonb_build_object('likes', jsonb_build_object(
@@ -43,7 +43,7 @@ select
     'id', u.id,
     'resourceType', 'UserProfile',
     'name', u.resource#>>'{name}',
-    'avatar_hash', md5(u.resource#>>'{email}')
+    'avatar', concat('https://www.gravatar.com/avatar/', md5(u.resource#>>'{email}'))
   )) resource
 from activitylike al
 left join userprofile u

@@ -5,8 +5,6 @@ import { Spin, Divider } from 'antd'
 import { GET_CURRENT_USER } from 'store/user'
 import { GET_LIST } from 'store/activity'
 
-import history from '../../history'
-
 import { InnerPageContentContainer } from 'components/InnerPageContentContainer'
 import ProfileInfo from './atoms'
 import ActivityList from 'components/Activity/atoms/ActivityList'
@@ -15,11 +13,7 @@ import CommunityBadgeList from 'components/Community/CommunityBadgeList'
 import './style.css'
 
 const UserProfile = () => {
-  const { userId, user, activity, dispatch } = useStoreon(
-    'user',
-    'userId',
-    'activity'
-  )
+  const { user, activity, dispatch } = useStoreon('user', 'activity')
   //TODO: check why front send too many requests.
   useEffect(() => {
     dispatch(GET_CURRENT_USER)
@@ -32,20 +26,20 @@ const UserProfile = () => {
   if (!user) {
     return <Spin size="large" />
   }
+
   const { community, communities } = user
 
   const userActivities = activity.list.filter(
-    event => event.resource.user.id === userId
+    event => event.resource.user.id === user.id
   )
   const userActivitiesTitle =
     userActivities.length > 0
       ? 'Участвует в следующих обсуждениях:'
       : 'Пока еще не выбрал тему обсуждения'
-  const communityList = { community, communities }
+  const communityList = { community, communities: communities || [] }
   const ActivitiesHeader = ({ text }) => (
     <p className="UserProfile-Text">{text}</p>
   )
-
   return (
     <InnerPageContentContainer>
       <main className="UserProfile">
@@ -57,8 +51,8 @@ const UserProfile = () => {
         {userActivities.length > 0 && (
           <ActivityList
             activitiesData={{ ...activity, list: userActivities }}
-            userId
-            dispatch
+            userId={user.id}
+            dispatch={dispatch}
           />
         )}
       </main>

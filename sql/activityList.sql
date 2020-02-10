@@ -4,7 +4,7 @@ select
   a.resource || jsonb_build_object('user', jsonb_build_object(
     'id', u.id,
     'resourceType', 'User',
-    'avatar_hash', md5(u.resource#>>'{email}'),
+    'avatar', concat('https://www.gravatar.com/avatar/', md5(u.resource#>>'{email}')),
     'name', u.resource#>>'{name}'
   )) resource,
   jsonb_build_object(

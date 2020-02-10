@@ -1,3 +1,4 @@
+import HomePage from 'components/HomePage'
 import { WrappedActivityList } from './components/Activity/ActivityList'
 import ActivityCreate from 'components/Activity/ActivityCreate'
 import Activity from './components/Activity/Activity'
@@ -12,6 +13,14 @@ import PartnerList from './components/Partners/Partners'
 import About from './components/About/About'
 
 const routes = [
+  {
+    path: '/',
+    component: WrappedActivityList
+  },
+  {
+    path: '/home',
+    component: HomePage
+  },
   {
     path: '/activity',
     inHeader: true,
@@ -48,17 +57,21 @@ const routes = [
     component: Community
   },
   {
-    path: '/participants',
-    inHeader: true,
-    title: 'Участники',
-    component: ParticipantList
+    path: '/community/:id/edit',
+    component: NewCommunity
   },
-  {
-    path: '/partners',
-    inHeader: true,
-    title: 'Партнеры',
-    component: PartnerList
-  },
+  // {
+  //   path: '/participants',
+  //   inHeader: true,
+  //   title: 'Участники',
+  //   component: ParticipantList
+  // },
+  // {
+  //   path: '/partners',
+  //   inHeader: true,
+  //   title: 'Партнеры',
+  //   component: PartnerList
+  // },
   {
     path: '/about',
     component: About

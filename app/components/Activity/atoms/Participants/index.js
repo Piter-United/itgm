@@ -7,14 +7,9 @@ import './style.css'
 export const Participants = ({ data }) =>
   data.length > 0 && (
     <ul className="Participants">
-      {data.map(({ id, avatar_hash, name }) => (
+      {data.map(({ id, avatar, name }) => (
         <li className="Participants-Item" key={id}>
-          <Avatar
-            type="user"
-            size="s"
-            alt={name}
-            src={`https://www.gravatar.com/avatar/${avatar_hash}`}
-          />
+          <Avatar type="user" size="s" alt={name} src={avatar} />
         </li>
       ))}
     </ul>

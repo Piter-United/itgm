@@ -3,7 +3,7 @@ import { Avatar, Icon } from 'antd'
 import './style.css'
 
 const defaultAboutText =
-  'Пара слов об участнике, которые он написал или не написал при регистрации. Об интересах, сфере деятельности, целях и т.д.'
+  'Пара слов об участнике, которые он не написал при регистрации. Об интересах, сфере деятельности, целях и т.д.'
 
 const AboutUser = ({ text = defaultAboutText }) => (
   <p className="ProfileInfo-About">{text}</p>
@@ -13,11 +13,7 @@ const ProfileAvatar = ({ avatar }) => {
   return (
     <div className="ProfileAvatar">
       {avatar ? (
-        <Avatar
-          className="ProfileAvatar-Image"
-          alt="Avatar"
-          src={`https://www.gravatar.com/avatar/${avatar}`}
-        />
+        <Avatar className="ProfileAvatar-Image" alt="Avatar" src={avatar} />
       ) : (
         <Fragment>
           <Avatar
@@ -48,12 +44,12 @@ const Descriptions = ({ name, company, email, phone, about }) => {
 }
 
 const ProfileInfo = props => {
-  const { avatar_hash } = props
+  const { avatar } = props
 
   return (
     <div className="ProfileInfo">
       <Descriptions {...props} />
-      <ProfileAvatar avatar={avatar_hash} />
+      <ProfileAvatar avatar={avatar} />
     </div>
   )
 }

@@ -29,6 +29,7 @@ export const UNLIKE = 'activity/unlike'
 export const UPDATE_UNLIKE_SUCCESS = 'activity/update-unlike-success'
 export const CREATE = 'activity/create'
 export const CREATE_SUCCESS = 'activity/create-success'
+export const CREATE_REDIRECT = 'activity/create-redirect'
 export const GET_BY_ID = 'activity/get-by-id'
 export const GET_BY_ID_SUCCESS = 'activity/get-by-id-success'
 export const GET_BY_ID_LOADING = 'activity/get-by-id-loading'
@@ -50,7 +51,7 @@ const activity = store => {
       resourceType: '$query',
       id: 'activity',
       params: {
-        user: s.userId
+        user: s?.user?.id
       },
       success: SET_LIST,
       error: ERROR,
@@ -99,7 +100,7 @@ const activity = store => {
       body: {
         user: {
           resourceType: 'User',
-          id: s.userId
+          id: s?.user?.id
         },
         activity: {
           resourceType: 'Activity',
@@ -169,18 +170,43 @@ const activity = store => {
       }
     }
   })
-  store.on(CREATE, (s, newCommunity) => {
+  store.on(CREATE, (s, newActivity) => {
     store.dispatch('request', {
       resourceType: 'Activity',
-      body: newCommunity,
+      body: newActivity,
       method: 'POST',
       success: CREATE_SUCCESS,
       error: ERROR,
       spinner: LOADING
     })
   })
-  store.on(CREATE_SUCCESS, (s, newCommunity) => {
-    history.push(`/activity/${newCommunity.id}`)
+  store.on(CREATE_SUCCESS, (s, newActivity) => {
+    store.dispatch('request', {
+      resourceType: 'ActivityLike',
+      method: 'post',
+      body: {
+        user: {
+          resourceType: 'User',
+          id: s?.user?.id
+        },
+        activity: {
+          resourceType: 'Activity',
+          id: newActivity.id
+        }
+      },
+      success: CREATE_REDIRECT,
+      error: {
+        env: CREATE_REDIRECT,
+        params: newActivity
+      }
+    })
+  })
+  store.on(CREATE_REDIRECT, (s, activity) => {
+    if (activity.resourceType === 'ActivityLike') {
+      history.push(`/activity/${activity.activity.id}`)
+    } else {
+      history.push(`/activity/${activity.id}`)
+    }
   })
   store.on(GET_BY_ID, (s, id) => {
     store.dispatch('request', {
@@ -188,7 +214,7 @@ const activity = store => {
       id: 'activityinfo',
       params: {
         id,
-        user: s.userId
+        user: s?.user?.id
       },
       spinner: GET_BY_ID_LOADING,
       success: GET_BY_ID_SUCCESS,

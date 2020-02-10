@@ -411,6 +411,12 @@
                 }
               }
             }
+          },
+          {
+            "engine": "sql",
+            "sql": {
+              "query": "select true from activity where id = {{params.resource/id}} and resource#>>'{user,id}' = {{user.id}}"
+            }
           }
         ]
       },
@@ -487,25 +493,6 @@
               "properties": {
                 "resource/type": {
                   "constant": "Community"
-                }
-              }
-            }
-          }
-        }
-      },
-      "allow-userprofile-read": {
-        "engine": "json-schema",
-        "schema": {
-          "required": ["request-method", "params"],
-          "properties": {
-            "request-method": {
-              "const": "get"
-            },
-            "params": {
-              "required": ["resource/type"],
-              "properties": {
-                "resource/type": {
-                  "constant": "UserProfile"
                 }
               }
             }
@@ -612,6 +599,9 @@
           "type": "string",
           "isRequired": true
         },
+        "avatar": {
+          "type": "string"
+        },
         "name": {
           "type": "string",
           "isRequired": true
@@ -656,6 +646,21 @@
         "user": {
           "type": "Reference",
           "refers": ["User"],
+          "isRequired": true
+        }
+      }
+    },
+    "Partner": {
+      "attrs": {
+        "title": {
+          "type": "string",
+          "isRequired": true
+        },
+        "about": {
+          "type": "string"
+        },
+        "logo": {
+          "type": "string",
           "isRequired": true
         }
       }

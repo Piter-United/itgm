@@ -5,7 +5,6 @@ import useStoreon from 'storeon/react'
 import PrivateRoute from 'components/PrivateRoute'
 import NotFound from 'components/NotFound'
 import Layout from 'components/Layout'
-import HomePage from 'components/HomePage'
 import Popup from 'components/Popup'
 
 import routes from './routes'
@@ -17,7 +16,6 @@ const App = () => {
     <Fragment>
       {popup.modalIsOpen && <Popup />}
       <Switch>
-        <Route path="/" exact component={HomePage} />
         {routes.map(route =>
           route.private ? (
             <PrivateRoute

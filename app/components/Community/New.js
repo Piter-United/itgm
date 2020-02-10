@@ -1,16 +1,83 @@
-import React from 'react'
+import React, { useState } from 'react'
 import useStoreon from 'storeon/react'
 
-import { Form, Input, Select, Button, Icon, Typography } from 'antd'
+import { Form, Input, Select, Button, Icon, Typography, Upload } from 'antd'
 
 import '../Heading/Heading.css'
 
 import { CREATE } from 'store/community'
 import { InnerPageContentContainer } from '../InnerPageContentContainer'
+import { site_url } from '../../config'
 
 const { Title } = Typography
 
-const NewCommunityForm = ({ form, onCreateCommunity }) => {
+function getBase64(img, callback) {
+  const reader = new FileReader()
+  reader.addEventListener('load', () => callback(reader.result))
+  reader.readAsDataURL(img)
+}
+
+function beforeUpload(file) {
+  const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png'
+  if (!isJpgOrPng) {
+    message.error('You can only upload JPG/PNG file!')
+  }
+  const isLt2M = file.size / 1024 / 1024 < 2
+  if (!isLt2M) {
+    message.error('Image must smaller than 2MB!')
+  }
+  return isJpgOrPng && isLt2M
+}
+
+const UploadFile = ({ token, onChange }) => {
+  const [loading, setLoading] = useState(false)
+  const [url, setUrl] = useState(null)
+  const handleChange = info => {
+    if (info.file.status === 'uploading') {
+      setLoading(true)
+      return
+    }
+    if (info.file.status === 'done') {
+      console.log(info.file)
+      onChange(info.file.response.avatar.url)
+      console.log(info.file.response.avatar.url)
+      getBase64(info.file.originFileObj, imageUrl => {
+        setUrl(imageUrl)
+        setLoading(false)
+      })
+    }
+  }
+
+  const uploadButton = (
+    <div>
+      <Icon type={loading ? 'loading' : 'plus'} />
+      <div className="ant-upload-text">Загрузить</div>
+    </div>
+  )
+
+  return (
+    <Upload
+      name="avatar"
+      listType="picture-card"
+      className="avatar-uploader"
+      headers={{
+        Authorization: `Bearer ${token}`
+      }}
+      action={`${site_url}/upload_image`}
+      showUploadList={false}
+      beforeUpload={beforeUpload}
+      onChange={handleChange}
+    >
+      {url ? (
+        <img alt="Logo" src={url} style={{ width: '100%' }} />
+      ) : (
+        uploadButton
+      )}
+    </Upload>
+  )
+}
+
+const NewCommunityForm = ({ form, onCreateCommunity, token }) => {
   const {
     getFieldDecorator,
     validateFieldsAndScroll,
@@ -31,6 +98,7 @@ const NewCommunityForm = ({ form, onCreateCommunity }) => {
         onCreateCommunity({
           name: values.name,
           description: values.description,
+          logo: values.logo,
           social
         })
       }
@@ -56,6 +124,13 @@ const NewCommunityForm = ({ form, onCreateCommunity }) => {
   }
 
   getFieldDecorator('keys', { initialValue: [0] })
+  getFieldDecorator('logo', { initialValue: null })
+
+  const onFileUploaded = logo => {
+    setFieldsValue({
+      logo
+    })
+  }
 
   const formItems = getFieldValue('keys').map(k => (
     <Form.Item key={k} style={{ marginBottom: 0 }}>
@@ -105,6 +180,7 @@ const NewCommunityForm = ({ form, onCreateCommunity }) => {
       <div className="form__header">
         <Title className="Heading Heading_level_1">Добавить сообщество</Title>
       </div>
+      <UploadFile token={token} onChange={onFileUploaded} />
       <Form.Item label="Название">
         {getFieldDecorator('name', {
           rules: [{ required: true, message: 'Вы не ввели название' }]
@@ -134,14 +210,17 @@ const WrappedNewCommunityForm = Form.create({ name: 'new_community' })(
   NewCommunityForm
 )
 const NewCommunity = () => {
-  const { dispatch } = useStoreon()
+  const { token, dispatch } = useStoreon('token')
   const onCreateCommunity = community => {
     dispatch(CREATE, community)
   }
   return (
     <InnerPageContentContainer>
       <div>
-        <WrappedNewCommunityForm onCreateCommunity={onCreateCommunity} />
+        <WrappedNewCommunityForm
+          onCreateCommunity={onCreateCommunity}
+          token={token}
+        />
       </div>
     </InnerPageContentContainer>
   )

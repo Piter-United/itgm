@@ -8,12 +8,12 @@ import { Participants } from '../Activity/atoms/Participants'
 import CommunitySocial from './atoms/CommunitySocial'
 import CommunityTags from './atoms/CommunityTags'
 
-import { Spin, Divider } from 'antd'
+import { Spin, Divider, Avatar } from 'antd'
 
 import { GET_BY_ID } from 'store/community'
 
 import './Community.css'
-import PenIcon from 'icons/Pen.svg'
+// import PenIcon from 'icons/Pen.svg'
 import { InnerPageContentContainer } from '../InnerPageContentContainer'
 
 const Community = ({
@@ -21,17 +21,21 @@ const Community = ({
     params: { id }
   }
 }) => {
-  const { dispatch, communityInfo, userId } = useStoreon(
-    'communityInfo',
-    'userId'
-  )
+  const { dispatch, communityInfo, user } = useStoreon('communityInfo', 'user')
 
   useEffect(() => {
     dispatch(GET_BY_ID, id)
   }, [id, dispatch])
 
-  if (!communityInfo.data || communityInfo.data.community.id !== id) {
+  if (communityInfo.loading) {
     return <Spin size="large" />
+  }
+  if (!communityInfo.data || !communityInfo.data.community) {
+    return (
+      <InnerPageContentContainer>
+        <div>Not found</div>
+      </InnerPageContentContainer>
+    )
   }
 
   const { community, participants } = communityInfo.data
@@ -47,11 +51,11 @@ const Community = ({
         <div className="Community-Content">
           <div className="Community-HeaderContainer">
             <h2 className="Community-Header">{community.name}</h2>
-            {userId === community.owner.id && (
-              <Link style={{ lineHeight: '48px' }} to={`/community/${id}/edit`}>
-                <PenIcon />
-              </Link>
-            )}
+            {/*{user && user.id === community.owner.id && (*/}
+            {/*  <Link style={{ lineHeight: '48px' }} to={`/community/${id}/edit`}>*/}
+            {/*    <PenIcon />*/}
+            {/*  </Link>*/}
+            {/*)}*/}
           </div>
           {globalLink && (
             <div className="Community-Link">
@@ -61,7 +65,7 @@ const Community = ({
           <CommunityTags data={community.tags || []} />
           <div className="Community-Description">{community.description}</div>
           <ActivityAuthor
-            avatar={`https://www.gravatar.com/avatar/${community.owner.avatar_hash}`}
+            avatar={community.owner.avatar}
             user={community.owner.name}
             community={community.name}
             createdAt={community.ts}
@@ -69,6 +73,13 @@ const Community = ({
         </div>
         <Divider className="Community-Separator" type="vertical" />
         <div className="Community-Additional">
+          <div style={{ textAlign: 'center' }}>
+            <Avatar
+              size={102}
+              src={community.logo}
+              style={{ margin: '10px auto' }}
+            />
+          </div>
           <CommunitySocial data={social} />
           <div className="Community-Participants">
             <p className="Community-ParticipantsTitle">Участники</p>

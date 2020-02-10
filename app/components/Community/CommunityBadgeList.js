@@ -11,7 +11,7 @@ const CommunityBadgeList = ({ communities, community }) => {
         return (
           <Tooltip placement="top" key={community.name} title={community.name}>
             <Button
-              href={`./community/${community.id}`}
+              href={`/community/${community.id}`}
               className="Community-Badge-List__badge"
               style={{
                 border: '1px solid #6F4297',

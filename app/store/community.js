@@ -58,7 +58,7 @@ const community = store => {
         ...body,
         owner: {
           resourceType: 'User',
-          id: s.userId
+          id: s?.user?.id
         }
       },
       success: CREATE_SUCCESS,
@@ -83,7 +83,7 @@ const community = store => {
       id: 'community',
       params: {
         id,
-        user: s.userId
+        user: s?.user?.id
       },
       spinner: GET_BY_ID_LOADING,
       success: GET_BY_ID_SUCCESS,

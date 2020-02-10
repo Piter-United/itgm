@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Button, Card, Tooltip } from 'antd'
 import './CommunityBadgeList.css'
 
 const CommunityBadgeList = ({ communities, community }) => {
-  const allCommunities = [{ ...community, primary: true }, ...communities]
+  const allCommunities = [
+    { ...community, primary: true },
+    ...(communities || [])
+  ]
   return (
     <Card bordered={false} className="Community-Badge-List">
       {allCommunities.map(community => {

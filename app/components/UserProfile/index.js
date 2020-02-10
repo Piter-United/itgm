@@ -1,11 +1,8 @@
-import React, { useEffect, useState, Fragment } from 'react'
+import React, { useEffect } from 'react'
 import useStoreon from 'storeon/react'
 import { Spin, Divider } from 'antd'
 
-import { GET_CURRENT_USER } from 'store/user'
 import { GET_LIST } from 'store/activity'
-
-import history from '../../history'
 
 import { InnerPageContentContainer } from 'components/InnerPageContentContainer'
 import ProfileInfo from './atoms'
@@ -20,10 +17,6 @@ const UserProfile = () => {
     'userId',
     'activity'
   )
-  //TODO: check why front send too many requests.
-  useEffect(() => {
-    dispatch(GET_CURRENT_USER)
-  }, [dispatch])
 
   useEffect(() => {
     dispatch(GET_LIST)
@@ -41,7 +34,6 @@ const UserProfile = () => {
     userActivities.length > 0
       ? 'Участвует в следующих обсуждениях:'
       : 'Пока еще не выбрал тему обсуждения'
-  const communityList = { community, communities }
   const ActivitiesHeader = ({ text }) => (
     <p className="UserProfile-Text">{text}</p>
   )
@@ -51,7 +43,7 @@ const UserProfile = () => {
       <main className="UserProfile">
         <ProfileInfo {...user} />
         <Divider style={{ border: '1px solid #ABABAB', margin: '0' }} />
-        <CommunityBadgeList {...communityList} />
+        <CommunityBadgeList community={community} communities={communities} />
         <Divider style={{ border: '1px solid #ABABAB', margin: '0' }} />
         <ActivitiesHeader text={userActivitiesTitle} />
         {userActivities.length > 0 && (

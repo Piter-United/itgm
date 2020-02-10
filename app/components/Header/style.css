@@ -62,6 +62,10 @@
   opacity: 0.5;
 }
 
+.Header-Icon_mr_m {
+  margin-right: 20px;
+}
+
 .Header_theme_inverse {
   background-color: #6f4297;
   color: #ffffff;

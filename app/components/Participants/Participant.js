@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Avatar from 'ui/Avatar'
+import { Avatar } from 'ui'
 
 import './Participant.css'
 

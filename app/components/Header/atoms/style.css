@@ -1,0 +1,4 @@
+.Dropdown-Button:hover,
+.Dropdown-Button:focus {
+  opacity: 0.5;
+}

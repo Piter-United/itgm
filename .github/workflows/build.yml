@@ -60,7 +60,7 @@ jobs:
         echo $KUBECONFIG | base64 -d > ./kubeconfig.yml
         curl -L https://github.com/niquola/envtpl/releases/download/0.0.3/envtpl.linux > envtpl
         chmod +x envtpl
-        cat ./.github/dev-deployment.yml | ./envtpl > deploy.yml
+        cat ./.github/deployment.yml | ./envtpl > deploy.yml
         kubectl apply --kubeconfig ./kubeconfig.yml -f ./deploy.yml
 
     - uses: yanzay/notify-telegram@v0.1.0

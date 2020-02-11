@@ -45,6 +45,7 @@ jobs:
         DOCKER_USERNAME: ${{ secrets.docker_user }}
         DOCKER_PASSWORD: ${{ secrets.docker_password }}
       run: |
+        export APP_VERSION=$(sed  's/refs\/tags\///g' <<< $APP_VERSION)
         docker login docker.pkg.github.com -u ${DOCKER_USERNAME} -p "${DOCKER_PASSWORD}"
         docker build . --file Dockerfile --tag $APP_IMAGE:$APP_VERSION
         docker push $APP_IMAGE:$APP_VERSION
@@ -56,6 +57,7 @@ jobs:
         APP_VERSION: ${{ github.ref }}
         KUBECONFIG: ${{ secrets.kubeconfig }}
       run: |
+        export APP_VERSION=$(sed  's/refs\/tags\///g' <<< $APP_VERSION)
         echo $KUBECONFIG | base64 -d > ./kubeconfig.yml
         curl -L https://github.com/niquola/envtpl/releases/download/0.0.3/envtpl.linux > envtpl
         chmod +x envtpl

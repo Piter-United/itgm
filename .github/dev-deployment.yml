@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: {{ APP_ENV }}
+  name: {{ APP_ENV }}
+  namespace: itgm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ APP_ENV }}
+  template:
+    metadata:
+      labels:
+        app: {{ APP_ENV }}
+    spec:
+      containers:
+        - image: {{ APP_IMAGE }}:{{ APP_VERSION }}
+          imagePullPolicy: Always
+          name: {{ APP_ENV }}
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: 30
+            httpGet:
+              path: /__healthcheck
+              port: 80
+              scheme: HTTP
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 10
+      restartPolicy: Always

@@ -28,7 +28,7 @@ jobs:
     - name: lint
       run: npm run lint
 
-    - name: build
+    - name: Build
       env:
         APP_URL: https://itgm-dev.aidbox.io
         APP_CLIENT_ID: app-client
@@ -39,20 +39,29 @@ jobs:
         npm run build
         npm run configure
 
+    - name: Docker
+      env:
+        APP_IMAGE: docker.pkg.github.com/piter-united/itgm/spa
+        APP_VERSION: v0.0.1-${{ github.sha }}
+        DOCKER_USERNAME: ${{ secrets.DOCKER_HUB_USER }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
+      run: |
+        docker login docker.pkg.github.com -u ${DOCKER_USERNAME} -p "${DOCKER_PASSWORD}"
+        docker build . --file Dockerfile --tag $APP_IMAGE:$APP_VERSION
+        docker push $APP_IMAGE:$APP_VERSION
+
     - name: Deploy
-      if: success()
-      uses: manusa/actions-publish-docker@master
-      with:
-        name: piterunited/spa
-        username: ${{ secrets.DOCKER_HUB_USER }}
-        password: ${{ secrets.DOCKER_HUB_PASSWORD }}
-        tag script: |
-          return context.ref
-            .replace('refs/heads/
-            .replace('refs/tags/'
-            .replace('refs/pull/'
-            .replace(/\//g, '_')
-            .replace(/#/g, '');
+      env:
+        APP_ENV: ui-dev
+        APP_IMAGE: docker.pkg.github.com/piter-united/itgm/spa
+        APP_VERSION: v0.0.1-${{ github.sha }}
+        KUBECONFIG: ${{ secrets.kubeconfig }}
+      run: |
+        echo $KUBECONFIG | base64 -d > ./kubeconfig.yml
+        curl -L https://github.com/niquola/envtpl/releases/download/0.0.3/envtpl.linux > envtpl
+        chmod +x envtpl
+        cat ./.github/dev-deployment.yml | ./envtpl > deploy.yml
+        kubectl apply --kubeconfig ./kubeconfig.yml -f ./deploy.yml
 
     - uses: yanzay/notify-telegram@v0.1.0
       if: always()

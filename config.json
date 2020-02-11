@@ -508,6 +508,15 @@
           "type": "string",
           "isRequired": true
         },
+        "status": {
+          "type": "string",
+          "enum": [
+            "active",
+            "draft",
+            "inactive"
+          ],
+          "isRequired": true
+        },
         "owner": {
           "type": "Reference",
           "refers": ["User"],

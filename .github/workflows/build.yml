@@ -43,8 +43,8 @@ jobs:
       env:
         APP_IMAGE: docker.pkg.github.com/piter-united/itgm/spa
         APP_VERSION: v0.0.1-${{ github.sha }}
-        DOCKER_USERNAME: ${{ secrets.DOCKER_HUB_USER }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
+        DOCKER_USERNAME: ${{ secrets.docker_user }}
+        DOCKER_PASSWORD: ${{ secrets.docker_password }}
       run: |
         docker login docker.pkg.github.com -u ${DOCKER_USERNAME} -p "${DOCKER_PASSWORD}"
         docker build . --file Dockerfile --tag $APP_IMAGE:$APP_VERSION

@@ -1,8 +1,7 @@
-name: Build and Deploy
+name: Build and Deploy (production)
 on:
-  push:
-    branches:
-    - master
+  release:
+    types: [published]
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -30,7 +29,7 @@ jobs:
 
     - name: Build
       env:
-        APP_URL: https://itgm-dev.aidbox.io
+        APP_URL: https://itgm.aidbox.io
         APP_CLIENT_ID: app-client
         APP_INIT_CLIENT_ID: ${{ secrets.app_client }}
         APP_INIT_CLIENT_SECRET: ${{ secrets.app_secret }}
@@ -42,7 +41,7 @@ jobs:
     - name: Docker
       env:
         APP_IMAGE: docker.pkg.github.com/piter-united/itgm/spa
-        APP_VERSION: v0.0.1-${{ github.sha }}
+        APP_VERSION: ${{ github.ref }}
         DOCKER_USERNAME: ${{ secrets.docker_user }}
         DOCKER_PASSWORD: ${{ secrets.docker_password }}
       run: |
@@ -52,9 +51,9 @@ jobs:
 
     - name: Deploy
       env:
-        APP_ENV: ui-dev
+        APP_ENV: ui
         APP_IMAGE: docker.pkg.github.com/piter-united/itgm/spa
-        APP_VERSION: v0.0.1-${{ github.sha }}
+        APP_VERSION: ${{ github.ref }}
         KUBECONFIG: ${{ secrets.kubeconfig }}
       run: |
         echo $KUBECONFIG | base64 -d > ./kubeconfig.yml
@@ -63,9 +62,8 @@ jobs:
         cat ./.github/deployment.yml | ./envtpl > deploy.yml
         kubectl apply --kubeconfig ./kubeconfig.yml -f ./deploy.yml
 
-    - uses: yanzay/notify-telegram@v0.1.0
+    - uses: appleboy/telegram-action@master
       if: always()
       with:
-        chat: ${{ secrets.chat }}
+        to: ${{ secrets.chat }}
         token: ${{ secrets.token }}
-        status: ${{ job.status }}

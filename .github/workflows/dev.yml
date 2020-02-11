@@ -1,0 +1,70 @@
+name: Build and Deploy (dev)
+on:
+  push:
+    branches:
+    - master
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: Setup Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+
+    - name: Cache dependencies
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+
+    - run: npm ci
+
+    - name: lint
+      run: npm run lint
+
+    - name: Build
+      env:
+        APP_URL: https://itgm-dev.aidbox.io
+        APP_CLIENT_ID: app-client
+        APP_INIT_CLIENT_ID: ${{ secrets.app_client }}
+        APP_INIT_CLIENT_SECRET: ${{ secrets.app_secret }}
+        YANDEX_MAP_API_KEY: ${{ secrets.YANDEX_MAP_API_KEY }}
+      run: |
+        npm run build
+        npm run configure
+
+    - name: Docker
+      env:
+        APP_IMAGE: docker.pkg.github.com/piter-united/itgm/spa
+        APP_VERSION: v0.0.1-${{ github.sha }}
+        DOCKER_USERNAME: ${{ secrets.docker_user }}
+        DOCKER_PASSWORD: ${{ secrets.docker_password }}
+      run: |
+        docker login docker.pkg.github.com -u ${DOCKER_USERNAME} -p "${DOCKER_PASSWORD}"
+        docker build . --file Dockerfile --tag $APP_IMAGE:$APP_VERSION
+        docker push $APP_IMAGE:$APP_VERSION
+
+    - name: Deploy
+      env:
+        APP_ENV: ui-dev
+        APP_IMAGE: docker.pkg.github.com/piter-united/itgm/spa
+        APP_VERSION: v0.0.1-${{ github.sha }}
+        KUBECONFIG: ${{ secrets.kubeconfig }}
+      run: |
+        echo $KUBECONFIG | base64 -d > ./kubeconfig.yml
+        curl -L https://github.com/niquola/envtpl/releases/download/0.0.3/envtpl.linux > envtpl
+        chmod +x envtpl
+        cat ./.github/deployment.yml | ./envtpl > deploy.yml
+        kubectl apply --kubeconfig ./kubeconfig.yml -f ./deploy.yml
+
+    - uses: appleboy/telegram-action@master
+      if: always()
+      with:
+        to: ${{ secrets.chat }}
+        token: ${{ secrets.token }}

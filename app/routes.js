@@ -22,6 +22,25 @@ const routes = [
     component: HomePage
   },
   {
+    path: '/community',
+    inHeader: true,
+    title: 'Сообщества',
+    component: CommunityList
+  },
+  {
+    path: '/community/new',
+    component: NewCommunity,
+    private: true
+  },
+  {
+    path: '/community/:id',
+    component: Community
+  },
+  {
+    path: '/community/:id/edit',
+    component: NewCommunity
+  },
+  {
     path: '/activity',
     inHeader: true,
     title: 'Программа',
@@ -40,25 +59,6 @@ const routes = [
     path: '/activity/:id/edit',
     component: ActivityCreate,
     private: true
-  },
-  {
-    path: '/community',
-    inHeader: true,
-    title: 'Сообщества',
-    component: CommunityList
-  },
-  {
-    path: '/community/new',
-    component: NewCommunity,
-    private: true
-  },
-  {
-    path: '/community/:id',
-    component: Community
-  },
-  {
-    path: '/community/:id/edit',
-    component: NewCommunity
   },
   // {
   //   path: '/participants',

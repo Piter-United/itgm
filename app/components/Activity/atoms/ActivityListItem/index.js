@@ -3,7 +3,7 @@ import cn from 'classnames'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
 import { LIKE, UNLIKE } from 'store/activity'
-import { List, Icon } from 'antd'
+import { List, Icon, Button } from 'antd'
 import history from '../../../../history'
 import './style.css'
 
@@ -43,16 +43,17 @@ export default ({ dispatch, item, userId }) => (
     </div>
     <div className="ActivityListItem-Footer">
       <div className="ActivityListItem-Likes" key={`list-item-like-${item.id}`}>
-        <Icon
+        <Button
           onClick={() => onHandlerClick(userId, item, dispatch)}
-          type="heart"
-          theme={item.likes.isLike ? 'filled' : ''}
-          className={cn({
-            'ActivityListItem-LikeIcon': true,
-            'ActivityListItem-LikeIcon_islike_true': item.likes.isLike
-          })}
-        />{' '}
-        <span className="ActivityListItem-LikeCounter">{`(${item.likes.count})`}</span>
+          icon="heart"
+          type={item.likes.isLike ? 'danger' : 'light'}
+        >
+          {item.likes.isLike ? 'Отменить голос' : 'Проголосовать за тему'}
+        </Button>
+
+        <span className="ActivityListItem-LikeCounter">
+          Всего голосов: {item.likes.count}
+        </span>
       </div>
       <span className="ActivityListItem-Author">
         Автор: {item.resource.user.name}

@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 import useStoreon from 'storeon/react'
-import { Link } from 'react-router-dom'
 import { Breadcrumbs } from 'ui/Breadcrumbs'
 import { Curl } from 'ui/Curl'
 import { ActivityAuthor } from '../Activity/atoms/ActivityAuthor'
 import { Participants } from '../Activity/atoms/Participants'
 import CommunitySocial from './atoms/CommunitySocial'
 import CommunityTags from './atoms/CommunityTags'
+import ActivityList from 'components/Activity/atoms/ActivityList'
 
 import { Spin, Divider, Avatar } from 'antd'
 
@@ -38,7 +38,7 @@ const Community = ({
     )
   }
 
-  const { community, participants } = communityInfo.data
+  const { community, participants, activity } = communityInfo.data
   const social = community.social.filter(s => s.icon !== 'global')
   const globalLink = community.social.filter(s => s.icon === 'global')[0]
 
@@ -70,16 +70,27 @@ const Community = ({
             community={community.name}
             createdAt={community.ts}
           />
+          {/*<Divider />*/}
+          {/*{activity.length > 0 && (*/}
+          {/*  <ActivityList*/}
+          {/*    activitiesData={{*/}
+          {/*      loading: communityInfo.loading,*/}
+          {/*      list: activity*/}
+          {/*    }}*/}
+          {/*    userId={user.id}*/}
+          {/*    dispatch={dispatch}*/}
+          {/*  />*/}
+          {/*)}*/}
         </div>
         <Divider className="Community-Separator" type="vertical" />
         <div className="Community-Additional">
-          <div style={{ textAlign: 'center' }}>
-            <Avatar
-              size={102}
-              src={community.logo}
-              style={{ margin: '10px auto' }}
-            />
-          </div>
+          {/*<div style={{ textAlign: 'center' }}>*/}
+          {/*  <Avatar*/}
+          {/*    size={102}*/}
+          {/*    src={community.logo}*/}
+          {/*    style={{ margin: '10px auto' }}*/}
+          {/*  />*/}
+          {/*</div>*/}
           <CommunitySocial data={social} />
           <div className="Community-Participants">
             <p className="Community-ParticipantsTitle">Участники</p>

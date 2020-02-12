@@ -28,17 +28,17 @@ const Header = ({ theme = 'default' }) => {
   return (
     <header className={`Header Header_theme_${theme}`}>
       <div className="Header-Container">
-        <Link className="Header-Logo" to="/">
+        <a className="Header-Logo" href="http://piter-united.ru">
           <Logo theme={theme} />
-        </Link>
+        </a>
         <HeaderList routes={routes} />
         <div className="Header-UserMenu">
-          <button type="button" className="Header-Icon">
-            <SearchIcon />
-          </button>
-          <button type="button" className="Header-Icon Header-Icon_mr_m">
-            <Bell />
-          </button>
+          {/*<button type="button" className="Header-Icon">*/}
+          {/*  <SearchIcon />*/}
+          {/*</button>*/}
+          {/*<button type="button" className="Header-Icon Header-Icon_mr_m">*/}
+          {/*  <Bell />*/}
+          {/*</button>*/}
           {token ? (
             <ProfileButton handleSignOut={signOut} avatar={user?.avatar} />
           ) : (

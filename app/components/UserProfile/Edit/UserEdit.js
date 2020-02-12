@@ -159,7 +159,7 @@ const UserEditForm = ({ form, user, community, onUpdateUser }) => {
             placeholder="Выберите сообщество из списка"
             optionFilterProp="children"
             filterOption={(input, option) =>
-              option.props.children
+              option.props.children[0]
                 .toLowerCase()
                 .indexOf(input.toLowerCase()) >= 0
             }
@@ -186,6 +186,13 @@ const UserEditForm = ({ form, user, community, onUpdateUser }) => {
         })(
           <Select
             mode="multiple"
+            showSearch
+            optionFilterProp="children"
+            filterOption={(input, option) =>
+              option.props.children[0]
+                .toLowerCase()
+                .indexOf(input.toLowerCase()) >= 0
+            }
             placeholder="Выберите сообщества из списка"
             optionLabelProp="label"
           >

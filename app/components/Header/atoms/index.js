@@ -39,6 +39,16 @@ export const HeaderList = ({ routes }) => {
             </Link>
           </li>
         ))}
+      <li className="Header-Item">
+        <a className="Header-Link" href="https://piter-united.ru/#rec162172231">
+          Парнеры
+        </a>
+      </li>
+      <li className="Header-Item">
+        <a className="Header-Link" href="https://piter-united.ru/#rec134696942">
+          О слете
+        </a>
+      </li>
     </ul>
   )
 }

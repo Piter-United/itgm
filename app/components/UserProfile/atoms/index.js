@@ -2,12 +2,7 @@ import React, { Fragment } from 'react'
 import { Avatar, Icon } from 'antd'
 import './style.css'
 
-const defaultAboutText =
-  'Пара слов об участнике, которые он не написал при регистрации. Об интересах, сфере деятельности, целях и т.д.'
-
-const AboutUser = ({ text = defaultAboutText }) => (
-  <p className="ProfileInfo-About">{text}</p>
-)
+const AboutUser = ({ text = '' }) => <p className="ProfileInfo-About">{text}</p>
 
 const ProfileAvatar = ({ avatar }) => {
   return (

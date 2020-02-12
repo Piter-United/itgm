@@ -105,6 +105,13 @@ const ActivityCreateForm = ({
             className="FormItem-Select"
             dropdownClassName="FormItem-SelectDropDown"
             placeholder="Выберите сообщество из списка"
+            showSearch
+            optionFilterProp="children"
+            filterOption={(input, option) =>
+              option.props.children[0]
+                .toLowerCase()
+                .indexOf(input.toLowerCase()) >= 0
+            }
             loading={community.loading}
           >
             {!community.loading &&
@@ -134,7 +141,15 @@ const ActivityCreateForm = ({
         )}
       </Form.Item>
       <Form.Item>
-        <Row type="flex" justify="end">
+        <Row type="flex" justify="start">
+          <Button type="submit" text="Сохранить" onClick={handleSubmit} />
+          <Button
+            text="Отмена"
+            asLink={true}
+            url="/activity"
+            color="secondary"
+            className={cn('Button_outline', 'FormItem-Btn_mgRight_2')}
+          />
           {!isNewActivity && (
             <Button
               onClick={handleDelete}
@@ -143,14 +158,6 @@ const ActivityCreateForm = ({
               className={cn('Button_outline', 'FormItem-Btn_mgRight_2')}
             />
           )}
-          <Button
-            text="Отмена"
-            asLink={true}
-            url="/activity"
-            color="secondary"
-            className={cn('Button_outline', 'FormItem-Btn_mgRight_2')}
-          />
-          <Button type="submit" text="Сохранить" onClick={handleSubmit} />
         </Row>
       </Form.Item>
     </Form>
@@ -248,18 +255,13 @@ const ActivityCreate = ({
           <Breadcrumbs path="/activity" viewPath="/Программа" />
         </div>
         <Row type="flex" justify="center" align="top">
-          <Col lg={24} xl={16}>
-            <WrappedActivityCreateForm
-              user={user}
-              community={community}
-              activity={activityInfo}
-              onCreateActivity={onCreateActivity}
-              onDisableActivity={onDisableActivity}
-            />
-          </Col>
-          <Col className="Activity-AsideRight" xl={8} lg={24}>
-            <section className="Activity-AsideRightContent" />
-          </Col>
+          <WrappedActivityCreateForm
+            user={user}
+            community={community}
+            activity={activityInfo}
+            onCreateActivity={onCreateActivity}
+            onDisableActivity={onDisableActivity}
+          />
         </Row>
       </div>
     </InnerPageContentContainer>

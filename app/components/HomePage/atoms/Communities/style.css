@@ -6,6 +6,12 @@
   align-self: center;
 }
 
+.Communities-ListItem:hover > .CommunityCard-Content {
+  cursor: pointer;
+  background-color: #fafafa;
+  /*box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);*/
+}
+
 .CommunityCard-Content {
   display: flex;
   justify-content: space-between;
@@ -18,7 +24,7 @@
   background-color: #ffffff;
 }
 .CommunityCard-Heading {
-  width: 220px;
+  /*width: 220px;*/
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -30,7 +36,7 @@
 
 .CommunityCard-Description {
   padding-right: 10px;
-  width: 220px;
+  /*width: 220px;*/
   height: 32px;
   overflow: hidden;
   font-size: 14px;

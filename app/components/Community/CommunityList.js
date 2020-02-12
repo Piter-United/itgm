@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
 
 import { List, Button, Typography, Row, Col, Divider, Avatar } from 'antd'
 
@@ -14,16 +13,20 @@ import cn from 'classnames'
 const { Title } = Typography
 
 const CommunityListItem = ({ community }) => (
-  <List.Item className="Communities-ListItem CommunityCard" key={community.id}>
+  <List.Item
+    onClick={() => history.push(`/community/${community.id}`)}
+    className="Communities-ListItem CommunityCard"
+    key={community.id}
+  >
     <div className="CommunityCard-Content">
-      <div>
+      <div style={{ width: '100%' }}>
         <h3 className="CommunityCard-Heading">{community.name}</h3>
         <p className="CommunityCard-Description">{community.description}</p>
-        <Link to={`/community/${community.id}`} className="CommunityCard-Link">
-          Подробнее —
-        </Link>
+        {/*<Link to={`/community/${community.id}`} className="CommunityCard-Link">*/}
+        {/*  Подробнее —*/}
+        {/*</Link>*/}
       </div>
-      <Avatar size={102} src={community.logo} style={{ flexShrink: 0 }} />
+      {/*<Avatar size={102} src={community.logo} style={{ flexShrink: 0 }} />*/}
     </div>
   </List.Item>
 )
@@ -63,7 +66,6 @@ const CommunityListPage = () => {
             )}
           </Col>
         </Row>
-        <Divider />
         <CommunityList communitiesData={community} />
       </div>
     </InnerPageContentContainer>

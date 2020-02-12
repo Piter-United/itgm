@@ -1,7 +1,6 @@
 import React from 'react'
 import { Avatar } from 'ui'
 
-import imageAvatar from 'asset/userFallbackAvatar.png'
 import './style.css'
 
 export const Participants = ({ data }) =>
@@ -9,7 +8,7 @@ export const Participants = ({ data }) =>
     <ul className="Participants">
       {data.map(({ id, avatar, name }) => (
         <li className="Participants-Item" key={id}>
-          <Avatar type="user" size="s" alt={name} src={avatar} />
+          <Avatar type="user" size="xs" alt={name} src={avatar} />
         </li>
       ))}
     </ul>

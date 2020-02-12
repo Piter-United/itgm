@@ -12,7 +12,7 @@ const defaultState = {
     loading: false
   },
   activityFilter: {
-    state: 'hidden',
+    state: 'visible',
     searchString: '',
     communityId: '',
     tags: []

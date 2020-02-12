@@ -39,9 +39,13 @@ const UserProfile = () => {
     <InnerPageContentContainer>
       <main className="UserProfile">
         <ProfileInfo {...user} />
-        <Divider style={{ border: '1px solid #ABABAB', margin: '0' }} />
+        <Divider
+          style={{ border: '1px solid #ABABAB', opacity: 0.3, margin: '0' }}
+        />
         <CommunityBadgeList community={community} communities={communities} />
-        <Divider style={{ border: '1px solid #ABABAB', margin: '0' }} />
+        <Divider
+          style={{ border: '1px solid #ABABAB', opacity: 0.3, margin: '0' }}
+        />
         <ActivitiesHeader text={userActivitiesTitle} />
         {userActivities.length > 0 && (
           <ActivityList

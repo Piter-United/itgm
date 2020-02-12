@@ -84,7 +84,7 @@ const ActivityListPage = () => {
             })}
           >
             <Title className="heading heading_level_1">
-              Программа обсуждений
+              Программа
               <span style={{ color: '#ABABAB', fontWeight: '300' }}>
                 {' '}
                 ({countFilteredRecords})

@@ -2,7 +2,7 @@ import React from 'react'
 import useStoreon from 'storeon/react'
 // import { parse } from 'qs'
 import { Button, Icon, Typography } from 'antd'
-
+import { Button as ButtonCustom } from 'components/UI'
 // import { client_id, site_url } from '../../config'
 // import history from '../../history'
 
@@ -29,7 +29,10 @@ const LoginForm = ({ form, onLogin }) => {
   }
   return (
     <Form className="form" layout="vertical" onSubmit={handleSubmit}>
-      <Form.Item label={'E-mail'}>
+      <Form.Item
+        label={<strong>E-mail</strong>}
+        style={{ marginBottom: '14px' }}
+      >
         {getFieldDecorator('username', {
           initialValue: null,
           rules: [
@@ -42,9 +45,9 @@ const LoginForm = ({ form, onLogin }) => {
               message: 'Вы не ввели E-mail'
             }
           ]
-        })(<Input />)}
+        })(<Input style={{ padding: '12px', height: '44px' }} />)}
       </Form.Item>
-      <Form.Item label={'Пароль'}>
+      <Form.Item label={<strong>Пароль</strong>}>
         {getFieldDecorator('password', {
           initialValue: null,
           rules: [
@@ -53,12 +56,23 @@ const LoginForm = ({ form, onLogin }) => {
               message: 'Вы не ввели пароль'
             }
           ]
-        })(<Input type={'password'} />)}
+        })(
+          <Input
+            type={'password'}
+            style={{ padding: '12px', height: '44px' }}
+          />
+        )}
       </Form.Item>
       <Form.Item>
-        <Button type="danger" block htmlType="submit">
-          Войти
-        </Button>
+        <ButtonCustom type="submit" text="Войти" fluid />
+        <div style={{ marginTop: '10px' }} />
+        <ButtonCustom
+          asLink
+          text="Зарегистрироваться"
+          color="secondary"
+          fluid
+          url="http://piter-united.ru"
+        />
       </Form.Item>
     </Form>
   )

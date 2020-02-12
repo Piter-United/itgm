@@ -11,7 +11,6 @@
 }
 .Community-Badge-List__badge {
   margin-right: 1rem;
-  max-width: 30%;
   overflow: hidden;
   text-overflow: ellipsis;
   font-family: Open Sans;
@@ -28,6 +27,5 @@
 
 @media (min-width: 1200px) {
   .Community-Badge-List__badge {
-    max-width: 20%;
   }
 }

@@ -25,7 +25,6 @@ const Header = ({ theme = 'default' }) => {
   const signOut = useCallback(() => {
     dispatch(LOGOUT)
   }, [dispatch])
-  console.log(user)
   return (
     <header className={`Header Header_theme_${theme}`}>
       <div className="Header-Container">

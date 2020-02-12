@@ -50,7 +50,7 @@ const Activity = ({
           <section className="Activity-Content">
             <h1 className="Activity-Header">
               {activity.name}
-              {user.id && user.id === activity.user.id && (
+              {user && user.id && user.id === activity.user.id && (
                 <Icon
                   type="edit"
                   onClick={() => history.push(`/activity/${activity.id}/edit`)}

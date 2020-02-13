@@ -16,17 +16,31 @@ export const Button = ({
   fluid = false
 }) =>
   asLink ? (
-    <Link
-      to={url}
-      className={cn(
-        `Button Button_size_${size}`,
-        `Button_color_${color}`,
-        fluid && `Button_fluid`,
-        className
-      )}
-    >
-      {text}
-    </Link>
+    url.startsWith('http') ? (
+      <a
+        href={url}
+        className={cn(
+          `Button Button_size_${size}`,
+          `Button_color_${color}`,
+          fluid && `Button_fluid`,
+          className
+        )}
+      >
+        {text}
+      </a>
+    ) : (
+      <Link
+        to={url}
+        className={cn(
+          `Button Button_size_${size}`,
+          `Button_color_${color}`,
+          fluid && `Button_fluid`,
+          className
+        )}
+      >
+        {text}
+      </Link>
+    )
   ) : (
     <button
       className={cn(

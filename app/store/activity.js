@@ -4,6 +4,8 @@ import history from '../history'
 const defaultState = {
   activity: {
     filter: '',
+    count: 0,
+    tags: [],
     list: [],
     loading: false
   },
@@ -24,6 +26,8 @@ export const SET_LIST = 'activity/set-list'
 export const LOADING = 'activity/loading'
 export const ERROR = 'activity/error'
 export const LIKE = 'activity/like'
+export const GET_TAGS = 'activity/get-tags'
+export const GET_TAGS_SUCCESS = 'activity/get-tags-success'
 export const UPDATE_LIKE_SUCCESS = 'activity/update-like-success'
 export const UNLIKE = 'activity/unlike'
 export const UPDATE_UNLIKE_SUCCESS = 'activity/update-unlike-success'
@@ -48,11 +52,8 @@ const activity = store => {
   store.on('@init', () => defaultState)
   store.on(GET_LIST, s => {
     store.dispatch('request', {
-      resourceType: '$query',
+      resourceType: 'itgm',
       id: 'activity',
-      params: {
-        user: s?.user?.id
-      },
       success: SET_LIST,
       error: ERROR,
       spinner: LOADING
@@ -61,25 +62,9 @@ const activity = store => {
   store.on(LOADING, (state, loading) => {
     return { activity: { ...state.activity, loading } }
   })
-  store.on(SET_LIST, (state, { data }) => {
-    // TODO: make request to backend for return active activity
-    const activeActivity = data.filter(
-      ({ resource }) => typeof resource.active === 'undefined'
-    )
-    // TODO: make request to backend for return sorted activity
-    const activityListByNewest = [...activeActivity].sort(
-      ({ ts: ts1 }, { ts: ts2 }) => {
-        const date1 = new Date(ts1)
-        const date2 = new Date(ts2)
-        if (date1 > date2) return -1
-        if (date2 < date1) return 1
-        return 0
-      }
-    )
-    return {
-      activity: { ...state.activity, list: activityListByNewest }
-    }
-  })
+  store.on(SET_LIST, (state, { list, count, tags }) => ({
+    activity: { ...state.activity, list, tags, count }
+  }))
   store.on(ERROR, (s, { data, message }) => {
     if (data && data.message) {
       notification.error({ message: data.message })
@@ -170,6 +155,17 @@ const activity = store => {
       }
     }
   })
+  store.on(GET_TAGS, () => {
+    store.dispatch('request', {
+      resourceType: 'itgm',
+      id: 'activity/tags',
+      success: GET_TAGS_SUCCESS,
+      error: ERROR
+    })
+  })
+  store.on(GET_TAGS_SUCCESS, (s, { tags }) => ({
+    activity: { ...s.activity, tags }
+  }))
   store.on(CREATE, (s, newActivity) => {
     store.dispatch('request', {
       resourceType: 'Activity',

@@ -15,6 +15,7 @@ import '../Heading/Heading.css'
 import './style.css'
 
 import { GET_LIST } from 'store/community'
+import { GET_TAGS } from 'store/activity'
 import { InnerPageContentContainer } from '../InnerPageContentContainer'
 import { Breadcrumbs, Button } from 'ui'
 
@@ -23,6 +24,7 @@ const { Title } = Typography
 const ActivityCreateForm = ({
   form,
   user,
+  tags,
   community,
   onCreateActivity,
   activity,
@@ -136,8 +138,11 @@ const ActivityCreateForm = ({
             dropdownClassName="FormItem-SelectDropDown"
             mode="tags"
             placeholder="Добавьте метки"
-            optionLabelProp="label"
-          />
+          >
+            {tags.map(v => (
+              <Select.Option key={v}>{v}</Select.Option>
+            ))}
+          </Select>
         )}
       </Form.Item>
       <Form.Item>
@@ -174,14 +179,17 @@ const ActivityCreate = ({
     params: { id }
   }
 }) => {
-  const { user, community, dispatch, activityInfo } = useStoreon(
-    'user',
-    'community',
-    'activityInfo'
-  )
+  const {
+    user,
+    community,
+    dispatch,
+    activity: { tags },
+    activityInfo
+  } = useStoreon('user', 'activity', 'community', 'activityInfo')
 
   useEffect(() => {
     dispatch(GET_LIST)
+    dispatch(GET_TAGS)
   }, [dispatch])
 
   useEffect(() => {
@@ -259,6 +267,7 @@ const ActivityCreate = ({
             user={user}
             community={community}
             activity={activityInfo}
+            tags={tags}
             onCreateActivity={onCreateActivity}
             onDisableActivity={onDisableActivity}
           />

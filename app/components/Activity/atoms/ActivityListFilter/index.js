@@ -37,24 +37,21 @@ const ActivityFilter = ({ handleClose }) => {
       )
     })
 
-  const btnsTags = activity.list
-    .map(({ resource: { tags } }) => tags)
-    .flat()
-    .map((tag, i) => {
-      const isSelectedTag = activityFilter.tags.includes(tag)
-      return (
-        <Button
-          className={cn({
-            'ActivityFilter-Control': true,
-            'ActivityFilter-Control_selected': isSelectedTag
-          })}
-          onClick={() => dispatch(SET_FILTER_TAG, tag)}
-          key={i + 'tag'}
-        >
-          {tag}
-        </Button>
-      )
-    })
+  const btnsTags = activity.tags.map((tag, i) => {
+    const isSelectedTag = activityFilter.tags.includes(tag)
+    return (
+      <Button
+        className={cn({
+          'ActivityFilter-Control': true,
+          'ActivityFilter-Control_selected': isSelectedTag
+        })}
+        onClick={() => dispatch(SET_FILTER_TAG, tag)}
+        key={i + 'tag'}
+      >
+        {tag}
+      </Button>
+    )
+  })
 
   return (
     <div className="ActivityFilter-Content">

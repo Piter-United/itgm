@@ -58,6 +58,7 @@ const ActivityListPage = () => {
     'activity',
     'activityFilter'
   )
+
   const stateActivityFilter = activityFilter.state
   const handleToggleFilter = () => dispatch(TOGGLE_ACTIVITY_FILTER)
 

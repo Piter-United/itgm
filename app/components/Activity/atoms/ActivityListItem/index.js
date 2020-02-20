@@ -11,7 +11,7 @@ const onHandlerClick = (userId, item, dispatch) => {
   if (!userId) {
     return history.push('/login')
   }
-  if (item.likes.isLike) {
+  if (item.likes.id) {
     return dispatch(UNLIKE, item.likes.id)
   }
   return dispatch(LIKE, item.id)
@@ -46,9 +46,9 @@ export default ({ dispatch, item, userId }) => (
         <Button
           onClick={() => onHandlerClick(userId, item, dispatch)}
           icon="heart"
-          type={item.likes.isLike ? 'danger' : 'light'}
+          type={item.likes.id ? 'danger' : 'light'}
         >
-          {item.likes.isLike ? 'Отменить голос' : 'Проголосовать за тему'}
+          {item.likes.id ? 'Отменить голос' : 'Проголосовать за тему'}
         </Button>
 
         <span className="ActivityListItem-LikeCounter">

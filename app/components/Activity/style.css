@@ -124,6 +124,12 @@
   margin-bottom: 10px;
 }
 
+@media only screen and (max-width: 1100px) {
+  .ActivityPage-WrapperContent {
+    width: 100%;
+  }
+}
+
 @media only screen and (min-width: 1200px) {
   .ActivityPage-WrapperContent {
     order: 1;

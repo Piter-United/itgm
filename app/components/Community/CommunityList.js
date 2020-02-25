@@ -34,7 +34,7 @@ const CommunityListItem = ({ community }) => (
 export const CommunityList = ({ className = '', communitiesData }) => (
   <List
     className={cn('Communities-List', className)}
-    grid={{ gutter: 16, column: 2 }}
+    grid={{ gutter: 16, xl: 2 }}
     size="large"
     pagination={false}
     loading={communitiesData.loading}

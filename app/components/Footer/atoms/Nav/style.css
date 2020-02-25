@@ -35,3 +35,13 @@
 .Nav-Item:last-child {
   margin-bottom: 0;
 }
+
+@media only screen and (max-width: 1100px) {
+  .Nav {
+    flex-direction: column;
+  }
+  .Nav-Column {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+}

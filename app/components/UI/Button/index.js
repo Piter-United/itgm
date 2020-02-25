@@ -13,7 +13,8 @@ export const Button = ({
   className = '',
   asLink = false,
   url = '#',
-  fluid = false
+  fluid = false,
+  ...rest
 }) =>
   asLink ? (
     url.startsWith('http') ? (
@@ -25,8 +26,9 @@ export const Button = ({
           fluid && `Button_fluid`,
           className
         )}
+        {...rest}
       >
-        {text}
+        {text && <span>{text}</span>}
       </a>
     ) : (
       <Link
@@ -37,8 +39,9 @@ export const Button = ({
           fluid && `Button_fluid`,
           className
         )}
+        {...rest}
       >
-        {text}
+        {text && <span>{text}</span>}
       </Link>
     )
   ) : (
@@ -51,7 +54,8 @@ export const Button = ({
       )}
       type={type}
       onClick={onClick}
+      {...rest}
     >
-      <span>{text}</span>
+      {text && <span>{text}</span>}
     </button>
   )

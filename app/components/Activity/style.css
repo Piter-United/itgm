@@ -128,6 +128,9 @@
   .ActivityPage-WrapperContent {
     width: 100%;
   }
+  .Activity-AsideRight {
+    width: 100%;
+  }
 }
 
 @media only screen and (min-width: 1200px) {

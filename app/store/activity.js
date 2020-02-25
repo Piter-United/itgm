@@ -143,9 +143,8 @@ const activity = store => {
             return {
               ...v,
               likes: {
-                id: data.id,
-                count: v.likes.count - 1,
-                isLike: false
+                id: null,
+                count: v.likes.count - 1
               }
             }
           }

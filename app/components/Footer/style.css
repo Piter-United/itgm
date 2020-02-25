@@ -1,8 +1,5 @@
 .Footer {
-  padding-top: 30px;
-  padding-bottom: 45px;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding: 30px 15px 45px;
 }
 
 .Footer-Inner {
@@ -54,4 +51,15 @@
 
 .Footer_theme_default .Footer-Logo {
   border-right-color: #2a2a2a;
+}
+
+@media only screen and (max-width: 1100px) {
+  .Footer-Inner {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .Footer-LogoContainer {
+    padding-right: 0;
+    border-right: 0;
+  }
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 
 import { Menu, Dropdown } from 'antd'
@@ -7,7 +7,7 @@ import { Avatar } from 'ui'
 
 import './style.css'
 
-export const ProfileButton = ({ avatar, handleSignOut }) => {
+export const ProfileButton = ({ name = '', avatar, handleSignOut }) => {
   const menu = (
     <Menu>
       <Menu.Item onClick={handleSignOut} key="signOut">
@@ -19,11 +19,31 @@ export const ProfileButton = ({ avatar, handleSignOut }) => {
     </Menu>
   )
   return (
-    <Dropdown overlay={menu} className="Dropdown">
-      <Link to="/user" className="Dropdown-Button">
-        <Avatar size="xs" src={avatar} />
-      </Link>
-    </Dropdown>
+    <Fragment>
+      <ul className="UserMenu-Profile Header-List">
+        <li className="Header-Item">
+          <Link to="/user" className="Header-Link">
+            <Avatar size="xs" src={avatar} />
+            {name}
+          </Link>
+        </li>
+        <li className="Header-Item">
+          <Link to="/user/edit" className="Header-Link">
+            Редактировать профиль
+          </Link>
+        </li>
+        <li className="Header-Item">
+          <Link to="#" className="Header-Link">
+            Выход
+          </Link>
+        </li>
+      </ul>
+      <Dropdown overlay={menu} className="UserMenu-Dropdown">
+        <Link to="/user" className="UserMenu-Dropdown-Button">
+          <Avatar size="xs" src={avatar} />
+        </Link>
+      </Dropdown>
+    </Fragment>
   )
 }
 
@@ -41,7 +61,7 @@ export const HeaderList = ({ routes }) => {
         ))}
       <li className="Header-Item">
         <a className="Header-Link" href="https://piter-united.ru/#rec162172231">
-          Парнеры
+          Партнёры
         </a>
       </li>
       <li className="Header-Item">

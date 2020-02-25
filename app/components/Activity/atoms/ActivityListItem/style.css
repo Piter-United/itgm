@@ -1,7 +1,7 @@
 .ActivityListItem {
   border: 1px solid rgba(42, 42, 42, 0.1);
   box-sizing: border-box;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 3px;
   margin-bottom: 20px;
   padding: 28px 51px;
@@ -56,7 +56,10 @@
   left: 0;
   height: 100%;
   width: 100%;
-  background: linear-gradient(rgba(0, 0, 0, 0) 20%, rgba(255, 255, 255, 1) 90%);
+  background: linear-gradient(
+    rgba(255, 255, 255, 0) 20%,
+    rgba(255, 255, 255, 1) 90%
+  );
 }
 
 .ActivityListItem-Footer {
@@ -79,4 +82,19 @@
 .ActivityListItem-Community:focus {
   color: #2a2a2a;
   text-decoration: underline;
+}
+
+@media only screen and (max-width: 1100px) {
+  .ActivityListItem-Footer {
+    flex-direction: column;
+  }
+  .ActivityListItem-Likes {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    margin-bottom: 5px;
+  }
+  .ActivityListItem-LikeCounter {
+    margin-bottom: 5px;
+    margin-left: 0;
+  }
 }

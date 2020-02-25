@@ -4,6 +4,7 @@
 }
 
 .Header-Container {
+  position: relative;
   max-width: 1180px;
   margin: 0 auto;
   display: flex;
@@ -38,7 +39,7 @@
 
 .Header-UserMenu {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   min-width: 100px;
 }
 
@@ -82,4 +83,47 @@
 
 .Header_theme_default .Header-Icon path {
   fill: #ababab;
+}
+
+.Header-Burger {
+  display: none;
+}
+
+@media only screen and (max-width: 1100px) {
+  .Header-Burger {
+    display: block;
+    position: absolute;
+    right: 15px;
+    top: 30px;
+    cursor: pointer;
+  }
+  .Header-Container {
+    flex-direction: column;
+  }
+  .Header-List {
+    margin-top: 10px;
+    display: none;
+    flex-direction: column;
+    min-width: 150px;
+  }
+  .Header-Logo {
+    max-width: 90px;
+  }
+  .Header-List .Header-Item {
+    padding: 0 15px;
+    margin-bottom: 20px;
+  }
+  .Header-List .Header-Item:last-child {
+    margin-bottom: 0;
+  }
+  .Header-UserMenu {
+    display: none;
+  }
+  .Header-Container.Header-Container_open .Header-List {
+    display: flex;
+  }
+  .Header-Container.Header-Container_open .Header-UserMenu {
+    display: flex;
+    justify-content: center;
+  }
 }

@@ -1,9 +1,8 @@
 import React from 'react'
-import cn from 'classnames'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
 import { LIKE, UNLIKE } from 'store/activity'
-import { List, Icon, Button } from 'antd'
+import { List, Button } from 'antd'
 import history from '../../../../history'
 import './style.css'
 

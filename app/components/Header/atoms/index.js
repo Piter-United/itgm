@@ -33,7 +33,7 @@ export const ProfileButton = ({ name = '', avatar, handleSignOut }) => {
           </Link>
         </li>
         <li className="Header-Item">
-          <Link to="#" className="Header-Link">
+          <Link to="#" onClick={handleSignOut} className="Header-Link">
             Выход
           </Link>
         </li>

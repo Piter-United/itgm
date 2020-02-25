@@ -64,7 +64,7 @@ const Header = ({ theme = 'default' }) => {
           ) : (
             <Button
               color="secondary"
-              text="Войти"
+              text="Вход"
               url="/login"
               asLink
               size="s"

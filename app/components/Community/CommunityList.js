@@ -10,6 +10,8 @@ import { GET_LIST } from 'store/community'
 import { InnerPageContentContainer } from '../InnerPageContentContainer'
 import cn from 'classnames'
 
+import './CommunityList.css'
+
 const { Title } = Typography
 
 const CommunityListItem = ({ community }) => (
@@ -50,22 +52,18 @@ const CommunityListPage = () => {
   }, [dispatch])
   return (
     <InnerPageContentContainer>
-      <div className="content">
-        <Row style={{ display: 'flex', alignItems: 'baseline' }}>
-          <Col span={18}>
-            <Title className="Heading Heading_level_1">Сообщества</Title>
-          </Col>
-          <Col span={6}>
-            {user && user.verified && (
-              <Button
-                icon="plus-circle"
-                onClick={() => history.push('/community/new')}
-              >
-                Добавить сообщество
-              </Button>
-            )}
-          </Col>
-        </Row>
+      <div className="CommunityList">
+        <div className="CommunityList-Title">
+          <Title className="Heading Heading_level_1">Сообщества</Title>
+          {user && user.verified && (
+            <Button
+              icon="plus-circle"
+              onClick={() => history.push('/community/new')}
+            >
+              Добавить сообщество
+            </Button>
+          )}
+        </div>
         <CommunityList communitiesData={community} />
       </div>
     </InnerPageContentContainer>

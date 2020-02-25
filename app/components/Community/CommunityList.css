@@ -1,0 +1,13 @@
+.CommunityList-Title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+@media only screen and (max-width: 1100px) {
+  .CommunityList-Title {
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+}

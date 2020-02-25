@@ -1,7 +1,7 @@
 import React from 'react'
 import useStoreon from 'storeon/react'
 // import { parse } from 'qs'
-import { Button, Icon, Typography } from 'antd'
+import { Typography } from 'antd'
 import { Button as ButtonCustom } from 'components/UI'
 // import { client_id, site_url } from '../../config'
 // import history from '../../history'

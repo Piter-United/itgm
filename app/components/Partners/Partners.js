@@ -1,7 +1,7 @@
 import React from 'react'
 import './Partners.css'
 import { InnerPageContentContainer } from '../InnerPageContentContainer'
-import { Avatar } from 'ui'
+import { Avatar } from 'components/UI'
 
 const partners = [
   {

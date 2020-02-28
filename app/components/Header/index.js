@@ -9,7 +9,7 @@ import './style.css'
 import { LOGOUT, GET_CURRENT_USER } from 'store/user'
 
 import { Icon } from 'antd'
-import { Button } from 'components/ui'
+import { Button } from 'components/UI'
 // import SearchIcon from 'icons/search.svg'
 // import Bell from 'icons/bell.svg'
 import { ProfileButton, HeaderList } from './atoms'

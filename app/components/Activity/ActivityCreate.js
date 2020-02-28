@@ -17,7 +17,7 @@ import './style.css'
 import { GET_LIST } from 'store/community'
 import { GET_TAGS } from 'store/activity'
 import { InnerPageContentContainer } from '../InnerPageContentContainer'
-import { Breadcrumbs, Button } from 'components/ui'
+import { Breadcrumbs, Button } from 'components/UI'
 
 const { Title } = Typography
 

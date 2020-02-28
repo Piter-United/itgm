@@ -2,7 +2,7 @@ import React from 'react'
 import moment from 'moment'
 import './style.css'
 
-import { Avatar } from 'components/ui'
+import { Avatar } from 'components/UI'
 
 export const ActivityAuthor = ({ user, avatar, community, createdAt }) => {
   const date = moment(createdAt).format('L')

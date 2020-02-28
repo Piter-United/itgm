@@ -5,7 +5,7 @@ import useStoreon from 'storeon/react'
 import { GET_LIST } from 'store/activity'
 
 import { ActivityList } from 'components/Activity/atoms'
-import { Button } from 'components/ui'
+import { Button } from 'components/UI'
 
 import './style.css'
 import Section from '../Section'

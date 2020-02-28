@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import cn from 'classnames'
 
 import PageSection from 'components/PageSection'
-import { Button } from 'components/ui'
+import { Button } from 'components/UI'
 
 import './style.css'
 

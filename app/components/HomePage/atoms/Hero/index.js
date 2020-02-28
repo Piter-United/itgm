@@ -2,7 +2,7 @@ import React from 'react'
 
 import './style.css'
 
-import { Button } from 'components/ui'
+import { Button } from 'components/UI'
 import { Link } from 'react-router-dom'
 
 const Hero = () => {

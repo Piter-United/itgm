@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import { Menu, Dropdown } from 'antd'
 
-import { Avatar } from 'components/ui'
+import { Avatar } from 'components/UI'
 
 import './style.css'
 

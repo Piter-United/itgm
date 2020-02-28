@@ -7,37 +7,29 @@ import { GET_LIST as GET_LIST_COMMUNITY } from 'store/community'
 import {
   SET_FILTER_TEXT,
   SET_FILTER_TAG,
-  SET_FILTER_COMMUNITY
+  SET_FILTER_COMMUNITY,
+  GET_LIST as GET_ACTIVITY_LIST
 } from 'store/activity'
 
 const ActivityFilter = ({ handleClose }) => {
-  const { community, activity, activityFilter, dispatch } = useStoreon(
-    'community',
-    'activity',
-    'activityFilter'
-  )
+  const [changed, setChanged] = useState(false)
+  const {
+    community,
+    activity: { tags },
+    activityFilter,
+    dispatch
+  } = useStoreon('community', 'activity', 'activityFilter')
 
   useEffect(() => {
     dispatch(GET_LIST_COMMUNITY)
   }, [dispatch])
 
-  const btnsCommunities = community.list
-    .filter(({ id }) => id === activityFilter.communityId)
-    .map(({ id, name }) => {
-      return (
-        <Button
-          className={cn({
-            'ActivityFilter-Control': true
-          })}
-          onClick={() => dispatch(SET_FILTER_COMMUNITY, id)}
-          key={id}
-        >
-          {name}
-        </Button>
-      )
-    })
+  const disp = (e, v) => {
+    setChanged(true)
+    dispatch(e, v)
+  }
 
-  const btnsTags = activity.tags.map((tag, i) => {
+  const btnsTags = tags.map((tag, i) => {
     const isSelectedTag = activityFilter.tags.includes(tag)
     return (
       <Button
@@ -45,7 +37,7 @@ const ActivityFilter = ({ handleClose }) => {
           'ActivityFilter-Control': true,
           'ActivityFilter-Control_selected': isSelectedTag
         })}
-        onClick={() => dispatch(SET_FILTER_TAG, tag)}
+        onClick={() => disp(SET_FILTER_TAG, tag)}
         key={i + 'tag'}
       >
         {tag}
@@ -70,8 +62,8 @@ const ActivityFilter = ({ handleClose }) => {
         <Form className="login-form">
           <Form.Item>
             <Input
-              defaultValue={activity.filter}
-              onChange={({ target }) => dispatch(SET_FILTER_TEXT, target.value)}
+              defaultValue={activityFilter.searchString}
+              onChange={({ target }) => disp(SET_FILTER_TEXT, target.value)}
               prefix={
                 <Icon type="search" style={{ color: 'rgba(0,0,0,.25)' }} />
               }
@@ -87,7 +79,7 @@ const ActivityFilter = ({ handleClose }) => {
           style={{ width: '100%' }}
           showSearch
           value={activityFilter.communityId}
-          onChange={id => dispatch(SET_FILTER_COMMUNITY, id)}
+          onChange={id => disp(SET_FILTER_COMMUNITY, id)}
           optionFilterProp="children"
           filterOption={(input, option) =>
             option.props.children[0]
@@ -112,6 +104,22 @@ const ActivityFilter = ({ handleClose }) => {
       <div className="ActivityFilter-FilterControlBlock">
         <span className="ActivityFilter-FilterControlLabel">Метки</span>
         <div style={{ display: 'flex', flexWrap: 'wrap' }}>{btnsTags}</div>
+      </div>
+      <div
+        className="ActivityFilter-FilterControlBlock"
+        style={{ textAlign: 'center' }}
+      >
+        <Button
+          disabled={!changed}
+          className="Button_color_primary"
+          size="large"
+          onClick={() => {
+            setChanged(false)
+            dispatch(GET_ACTIVITY_LIST)
+          }}
+        >
+          Применить
+        </Button>
       </div>
     </div>
   )

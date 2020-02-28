@@ -5,7 +5,7 @@ import useStoreon from 'storeon/react'
 import { GET_LIST } from 'store/community'
 import { CommunityList } from 'components/Community/CommunityList'
 import Section from '../Section'
-import { Button } from 'ui'
+import { Button } from 'components/ui'
 
 import './style.css'
 

@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react'
 import useStoreon from 'storeon/react'
-import { Breadcrumbs } from 'ui/Breadcrumbs'
-import { Curl } from 'ui/Curl'
+import { Breadcrumbs } from 'components/ui/Breadcrumbs'
+import { Curl } from 'components/ui/Curl'
 import { ActivityAuthor } from '../Activity/atoms/ActivityAuthor'
 import { Participants } from '../Activity/atoms/Participants'
 import CommunitySocial from './atoms/CommunitySocial'
 import CommunityTags from './atoms/CommunityTags'
-import ActivityList from 'components/Activity/atoms/ActivityList'
 
 import { Spin, Divider, Avatar } from 'antd'
 

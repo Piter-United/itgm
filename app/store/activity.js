@@ -3,7 +3,6 @@ import history from '../history'
 
 const defaultState = {
   activity: {
-    filter: '',
     count: 0,
     tags: [],
     list: [],
@@ -51,9 +50,20 @@ export const TOGGLE_ACTIVITY_FILTER = 'activity/toggle-activity-filter'
 const activity = store => {
   store.on('@init', () => defaultState)
   store.on(GET_LIST, s => {
+    const params = {}
+    if (s.activityFilter.searchString && s.activityFilter.searchString.length) {
+      params.text = s.activityFilter.searchString
+    }
+    if (s.activityFilter.communityId && s.activityFilter.communityId.length) {
+      params.community = s.activityFilter.communityId
+    }
+    if (s.activityFilter.tags && s.activityFilter.tags.length) {
+      params.tags = s.activityFilter.tags
+    }
     store.dispatch('request', {
       resourceType: 'itgm',
       id: 'activity',
+      params,
       success: SET_LIST,
       error: ERROR,
       spinner: LOADING

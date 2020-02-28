@@ -1,7 +1,7 @@
 import React from 'react'
 import useStoreon from 'storeon/react'
 // import { parse } from 'qs'
-import { Typography } from 'antd'
+import { Form, Input, Typography } from 'antd'
 import { Button as ButtonCustom } from 'components/UI'
 // import { client_id, site_url } from '../../config'
 // import history from '../../history'
@@ -13,7 +13,6 @@ import '../Form/_view/Form_view_auth.css'
 import '../List/_type/List_type_unstyled.css'
 import '../List/_view/List_view_auth.css'
 import { InnerPageContentContainer } from '../InnerPageContentContainer'
-import { Form, Input } from 'antd/es'
 
 const { Title } = Typography
 

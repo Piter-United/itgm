@@ -8,8 +8,8 @@ import Community from './components/Community/Community'
 import UserProfile from './components/UserProfile'
 import UserEdit from './components/UserProfile/Edit/UserEdit'
 import Login from './components/Login'
-import ParticipantList from './components/Participants/ParticipantsList'
-import PartnerList from './components/Partners/Partners'
+// import ParticipantList from './components/Participants/ParticipantsList'
+// import PartnerList from './components/Partners/Partners'
 import About from './components/About/About'
 
 const routes = [

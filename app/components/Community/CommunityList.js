@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import { List, Button, Typography, Row, Col, Divider, Avatar } from 'antd'
+import { List, Button, Typography } from 'antd'
 
 import history from '../../history'
 

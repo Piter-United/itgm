@@ -277,3 +277,9 @@
 .FormItem-Btn_mgRight_2 {
   margin-right: 20px;
 }
+
+@media only screen and (max-width: 1100px) {
+  #user_edit_community {
+    max-width: 313px;
+  }
+}

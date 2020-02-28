@@ -85,6 +85,9 @@
 }
 
 @media only screen and (max-width: 1100px) {
+  .ActivityListItem {
+    padding: 24px;
+  }
   .ActivityListItem-Footer {
     flex-direction: column;
   }

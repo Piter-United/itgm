@@ -1,8 +1,18 @@
 import React, { useEffect } from 'react'
 
-import { Avatar, Button, Form, Input, Select } from 'antd/es'
 import useStoreon from 'storeon/react'
-import { Card, Slider, Tooltip, Icon, Row, Col } from 'antd'
+import {
+  Avatar,
+  Button,
+  Form,
+  Input,
+  Select,
+  Slider,
+  Tooltip,
+  Icon,
+  Row,
+  Col
+} from 'antd'
 
 import 'components/Form/_view/Form_view_profile.css'
 

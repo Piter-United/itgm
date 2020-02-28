@@ -62,9 +62,6 @@ const ActivityListPage = () => {
   const stateActivityFilter = activityFilter.state
   const handleToggleFilter = () => dispatch(TOGGLE_ACTIVITY_FILTER)
 
-  const filtered = filterActivities(activityFilter, activity.list)
-  const countFilteredRecords = filtered.length
-
   useEffect(() => {
     dispatch(GET_LIST)
   }, [dispatch, user])
@@ -88,7 +85,7 @@ const ActivityListPage = () => {
               Программа
               <span style={{ color: '#ABABAB', fontWeight: '300' }}>
                 {' '}
-                ({countFilteredRecords})
+                ({activity.count})
               </span>
             </Title>
             <Row type="flex" justify="space-between">
@@ -99,7 +96,7 @@ const ActivityListPage = () => {
             </Row>
             <Divider />
             <ActivityList
-              activitiesData={{ ...activity, list: filtered }}
+              activitiesData={activity}
               dispatch={dispatch}
               userId={user?.id}
             />
